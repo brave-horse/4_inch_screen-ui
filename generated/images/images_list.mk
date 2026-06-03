@@ -1,0 +1,1 @@
+GEN_CSRCS += _ct_bar_600x70.c _onoff_off_alpha_48x48.c _onoff_on_alpha_48x48.c _dev_shell_alpha_100x100.c _dev_orange_alpha_280x100.c _dev_white_alpha_280x100.c _scene_btn_alpha_48x48.c _scene_btn_close_alpha_48x48.c

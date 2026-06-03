@@ -1,0 +1,12 @@
+# 模拟器编译产物（GUI Guider / make 每次构建都会重新生成）
+/lvgl-simulator/build/
+
+# 编译中间文件
+*.o
+*.d
+*.obj
+
+# 操作系统 / 编辑器
+.DS_Store
+Thumbs.db
+.vscode/
