@@ -136,6 +136,7 @@ typedef struct
 	lv_obj_t *screen_5_CT_on_off_2_img;
 	lv_obj_t *screen_5_CT_on_off_2_img_label;
 	lv_obj_t *screen_5_dev_shell_img;
+	lv_obj_t *screen_5_dev_white_lid;
 	lv_obj_t *screen_5_dev_orange_img;
 	lv_obj_t *screen_5_dev_white_img;
 	lv_obj_t *screen_5_imgbtn_1;
@@ -176,8 +177,9 @@ LV_IMG_DECLARE(_ct_bar_600x70);
 LV_IMG_DECLARE(_onoff_off_alpha_48x48);
 LV_IMG_DECLARE(_onoff_on_alpha_48x48);
 LV_IMG_DECLARE(_dev_shell_alpha_100x100);
-LV_IMG_DECLARE(_dev_orange_alpha_280x100);
-LV_IMG_DECLARE(_dev_white_alpha_280x100);
+LV_IMG_DECLARE(_dev_white_lid_alpha_174x27);
+LV_IMG_DECLARE(_dev_orange_alpha_280x80);
+LV_IMG_DECLARE(_dev_white_alpha_280x80);
 LV_IMG_DECLARE(_scene_btn_alpha_48x48);
 LV_IMG_DECLARE(_scene_btn_close_alpha_48x48);
 

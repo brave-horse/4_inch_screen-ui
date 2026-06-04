@@ -248,14 +248,30 @@ void setup_scr_screen_5(lv_ui *ui)
     lv_obj_set_style_radius(ui->screen_5_dev_shell_img, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_clip_corner(ui->screen_5_dev_shell_img, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
+    //Write codes screen_5_dev_white_lid
+    ui->screen_5_dev_white_lid = lv_img_create(ui->screen_5);
+    lv_obj_add_flag(ui->screen_5_dev_white_lid, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->screen_5_dev_white_lid, &_dev_white_lid_alpha_174x27);
+    lv_img_set_pivot(ui->screen_5_dev_white_lid, 50,50);
+    lv_img_set_angle(ui->screen_5_dev_white_lid, 0);
+    lv_obj_set_pos(ui->screen_5_dev_white_lid, 232, 181);
+    lv_obj_set_size(ui->screen_5_dev_white_lid, 174, 27);
+
+    //Write style for screen_5_dev_white_lid, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->screen_5_dev_white_lid, 176, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_recolor(ui->screen_5_dev_white_lid, lv_color_hex(0x0a0a0a), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->screen_5_dev_white_lid, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->screen_5_dev_white_lid, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->screen_5_dev_white_lid, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
     //Write codes screen_5_dev_orange_img
     ui->screen_5_dev_orange_img = lv_img_create(ui->screen_5);
     lv_obj_add_flag(ui->screen_5_dev_orange_img, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->screen_5_dev_orange_img, &_dev_orange_alpha_280x100);
+    lv_img_set_src(ui->screen_5_dev_orange_img, &_dev_orange_alpha_280x80);
     lv_img_set_pivot(ui->screen_5_dev_orange_img, 50,50);
     lv_img_set_angle(ui->screen_5_dev_orange_img, 10);
-    lv_obj_set_pos(ui->screen_5_dev_orange_img, 180, 186);
-    lv_obj_set_size(ui->screen_5_dev_orange_img, 280, 100);
+    lv_obj_set_pos(ui->screen_5_dev_orange_img, 180, 185);
+    lv_obj_set_size(ui->screen_5_dev_orange_img, 280, 80);
 
     //Write style for screen_5_dev_orange_img, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_img_recolor_opa(ui->screen_5_dev_orange_img, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -266,11 +282,11 @@ void setup_scr_screen_5(lv_ui *ui)
     //Write codes screen_5_dev_white_img
     ui->screen_5_dev_white_img = lv_img_create(ui->screen_5);
     lv_obj_add_flag(ui->screen_5_dev_white_img, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->screen_5_dev_white_img, &_dev_white_alpha_280x100);
+    lv_img_set_src(ui->screen_5_dev_white_img, &_dev_white_alpha_280x80);
     lv_img_set_pivot(ui->screen_5_dev_white_img, 50,50);
     lv_img_set_angle(ui->screen_5_dev_white_img, 10);
-    lv_obj_set_pos(ui->screen_5_dev_white_img, 180, 186);
-    lv_obj_set_size(ui->screen_5_dev_white_img, 280, 100);
+    lv_obj_set_pos(ui->screen_5_dev_white_img, 180, 185);
+    lv_obj_set_size(ui->screen_5_dev_white_img, 280, 80);
 
     //Write style for screen_5_dev_white_img, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_img_recolor_opa(ui->screen_5_dev_white_img, 0, LV_PART_MAIN|LV_STATE_DEFAULT);

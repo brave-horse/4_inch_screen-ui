@@ -8940,12 +8940,12 @@
 					"id": "z4qu1qny",
 					"type": "img",
 					"left": 180,
-					"top": 186,
+					"top": 185,
 					"visible": true,
 					"isLock": false,
 					"flag": [],
 					"width": 280,
-					"height": 100,
+					"height": 80,
 					"default_style": false,
 					"use_fs": false,
 					"fs_type": "sd",
@@ -8972,12 +8972,12 @@
 					"id": "0fpz4vpt",
 					"type": "img",
 					"left": 180,
-					"top": 186,
+					"top": 185,
 					"visible": true,
 					"isLock": false,
 					"flag": [],
 					"width": 280,
-					"height": 100,
+					"height": 80,
 					"default_style": false,
 					"use_fs": false,
 					"fs_type": "sd",
@@ -8998,6 +8998,39 @@
 							"radius": 0
 						}
 					]
+				},
+				{
+					"name": "dev_white_lid",
+					"id": "sll6ltzy",
+					"type": "img",
+					"left": 232,
+					"top": 181,
+					"visible": true,
+					"isLock": false,
+					"flag": [],
+					"width": 174,
+					"height": 27,
+					"default_style": false,
+					"use_fs": false,
+					"fs_type": "flash",
+					"sd_path": "",
+					"img_path": "import\\image\\dev_white_lid.png",
+					"rotate": 0,
+					"x": 50,
+					"y": 50,
+					"color_format": "true-color-alpha",
+					"style": [
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_DEFAULT",
+							"disable": false,
+							"image_recolor": "#0a0a0a",
+							"image_recolor_opa": 176,
+							"image_opa": 255,
+							"radius": 0
+						}
+					],
+					"dropToGap": false
 				},
 				{
 					"name": "dev_shell_img",
@@ -17646,12 +17679,12 @@
 																		"id": "z4qu1qny",
 																		"type": "img",
 																		"left": 180,
-																		"top": 186,
+																		"top": 185,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
 																		"width": 280,
-																		"height": 100,
+																		"height": 80,
 																		"default_style": false,
 																		"use_fs": false,
 																		"fs_type": "sd",
@@ -17678,12 +17711,12 @@
 																		"id": "0fpz4vpt",
 																		"type": "img",
 																		"left": 180,
-																		"top": 186,
+																		"top": 185,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
 																		"width": 280,
-																		"height": 100,
+																		"height": 80,
 																		"default_style": false,
 																		"use_fs": false,
 																		"fs_type": "sd",
@@ -17704,6 +17737,39 @@
 																				"radius": 0
 																			}
 																		]
+																	},
+																	{
+																		"name": "dev_white_lid",
+																		"id": "sll6ltzy",
+																		"type": "img",
+																		"left": 232,
+																		"top": 181,
+																		"visible": true,
+																		"isLock": false,
+																		"flag": [],
+																		"width": 174,
+																		"height": 27,
+																		"default_style": false,
+																		"use_fs": false,
+																		"fs_type": "flash",
+																		"sd_path": "",
+																		"img_path": "import\\image\\dev_white_lid.png",
+																		"rotate": 0,
+																		"x": 50,
+																		"y": 50,
+																		"color_format": "true-color-alpha",
+																		"style": [
+																			{
+																				"part": "LV_PART_MAIN",
+																				"state": "LV_STATE_DEFAULT",
+																				"disable": false,
+																				"image_recolor": "#0a0a0a",
+																				"image_recolor_opa": 176,
+																				"image_opa": 255,
+																				"radius": 0
+																			}
+																		],
+																		"dropToGap": false
 																	},
 																	{
 																		"name": "dev_shell_img",
@@ -19128,12 +19194,12 @@
 																		"id": "z4qu1qny",
 																		"type": "img",
 																		"left": 180,
-																		"top": 186,
+																		"top": 185,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
 																		"width": 280,
-																		"height": 100,
+																		"height": 80,
 																		"default_style": false,
 																		"use_fs": false,
 																		"fs_type": "sd",
@@ -19160,12 +19226,12 @@
 																		"id": "0fpz4vpt",
 																		"type": "img",
 																		"left": 180,
-																		"top": 186,
+																		"top": 185,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
 																		"width": 280,
-																		"height": 100,
+																		"height": 80,
 																		"default_style": false,
 																		"use_fs": false,
 																		"fs_type": "sd",
@@ -19186,6 +19252,39 @@
 																				"radius": 0
 																			}
 																		]
+																	},
+																	{
+																		"name": "dev_white_lid",
+																		"id": "sll6ltzy",
+																		"type": "img",
+																		"left": 232,
+																		"top": 181,
+																		"visible": true,
+																		"isLock": false,
+																		"flag": [],
+																		"width": 174,
+																		"height": 27,
+																		"default_style": false,
+																		"use_fs": false,
+																		"fs_type": "flash",
+																		"sd_path": "",
+																		"img_path": "import\\image\\dev_white_lid.png",
+																		"rotate": 0,
+																		"x": 50,
+																		"y": 50,
+																		"color_format": "true-color-alpha",
+																		"style": [
+																			{
+																				"part": "LV_PART_MAIN",
+																				"state": "LV_STATE_DEFAULT",
+																				"disable": false,
+																				"image_recolor": "#0a0a0a",
+																				"image_recolor_opa": 176,
+																				"image_opa": 255,
+																				"radius": 0
+																			}
+																		],
+																		"dropToGap": false
 																	},
 																	{
 																		"name": "dev_shell_img",
@@ -20556,12 +20655,12 @@
 																		"id": "z4qu1qny",
 																		"type": "img",
 																		"left": 180,
-																		"top": 186,
+																		"top": 185,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
 																		"width": 280,
-																		"height": 100,
+																		"height": 80,
 																		"default_style": false,
 																		"use_fs": false,
 																		"fs_type": "sd",
@@ -20588,12 +20687,12 @@
 																		"id": "0fpz4vpt",
 																		"type": "img",
 																		"left": 180,
-																		"top": 186,
+																		"top": 185,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
 																		"width": 280,
-																		"height": 100,
+																		"height": 80,
 																		"default_style": false,
 																		"use_fs": false,
 																		"fs_type": "sd",
@@ -20614,6 +20713,39 @@
 																				"radius": 0
 																			}
 																		]
+																	},
+																	{
+																		"name": "dev_white_lid",
+																		"id": "sll6ltzy",
+																		"type": "img",
+																		"left": 232,
+																		"top": 181,
+																		"visible": true,
+																		"isLock": false,
+																		"flag": [],
+																		"width": 174,
+																		"height": 27,
+																		"default_style": false,
+																		"use_fs": false,
+																		"fs_type": "flash",
+																		"sd_path": "",
+																		"img_path": "import\\image\\dev_white_lid.png",
+																		"rotate": 0,
+																		"x": 50,
+																		"y": 50,
+																		"color_format": "true-color-alpha",
+																		"style": [
+																			{
+																				"part": "LV_PART_MAIN",
+																				"state": "LV_STATE_DEFAULT",
+																				"disable": false,
+																				"image_recolor": "#0a0a0a",
+																				"image_recolor_opa": 176,
+																				"image_opa": 255,
+																				"radius": 0
+																			}
+																		],
+																		"dropToGap": false
 																	},
 																	{
 																		"name": "dev_shell_img",
@@ -37839,6 +37971,41 @@
 						]
 					},
 					{
+						"name": "screen_5_dev_white_lid",
+						"id": "sll6ltzy",
+						"type": "img",
+						"visible": true,
+						"flag": [],
+						"pos": [
+							232,
+							181
+						],
+						"size": [
+							174,
+							27
+						],
+						"default_style": false,
+						"img_path": "import\\image\\dev_white_lid.png",
+						"color_format": "true-color-alpha",
+						"rotate": 0,
+						"pivot": "50,50",
+						"use_fs": false,
+						"fs_type": "flash",
+						"img_flash_path": "F:/dev_white_lid.png",
+						"img_sd_path": "S:/dev_white_lid.png",
+						"style": [
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_DEFAULT",
+								"disable": false,
+								"image_recolor": "#0a0a0a",
+								"image_recolor_opa": 176,
+								"image_opa": 255,
+								"radius": 0
+							}
+						]
+					},
+					{
 						"name": "screen_5_dev_orange_img",
 						"id": "0fpz4vpt",
 						"type": "img",
@@ -37846,11 +38013,11 @@
 						"flag": [],
 						"pos": [
 							180,
-							186
+							185
 						],
 						"size": [
 							280,
-							100
+							80
 						],
 						"default_style": false,
 						"img_path": "import\\image\\dev_orange.png",
@@ -37881,11 +38048,11 @@
 						"flag": [],
 						"pos": [
 							180,
-							186
+							185
 						],
 						"size": [
 							280,
-							100
+							80
 						],
 						"default_style": false,
 						"img_path": "import\\image\\dev_white.png",

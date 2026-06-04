@@ -13,7 +13,7 @@
  *
  * 用 GUI-Guider 在主屏画好的 screen_cont_1 当下拉页(它已被摆在屏外 (0,-600)):
  *   1. 开机 pulldown_init 把它从 screen 挪到 lv_layer_top, 藏在屏幕正上方并隐藏;
- *   2. 定时(20ms)扫触摸点, 从屏幕顶部 90px 内向下滑 -> 面板跟手滑下露出;
+ *   2. 定时(20ms)扫触摸点, 从屏幕顶部 40px 内"竖直向下"滑 -> 面板跟手滑下露出;
  *   3. 松手时按"露出是否超过一半"决定展开(贴顶)或收起(缩回屏外);
  *   4. 展开后任意位置上滑可收起。
  *
@@ -21,7 +21,7 @@
  *     主屏每次重建虽会再造一个屏内 cont_1 "幽灵", 但它在屏外(0,-600)不可见、且随旧屏删除,
  *     不累积也不挡事, 这里不用管它。 */
 
-#define PULLDOWN_START_EDGE   90    /* 只有从屏幕顶部 90px 内开始下滑才触发下拉 */
+#define PULLDOWN_START_EDGE   40    /* 只有从屏幕顶部 40px 内开始下滑才触发(收窄, 避开标签栏/按钮防误触) */
 #define PULLDOWN_DRAG_START   8     /* 移动超过 8px 才认定为拖拽(防误触) */
 #define PULLDOWN_ANIM_TIME    220   /* 展开/收起动画时间, ms */
 
@@ -189,8 +189,24 @@ static void pulldown_timer_cb(lv_timer_t *t)
     dy = pt.y - s_start.y;
 
     if (!s_dragging) {
+        lv_coord_t dx = pt.x - s_start.x;
+
+        /* 收紧判定防误触, 任一不满足就直接 return 把这次按压交还给下层控件(按钮/滚动),
+         * 且此刻尚未锁输入(延后锁) :
+         *   1) 移动要超过阈值;
+         *   2) 必须"竖直主导"(|dy|>|dx|): 横滑、点按钮的小斜抖都不当下拉;
+         *   3) 方向要对: 收起态只认向下滑(dy>0)拉出, 展开态只认向上滑(dy<0)收起。 */
         if (LV_ABS(dy) < PULLDOWN_DRAG_START) {
             return;                         /* 移动太小, 还不算拖拽 */
+        }
+        if (LV_ABS(dy) <= LV_ABS(dx)) {
+            return;                         /* 不是竖直主导(横向/斜向), 不抢 */
+        }
+        if (!s_open && dy <= 0) {
+            return;                         /* 收起态只响应向下滑 */
+        }
+        if (s_open && dy >= 0) {
+            return;                         /* 展开态只响应向上滑 */
         }
         s_dragging = true;
         lv_anim_del(s_panel, pulldown_set_y);

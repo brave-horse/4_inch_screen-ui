@@ -24,8 +24,8 @@
 /* 重绘区域可视化诊断：开启后每重绘一个对象就盖一层半透明随机色块+边框，
  * 用于排查"哪里在持续触发重绘"(拖滑块时灯光图区域狂闪 = 重绘太频繁)。
  * 当前=1 开启中。**调试用，问题查清后改回 0**(否则正常使用时满屏闪色块)。 */
-#undef LV_USE_REFR_DEBUG
-#define LV_USE_REFR_DEBUG 1
+// #undef LV_USE_REFR_DEBUG 1
+// #define LV_USE_REFR_DEBUG 
 
 /* common code end */
 
