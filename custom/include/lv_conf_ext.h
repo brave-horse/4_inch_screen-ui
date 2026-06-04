@@ -21,10 +21,11 @@
 
 /* common code  begin  */
 
-/* 重绘区域可视化诊断：开启后每次刷屏会用半透明红色高亮被重绘的区域，
- * 用于排查"哪里在持续触发重绘"。**调试用，问题查清后记得关掉**。 */
+/* 重绘区域可视化诊断：开启后每重绘一个对象就盖一层半透明随机色块+边框，
+ * 用于排查"哪里在持续触发重绘"(拖滑块时灯光图区域狂闪 = 重绘太频繁)。
+ * 当前=1 开启中。**调试用，问题查清后改回 0**(否则正常使用时满屏闪色块)。 */
 #undef LV_USE_REFR_DEBUG
-#define LV_USE_REFR_DEBUG 0
+#define LV_USE_REFR_DEBUG 1
 
 /* common code end */
 
@@ -32,6 +33,21 @@
 #if LV_USE_GUIDER_SIMULATOR
 /* code for simulator begin  */
 
+/* 性能监视器：模拟器右下角显示 FPS + CPU 占用%(LVGL 自估的渲染耗时占比, 用来查卡顿/掉帧)。
+ * 放在 simulator 块 → 只在模拟器开, 不影响板子; 写在本文件(custom/, 不被 GUI Guider 覆盖),
+ * 所以每次重生成代码 lv_conf.h 被重置也仍生效。
+ * 注: lv_conf.h 里 LV_USE_PERF_MONITOR=0 时不会定义 _POS, 这里开启后必须补定义 _POS。 */
+#undef  LV_USE_PERF_MONITOR
+#define LV_USE_PERF_MONITOR     1
+#undef  LV_USE_PERF_MONITOR_POS
+#define LV_USE_PERF_MONITOR_POS LV_ALIGN_BOTTOM_RIGHT
+
+/* 内存监视器：左下角显示已用内存/碎片率。开启时必须同时定义 _POS(同 PERF 的原因,
+ * 否则 LV_USE_MEM_MONITOR=1 但 _POS 未定义 → 编译报错)。不需要就把这四行整体注释掉。 */
+#undef  LV_USE_MEM_MONITOR
+#define LV_USE_MEM_MONITOR      1
+#undef  LV_USE_MEM_MONITOR_POS
+#define LV_USE_MEM_MONITOR_POS  LV_ALIGN_BOTTOM_LEFT
 
 /* code for simulator end */
 #else

@@ -15,6 +15,13 @@
  * VALUE_CHANGED 回调并按当前值刷新一次。静止时只是几次指针比较, 开销可忽略(同 scr_noscroll)。 */
 #define SCREEN_5_POLL_PERIOD_MS  30
 
+/* 拖动节流: 两张灯光图是 280x100 且带 1° 旋转(generated 里 lv_img_set_angle=10), 重绘走
+ * 软件变换+alpha 混合, 很慢。若每个 VALUE_CHANGED(拖动时每帧多次) 都重绘, lv_timer_handler
+ * 会被重绘拖住、触摸采样被饿死 → 旋钮"不跟手、滑着滑着停住"。
+ * 故拖动中最多每 50ms 才重算重绘一次(灯光/数字 20fps 足够流畅); 旋钮本身由 slider 每帧
+ * 自绘(很轻)不受影响; 松手(RELEASED)再强制落一次最终值, 保证停下时与 slider 完全一致。 */
+#define SCREEN_5_APPLY_MIN_INTERVAL_MS  50
+
 /* 亮度条 slider_1 量程(见 generated/setup_scr_screen_5.c): 0~100, 直接当百分比用。 */
 #define BRI_MIN   0
 #define BRI_MAX   100
@@ -32,13 +39,21 @@
  * 仅作指针相等比较, 从不解引用, 旧屏删除后变野也安全。 */
 static lv_obj_t *s_bound_slider1;
 
+/* 上次真正执行 apply(重绘大图) 的时刻(lv_tick, ms)。用于拖动节流。 */
+static uint32_t s_last_apply_tick;
+
 /**********************
  *  STATIC PROTOTYPES
  **********************/
 
 static void screen_5_apply_light(void);
+static void screen_5_stop_entrance_anim(void);
 static void screen_5_slider_event_cb(lv_event_t *e);
 static void screen_5_poll_cb(lv_timer_t *timer);
+
+/* 入场动画终点 x: 同 generated/events_init.c 里 SCREEN_LOADED 给 slider/label 跑的
+ * ui_animation(... , 70, ...) 终值。停掉动画后落到此处 = 动画自然结束的最终位置。 */
+#define SCREEN_5_ENTRANCE_END_X  70
 
 /**********************
  *  GLOBAL FUNCTIONS
@@ -118,10 +133,54 @@ static void screen_5_apply_light(void)
     }
 }
 
-/* 拖动任一进度条 → 重算灯光与标签。apply 内部自带闸门, 这里直接转发即可。 */
+/* 终结 generated 在 LV_EVENT_SCREEN_LOADED 给 slider_1/2、label_1/2 跑的入场 X 位移动画
+ * (600ms overshoot, 终点 x=70)。动画期间它每帧 lv_obj_set_x 移动 slider, 若此时按住拖动,
+ * slider 在手指下方左右滑(overshoot 还会冲过头再弹回) → 算出的值乱跳 → 旋钮"先跟手一下
+ * 就卡住/不跟手"; 等动画结束(松手再拖)才正常。故一按下就把这几个对象的位移动画删掉并
+ * 直接落到终点 x=70(= 动画自然结束的位置), 拖动期间 slider 位置固定, 冲突消失。 */
+static void screen_5_stop_entrance_anim(void)
+{
+    lv_obj_t *objs[] = {
+        guider_ui.screen_5_slider_1,
+        guider_ui.screen_5_slider_2,
+        guider_ui.screen_5_label_1,
+        guider_ui.screen_5_label_2,
+    };
+    size_t i;
+
+    for (i = 0; i < sizeof(objs) / sizeof(objs[0]); i++) {
+        lv_obj_t *o = objs[i];
+        if (o != NULL && lv_obj_is_valid(o)) {
+            lv_anim_del(o, (lv_anim_exec_xcb_t)lv_obj_set_x);   /* 删掉该对象的 X 位移动画 */
+            lv_obj_set_x(o, SCREEN_5_ENTRANCE_END_X);           /* 落到终点, 与动画结束一致 */
+        }
+    }
+}
+
+/* 拖动任一进度条 → 重算灯光与标签。apply 内部自带闸门。
+ * 关键: 拖动中(VALUE_CHANGED)按 SCREEN_5_APPLY_MIN_INTERVAL_MS 节流, 避免每帧重绘两张
+ * 旋转大图把 lv_timer_handler 卡住导致旋钮不跟手; 松手(RELEASED)强制落一次最终值。 */
 static void screen_5_slider_event_cb(lv_event_t *e)
 {
-    LV_UNUSED(e);
+    lv_event_code_t code = lv_event_get_code(e);
+
+    if (code == LV_EVENT_PRESSED) {
+        /* 一按下立即终结入场位移动画, 防止 slider 在手指下方移动导致旋钮卡住/不跟手。 */
+        screen_5_stop_entrance_anim();
+        return;
+    }
+
+    if (code == LV_EVENT_RELEASED) {
+        screen_5_apply_light();          /* 松手: 最终值必落, 不受节流影响 */
+        s_last_apply_tick = lv_tick_get();
+        return;
+    }
+
+    /* LV_EVENT_VALUE_CHANGED: 距上次重绘不足间隔就跳过, 把多帧合并成一次。 */
+    if (lv_tick_elaps(s_last_apply_tick) < SCREEN_5_APPLY_MIN_INTERVAL_MS) {
+        return;
+    }
+    s_last_apply_tick = lv_tick_get();
     screen_5_apply_light();
 }
 
@@ -160,12 +219,25 @@ static void screen_5_poll_cb(lv_timer_t *timer)
 
     slider2 = guider_ui.screen_5_slider_2;
 
+    /* 三类事件都挂: PRESSED 一按下停掉入场位移动画(防卡), VALUE_CHANGED 拖动中节流刷新,
+     * RELEASED 松手落最终值。 */
+    lv_obj_add_event_cb(slider1, screen_5_slider_event_cb, LV_EVENT_PRESSED, NULL);
     lv_obj_add_event_cb(slider1, screen_5_slider_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
+    lv_obj_add_event_cb(slider1, screen_5_slider_event_cb, LV_EVENT_RELEASED, NULL);
+    /* 关键: 清掉 slider 的 GESTURE_BUBBLE。slider 默认带此 flag, 快速拖动时 LVGL 会把动作判成
+     * "快滑手势"并冒泡到 screen_5, 命中 generated 里 RIGHT 手势的 lv_indev_wait_release()
+     * → 拖动被掐断到松手为止(表现为"移速快就停顿")。清掉后手势只发给 slider 自己(它不处理),
+     * 到不了 screen_5, 拖动全程不被打断; slider 拖动本身走 PRESSING 不依赖手势, 不受影响。 */
+    lv_obj_clear_flag(slider1, LV_OBJ_FLAG_GESTURE_BUBBLE);
     if (slider2 != NULL && lv_obj_is_valid(slider2)) {
+        lv_obj_add_event_cb(slider2, screen_5_slider_event_cb, LV_EVENT_PRESSED, NULL);
         lv_obj_add_event_cb(slider2, screen_5_slider_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
+        lv_obj_add_event_cb(slider2, screen_5_slider_event_cb, LV_EVENT_RELEASED, NULL);
+        lv_obj_clear_flag(slider2, LV_OBJ_FLAG_GESTURE_BUBBLE);
     }
     s_bound_slider1 = slider1;
 
     /* 建屏/重建后立即按 slider 初值刷新一次。 */
     screen_5_apply_light();
+    s_last_apply_tick = lv_tick_get();
 }
