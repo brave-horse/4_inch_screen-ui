@@ -129,12 +129,11 @@ typedef struct
 	bool screen_5_del;
 	lv_obj_t *screen_5_tabview_1;
 	lv_obj_t *screen_5_tabview_1_tab_1;
+	lv_obj_t *screen_5_cont_1;
 	lv_obj_t *screen_5_label_2;
 	lv_obj_t *screen_5_slider_2;
 	lv_obj_t *screen_5_slider_1;
 	lv_obj_t *screen_5_label_1;
-	lv_obj_t *screen_5_CT_on_off_2_img;
-	lv_obj_t *screen_5_CT_on_off_2_img_label;
 	lv_obj_t *screen_5_dev_shell_img;
 	lv_obj_t *screen_5_dev_white_lid;
 	lv_obj_t *screen_5_dev_orange_img;
@@ -143,7 +142,8 @@ typedef struct
 	lv_obj_t *screen_5_imgbtn_1_label;
 	lv_obj_t *screen_5_btn_1;
 	lv_obj_t *screen_5_btn_1_label;
-	lv_obj_t *screen_5_cont_1;
+	lv_obj_t *screen_5_CT_on_off_2_img;
+	lv_obj_t *screen_5_CT_on_off_2_img_label;
 }lv_ui;
 
 typedef void (*ui_setup_scr_t)(lv_ui * ui);
@@ -175,14 +175,14 @@ void setup_scr_screen_4(lv_ui *ui);
 void setup_scr_screen_5(lv_ui *ui);
 
 LV_IMG_DECLARE(_ct_bar_600x70);
-LV_IMG_DECLARE(_onoff_off_alpha_48x48);
-LV_IMG_DECLARE(_onoff_on_alpha_48x48);
 LV_IMG_DECLARE(_dev_shell_alpha_100x100);
 LV_IMG_DECLARE(_dev_white_lid_alpha_174x27);
 LV_IMG_DECLARE(_dev_orange_alpha_280x80);
 LV_IMG_DECLARE(_dev_white_alpha_280x80);
 LV_IMG_DECLARE(_scene_btn_alpha_48x48);
 LV_IMG_DECLARE(_scene_btn_close_alpha_48x48);
+LV_IMG_DECLARE(_onoff_off_alpha_48x48);
+LV_IMG_DECLARE(_onoff_on_alpha_48x48);
 
 LV_FONT_DECLARE(lv_font_ZiTiQuanWeiJunHeiW22_30)
 LV_FONT_DECLARE(lv_font_ZiTiQuanWeiJunHeiW22_16)

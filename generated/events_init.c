@@ -15,7 +15,9 @@
 #include "freemaster_client.h"
 #endif
 
-
+#include <stdio.h>
+static uint32_t s_ct_apply_tick2;
+static uint32_t s_ct_apply_tick;
 
 static void screen_event_handler (lv_event_t *e)
 {
@@ -98,7 +100,10 @@ static void screen_1_dev_lightCT_button_event_handler (lv_event_t *e)
     case LV_EVENT_CLICKED:
     {
         ui_load_scr_animation(&guider_ui, &guider_ui.screen_5, guider_ui.screen_5_del, &guider_ui.screen_1_del, setup_scr_screen_5, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
- 
+        void dev_lightCT_click_evt()
+        {
+            printf("123");
+        }
         break;
     }
     default:
@@ -256,6 +261,74 @@ static void screen_5_event_handler (lv_event_t *e)
     }
 }
 
+static void screen_5_slider_2_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_VALUE_CHANGED:
+    {
+        const uint32_t APPLY_MIN_MS = 50;   /* 拖动节流: 两张旋转灯光图重绘很重, 最多每 50ms 刷一次防卡 */
+        s_ct_apply_tick2 = lv_tick_get();
+        lv_obj_t *slider1 = guider_ui.screen_5_slider_1;   /* 亮度 0..100 */
+        lv_obj_t *slider2 = guider_ui.screen_5_slider_2;   /* 色温 2700..6500 */
+        lv_obj_t *white   = guider_ui.screen_5_dev_white_img;
+        lv_obj_t *orange  = guider_ui.screen_5_dev_orange_img;
+
+        if (lv_obj_is_valid(slider1) && lv_obj_is_valid(slider2)) {
+            const int32_t CT_MIN  = 2700;   /* 色温最左(K) */
+            const int32_t CT_SPAN = 3800;   /* 6500-2700 */
+            const int32_t BRI_MAX = 100;
+            int32_t  bri  = lv_slider_get_value(slider1);
+            int32_t  ct   = lv_slider_get_value(slider2);
+            uint32_t tnum = (uint32_t)(ct - CT_MIN);                                 /* = T*CT_SPAN */
+            uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);
+            uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);
+            if (lv_obj_is_valid(white))  lv_obj_set_style_img_opa(white,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);
+            if (lv_obj_is_valid(orange)) lv_obj_set_style_img_opa(orange, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);
+        }
+
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void screen_5_slider_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_VALUE_CHANGED:
+    {
+        const uint32_t APPLY_MIN_MS = 50;   /* 拖动节流: 两张旋转灯光图重绘很重, 最多每 50ms 刷一次防卡 */
+        if (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {
+            s_ct_apply_tick = lv_tick_get();
+
+            lv_obj_t *slider1 = guider_ui.screen_5_slider_1;   /* 亮度 0..100 */
+            lv_obj_t *slider2 = guider_ui.screen_5_slider_2;   /* 色温 2700..6500 */
+            lv_obj_t *white   = guider_ui.screen_5_dev_white_img;
+            lv_obj_t *orange  = guider_ui.screen_5_dev_orange_img;
+
+            if (lv_obj_is_valid(slider1) && lv_obj_is_valid(slider2)) {
+                const int32_t CT_MIN  = 2700;   /* 色温最左(K) */
+                const int32_t CT_SPAN = 3800;   /* 6500-2700 */
+                const int32_t BRI_MAX = 100;
+                int32_t  bri  = lv_slider_get_value(slider1);
+                int32_t  ct   = lv_slider_get_value(slider2);
+                uint32_t tnum = (uint32_t)(ct - CT_MIN);                                 /* = T*CT_SPAN */
+                uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);
+                uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);
+                if (lv_obj_is_valid(white))  lv_obj_set_style_img_opa(white,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);
+                if (lv_obj_is_valid(orange)) lv_obj_set_style_img_opa(orange, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);
+            }
+        }
+        break;
+    }
+    default:
+        break;
+    }
+}
+
 static void screen_5_btn_1_event_handler (lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -270,10 +343,27 @@ static void screen_5_btn_1_event_handler (lv_event_t *e)
     }
 }
 
+static void screen_5_CT_on_off_2_img_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_VALUE_CHANGED:
+    {
+
+        break;
+    }
+    default:
+        break;
+    }
+}
+
 void events_init_screen_5 (lv_ui *ui)
 {
     lv_obj_add_event_cb(ui->screen_5, screen_5_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->screen_5_slider_2, screen_5_slider_2_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->screen_5_slider_1, screen_5_slider_1_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->screen_5_btn_1, screen_5_btn_1_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->screen_5_CT_on_off_2_img, screen_5_CT_on_off_2_img_event_handler, LV_EVENT_ALL, ui);
 }
 
 

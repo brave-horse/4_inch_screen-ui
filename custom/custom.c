@@ -64,9 +64,6 @@ void custom_init(lv_ui *ui)
     /* 跨屏控件：主屏顶部下拉面板（用 GUI-Guider 画的 screen_cont_1）。 */
     pulldown_init(ui);
 
-    /* 单屏控件：screen_5 灯光控制——亮度/色温进度条联动白光/橙光图透明度 + 标签数字。 */
-    screen_custom_init();
-
     /* 单屏控件：screen_1 色温灯开关——初始化为关 + 按下时同步开关变量。 */
     screen_1_custom_init();
 
