@@ -5,9 +5,10 @@
 extern "C" {
 #endif
 
-/* 单屏控件改动(custom/screen): 用轮询在每次屏重建后, 把"只影响单个屏"的控件逻辑重新 apply/绑定。
- * 各自在 custom_init() 里调用一次。 */
-void screen_1_custom_init(void);  /* screen_1: 色温灯开关(CT_on_off_1_img) 初始化为关 + 按下同步开关变量 */
+/* screen_5 灯光: 按亮度/色温刷两张灯光图透明度 + 两个标签(关灯时灯光图隐藏)。
+ * 灯光公式集中在 screen5.c 这一份; 由 GUI Guider 的 slider 拖动 / 进屏 / 开关 事件调用
+ * (事件的 include 框写 #include "screen.h")。 */
+void screen_5_apply_light(void);
 
 #ifdef __cplusplus
 }

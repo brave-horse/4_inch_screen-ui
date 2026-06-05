@@ -41,8 +41,6 @@ typedef struct
 	lv_obj_t *screen_1_small_dev_on_img;
 	lv_obj_t *screen_1_small_dev_off_img;
 	lv_obj_t *screen_1_label_2;
-	lv_obj_t *screen_1_btn_2;
-	lv_obj_t *screen_1_btn_2_label;
 	lv_obj_t *screen_1_btn_4;
 	lv_obj_t *screen_1_btn_4_label;
 	lv_obj_t *screen_1_btn_3;
@@ -59,6 +57,7 @@ typedef struct
 	lv_obj_t *screen_1_btn_9_label;
 	lv_obj_t *screen_1_btn_10;
 	lv_obj_t *screen_1_btn_10_label;
+	lv_obj_t *screen_1_cont_2;
 	lv_obj_t *screen_1_label_1;
 	lv_obj_t *screen_2;
 	bool screen_2_del;
