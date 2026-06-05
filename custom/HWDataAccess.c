@@ -90,7 +90,7 @@ void HW_LightCT_Apply(void)
  ***************************/
 HW_InterfaceTypeDef HWInterface = {
     .LightCT = {
-        .switch_status = true,   //开关: 默认关
+        .switch_status = false,   //开关: 默认关
         .brightness = 50,
         .color_temp = 4600,
         .changed = 0,        //是否变化

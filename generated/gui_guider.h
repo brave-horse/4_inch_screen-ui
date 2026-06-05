@@ -35,13 +35,12 @@ typedef struct
 	bool screen_1_del;
 	lv_obj_t *screen_1_tabview_1;
 	lv_obj_t *screen_1_tabview_1_tab_1;
-	lv_obj_t *screen_1_dev_lightCT_button;
-	lv_obj_t *screen_1_dev_lightCT_button_label;
-	lv_obj_t *screen_1_label_2;
+	lv_obj_t *screen_1_cont_1;
+	lv_obj_t *screen_1_Light_CT_on_off_1_img;
+	lv_obj_t *screen_1_Light_CT_on_off_1_img_label;
 	lv_obj_t *screen_1_small_dev_on_img;
 	lv_obj_t *screen_1_small_dev_off_img;
-	lv_obj_t *screen_1_CT_on_off_1_img;
-	lv_obj_t *screen_1_CT_on_off_1_img_label;
+	lv_obj_t *screen_1_label_2;
 	lv_obj_t *screen_1_btn_2;
 	lv_obj_t *screen_1_btn_2_label;
 	lv_obj_t *screen_1_btn_4;
@@ -142,8 +141,8 @@ typedef struct
 	lv_obj_t *screen_5_imgbtn_1_label;
 	lv_obj_t *screen_5_btn_1;
 	lv_obj_t *screen_5_btn_1_label;
-	lv_obj_t *screen_5_CT_on_off_2_img;
-	lv_obj_t *screen_5_CT_on_off_2_img_label;
+	lv_obj_t *screen_5_Light_CT_on_off_2_img;
+	lv_obj_t *screen_5_Light_CT_on_off_2_img_label;
 	lv_obj_t *screen_6;
 	bool screen_6_del;
 	lv_obj_t *screen_6_btn_1;

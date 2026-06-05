@@ -15,7 +15,8 @@
 #include "freemaster_client.h"
 #endif
 
-#include <stdio.h>
+#include "HWDataAccess.h"
+#include "HWDataAccess.h"
 #include "HWDataAccess.h"
 #include "HWDataAccess.h"
 static uint32_t s_ct_apply_tick2;
@@ -27,6 +28,11 @@ static void screen_event_handler (lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
     switch (code) {
+    case LV_EVENT_PRESSING:
+    {
+
+        break;
+    }
     case LV_EVENT_GESTURE:
     {
         lv_dir_t dir = lv_indev_get_gesture_dir(lv_indev_get_act());
@@ -71,6 +77,22 @@ static void screen_1_event_handler (lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
     switch (code) {
+    case LV_EVENT_SCREEN_LOADED:
+    {
+        /* 进屏初始化: 从中间层读色温灯开关真值, 摆正开关 CHECKED + small_dev_off 透明度。 */
+        bool light_on = HWInterface.LightCT.switch_status;   /* true=开, false=关 */
+
+        /* 开关图标 CHECKED 摆到当前状态 */
+        if (light_on) lv_obj_add_state(guider_ui.screen_1_Light_CT_on_off_1_img, LV_STATE_CHECKED);
+        else          lv_obj_clear_state(guider_ui.screen_1_Light_CT_on_off_1_img, LV_STATE_CHECKED);
+
+        /* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */
+        lv_obj_set_style_img_opa(guider_ui.screen_1_small_dev_off_img,
+                                 light_on ? LV_OPA_TRANSP : LV_OPA_COVER,
+                                 LV_PART_MAIN | LV_STATE_DEFAULT);
+
+        break;
+    }
     case LV_EVENT_GESTURE:
     {
         lv_dir_t dir = lv_indev_get_gesture_dir(lv_indev_get_act());
@@ -97,17 +119,13 @@ static void screen_1_event_handler (lv_event_t *e)
     }
 }
 
-static void screen_1_dev_lightCT_button_event_handler (lv_event_t *e)
+static void screen_1_cont_1_event_handler (lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
     switch (code) {
     case LV_EVENT_CLICKED:
     {
         ui_load_scr_animation(&guider_ui, &guider_ui.screen_5, guider_ui.screen_5_del, &guider_ui.screen_1_del, setup_scr_screen_5, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
-        void dev_lightCT_click_evt()
-        {
-            printf("123");
-        }
         break;
     }
     default:
@@ -115,13 +133,22 @@ static void screen_1_dev_lightCT_button_event_handler (lv_event_t *e)
     }
 }
 
-static void screen_1_label_2_event_handler (lv_event_t *e)
+static void screen_1_Light_CT_on_off_1_img_event_handler (lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
     switch (code) {
-    case LV_EVENT_CLICKED:
+    case LV_EVENT_VALUE_CHANGED:
     {
-        ui_load_scr_animation(&guider_ui, &guider_ui.screen_5, guider_ui.screen_5_del, &guider_ui.screen_1_del, setup_scr_screen_5, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        /* 点开关 → 读它点击后的新状态 → 写回中间层 → 刷 small_dev_off 透明度。 */
+        lv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */
+        bool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 有CHECKED=开, 没有=关 */
+
+        HWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层: 开→true, 关→false; 与 screen_5 共享同一份 */
+
+        /* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */
+        lv_obj_set_style_img_opa(guider_ui.screen_1_small_dev_off_img,
+                                 light_on ? LV_OPA_TRANSP : LV_OPA_COVER,
+                                 LV_PART_MAIN | LV_STATE_DEFAULT);
         break;
     }
     default:
@@ -143,12 +170,27 @@ static void screen_1_small_dev_off_img_event_handler (lv_event_t *e)
     }
 }
 
+static void screen_1_label_2_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.screen_5, guider_ui.screen_5_del, &guider_ui.screen_1_del, setup_scr_screen_5, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
 void events_init_screen_1 (lv_ui *ui)
 {
     lv_obj_add_event_cb(ui->screen_1, screen_1_event_handler, LV_EVENT_ALL, ui);
-    lv_obj_add_event_cb(ui->screen_1_dev_lightCT_button, screen_1_dev_lightCT_button_event_handler, LV_EVENT_ALL, ui);
-    lv_obj_add_event_cb(ui->screen_1_label_2, screen_1_label_2_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->screen_1_cont_1, screen_1_cont_1_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->screen_1_Light_CT_on_off_1_img, screen_1_Light_CT_on_off_1_img_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->screen_1_small_dev_off_img, screen_1_small_dev_off_img_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->screen_1_label_2, screen_1_label_2_event_handler, LV_EVENT_ALL, ui);
 }
 
 static void screen_2_event_handler (lv_event_t *e)
@@ -268,8 +310,8 @@ static void screen_5_event_handler (lv_event_t *e)
         lv_label_set_text(guider_ui.screen_5_label_2, buf);
 
         /* 3. 开关 CHECKED + 遮罩 cont_1 按开关态摆正 */
-        if (light_on) lv_obj_add_state(guider_ui.screen_5_CT_on_off_2_img, LV_STATE_CHECKED);
-        else          lv_obj_clear_state(guider_ui.screen_5_CT_on_off_2_img, LV_STATE_CHECKED);
+        if (light_on) lv_obj_add_state(guider_ui.screen_5_Light_CT_on_off_2_img, LV_STATE_CHECKED);
+        else          lv_obj_clear_state(guider_ui.screen_5_Light_CT_on_off_2_img, LV_STATE_CHECKED);
 
         if (light_on) {
             lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -277,7 +319,7 @@ static void screen_5_event_handler (lv_event_t *e)
         } else {
             lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);
             lv_obj_move_foreground(guider_ui.screen_5_cont_1);
-            lv_obj_move_foreground(guider_ui.screen_5_CT_on_off_2_img);
+            lv_obj_move_foreground(guider_ui.screen_5_Light_CT_on_off_2_img);
         }
         break;
     }
@@ -365,7 +407,7 @@ static void screen_5_btn_1_event_handler (lv_event_t *e)
     }
 }
 
-static void screen_5_CT_on_off_2_img_event_handler (lv_event_t *e)
+static void screen_5_Light_CT_on_off_2_img_event_handler (lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
     switch (code) {
@@ -399,7 +441,7 @@ void events_init_screen_5 (lv_ui *ui)
     lv_obj_add_event_cb(ui->screen_5_slider_2, screen_5_slider_2_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->screen_5_slider_1, screen_5_slider_1_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->screen_5_btn_1, screen_5_btn_1_event_handler, LV_EVENT_ALL, ui);
-    lv_obj_add_event_cb(ui->screen_5_CT_on_off_2_img, screen_5_CT_on_off_2_img_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->screen_5_Light_CT_on_off_2_img, screen_5_Light_CT_on_off_2_img_event_handler, LV_EVENT_ALL, ui);
 }
 
 
