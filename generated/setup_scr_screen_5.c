@@ -135,7 +135,7 @@ void setup_scr_screen_5(lv_ui *ui)
     lv_slider_set_range(ui->screen_5_slider_2, 2700, 6500);
     lv_slider_set_mode(ui->screen_5_slider_2, LV_SLIDER_MODE_SYMMETRICAL);
     lv_slider_set_value(ui->screen_5_slider_2, 4600, LV_ANIM_OFF);
-    lv_obj_set_pos(ui->screen_5_slider_2, -223, 615);
+    lv_obj_set_pos(ui->screen_5_slider_2, -223, 616);
     lv_obj_set_size(ui->screen_5_slider_2, 600, 70);
 
     //Write style for screen_5_slider_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -164,7 +164,7 @@ void setup_scr_screen_5(lv_ui *ui)
     lv_slider_set_range(ui->screen_5_slider_1, 0, 100);
     lv_slider_set_mode(ui->screen_5_slider_1, LV_SLIDER_MODE_SYMMETRICAL);
     lv_slider_set_value(ui->screen_5_slider_1, 50, LV_ANIM_OFF);
-    lv_obj_set_pos(ui->screen_5_slider_1, -223, 462);
+    lv_obj_set_pos(ui->screen_5_slider_1, -223, 452);
     lv_obj_set_size(ui->screen_5_slider_1, 600, 70);
 
     //Write style for screen_5_slider_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -346,7 +346,7 @@ void setup_scr_screen_5(lv_ui *ui)
     lv_label_set_long_mode(ui->screen_5_CT_on_off_2_img_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->screen_5_CT_on_off_2_img_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->screen_5_CT_on_off_2_img, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->screen_5_CT_on_off_2_img, 18, 100);
+    lv_obj_set_pos(ui->screen_5_CT_on_off_2_img, 19, 101);
     lv_obj_set_size(ui->screen_5_CT_on_off_2_img, 48, 48);
 
     //Write style for screen_5_CT_on_off_2_img, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.

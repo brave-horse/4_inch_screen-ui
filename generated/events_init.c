@@ -16,8 +16,12 @@
 #endif
 
 #include <stdio.h>
+#include "HWDataAccess.h"
+#include "HWDataAccess.h"
 static uint32_t s_ct_apply_tick2;
+#include "HWDataAccess.h"
 static uint32_t s_ct_apply_tick;
+#include "HWDataAccess.h"
 
 static void screen_event_handler (lv_event_t *e)
 {
@@ -240,19 +244,40 @@ static void screen_5_event_handler (lv_event_t *e)
         ui_animation(guider_ui.screen_5_slider_1, 600, 0, lv_obj_get_x(guider_ui.screen_5_slider_1), 70, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
         ui_animation(guider_ui.screen_5_slider_2, 600, 0, lv_obj_get_x(guider_ui.screen_5_slider_2), 70, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
         ui_animation(guider_ui.screen_5_label_1, 600, 0, lv_obj_get_x(guider_ui.screen_5_label_1), 70, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
-        break;
-    }
-    case LV_EVENT_GESTURE:
-    {
-        lv_dir_t dir = lv_indev_get_gesture_dir(lv_indev_get_act());
-        switch(dir) {
-        case LV_DIR_RIGHT:
-        {
-            lv_indev_wait_release(lv_indev_get_act());
-            break;
-        }
-        default:
-            break;
+        /* 进屏初始化: 从中间层 HWInterface.LightCT 读全部状态(开关/亮度/色温), 把整屏画对, 不信 GUI Guider 默认态。 */
+        bool     light_on   = HWInterface.LightCT.switch_status;   /* 开/关 */
+        uint16_t brightness = HWInterface.LightCT.brightness;      /* 亮度 0..100 */
+        uint16_t color_temp = HWInterface.LightCT.color_temp;      /* 色温 2700..6500 */
+
+        /* 1. 两条 slider 摆到中间层的值(set_value 是程序设值, 不触发 value_changed, 不会回写中间层) */
+        lv_slider_set_value(guider_ui.screen_5_slider_1, brightness, LV_ANIM_OFF);
+        lv_slider_set_value(guider_ui.screen_5_slider_2, color_temp, LV_ANIM_OFF);
+
+        /* 2. 按亮度+色温刷白/橙灯光图透明度 + 两个标签数字(公式同 slider 事件; 量程用 HWDataAccess.h 的宏) */
+        uint32_t ct_span  = LIGHTCT_COLOR_TEMP_MAX - LIGHTCT_COLOR_TEMP_MIN;                 /* 3800 */
+        uint32_t tnum     = (uint32_t)(color_temp - LIGHTCT_COLOR_TEMP_MIN);                 /* = T*ct_span */
+        uint32_t o_white  = (uint32_t)brightness * tnum             * LV_OPA_COVER / ((uint32_t)LIGHTCT_BRIGHTNESS_MAX * ct_span);
+        uint32_t o_orange = (uint32_t)brightness * (ct_span - tnum) * LV_OPA_COVER / ((uint32_t)LIGHTCT_BRIGHTNESS_MAX * ct_span);
+        lv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);
+        lv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+        char buf[32];
+        lv_snprintf(buf, sizeof(buf), "亮 度 | %d%%", (int)brightness);
+        lv_label_set_text(guider_ui.screen_5_label_1, buf);
+        lv_snprintf(buf, sizeof(buf), "色 温 | %dK", (int)color_temp);
+        lv_label_set_text(guider_ui.screen_5_label_2, buf);
+
+        /* 3. 开关 CHECKED + 遮罩 cont_1 按开关态摆正 */
+        if (light_on) lv_obj_add_state(guider_ui.screen_5_CT_on_off_2_img, LV_STATE_CHECKED);
+        else          lv_obj_clear_state(guider_ui.screen_5_CT_on_off_2_img, LV_STATE_CHECKED);
+
+        if (light_on) {
+            lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_move_background(guider_ui.screen_5_cont_1);
+        } else {
+            lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_move_foreground(guider_ui.screen_5_cont_1);
+            lv_obj_move_foreground(guider_ui.screen_5_CT_on_off_2_img);
         }
         break;
     }
@@ -267,24 +292,24 @@ static void screen_5_slider_2_event_handler (lv_event_t *e)
     switch (code) {
     case LV_EVENT_VALUE_CHANGED:
     {
-        const uint32_t APPLY_MIN_MS = 50;   /* 拖动节流: 两张旋转灯光图重绘很重, 最多每 50ms 刷一次防卡 */
-        s_ct_apply_tick2 = lv_tick_get();
-        lv_obj_t *slider1 = guider_ui.screen_5_slider_1;   /* 亮度 0..100 */
-        lv_obj_t *slider2 = guider_ui.screen_5_slider_2;   /* 色温 2700..6500 */
-        lv_obj_t *white   = guider_ui.screen_5_dev_white_img;
-        lv_obj_t *orange  = guider_ui.screen_5_dev_orange_img;
+        int32_t bri = lv_slider_get_value(guider_ui.screen_5_slider_1);   /* 亮度 0..100 */
+        int32_t ct  = lv_slider_get_value(guider_ui.screen_5_slider_2);   /* 色温 2700..6500 */
 
-        if (lv_obj_is_valid(slider1) && lv_obj_is_valid(slider2)) {
-            const int32_t CT_MIN  = 2700;   /* 色温最左(K) */
-            const int32_t CT_SPAN = 3800;   /* 6500-2700 */
+        HWInterface.LightCT.SetColorTemp((uint16_t)ct);   /* 每次都写回中间层(很轻, 不节流), 数据始终最新 */
+
+        /* 只对"重绘两张旋转灯光图"节流(重绘很重), 最多每 50ms 一次 */
+        const uint32_t APPLY_MIN_MS = 50;
+        if (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {
+            s_ct_apply_tick2 = lv_tick_get();
+
+            const int32_t CT_MIN  = 2700;
+            const int32_t CT_SPAN = 3800;
             const int32_t BRI_MAX = 100;
-            int32_t  bri  = lv_slider_get_value(slider1);
-            int32_t  ct   = lv_slider_get_value(slider2);
-            uint32_t tnum = (uint32_t)(ct - CT_MIN);                                 /* = T*CT_SPAN */
+            uint32_t tnum     = (uint32_t)(ct - CT_MIN);
             uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);
             uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);
-            if (lv_obj_is_valid(white))  lv_obj_set_style_img_opa(white,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);
-            if (lv_obj_is_valid(orange)) lv_obj_set_style_img_opa(orange, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);
         }
 
         break;
@@ -300,27 +325,24 @@ static void screen_5_slider_1_event_handler (lv_event_t *e)
     switch (code) {
     case LV_EVENT_VALUE_CHANGED:
     {
-        const uint32_t APPLY_MIN_MS = 50;   /* 拖动节流: 两张旋转灯光图重绘很重, 最多每 50ms 刷一次防卡 */
+        int32_t bri = lv_slider_get_value(guider_ui.screen_5_slider_1);   /* 亮度 0..100 */
+        int32_t ct  = lv_slider_get_value(guider_ui.screen_5_slider_2);   /* 色温 2700..6500 */
+
+        HWInterface.LightCT.SetBrightness((uint16_t)bri);   /* 每次都写回中间层(很轻, 不节流), 数据始终最新 */
+
+        /* 只对"重绘两张旋转灯光图"节流(重绘很重), 最多每 50ms 一次 */
+        const uint32_t APPLY_MIN_MS = 50;
         if (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {
             s_ct_apply_tick = lv_tick_get();
 
-            lv_obj_t *slider1 = guider_ui.screen_5_slider_1;   /* 亮度 0..100 */
-            lv_obj_t *slider2 = guider_ui.screen_5_slider_2;   /* 色温 2700..6500 */
-            lv_obj_t *white   = guider_ui.screen_5_dev_white_img;
-            lv_obj_t *orange  = guider_ui.screen_5_dev_orange_img;
-
-            if (lv_obj_is_valid(slider1) && lv_obj_is_valid(slider2)) {
-                const int32_t CT_MIN  = 2700;   /* 色温最左(K) */
-                const int32_t CT_SPAN = 3800;   /* 6500-2700 */
-                const int32_t BRI_MAX = 100;
-                int32_t  bri  = lv_slider_get_value(slider1);
-                int32_t  ct   = lv_slider_get_value(slider2);
-                uint32_t tnum = (uint32_t)(ct - CT_MIN);                                 /* = T*CT_SPAN */
-                uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);
-                uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);
-                if (lv_obj_is_valid(white))  lv_obj_set_style_img_opa(white,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);
-                if (lv_obj_is_valid(orange)) lv_obj_set_style_img_opa(orange, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);
-            }
+            const int32_t CT_MIN  = 2700;   /* 色温最左(K) */
+            const int32_t CT_SPAN = 3800;   /* 6500-2700 */
+            const int32_t BRI_MAX = 100;
+            uint32_t tnum     = (uint32_t)(ct - CT_MIN);
+            uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);
+            uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);
+            lv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);
         }
         break;
     }
@@ -349,7 +371,21 @@ static void screen_5_CT_on_off_2_img_event_handler (lv_event_t *e)
     switch (code) {
     case LV_EVENT_VALUE_CHANGED:
     {
+        /* 点开关 → 读它点击后的新状态 → 写回中间层 → 按新态刷遮罩。 */
+        lv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */
+        bool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 点击后: 有CHECKED=开, 没有=关 */
 
+        HWInterface.LightCT.SetOnOff(light_on);                    /* 写回中间层(内部有变化才置 changed) */
+
+        /* 遮罩 cont_1 按新状态显示(与进屏初始化里同一套逻辑) */
+        if (light_on) {
+            lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_move_background(guider_ui.screen_5_cont_1);
+        } else {
+            lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_obj_move_foreground(guider_ui.screen_5_cont_1);
+            lv_obj_move_foreground(btn);
+        }
         break;
     }
     default:

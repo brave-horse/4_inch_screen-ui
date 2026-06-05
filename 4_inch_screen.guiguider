@@ -8660,8 +8660,8 @@
 					"name": "CT_on_off_2_img",
 					"id": "60xjbwtk",
 					"type": "imgbtn",
-					"left": 18,
-					"top": 100,
+					"left": 19,
+					"top": 101,
 					"visible": true,
 					"isLock": false,
 					"flag": [],
@@ -8749,8 +8749,8 @@
 										"bindCondi": "",
 										"actionList": {
 											"custom_code": {
-												"inc_c": "",
-												"code_c": "",
+												"inc_c": "#include \"HWDataAccess.h\"",
+												"code_c": "/* 点开关 → 读它点击后的新状态 → 写回中间层 → 按新态刷遮罩。 */\r\nlv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 点击后: 有CHECKED=开, 没有=关 */\r\n\r\nHWInterface.LightCT.SetOnOff(light_on);                    /* 写回中间层(内部有变化才置 changed) */\r\n\r\n/* 遮罩 cont_1 按新状态显示(与进屏初始化里同一套逻辑) */\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.screen_5_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.screen_5_cont_1);\r\n    lv_obj_move_foreground(btn);\r\n}",
 												"inc_py": "",
 												"code_py": ""
 											}
@@ -8759,8 +8759,7 @@
 								]
 							}
 						}
-					},
-					"dropToGap": false
+					}
 				},
 				{
 					"name": "btn_1",
@@ -9287,7 +9286,7 @@
 					"id": "boic2h4j",
 					"type": "slider",
 					"left": -223,
-					"top": 462,
+					"top": 452,
 					"visible": true,
 					"isLock": false,
 					"flag": [],
@@ -9475,8 +9474,8 @@
 										"bindCondi": "",
 										"actionList": {
 											"custom_code": {
-												"inc_c": "static uint32_t s_ct_apply_tick;",
-												"code_c": "const uint32_t APPLY_MIN_MS = 50;   /* 拖动节流: 两张旋转灯光图重绘很重, 最多每 50ms 刷一次防卡 */\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick = lv_tick_get();\r\n\r\n    lv_obj_t *slider1 = guider_ui.screen_5_slider_1;   /* 亮度 0..100 */\r\n    lv_obj_t *slider2 = guider_ui.screen_5_slider_2;   /* 色温 2700..6500 */\r\n    lv_obj_t *white   = guider_ui.screen_5_dev_white_img;\r\n    lv_obj_t *orange  = guider_ui.screen_5_dev_orange_img;\r\n\r\n    if (lv_obj_is_valid(slider1) && lv_obj_is_valid(slider2)) {\r\n        const int32_t CT_MIN  = 2700;   /* 色温最左(K) */\r\n        const int32_t CT_SPAN = 3800;   /* 6500-2700 */\r\n        const int32_t BRI_MAX = 100;\r\n        int32_t  bri  = lv_slider_get_value(slider1);\r\n        int32_t  ct   = lv_slider_get_value(slider2);\r\n        uint32_t tnum = (uint32_t)(ct - CT_MIN);                                 /* = T*CT_SPAN */\r\n        uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        if (lv_obj_is_valid(white))  lv_obj_set_style_img_opa(white,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n        if (lv_obj_is_valid(orange)) lv_obj_set_style_img_opa(orange, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    }\r\n}",
+												"inc_c": "#include \"HWDataAccess.h\"\r\nstatic uint32_t s_ct_apply_tick;",
+												"code_c": "int32_t bri = lv_slider_get_value(guider_ui.screen_5_slider_1);   /* 亮度 0..100 */\r\nint32_t ct  = lv_slider_get_value(guider_ui.screen_5_slider_2);   /* 色温 2700..6500 */\r\n\r\nHWInterface.LightCT.SetBrightness((uint16_t)bri);   /* 每次都写回中间层(很轻, 不节流), 数据始终最新 */\r\n\r\n/* 只对\"重绘两张旋转灯光图\"节流(重绘很重), 最多每 50ms 一次 */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick = lv_tick_get();\r\n\r\n    const int32_t CT_MIN  = 2700;   /* 色温最左(K) */\r\n    const int32_t CT_SPAN = 3800;   /* 6500-2700 */\r\n    const int32_t BRI_MAX = 100;\r\n    uint32_t tnum     = (uint32_t)(ct - CT_MIN);\r\n    uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n}",
 												"inc_py": "",
 												"code_py": ""
 											}
@@ -9493,7 +9492,7 @@
 					"id": "yhyuppk3",
 					"type": "slider",
 					"left": -223,
-					"top": 615,
+					"top": 616,
 					"visible": true,
 					"isLock": false,
 					"flag": [],
@@ -9681,8 +9680,8 @@
 										"bindCondi": "",
 										"actionList": {
 											"custom_code": {
-												"inc_c": "static uint32_t s_ct_apply_tick2;",
-												"code_c": "const uint32_t APPLY_MIN_MS = 50;   /* 拖动节流: 两张旋转灯光图重绘很重, 最多每 50ms 刷一次防卡 */\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    lv_obj_t *slider1 = guider_ui.screen_5_slider_1;   /* 亮度 0..100 */\r\n    lv_obj_t *slider2 = guider_ui.screen_5_slider_2;   /* 色温 2700..6500 */\r\n    lv_obj_t *white   = guider_ui.screen_5_dev_white_img;\r\n    lv_obj_t *orange  = guider_ui.screen_5_dev_orange_img;\r\n\r\n    if (lv_obj_is_valid(slider1) && lv_obj_is_valid(slider2)) {\r\n        const int32_t CT_MIN  = 2700;   /* 色温最左(K) */\r\n        const int32_t CT_SPAN = 3800;   /* 6500-2700 */\r\n        const int32_t BRI_MAX = 100;\r\n        int32_t  bri  = lv_slider_get_value(slider1);\r\n        int32_t  ct   = lv_slider_get_value(slider2);\r\n        uint32_t tnum = (uint32_t)(ct - CT_MIN);                                 /* = T*CT_SPAN */\r\n        uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        if (lv_obj_is_valid(white))  lv_obj_set_style_img_opa(white,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n        if (lv_obj_is_valid(orange)) lv_obj_set_style_img_opa(orange, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    }\r\n",
+												"inc_c": "#include \"HWDataAccess.h\"\r\nstatic uint32_t s_ct_apply_tick2;",
+												"code_c": "int32_t bri = lv_slider_get_value(guider_ui.screen_5_slider_1);   /* 亮度 0..100 */\r\nint32_t ct  = lv_slider_get_value(guider_ui.screen_5_slider_2);   /* 色温 2700..6500 */\r\n\r\nHWInterface.LightCT.SetColorTemp((uint16_t)ct);   /* 每次都写回中间层(很轻, 不节流), 数据始终最新 */\r\n\r\n/* 只对\"重绘两张旋转灯光图\"节流(重绘很重), 最多每 50ms 一次 */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n\r\n    const int32_t CT_MIN  = 2700;\r\n    const int32_t CT_SPAN = 3800;\r\n    const int32_t BRI_MAX = 100;\r\n    uint32_t tnum     = (uint32_t)(ct - CT_MIN);\r\n    uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n}\r\n",
 												"inc_py": "",
 												"code_py": ""
 											}
@@ -9843,8 +9842,7 @@
 							"shadow_ofs_x": 0,
 							"shadow_ofs_y": 0
 						}
-					],
-					"dropToGap": false
+					]
 				},
 				{
 					"name": "tabview_1",
@@ -10018,12 +10016,20 @@
 										}
 									}
 								}
+							},
+							{
+								"dst": "custom_code",
+								"bindCondi": "",
+								"actionList": {
+									"custom_code": {
+										"inc_c": "#include \"HWDataAccess.h\"",
+										"code_c": "/* 进屏初始化: 从中间层 HWInterface.LightCT 读全部状态(开关/亮度/色温), 把整屏画对, 不信 GUI Guider 默认态。 */\r\nbool     light_on   = HWInterface.LightCT.switch_status;   /* 开/关 */\r\nuint16_t brightness = HWInterface.LightCT.brightness;      /* 亮度 0..100 */\r\nuint16_t color_temp = HWInterface.LightCT.color_temp;      /* 色温 2700..6500 */\r\n\r\n/* 1. 两条 slider 摆到中间层的值(set_value 是程序设值, 不触发 value_changed, 不会回写中间层) */\r\nlv_slider_set_value(guider_ui.screen_5_slider_1, brightness, LV_ANIM_OFF);\r\nlv_slider_set_value(guider_ui.screen_5_slider_2, color_temp, LV_ANIM_OFF);\r\n\r\n/* 2. 按亮度+色温刷白/橙灯光图透明度 + 两个标签数字(公式同 slider 事件; 量程用 HWDataAccess.h 的宏) */\r\nuint32_t ct_span  = LIGHTCT_COLOR_TEMP_MAX - LIGHTCT_COLOR_TEMP_MIN;                 /* 3800 */\r\nuint32_t tnum     = (uint32_t)(color_temp - LIGHTCT_COLOR_TEMP_MIN);                 /* = T*ct_span */\r\nuint32_t o_white  = (uint32_t)brightness * tnum             * LV_OPA_COVER / ((uint32_t)LIGHTCT_BRIGHTNESS_MAX * ct_span);\r\nuint32_t o_orange = (uint32_t)brightness * (ct_span - tnum) * LV_OPA_COVER / ((uint32_t)LIGHTCT_BRIGHTNESS_MAX * ct_span);\r\nlv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\nlv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n\r\nchar buf[32];\r\nlv_snprintf(buf, sizeof(buf), \"亮 度 | %d%%\", (int)brightness);\r\nlv_label_set_text(guider_ui.screen_5_label_1, buf);\r\nlv_snprintf(buf, sizeof(buf), \"色 温 | %dK\", (int)color_temp);\r\nlv_label_set_text(guider_ui.screen_5_label_2, buf);\r\n\r\n/* 3. 开关 CHECKED + 遮罩 cont_1 按开关态摆正 */\r\nif (light_on) lv_obj_add_state(guider_ui.screen_5_CT_on_off_2_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.screen_5_CT_on_off_2_img, LV_STATE_CHECKED);\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.screen_5_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.screen_5_cont_1);\r\n    lv_obj_move_foreground(guider_ui.screen_5_CT_on_off_2_img);\r\n}",
+										"inc_py": "",
+										"code_py": ""
+									}
+								}
 							}
 						]
-					},
-					"gesture_right": {
-						"condition": [],
-						"action": []
 					}
 				}
 			},
@@ -10046,6 +10052,596 @@
 				}
 			],
 			"layerName": "screen_5"
+		},
+		{
+			"name": "screen_6",
+			"id": "4fcy2uem",
+			"type": "scr",
+			"version": 190,
+			"scrollbar_mode": "OFF",
+			"customer_code": {
+				"code_c": "",
+				"inc_c": "",
+				"code_py": "",
+				"inc_py": "",
+				"type": "screen"
+			},
+			"width": 720,
+			"height": 720,
+			"visible": true,
+			"flag": [],
+			"list": [
+				{
+					"name": "btn_3",
+					"id": "r7g6ll95",
+					"type": "btn",
+					"left": 457,
+					"top": 490,
+					"visible": true,
+					"isLock": false,
+					"flag": [],
+					"width": 100,
+					"height": 50,
+					"default_style": false,
+					"long_mode": "LV_LABEL_LONG_WRAP",
+					"text": "Button",
+					"toggle": false,
+					"style": [
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_DEFAULT",
+							"disable": false,
+							"bg_color": "#2195f6",
+							"bg_grad_color": "#2195f6",
+							"bg_opa": 255,
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_opa": 255,
+							"border_color": "#2195f6",
+							"radius": 5,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0,
+							"font": 16,
+							"font_family": "montserratMedium",
+							"text_color": "#ffffff",
+							"text_opa": 255,
+							"text_align": "LV_TEXT_ALIGN_CENTER"
+						},
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_FOCUSED",
+							"disable": true,
+							"bg_color": "#2195f6",
+							"bg_grad_color": "#2195f6",
+							"bg_opa": 255,
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_color": "#2195f6",
+							"border_opa": 255,
+							"radius": 5,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0,
+							"font": 16,
+							"font_family": "montserratMedium",
+							"text_opa": 255,
+							"text_color": "#ffffff"
+						},
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_PRESSED",
+							"disable": true,
+							"bg_color": "#2195f6",
+							"bg_grad_color": "#2195f6",
+							"bg_opa": 255,
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_color": "#2195f6",
+							"border_opa": 255,
+							"radius": 5,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0,
+							"font": 16,
+							"font_family": "montserratMedium",
+							"text_opa": 255,
+							"text_color": "#ffffff"
+						},
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_CHECKED",
+							"disable": true,
+							"bg_color": "#2195f6",
+							"bg_grad_color": "#2195f6",
+							"bg_opa": 255,
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_opa": 255,
+							"border_color": "#2195f6",
+							"radius": 5,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0,
+							"font": 12,
+							"font_family": "montserratMedium",
+							"text_opa": 255,
+							"text_color": "#000000"
+						},
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_DISABLED",
+							"disable": true,
+							"bg_color": "#2195f6",
+							"bg_grad_color": "#2195f6",
+							"bg_opa": 255,
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_opa": 255,
+							"border_color": "#2195f6",
+							"radius": 5,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0,
+							"font": 12,
+							"font_family": "montserratMedium",
+							"text_opa": 255,
+							"text_color": "#000000"
+						}
+					]
+				},
+				{
+					"name": "btn_2",
+					"id": "e82f76t0",
+					"type": "btn",
+					"left": 224,
+					"top": 490,
+					"visible": true,
+					"isLock": false,
+					"flag": [],
+					"width": 100,
+					"height": 50,
+					"default_style": false,
+					"long_mode": "LV_LABEL_LONG_WRAP",
+					"text": "Button",
+					"toggle": false,
+					"style": [
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_DEFAULT",
+							"disable": false,
+							"bg_color": "#2195f6",
+							"bg_grad_color": "#2195f6",
+							"bg_opa": 255,
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_opa": 255,
+							"border_color": "#2195f6",
+							"radius": 5,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0,
+							"font": 16,
+							"font_family": "montserratMedium",
+							"text_color": "#ffffff",
+							"text_opa": 255,
+							"text_align": "LV_TEXT_ALIGN_CENTER"
+						},
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_FOCUSED",
+							"disable": true,
+							"bg_color": "#2195f6",
+							"bg_grad_color": "#2195f6",
+							"bg_opa": 255,
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_color": "#2195f6",
+							"border_opa": 255,
+							"radius": 5,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0,
+							"font": 16,
+							"font_family": "montserratMedium",
+							"text_opa": 255,
+							"text_color": "#ffffff"
+						},
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_PRESSED",
+							"disable": true,
+							"bg_color": "#2195f6",
+							"bg_grad_color": "#2195f6",
+							"bg_opa": 255,
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_color": "#2195f6",
+							"border_opa": 255,
+							"radius": 5,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0,
+							"font": 16,
+							"font_family": "montserratMedium",
+							"text_opa": 255,
+							"text_color": "#ffffff"
+						},
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_CHECKED",
+							"disable": true,
+							"bg_color": "#2195f6",
+							"bg_grad_color": "#2195f6",
+							"bg_opa": 255,
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_opa": 255,
+							"border_color": "#2195f6",
+							"radius": 5,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0,
+							"font": 12,
+							"font_family": "montserratMedium",
+							"text_opa": 255,
+							"text_color": "#000000"
+						},
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_DISABLED",
+							"disable": true,
+							"bg_color": "#2195f6",
+							"bg_grad_color": "#2195f6",
+							"bg_opa": 255,
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_opa": 255,
+							"border_color": "#2195f6",
+							"radius": 5,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0,
+							"font": 12,
+							"font_family": "montserratMedium",
+							"text_opa": 255,
+							"text_color": "#000000"
+						}
+					]
+				},
+				{
+					"name": "btn_1",
+					"id": "i4qwjy0h",
+					"type": "btn",
+					"left": 54,
+					"top": 490,
+					"visible": true,
+					"isLock": false,
+					"flag": [],
+					"width": 100,
+					"height": 50,
+					"default_style": false,
+					"long_mode": "LV_LABEL_LONG_WRAP",
+					"text": "Button",
+					"toggle": false,
+					"style": [
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_DEFAULT",
+							"disable": false,
+							"bg_color": "#2195f6",
+							"bg_grad_color": "#2195f6",
+							"bg_opa": 255,
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_opa": 255,
+							"border_color": "#2195f6",
+							"radius": 5,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0,
+							"font": 16,
+							"font_family": "montserratMedium",
+							"text_color": "#ffffff",
+							"text_opa": 255,
+							"text_align": "LV_TEXT_ALIGN_CENTER"
+						},
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_FOCUSED",
+							"disable": true,
+							"bg_color": "#2195f6",
+							"bg_grad_color": "#2195f6",
+							"bg_opa": 255,
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_color": "#2195f6",
+							"border_opa": 255,
+							"radius": 5,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0,
+							"font": 16,
+							"font_family": "montserratMedium",
+							"text_opa": 255,
+							"text_color": "#ffffff"
+						},
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_PRESSED",
+							"disable": true,
+							"bg_color": "#2195f6",
+							"bg_grad_color": "#2195f6",
+							"bg_opa": 255,
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_color": "#2195f6",
+							"border_opa": 255,
+							"radius": 5,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0,
+							"font": 16,
+							"font_family": "montserratMedium",
+							"text_opa": 255,
+							"text_color": "#ffffff"
+						},
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_CHECKED",
+							"disable": true,
+							"bg_color": "#2195f6",
+							"bg_grad_color": "#2195f6",
+							"bg_opa": 255,
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_opa": 255,
+							"border_color": "#2195f6",
+							"radius": 5,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0,
+							"font": 12,
+							"font_family": "montserratMedium",
+							"text_opa": 255,
+							"text_color": "#000000"
+						},
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_DISABLED",
+							"disable": true,
+							"bg_color": "#2195f6",
+							"bg_grad_color": "#2195f6",
+							"bg_opa": 255,
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_opa": 255,
+							"border_color": "#2195f6",
+							"radius": 5,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0,
+							"font": 12,
+							"font_family": "montserratMedium",
+							"text_opa": 255,
+							"text_color": "#000000"
+						}
+					]
+				}
+			],
+			"style": [
+				{
+					"part": "LV_PART_MAIN",
+					"state": "LV_STATE_DEFAULT",
+					"disable": false,
+					"bg_color": "#000000",
+					"bg_grad_dir": "LV_GRAD_DIR_NONE",
+					"bg_dither_mode": "LV_DITHER_NONE",
+					"bg_main_stop": 0,
+					"bg_grad_stop": 255,
+					"bg_grad_color": "#2195f6",
+					"bg_opa": 255,
+					"bg_img_src": "",
+					"bg_img_opa": 255,
+					"bg_img_recolor": "#ffffff",
+					"bg_img_recolor_opa": 0
+				}
+			]
 		}
 	],
 	"Application": {
@@ -17519,8 +18115,8 @@
 																		"name": "CT_on_off_2_img",
 																		"id": "60xjbwtk",
 																		"type": "imgbtn",
-																		"left": 18,
-																		"top": 100,
+																		"left": 19,
+																		"top": 101,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
@@ -17608,8 +18204,8 @@
 																							"bindCondi": "",
 																							"actionList": {
 																								"custom_code": {
-																									"inc_c": "",
-																									"code_c": "",
+																									"inc_c": "#include \"HWDataAccess.h\"",
+																									"code_c": "/* 点开关 → 读它点击后的新状态 → 写回中间层 → 按新态刷遮罩。 */\r\nlv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 点击后: 有CHECKED=开, 没有=关 */\r\n\r\nHWInterface.LightCT.SetOnOff(light_on);                    /* 写回中间层(内部有变化才置 changed) */\r\n\r\n/* 遮罩 cont_1 按新状态显示(与进屏初始化里同一套逻辑) */\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.screen_5_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.screen_5_cont_1);\r\n    lv_obj_move_foreground(btn);\r\n}",
 																									"inc_py": "",
 																									"code_py": ""
 																								}
@@ -17618,8 +18214,7 @@
 																					]
 																				}
 																			}
-																		},
-																		"dropToGap": false
+																		}
 																	},
 																	{
 																		"name": "btn_1",
@@ -18146,7 +18741,7 @@
 																		"id": "boic2h4j",
 																		"type": "slider",
 																		"left": -223,
-																		"top": 462,
+																		"top": 452,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
@@ -18334,8 +18929,8 @@
 																							"bindCondi": "",
 																							"actionList": {
 																								"custom_code": {
-																									"inc_c": "static uint32_t s_ct_apply_tick;",
-																									"code_c": "const uint32_t APPLY_MIN_MS = 50;   /* 拖动节流: 两张旋转灯光图重绘很重, 最多每 50ms 刷一次防卡 */\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick = lv_tick_get();\r\n\r\n    lv_obj_t *slider1 = guider_ui.screen_5_slider_1;   /* 亮度 0..100 */\r\n    lv_obj_t *slider2 = guider_ui.screen_5_slider_2;   /* 色温 2700..6500 */\r\n    lv_obj_t *white   = guider_ui.screen_5_dev_white_img;\r\n    lv_obj_t *orange  = guider_ui.screen_5_dev_orange_img;\r\n\r\n    if (lv_obj_is_valid(slider1) && lv_obj_is_valid(slider2)) {\r\n        const int32_t CT_MIN  = 2700;   /* 色温最左(K) */\r\n        const int32_t CT_SPAN = 3800;   /* 6500-2700 */\r\n        const int32_t BRI_MAX = 100;\r\n        int32_t  bri  = lv_slider_get_value(slider1);\r\n        int32_t  ct   = lv_slider_get_value(slider2);\r\n        uint32_t tnum = (uint32_t)(ct - CT_MIN);                                 /* = T*CT_SPAN */\r\n        uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        if (lv_obj_is_valid(white))  lv_obj_set_style_img_opa(white,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n        if (lv_obj_is_valid(orange)) lv_obj_set_style_img_opa(orange, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    }\r\n}",
+																									"inc_c": "#include \"HWDataAccess.h\"\r\nstatic uint32_t s_ct_apply_tick;",
+																									"code_c": "int32_t bri = lv_slider_get_value(guider_ui.screen_5_slider_1);   /* 亮度 0..100 */\r\nint32_t ct  = lv_slider_get_value(guider_ui.screen_5_slider_2);   /* 色温 2700..6500 */\r\n\r\nHWInterface.LightCT.SetBrightness((uint16_t)bri);   /* 每次都写回中间层(很轻, 不节流), 数据始终最新 */\r\n\r\n/* 只对\"重绘两张旋转灯光图\"节流(重绘很重), 最多每 50ms 一次 */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick = lv_tick_get();\r\n\r\n    const int32_t CT_MIN  = 2700;   /* 色温最左(K) */\r\n    const int32_t CT_SPAN = 3800;   /* 6500-2700 */\r\n    const int32_t BRI_MAX = 100;\r\n    uint32_t tnum     = (uint32_t)(ct - CT_MIN);\r\n    uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n}",
 																									"inc_py": "",
 																									"code_py": ""
 																								}
@@ -18352,7 +18947,7 @@
 																		"id": "yhyuppk3",
 																		"type": "slider",
 																		"left": -223,
-																		"top": 615,
+																		"top": 616,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
@@ -18540,8 +19135,8 @@
 																							"bindCondi": "",
 																							"actionList": {
 																								"custom_code": {
-																									"inc_c": "static uint32_t s_ct_apply_tick2;",
-																									"code_c": "const uint32_t APPLY_MIN_MS = 50;   /* 拖动节流: 两张旋转灯光图重绘很重, 最多每 50ms 刷一次防卡 */\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    lv_obj_t *slider1 = guider_ui.screen_5_slider_1;   /* 亮度 0..100 */\r\n    lv_obj_t *slider2 = guider_ui.screen_5_slider_2;   /* 色温 2700..6500 */\r\n    lv_obj_t *white   = guider_ui.screen_5_dev_white_img;\r\n    lv_obj_t *orange  = guider_ui.screen_5_dev_orange_img;\r\n\r\n    if (lv_obj_is_valid(slider1) && lv_obj_is_valid(slider2)) {\r\n        const int32_t CT_MIN  = 2700;   /* 色温最左(K) */\r\n        const int32_t CT_SPAN = 3800;   /* 6500-2700 */\r\n        const int32_t BRI_MAX = 100;\r\n        int32_t  bri  = lv_slider_get_value(slider1);\r\n        int32_t  ct   = lv_slider_get_value(slider2);\r\n        uint32_t tnum = (uint32_t)(ct - CT_MIN);                                 /* = T*CT_SPAN */\r\n        uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        if (lv_obj_is_valid(white))  lv_obj_set_style_img_opa(white,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n        if (lv_obj_is_valid(orange)) lv_obj_set_style_img_opa(orange, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    }\r\n",
+																									"inc_c": "#include \"HWDataAccess.h\"\r\nstatic uint32_t s_ct_apply_tick2;",
+																									"code_c": "int32_t bri = lv_slider_get_value(guider_ui.screen_5_slider_1);   /* 亮度 0..100 */\r\nint32_t ct  = lv_slider_get_value(guider_ui.screen_5_slider_2);   /* 色温 2700..6500 */\r\n\r\nHWInterface.LightCT.SetColorTemp((uint16_t)ct);   /* 每次都写回中间层(很轻, 不节流), 数据始终最新 */\r\n\r\n/* 只对\"重绘两张旋转灯光图\"节流(重绘很重), 最多每 50ms 一次 */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n\r\n    const int32_t CT_MIN  = 2700;\r\n    const int32_t CT_SPAN = 3800;\r\n    const int32_t BRI_MAX = 100;\r\n    uint32_t tnum     = (uint32_t)(ct - CT_MIN);\r\n    uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n}\r\n",
 																									"inc_py": "",
 																									"code_py": ""
 																								}
@@ -18702,8 +19297,7 @@
 																				"shadow_ofs_x": 0,
 																				"shadow_ofs_y": 0
 																			}
-																		],
-																		"dropToGap": false
+																		]
 																	},
 																	{
 																		"name": "tabview_1",
@@ -18877,12 +19471,20 @@
 																							}
 																						}
 																					}
+																				},
+																				{
+																					"dst": "custom_code",
+																					"bindCondi": "",
+																					"actionList": {
+																						"custom_code": {
+																							"inc_c": "#include \"HWDataAccess.h\"",
+																							"code_c": "/* 进屏初始化: 从中间层 HWInterface.LightCT 读全部状态(开关/亮度/色温), 把整屏画对, 不信 GUI Guider 默认态。 */\r\nbool     light_on   = HWInterface.LightCT.switch_status;   /* 开/关 */\r\nuint16_t brightness = HWInterface.LightCT.brightness;      /* 亮度 0..100 */\r\nuint16_t color_temp = HWInterface.LightCT.color_temp;      /* 色温 2700..6500 */\r\n\r\n/* 1. 两条 slider 摆到中间层的值(set_value 是程序设值, 不触发 value_changed, 不会回写中间层) */\r\nlv_slider_set_value(guider_ui.screen_5_slider_1, brightness, LV_ANIM_OFF);\r\nlv_slider_set_value(guider_ui.screen_5_slider_2, color_temp, LV_ANIM_OFF);\r\n\r\n/* 2. 按亮度+色温刷白/橙灯光图透明度 + 两个标签数字(公式同 slider 事件; 量程用 HWDataAccess.h 的宏) */\r\nuint32_t ct_span  = LIGHTCT_COLOR_TEMP_MAX - LIGHTCT_COLOR_TEMP_MIN;                 /* 3800 */\r\nuint32_t tnum     = (uint32_t)(color_temp - LIGHTCT_COLOR_TEMP_MIN);                 /* = T*ct_span */\r\nuint32_t o_white  = (uint32_t)brightness * tnum             * LV_OPA_COVER / ((uint32_t)LIGHTCT_BRIGHTNESS_MAX * ct_span);\r\nuint32_t o_orange = (uint32_t)brightness * (ct_span - tnum) * LV_OPA_COVER / ((uint32_t)LIGHTCT_BRIGHTNESS_MAX * ct_span);\r\nlv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\nlv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n\r\nchar buf[32];\r\nlv_snprintf(buf, sizeof(buf), \"亮 度 | %d%%\", (int)brightness);\r\nlv_label_set_text(guider_ui.screen_5_label_1, buf);\r\nlv_snprintf(buf, sizeof(buf), \"色 温 | %dK\", (int)color_temp);\r\nlv_label_set_text(guider_ui.screen_5_label_2, buf);\r\n\r\n/* 3. 开关 CHECKED + 遮罩 cont_1 按开关态摆正 */\r\nif (light_on) lv_obj_add_state(guider_ui.screen_5_CT_on_off_2_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.screen_5_CT_on_off_2_img, LV_STATE_CHECKED);\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.screen_5_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.screen_5_cont_1);\r\n    lv_obj_move_foreground(guider_ui.screen_5_CT_on_off_2_img);\r\n}",
+																							"inc_py": "",
+																							"code_py": ""
+																						}
+																					}
 																				}
 																			]
-																		},
-																		"gesture_right": {
-																			"condition": [],
-																			"action": []
 																		}
 																	}
 																},
@@ -19154,8 +19756,8 @@
 																		"name": "CT_on_off_2_img",
 																		"id": "60xjbwtk",
 																		"type": "imgbtn",
-																		"left": 18,
-																		"top": 100,
+																		"left": 19,
+																		"top": 101,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
@@ -19243,8 +19845,8 @@
 																							"bindCondi": "",
 																							"actionList": {
 																								"custom_code": {
-																									"inc_c": "",
-																									"code_c": "",
+																									"inc_c": "#include \"HWDataAccess.h\"",
+																									"code_c": "/* 点开关 → 读它点击后的新状态 → 写回中间层 → 按新态刷遮罩。 */\r\nlv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 点击后: 有CHECKED=开, 没有=关 */\r\n\r\nHWInterface.LightCT.SetOnOff(light_on);                    /* 写回中间层(内部有变化才置 changed) */\r\n\r\n/* 遮罩 cont_1 按新状态显示(与进屏初始化里同一套逻辑) */\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.screen_5_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.screen_5_cont_1);\r\n    lv_obj_move_foreground(btn);\r\n}",
 																									"inc_py": "",
 																									"code_py": ""
 																								}
@@ -19253,8 +19855,7 @@
 																					]
 																				}
 																			}
-																		},
-																		"dropToGap": false
+																		}
 																	},
 																	{
 																		"name": "btn_1",
@@ -19781,7 +20382,7 @@
 																		"id": "boic2h4j",
 																		"type": "slider",
 																		"left": -223,
-																		"top": 462,
+																		"top": 452,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
@@ -19969,8 +20570,8 @@
 																							"bindCondi": "",
 																							"actionList": {
 																								"custom_code": {
-																									"inc_c": "static uint32_t s_ct_apply_tick;",
-																									"code_c": "const uint32_t APPLY_MIN_MS = 50;   /* 拖动节流: 两张旋转灯光图重绘很重, 最多每 50ms 刷一次防卡 */\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick = lv_tick_get();\r\n\r\n    lv_obj_t *slider1 = guider_ui.screen_5_slider_1;   /* 亮度 0..100 */\r\n    lv_obj_t *slider2 = guider_ui.screen_5_slider_2;   /* 色温 2700..6500 */\r\n    lv_obj_t *white   = guider_ui.screen_5_dev_white_img;\r\n    lv_obj_t *orange  = guider_ui.screen_5_dev_orange_img;\r\n\r\n    if (lv_obj_is_valid(slider1) && lv_obj_is_valid(slider2)) {\r\n        const int32_t CT_MIN  = 2700;   /* 色温最左(K) */\r\n        const int32_t CT_SPAN = 3800;   /* 6500-2700 */\r\n        const int32_t BRI_MAX = 100;\r\n        int32_t  bri  = lv_slider_get_value(slider1);\r\n        int32_t  ct   = lv_slider_get_value(slider2);\r\n        uint32_t tnum = (uint32_t)(ct - CT_MIN);                                 /* = T*CT_SPAN */\r\n        uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        if (lv_obj_is_valid(white))  lv_obj_set_style_img_opa(white,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n        if (lv_obj_is_valid(orange)) lv_obj_set_style_img_opa(orange, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    }\r\n}",
+																									"inc_c": "#include \"HWDataAccess.h\"\r\nstatic uint32_t s_ct_apply_tick;",
+																									"code_c": "int32_t bri = lv_slider_get_value(guider_ui.screen_5_slider_1);   /* 亮度 0..100 */\r\nint32_t ct  = lv_slider_get_value(guider_ui.screen_5_slider_2);   /* 色温 2700..6500 */\r\n\r\nHWInterface.LightCT.SetBrightness((uint16_t)bri);   /* 每次都写回中间层(很轻, 不节流), 数据始终最新 */\r\n\r\n/* 只对\"重绘两张旋转灯光图\"节流(重绘很重), 最多每 50ms 一次 */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick = lv_tick_get();\r\n\r\n    const int32_t CT_MIN  = 2700;   /* 色温最左(K) */\r\n    const int32_t CT_SPAN = 3800;   /* 6500-2700 */\r\n    const int32_t BRI_MAX = 100;\r\n    uint32_t tnum     = (uint32_t)(ct - CT_MIN);\r\n    uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n}",
 																									"inc_py": "",
 																									"code_py": ""
 																								}
@@ -19987,7 +20588,7 @@
 																		"id": "yhyuppk3",
 																		"type": "slider",
 																		"left": -223,
-																		"top": 615,
+																		"top": 616,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
@@ -20175,8 +20776,8 @@
 																							"bindCondi": "",
 																							"actionList": {
 																								"custom_code": {
-																									"inc_c": "static uint32_t s_ct_apply_tick2;",
-																									"code_c": "const uint32_t APPLY_MIN_MS = 50;   /* 拖动节流: 两张旋转灯光图重绘很重, 最多每 50ms 刷一次防卡 */\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    lv_obj_t *slider1 = guider_ui.screen_5_slider_1;   /* 亮度 0..100 */\r\n    lv_obj_t *slider2 = guider_ui.screen_5_slider_2;   /* 色温 2700..6500 */\r\n    lv_obj_t *white   = guider_ui.screen_5_dev_white_img;\r\n    lv_obj_t *orange  = guider_ui.screen_5_dev_orange_img;\r\n\r\n    if (lv_obj_is_valid(slider1) && lv_obj_is_valid(slider2)) {\r\n        const int32_t CT_MIN  = 2700;   /* 色温最左(K) */\r\n        const int32_t CT_SPAN = 3800;   /* 6500-2700 */\r\n        const int32_t BRI_MAX = 100;\r\n        int32_t  bri  = lv_slider_get_value(slider1);\r\n        int32_t  ct   = lv_slider_get_value(slider2);\r\n        uint32_t tnum = (uint32_t)(ct - CT_MIN);                                 /* = T*CT_SPAN */\r\n        uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        if (lv_obj_is_valid(white))  lv_obj_set_style_img_opa(white,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n        if (lv_obj_is_valid(orange)) lv_obj_set_style_img_opa(orange, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    }\r\n",
+																									"inc_c": "#include \"HWDataAccess.h\"\r\nstatic uint32_t s_ct_apply_tick2;",
+																									"code_c": "int32_t bri = lv_slider_get_value(guider_ui.screen_5_slider_1);   /* 亮度 0..100 */\r\nint32_t ct  = lv_slider_get_value(guider_ui.screen_5_slider_2);   /* 色温 2700..6500 */\r\n\r\nHWInterface.LightCT.SetColorTemp((uint16_t)ct);   /* 每次都写回中间层(很轻, 不节流), 数据始终最新 */\r\n\r\n/* 只对\"重绘两张旋转灯光图\"节流(重绘很重), 最多每 50ms 一次 */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n\r\n    const int32_t CT_MIN  = 2700;\r\n    const int32_t CT_SPAN = 3800;\r\n    const int32_t BRI_MAX = 100;\r\n    uint32_t tnum     = (uint32_t)(ct - CT_MIN);\r\n    uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n}\r\n",
 																									"inc_py": "",
 																									"code_py": ""
 																								}
@@ -20337,8 +20938,7 @@
 																				"shadow_ofs_x": 0,
 																				"shadow_ofs_y": 0
 																			}
-																		],
-																		"dropToGap": false
+																		]
 																	},
 																	{
 																		"name": "tabview_1",
@@ -20512,12 +21112,20 @@
 																							}
 																						}
 																					}
+																				},
+																				{
+																					"dst": "custom_code",
+																					"bindCondi": "",
+																					"actionList": {
+																						"custom_code": {
+																							"inc_c": "#include \"HWDataAccess.h\"",
+																							"code_c": "/* 进屏初始化: 从中间层 HWInterface.LightCT 读全部状态(开关/亮度/色温), 把整屏画对, 不信 GUI Guider 默认态。 */\r\nbool     light_on   = HWInterface.LightCT.switch_status;   /* 开/关 */\r\nuint16_t brightness = HWInterface.LightCT.brightness;      /* 亮度 0..100 */\r\nuint16_t color_temp = HWInterface.LightCT.color_temp;      /* 色温 2700..6500 */\r\n\r\n/* 1. 两条 slider 摆到中间层的值(set_value 是程序设值, 不触发 value_changed, 不会回写中间层) */\r\nlv_slider_set_value(guider_ui.screen_5_slider_1, brightness, LV_ANIM_OFF);\r\nlv_slider_set_value(guider_ui.screen_5_slider_2, color_temp, LV_ANIM_OFF);\r\n\r\n/* 2. 按亮度+色温刷白/橙灯光图透明度 + 两个标签数字(公式同 slider 事件; 量程用 HWDataAccess.h 的宏) */\r\nuint32_t ct_span  = LIGHTCT_COLOR_TEMP_MAX - LIGHTCT_COLOR_TEMP_MIN;                 /* 3800 */\r\nuint32_t tnum     = (uint32_t)(color_temp - LIGHTCT_COLOR_TEMP_MIN);                 /* = T*ct_span */\r\nuint32_t o_white  = (uint32_t)brightness * tnum             * LV_OPA_COVER / ((uint32_t)LIGHTCT_BRIGHTNESS_MAX * ct_span);\r\nuint32_t o_orange = (uint32_t)brightness * (ct_span - tnum) * LV_OPA_COVER / ((uint32_t)LIGHTCT_BRIGHTNESS_MAX * ct_span);\r\nlv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\nlv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n\r\nchar buf[32];\r\nlv_snprintf(buf, sizeof(buf), \"亮 度 | %d%%\", (int)brightness);\r\nlv_label_set_text(guider_ui.screen_5_label_1, buf);\r\nlv_snprintf(buf, sizeof(buf), \"色 温 | %dK\", (int)color_temp);\r\nlv_label_set_text(guider_ui.screen_5_label_2, buf);\r\n\r\n/* 3. 开关 CHECKED + 遮罩 cont_1 按开关态摆正 */\r\nif (light_on) lv_obj_add_state(guider_ui.screen_5_CT_on_off_2_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.screen_5_CT_on_off_2_img, LV_STATE_CHECKED);\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.screen_5_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.screen_5_cont_1);\r\n    lv_obj_move_foreground(guider_ui.screen_5_CT_on_off_2_img);\r\n}",
+																							"inc_py": "",
+																							"code_py": ""
+																						}
+																					}
 																				}
 																			]
-																		},
-																		"gesture_right": {
-																			"condition": [],
-																			"action": []
 																		}
 																	}
 																},
@@ -20723,8 +21331,8 @@
 																		"name": "CT_on_off_2_img",
 																		"id": "60xjbwtk",
 																		"type": "imgbtn",
-																		"left": 18,
-																		"top": 100,
+																		"left": 19,
+																		"top": 101,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
@@ -20812,8 +21420,8 @@
 																							"bindCondi": "",
 																							"actionList": {
 																								"custom_code": {
-																									"inc_c": "",
-																									"code_c": "",
+																									"inc_c": "#include \"HWDataAccess.h\"",
+																									"code_c": "/* 点开关 → 读它点击后的新状态 → 写回中间层 → 按新态刷遮罩。 */\r\nlv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 点击后: 有CHECKED=开, 没有=关 */\r\n\r\nHWInterface.LightCT.SetOnOff(light_on);                    /* 写回中间层(内部有变化才置 changed) */\r\n\r\n/* 遮罩 cont_1 按新状态显示(与进屏初始化里同一套逻辑) */\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.screen_5_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.screen_5_cont_1);\r\n    lv_obj_move_foreground(btn);\r\n}",
 																									"inc_py": "",
 																									"code_py": ""
 																								}
@@ -20822,8 +21430,7 @@
 																					]
 																				}
 																			}
-																		},
-																		"dropToGap": false
+																		}
 																	},
 																	{
 																		"name": "btn_1",
@@ -21350,7 +21957,7 @@
 																		"id": "boic2h4j",
 																		"type": "slider",
 																		"left": -223,
-																		"top": 462,
+																		"top": 452,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
@@ -21538,8 +22145,8 @@
 																							"bindCondi": "",
 																							"actionList": {
 																								"custom_code": {
-																									"inc_c": "static uint32_t s_ct_apply_tick;",
-																									"code_c": "const uint32_t APPLY_MIN_MS = 50;   /* 拖动节流: 两张旋转灯光图重绘很重, 最多每 50ms 刷一次防卡 */\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick = lv_tick_get();\r\n\r\n    lv_obj_t *slider1 = guider_ui.screen_5_slider_1;   /* 亮度 0..100 */\r\n    lv_obj_t *slider2 = guider_ui.screen_5_slider_2;   /* 色温 2700..6500 */\r\n    lv_obj_t *white   = guider_ui.screen_5_dev_white_img;\r\n    lv_obj_t *orange  = guider_ui.screen_5_dev_orange_img;\r\n\r\n    if (lv_obj_is_valid(slider1) && lv_obj_is_valid(slider2)) {\r\n        const int32_t CT_MIN  = 2700;   /* 色温最左(K) */\r\n        const int32_t CT_SPAN = 3800;   /* 6500-2700 */\r\n        const int32_t BRI_MAX = 100;\r\n        int32_t  bri  = lv_slider_get_value(slider1);\r\n        int32_t  ct   = lv_slider_get_value(slider2);\r\n        uint32_t tnum = (uint32_t)(ct - CT_MIN);                                 /* = T*CT_SPAN */\r\n        uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        if (lv_obj_is_valid(white))  lv_obj_set_style_img_opa(white,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n        if (lv_obj_is_valid(orange)) lv_obj_set_style_img_opa(orange, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    }\r\n}",
+																									"inc_c": "#include \"HWDataAccess.h\"\r\nstatic uint32_t s_ct_apply_tick;",
+																									"code_c": "int32_t bri = lv_slider_get_value(guider_ui.screen_5_slider_1);   /* 亮度 0..100 */\r\nint32_t ct  = lv_slider_get_value(guider_ui.screen_5_slider_2);   /* 色温 2700..6500 */\r\n\r\nHWInterface.LightCT.SetBrightness((uint16_t)bri);   /* 每次都写回中间层(很轻, 不节流), 数据始终最新 */\r\n\r\n/* 只对\"重绘两张旋转灯光图\"节流(重绘很重), 最多每 50ms 一次 */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick = lv_tick_get();\r\n\r\n    const int32_t CT_MIN  = 2700;   /* 色温最左(K) */\r\n    const int32_t CT_SPAN = 3800;   /* 6500-2700 */\r\n    const int32_t BRI_MAX = 100;\r\n    uint32_t tnum     = (uint32_t)(ct - CT_MIN);\r\n    uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n}",
 																									"inc_py": "",
 																									"code_py": ""
 																								}
@@ -21556,7 +22163,7 @@
 																		"id": "yhyuppk3",
 																		"type": "slider",
 																		"left": -223,
-																		"top": 615,
+																		"top": 616,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
@@ -21744,8 +22351,8 @@
 																							"bindCondi": "",
 																							"actionList": {
 																								"custom_code": {
-																									"inc_c": "static uint32_t s_ct_apply_tick2;",
-																									"code_c": "const uint32_t APPLY_MIN_MS = 50;   /* 拖动节流: 两张旋转灯光图重绘很重, 最多每 50ms 刷一次防卡 */\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    lv_obj_t *slider1 = guider_ui.screen_5_slider_1;   /* 亮度 0..100 */\r\n    lv_obj_t *slider2 = guider_ui.screen_5_slider_2;   /* 色温 2700..6500 */\r\n    lv_obj_t *white   = guider_ui.screen_5_dev_white_img;\r\n    lv_obj_t *orange  = guider_ui.screen_5_dev_orange_img;\r\n\r\n    if (lv_obj_is_valid(slider1) && lv_obj_is_valid(slider2)) {\r\n        const int32_t CT_MIN  = 2700;   /* 色温最左(K) */\r\n        const int32_t CT_SPAN = 3800;   /* 6500-2700 */\r\n        const int32_t BRI_MAX = 100;\r\n        int32_t  bri  = lv_slider_get_value(slider1);\r\n        int32_t  ct   = lv_slider_get_value(slider2);\r\n        uint32_t tnum = (uint32_t)(ct - CT_MIN);                                 /* = T*CT_SPAN */\r\n        uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        if (lv_obj_is_valid(white))  lv_obj_set_style_img_opa(white,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n        if (lv_obj_is_valid(orange)) lv_obj_set_style_img_opa(orange, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    }\r\n",
+																									"inc_c": "#include \"HWDataAccess.h\"\r\nstatic uint32_t s_ct_apply_tick2;",
+																									"code_c": "int32_t bri = lv_slider_get_value(guider_ui.screen_5_slider_1);   /* 亮度 0..100 */\r\nint32_t ct  = lv_slider_get_value(guider_ui.screen_5_slider_2);   /* 色温 2700..6500 */\r\n\r\nHWInterface.LightCT.SetColorTemp((uint16_t)ct);   /* 每次都写回中间层(很轻, 不节流), 数据始终最新 */\r\n\r\n/* 只对\"重绘两张旋转灯光图\"节流(重绘很重), 最多每 50ms 一次 */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n\r\n    const int32_t CT_MIN  = 2700;\r\n    const int32_t CT_SPAN = 3800;\r\n    const int32_t BRI_MAX = 100;\r\n    uint32_t tnum     = (uint32_t)(ct - CT_MIN);\r\n    uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n}\r\n",
 																									"inc_py": "",
 																									"code_py": ""
 																								}
@@ -21906,8 +22513,7 @@
 																				"shadow_ofs_x": 0,
 																				"shadow_ofs_y": 0
 																			}
-																		],
-																		"dropToGap": false
+																		]
 																	},
 																	{
 																		"name": "tabview_1",
@@ -22081,12 +22687,20 @@
 																							}
 																						}
 																					}
+																				},
+																				{
+																					"dst": "custom_code",
+																					"bindCondi": "",
+																					"actionList": {
+																						"custom_code": {
+																							"inc_c": "#include \"HWDataAccess.h\"",
+																							"code_c": "/* 进屏初始化: 从中间层 HWInterface.LightCT 读全部状态(开关/亮度/色温), 把整屏画对, 不信 GUI Guider 默认态。 */\r\nbool     light_on   = HWInterface.LightCT.switch_status;   /* 开/关 */\r\nuint16_t brightness = HWInterface.LightCT.brightness;      /* 亮度 0..100 */\r\nuint16_t color_temp = HWInterface.LightCT.color_temp;      /* 色温 2700..6500 */\r\n\r\n/* 1. 两条 slider 摆到中间层的值(set_value 是程序设值, 不触发 value_changed, 不会回写中间层) */\r\nlv_slider_set_value(guider_ui.screen_5_slider_1, brightness, LV_ANIM_OFF);\r\nlv_slider_set_value(guider_ui.screen_5_slider_2, color_temp, LV_ANIM_OFF);\r\n\r\n/* 2. 按亮度+色温刷白/橙灯光图透明度 + 两个标签数字(公式同 slider 事件; 量程用 HWDataAccess.h 的宏) */\r\nuint32_t ct_span  = LIGHTCT_COLOR_TEMP_MAX - LIGHTCT_COLOR_TEMP_MIN;                 /* 3800 */\r\nuint32_t tnum     = (uint32_t)(color_temp - LIGHTCT_COLOR_TEMP_MIN);                 /* = T*ct_span */\r\nuint32_t o_white  = (uint32_t)brightness * tnum             * LV_OPA_COVER / ((uint32_t)LIGHTCT_BRIGHTNESS_MAX * ct_span);\r\nuint32_t o_orange = (uint32_t)brightness * (ct_span - tnum) * LV_OPA_COVER / ((uint32_t)LIGHTCT_BRIGHTNESS_MAX * ct_span);\r\nlv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\nlv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n\r\nchar buf[32];\r\nlv_snprintf(buf, sizeof(buf), \"亮 度 | %d%%\", (int)brightness);\r\nlv_label_set_text(guider_ui.screen_5_label_1, buf);\r\nlv_snprintf(buf, sizeof(buf), \"色 温 | %dK\", (int)color_temp);\r\nlv_label_set_text(guider_ui.screen_5_label_2, buf);\r\n\r\n/* 3. 开关 CHECKED + 遮罩 cont_1 按开关态摆正 */\r\nif (light_on) lv_obj_add_state(guider_ui.screen_5_CT_on_off_2_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.screen_5_CT_on_off_2_img, LV_STATE_CHECKED);\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.screen_5_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.screen_5_cont_1);\r\n    lv_obj_move_foreground(guider_ui.screen_5_CT_on_off_2_img);\r\n}",
+																							"inc_py": "",
+																							"code_py": ""
+																						}
+																					}
 																				}
 																			]
-																		},
-																		"gesture_right": {
-																			"condition": [],
-																			"action": []
 																		}
 																	}
 																},
@@ -37074,7 +37688,7 @@
 										"id": "boic2h4j",
 										"type": "slider",
 										"left": -223,
-										"top": 462,
+										"top": 452,
 										"visible": true,
 										"isLock": false,
 										"flag": [],
@@ -37262,8 +37876,8 @@
 															"bindCondi": "",
 															"actionList": {
 																"custom_code": {
-																	"inc_c": "static uint32_t s_ct_apply_tick;",
-																	"code_c": "const uint32_t APPLY_MIN_MS = 50;   /* 拖动节流: 两张旋转灯光图重绘很重, 最多每 50ms 刷一次防卡 */\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick = lv_tick_get();\r\n\r\n    lv_obj_t *slider1 = guider_ui.screen_5_slider_1;   /* 亮度 0..100 */\r\n    lv_obj_t *slider2 = guider_ui.screen_5_slider_2;   /* 色温 2700..6500 */\r\n    lv_obj_t *white   = guider_ui.screen_5_dev_white_img;\r\n    lv_obj_t *orange  = guider_ui.screen_5_dev_orange_img;\r\n\r\n    if (lv_obj_is_valid(slider1) && lv_obj_is_valid(slider2)) {\r\n        const int32_t CT_MIN  = 2700;   /* 色温最左(K) */\r\n        const int32_t CT_SPAN = 3800;   /* 6500-2700 */\r\n        const int32_t BRI_MAX = 100;\r\n        int32_t  bri  = lv_slider_get_value(slider1);\r\n        int32_t  ct   = lv_slider_get_value(slider2);\r\n        uint32_t tnum = (uint32_t)(ct - CT_MIN);                                 /* = T*CT_SPAN */\r\n        uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        if (lv_obj_is_valid(white))  lv_obj_set_style_img_opa(white,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n        if (lv_obj_is_valid(orange)) lv_obj_set_style_img_opa(orange, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    }\r\n}",
+																	"inc_c": "#include \"HWDataAccess.h\"\r\nstatic uint32_t s_ct_apply_tick;",
+																	"code_c": "int32_t bri = lv_slider_get_value(guider_ui.screen_5_slider_1);   /* 亮度 0..100 */\r\nint32_t ct  = lv_slider_get_value(guider_ui.screen_5_slider_2);   /* 色温 2700..6500 */\r\n\r\nHWInterface.LightCT.SetBrightness((uint16_t)bri);   /* 每次都写回中间层(很轻, 不节流), 数据始终最新 */\r\n\r\n/* 只对\"重绘两张旋转灯光图\"节流(重绘很重), 最多每 50ms 一次 */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick = lv_tick_get();\r\n\r\n    const int32_t CT_MIN  = 2700;   /* 色温最左(K) */\r\n    const int32_t CT_SPAN = 3800;   /* 6500-2700 */\r\n    const int32_t BRI_MAX = 100;\r\n    uint32_t tnum     = (uint32_t)(ct - CT_MIN);\r\n    uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n}",
 																	"inc_py": "",
 																	"code_py": ""
 																}
@@ -37295,7 +37909,7 @@
 										"id": "yhyuppk3",
 										"type": "slider",
 										"left": -223,
-										"top": 615,
+										"top": 616,
 										"visible": true,
 										"isLock": false,
 										"flag": [],
@@ -37483,8 +38097,8 @@
 															"bindCondi": "",
 															"actionList": {
 																"custom_code": {
-																	"inc_c": "static uint32_t s_ct_apply_tick2;",
-																	"code_c": "const uint32_t APPLY_MIN_MS = 50;   /* 拖动节流: 两张旋转灯光图重绘很重, 最多每 50ms 刷一次防卡 */\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    lv_obj_t *slider1 = guider_ui.screen_5_slider_1;   /* 亮度 0..100 */\r\n    lv_obj_t *slider2 = guider_ui.screen_5_slider_2;   /* 色温 2700..6500 */\r\n    lv_obj_t *white   = guider_ui.screen_5_dev_white_img;\r\n    lv_obj_t *orange  = guider_ui.screen_5_dev_orange_img;\r\n\r\n    if (lv_obj_is_valid(slider1) && lv_obj_is_valid(slider2)) {\r\n        const int32_t CT_MIN  = 2700;   /* 色温最左(K) */\r\n        const int32_t CT_SPAN = 3800;   /* 6500-2700 */\r\n        const int32_t BRI_MAX = 100;\r\n        int32_t  bri  = lv_slider_get_value(slider1);\r\n        int32_t  ct   = lv_slider_get_value(slider2);\r\n        uint32_t tnum = (uint32_t)(ct - CT_MIN);                                 /* = T*CT_SPAN */\r\n        uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        if (lv_obj_is_valid(white))  lv_obj_set_style_img_opa(white,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n        if (lv_obj_is_valid(orange)) lv_obj_set_style_img_opa(orange, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    }\r\n",
+																	"inc_c": "#include \"HWDataAccess.h\"\r\nstatic uint32_t s_ct_apply_tick2;",
+																	"code_c": "int32_t bri = lv_slider_get_value(guider_ui.screen_5_slider_1);   /* 亮度 0..100 */\r\nint32_t ct  = lv_slider_get_value(guider_ui.screen_5_slider_2);   /* 色温 2700..6500 */\r\n\r\nHWInterface.LightCT.SetColorTemp((uint16_t)ct);   /* 每次都写回中间层(很轻, 不节流), 数据始终最新 */\r\n\r\n/* 只对\"重绘两张旋转灯光图\"节流(重绘很重), 最多每 50ms 一次 */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n\r\n    const int32_t CT_MIN  = 2700;\r\n    const int32_t CT_SPAN = 3800;\r\n    const int32_t BRI_MAX = 100;\r\n    uint32_t tnum     = (uint32_t)(ct - CT_MIN);\r\n    uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n}\r\n",
 																	"inc_py": "",
 																	"code_py": ""
 																}
@@ -37612,12 +38226,20 @@
 										],
 										"layerName": "screen_5"
 									}
+								},
+								{
+									"dst": "custom_code",
+									"bindCondi": "",
+									"actionList": {
+										"custom_code": {
+											"inc_c": "#include \"HWDataAccess.h\"",
+											"code_c": "/* 进屏初始化: 从中间层 HWInterface.LightCT 读全部状态(开关/亮度/色温), 把整屏画对, 不信 GUI Guider 默认态。 */\r\nbool     light_on   = HWInterface.LightCT.switch_status;   /* 开/关 */\r\nuint16_t brightness = HWInterface.LightCT.brightness;      /* 亮度 0..100 */\r\nuint16_t color_temp = HWInterface.LightCT.color_temp;      /* 色温 2700..6500 */\r\n\r\n/* 1. 两条 slider 摆到中间层的值(set_value 是程序设值, 不触发 value_changed, 不会回写中间层) */\r\nlv_slider_set_value(guider_ui.screen_5_slider_1, brightness, LV_ANIM_OFF);\r\nlv_slider_set_value(guider_ui.screen_5_slider_2, color_temp, LV_ANIM_OFF);\r\n\r\n/* 2. 按亮度+色温刷白/橙灯光图透明度 + 两个标签数字(公式同 slider 事件; 量程用 HWDataAccess.h 的宏) */\r\nuint32_t ct_span  = LIGHTCT_COLOR_TEMP_MAX - LIGHTCT_COLOR_TEMP_MIN;                 /* 3800 */\r\nuint32_t tnum     = (uint32_t)(color_temp - LIGHTCT_COLOR_TEMP_MIN);                 /* = T*ct_span */\r\nuint32_t o_white  = (uint32_t)brightness * tnum             * LV_OPA_COVER / ((uint32_t)LIGHTCT_BRIGHTNESS_MAX * ct_span);\r\nuint32_t o_orange = (uint32_t)brightness * (ct_span - tnum) * LV_OPA_COVER / ((uint32_t)LIGHTCT_BRIGHTNESS_MAX * ct_span);\r\nlv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\nlv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n\r\nchar buf[32];\r\nlv_snprintf(buf, sizeof(buf), \"亮 度 | %d%%\", (int)brightness);\r\nlv_label_set_text(guider_ui.screen_5_label_1, buf);\r\nlv_snprintf(buf, sizeof(buf), \"色 温 | %dK\", (int)color_temp);\r\nlv_label_set_text(guider_ui.screen_5_label_2, buf);\r\n\r\n/* 3. 开关 CHECKED + 遮罩 cont_1 按开关态摆正 */\r\nif (light_on) lv_obj_add_state(guider_ui.screen_5_CT_on_off_2_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.screen_5_CT_on_off_2_img, LV_STATE_CHECKED);\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.screen_5_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.screen_5_cont_1);\r\n    lv_obj_move_foreground(guider_ui.screen_5_CT_on_off_2_img);\r\n}",
+											"inc_py": "",
+											"code_py": ""
+										}
+									}
 								}
 							]
-						},
-						"gesture_right": {
-							"condition": [],
-							"action": []
 						}
 					}
 				},
@@ -37929,7 +38551,7 @@
 						"flag": [],
 						"pos": [
 							-223,
-							615
+							616
 						],
 						"size": [
 							600,
@@ -37948,8 +38570,8 @@
 											"bindCondi": "",
 											"actionList": {
 												"custom_code": {
-													"inc_c": "static uint32_t s_ct_apply_tick2;",
-													"code_c": "const uint32_t APPLY_MIN_MS = 50;   /* 拖动节流: 两张旋转灯光图重绘很重, 最多每 50ms 刷一次防卡 */\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    lv_obj_t *slider1 = guider_ui.screen_5_slider_1;   /* 亮度 0..100 */\r\n    lv_obj_t *slider2 = guider_ui.screen_5_slider_2;   /* 色温 2700..6500 */\r\n    lv_obj_t *white   = guider_ui.screen_5_dev_white_img;\r\n    lv_obj_t *orange  = guider_ui.screen_5_dev_orange_img;\r\n\r\n    if (lv_obj_is_valid(slider1) && lv_obj_is_valid(slider2)) {\r\n        const int32_t CT_MIN  = 2700;   /* 色温最左(K) */\r\n        const int32_t CT_SPAN = 3800;   /* 6500-2700 */\r\n        const int32_t BRI_MAX = 100;\r\n        int32_t  bri  = lv_slider_get_value(slider1);\r\n        int32_t  ct   = lv_slider_get_value(slider2);\r\n        uint32_t tnum = (uint32_t)(ct - CT_MIN);                                 /* = T*CT_SPAN */\r\n        uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        if (lv_obj_is_valid(white))  lv_obj_set_style_img_opa(white,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n        if (lv_obj_is_valid(orange)) lv_obj_set_style_img_opa(orange, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    }\r\n",
+													"inc_c": "#include \"HWDataAccess.h\"\r\nstatic uint32_t s_ct_apply_tick2;",
+													"code_c": "int32_t bri = lv_slider_get_value(guider_ui.screen_5_slider_1);   /* 亮度 0..100 */\r\nint32_t ct  = lv_slider_get_value(guider_ui.screen_5_slider_2);   /* 色温 2700..6500 */\r\n\r\nHWInterface.LightCT.SetColorTemp((uint16_t)ct);   /* 每次都写回中间层(很轻, 不节流), 数据始终最新 */\r\n\r\n/* 只对\"重绘两张旋转灯光图\"节流(重绘很重), 最多每 50ms 一次 */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n\r\n    const int32_t CT_MIN  = 2700;\r\n    const int32_t CT_SPAN = 3800;\r\n    const int32_t BRI_MAX = 100;\r\n    uint32_t tnum     = (uint32_t)(ct - CT_MIN);\r\n    uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n}\r\n",
 													"inc_py": "",
 													"code_py": ""
 												}
@@ -38141,7 +38763,7 @@
 						"flag": [],
 						"pos": [
 							-223,
-							462
+							452
 						],
 						"size": [
 							600,
@@ -38160,8 +38782,8 @@
 											"bindCondi": "",
 											"actionList": {
 												"custom_code": {
-													"inc_c": "static uint32_t s_ct_apply_tick;",
-													"code_c": "const uint32_t APPLY_MIN_MS = 50;   /* 拖动节流: 两张旋转灯光图重绘很重, 最多每 50ms 刷一次防卡 */\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick = lv_tick_get();\r\n\r\n    lv_obj_t *slider1 = guider_ui.screen_5_slider_1;   /* 亮度 0..100 */\r\n    lv_obj_t *slider2 = guider_ui.screen_5_slider_2;   /* 色温 2700..6500 */\r\n    lv_obj_t *white   = guider_ui.screen_5_dev_white_img;\r\n    lv_obj_t *orange  = guider_ui.screen_5_dev_orange_img;\r\n\r\n    if (lv_obj_is_valid(slider1) && lv_obj_is_valid(slider2)) {\r\n        const int32_t CT_MIN  = 2700;   /* 色温最左(K) */\r\n        const int32_t CT_SPAN = 3800;   /* 6500-2700 */\r\n        const int32_t BRI_MAX = 100;\r\n        int32_t  bri  = lv_slider_get_value(slider1);\r\n        int32_t  ct   = lv_slider_get_value(slider2);\r\n        uint32_t tnum = (uint32_t)(ct - CT_MIN);                                 /* = T*CT_SPAN */\r\n        uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n        if (lv_obj_is_valid(white))  lv_obj_set_style_img_opa(white,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n        if (lv_obj_is_valid(orange)) lv_obj_set_style_img_opa(orange, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    }\r\n}",
+													"inc_c": "#include \"HWDataAccess.h\"\r\nstatic uint32_t s_ct_apply_tick;",
+													"code_c": "int32_t bri = lv_slider_get_value(guider_ui.screen_5_slider_1);   /* 亮度 0..100 */\r\nint32_t ct  = lv_slider_get_value(guider_ui.screen_5_slider_2);   /* 色温 2700..6500 */\r\n\r\nHWInterface.LightCT.SetBrightness((uint16_t)bri);   /* 每次都写回中间层(很轻, 不节流), 数据始终最新 */\r\n\r\n/* 只对\"重绘两张旋转灯光图\"节流(重绘很重), 最多每 50ms 一次 */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick = lv_tick_get();\r\n\r\n    const int32_t CT_MIN  = 2700;   /* 色温最左(K) */\r\n    const int32_t CT_SPAN = 3800;   /* 6500-2700 */\r\n    const int32_t BRI_MAX = 100;\r\n    uint32_t tnum     = (uint32_t)(ct - CT_MIN);\r\n    uint32_t o_white  = (uint32_t)bri * tnum            * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    uint32_t o_orange = (uint32_t)bri * (CT_SPAN - tnum) * LV_OPA_COVER / ((uint32_t)BRI_MAX * CT_SPAN);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n}",
 													"inc_py": "",
 													"code_py": ""
 												}
@@ -41367,8 +41989,8 @@
 						"visible": true,
 						"flag": [],
 						"pos": [
-							18,
-							100
+							19,
+							101
 						],
 						"size": [
 							48,
@@ -41385,8 +42007,8 @@
 											"bindCondi": "",
 											"actionList": {
 												"custom_code": {
-													"inc_c": "",
-													"code_c": "",
+													"inc_c": "#include \"HWDataAccess.h\"",
+													"code_c": "/* 点开关 → 读它点击后的新状态 → 写回中间层 → 按新态刷遮罩。 */\r\nlv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 点击后: 有CHECKED=开, 没有=关 */\r\n\r\nHWInterface.LightCT.SetOnOff(light_on);                    /* 写回中间层(内部有变化才置 changed) */\r\n\r\n/* 遮罩 cont_1 按新状态显示(与进屏初始化里同一套逻辑) */\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.screen_5_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.screen_5_cont_1);\r\n    lv_obj_move_foreground(btn);\r\n}",
 													"inc_py": "",
 													"code_py": ""
 												}
@@ -41475,6 +42097,612 @@
 								"image_opa": 255
 							}
 						]
+					}
+				]
+			},
+			{
+				"name": "screen_6",
+				"id": "4fcy2uem",
+				"type": "scr",
+				"version": 190,
+				"scrollbar_mode": "OFF",
+				"customer_code": {
+					"code_c": "",
+					"inc_c": "",
+					"code_py": "",
+					"inc_py": "",
+					"type": "screen"
+				},
+				"width": 720,
+				"height": 720,
+				"visible": true,
+				"flag": [],
+				"style": [
+					{
+						"part": "LV_PART_MAIN",
+						"state": "LV_STATE_DEFAULT",
+						"disable": false,
+						"bg_color": "#000000",
+						"bg_grad_dir": "LV_GRAD_DIR_NONE",
+						"bg_dither_mode": "LV_DITHER_NONE",
+						"bg_main_stop": 0,
+						"bg_grad_stop": 255,
+						"bg_grad_color": "#2195f6",
+						"bg_opa": 255,
+						"bg_img_src": "",
+						"bg_img_opa": 255,
+						"bg_img_recolor": "#ffffff",
+						"bg_img_recolor_opa": 0
+					}
+				],
+				"size": [
+					720,
+					720
+				],
+				"widgets": [
+					{
+						"name": "screen_6_btn_1",
+						"id": "i4qwjy0h",
+						"type": "btn",
+						"visible": true,
+						"flag": [],
+						"pos": [
+							54,
+							490
+						],
+						"size": [
+							100,
+							50
+						],
+						"default_style": false,
+						"text_align": "center",
+						"style": [
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_DEFAULT",
+								"disable": false,
+								"bg_color": "#2195f6",
+								"bg_grad_color": "#2195f6",
+								"bg_opa": 255,
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_opa": 255,
+								"border_color": "#2195f6",
+								"radius": 5,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0,
+								"font": 16,
+								"font_family": "montserratMedium",
+								"text_color": "#ffffff",
+								"text_opa": 255,
+								"text_align": "LV_TEXT_ALIGN_CENTER"
+							},
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_FOCUSED",
+								"disable": true,
+								"bg_color": "#2195f6",
+								"bg_grad_color": "#2195f6",
+								"bg_opa": 255,
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_color": "#2195f6",
+								"border_opa": 255,
+								"radius": 5,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0,
+								"font": 16,
+								"font_family": "montserratMedium",
+								"text_opa": 255,
+								"text_color": "#ffffff"
+							},
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_PRESSED",
+								"disable": true,
+								"bg_color": "#2195f6",
+								"bg_grad_color": "#2195f6",
+								"bg_opa": 255,
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_color": "#2195f6",
+								"border_opa": 255,
+								"radius": 5,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0,
+								"font": 16,
+								"font_family": "montserratMedium",
+								"text_opa": 255,
+								"text_color": "#ffffff"
+							},
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_CHECKED",
+								"disable": true,
+								"bg_color": "#2195f6",
+								"bg_grad_color": "#2195f6",
+								"bg_opa": 255,
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_opa": 255,
+								"border_color": "#2195f6",
+								"radius": 5,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0,
+								"font": 12,
+								"font_family": "montserratMedium",
+								"text_opa": 255,
+								"text_color": "#000000"
+							},
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_DISABLED",
+								"disable": true,
+								"bg_color": "#2195f6",
+								"bg_grad_color": "#2195f6",
+								"bg_opa": 255,
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_opa": 255,
+								"border_color": "#2195f6",
+								"radius": 5,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0,
+								"font": 12,
+								"font_family": "montserratMedium",
+								"text_opa": 255,
+								"text_color": "#000000"
+							}
+						],
+						"text": "Button",
+						"long_mode": "LV_LABEL_LONG_WRAP",
+						"toggle": false
+					},
+					{
+						"name": "screen_6_btn_2",
+						"id": "e82f76t0",
+						"type": "btn",
+						"visible": true,
+						"flag": [],
+						"pos": [
+							224,
+							490
+						],
+						"size": [
+							100,
+							50
+						],
+						"default_style": false,
+						"text_align": "center",
+						"style": [
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_DEFAULT",
+								"disable": false,
+								"bg_color": "#2195f6",
+								"bg_grad_color": "#2195f6",
+								"bg_opa": 255,
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_opa": 255,
+								"border_color": "#2195f6",
+								"radius": 5,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0,
+								"font": 16,
+								"font_family": "montserratMedium",
+								"text_color": "#ffffff",
+								"text_opa": 255,
+								"text_align": "LV_TEXT_ALIGN_CENTER"
+							},
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_FOCUSED",
+								"disable": true,
+								"bg_color": "#2195f6",
+								"bg_grad_color": "#2195f6",
+								"bg_opa": 255,
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_color": "#2195f6",
+								"border_opa": 255,
+								"radius": 5,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0,
+								"font": 16,
+								"font_family": "montserratMedium",
+								"text_opa": 255,
+								"text_color": "#ffffff"
+							},
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_PRESSED",
+								"disable": true,
+								"bg_color": "#2195f6",
+								"bg_grad_color": "#2195f6",
+								"bg_opa": 255,
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_color": "#2195f6",
+								"border_opa": 255,
+								"radius": 5,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0,
+								"font": 16,
+								"font_family": "montserratMedium",
+								"text_opa": 255,
+								"text_color": "#ffffff"
+							},
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_CHECKED",
+								"disable": true,
+								"bg_color": "#2195f6",
+								"bg_grad_color": "#2195f6",
+								"bg_opa": 255,
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_opa": 255,
+								"border_color": "#2195f6",
+								"radius": 5,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0,
+								"font": 12,
+								"font_family": "montserratMedium",
+								"text_opa": 255,
+								"text_color": "#000000"
+							},
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_DISABLED",
+								"disable": true,
+								"bg_color": "#2195f6",
+								"bg_grad_color": "#2195f6",
+								"bg_opa": 255,
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_opa": 255,
+								"border_color": "#2195f6",
+								"radius": 5,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0,
+								"font": 12,
+								"font_family": "montserratMedium",
+								"text_opa": 255,
+								"text_color": "#000000"
+							}
+						],
+						"text": "Button",
+						"long_mode": "LV_LABEL_LONG_WRAP",
+						"toggle": false
+					},
+					{
+						"name": "screen_6_btn_3",
+						"id": "r7g6ll95",
+						"type": "btn",
+						"visible": true,
+						"flag": [],
+						"pos": [
+							457,
+							490
+						],
+						"size": [
+							100,
+							50
+						],
+						"default_style": false,
+						"text_align": "center",
+						"style": [
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_DEFAULT",
+								"disable": false,
+								"bg_color": "#2195f6",
+								"bg_grad_color": "#2195f6",
+								"bg_opa": 255,
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_opa": 255,
+								"border_color": "#2195f6",
+								"radius": 5,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0,
+								"font": 16,
+								"font_family": "montserratMedium",
+								"text_color": "#ffffff",
+								"text_opa": 255,
+								"text_align": "LV_TEXT_ALIGN_CENTER"
+							},
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_FOCUSED",
+								"disable": true,
+								"bg_color": "#2195f6",
+								"bg_grad_color": "#2195f6",
+								"bg_opa": 255,
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_color": "#2195f6",
+								"border_opa": 255,
+								"radius": 5,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0,
+								"font": 16,
+								"font_family": "montserratMedium",
+								"text_opa": 255,
+								"text_color": "#ffffff"
+							},
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_PRESSED",
+								"disable": true,
+								"bg_color": "#2195f6",
+								"bg_grad_color": "#2195f6",
+								"bg_opa": 255,
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_color": "#2195f6",
+								"border_opa": 255,
+								"radius": 5,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0,
+								"font": 16,
+								"font_family": "montserratMedium",
+								"text_opa": 255,
+								"text_color": "#ffffff"
+							},
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_CHECKED",
+								"disable": true,
+								"bg_color": "#2195f6",
+								"bg_grad_color": "#2195f6",
+								"bg_opa": 255,
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_opa": 255,
+								"border_color": "#2195f6",
+								"radius": 5,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0,
+								"font": 12,
+								"font_family": "montserratMedium",
+								"text_opa": 255,
+								"text_color": "#000000"
+							},
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_DISABLED",
+								"disable": true,
+								"bg_color": "#2195f6",
+								"bg_grad_color": "#2195f6",
+								"bg_opa": 255,
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_opa": 255,
+								"border_color": "#2195f6",
+								"radius": 5,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0,
+								"font": 12,
+								"font_family": "montserratMedium",
+								"text_opa": 255,
+								"text_color": "#000000"
+							}
+						],
+						"text": "Button",
+						"long_mode": "LV_LABEL_LONG_WRAP",
+						"toggle": false
 					}
 				]
 			}

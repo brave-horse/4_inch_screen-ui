@@ -54,7 +54,7 @@ void screen_1_custom_init(void)
  *  LightCT(色温灯)
  *    开关: CT_on_off_1_img(CHECKABLE imgbtn)
  *    关态视觉: small_dev_off_img  —— 关→100%显示, 开→0%隐藏
- *    状态变量: s_lightct_on (后续并入两屏共享的 HWInterface.LightCT.on)
+ *    状态变量: s_lightct_on (后续并入两屏共享的 HWInterface.LightCT.switch_status)
  *===========================================================================*/
 
 /* 开/关取值——不用裸 0/1, 用宏一眼看懂。 */
@@ -62,7 +62,7 @@ void screen_1_custom_init(void)
 #define LIGHTCT_ON    true    /* 开 */
 
 /* 色温灯开/关状态。默认 LIGHTCT_OFF(关), 与开关控件默认未 checked 一致。
- * 后续要统一成两屏共享的 HWInterface.LightCT.on(共享模块还没放进来): screen_1 与
+ * 后续要统一成两屏共享的 HWInterface.LightCT.switch_status(共享模块还没放进来): screen_1 与
  * screen_5 的开关读写同一份, 实现两屏一致。届时把这里对接/替换为那一份。 */
 static bool s_lightct_on = LIGHTCT_OFF;
 

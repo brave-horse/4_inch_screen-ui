@@ -144,6 +144,14 @@ typedef struct
 	lv_obj_t *screen_5_btn_1_label;
 	lv_obj_t *screen_5_CT_on_off_2_img;
 	lv_obj_t *screen_5_CT_on_off_2_img_label;
+	lv_obj_t *screen_6;
+	bool screen_6_del;
+	lv_obj_t *screen_6_btn_1;
+	lv_obj_t *screen_6_btn_1_label;
+	lv_obj_t *screen_6_btn_2;
+	lv_obj_t *screen_6_btn_2_label;
+	lv_obj_t *screen_6_btn_3;
+	lv_obj_t *screen_6_btn_3_label;
 }lv_ui;
 
 typedef void (*ui_setup_scr_t)(lv_ui * ui);
@@ -173,6 +181,7 @@ void setup_scr_screen_2(lv_ui *ui);
 void setup_scr_screen_3(lv_ui *ui);
 void setup_scr_screen_4(lv_ui *ui);
 void setup_scr_screen_5(lv_ui *ui);
+void setup_scr_screen_6(lv_ui *ui);
 
 LV_IMG_DECLARE(_ct_bar_600x70);
 LV_IMG_DECLARE(_dev_shell_alpha_100x100);
