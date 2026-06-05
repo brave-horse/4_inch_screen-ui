@@ -13,12 +13,12 @@
  **********************/
 
 /* 按当前亮度/色温刷两张灯光图透明度 + 两个标签数字; 关灯时灯光图隐藏(0)。
- * screen_5 的 slider 拖动 / 进屏(SCREEN_LOADED) / 开关 事件都调它 —— 灯光公式只此一份。
+ * light_CT_screen 的 slider 拖动 / 进屏(SCREEN_LOADED) / 开关 事件都调它 —— 灯光公式只此一份。
  * 由 GUI Guider 事件调用: 事件 include 框写 #include "screen.h", 代码里调 screen_5_apply_light()。 */
-void screen_5_apply_light(void)
+void light_CT_screen_apply_light(void)
 {
-    lv_obj_t *slider1 = guider_ui.screen_5_slider_1;
-    lv_obj_t *slider2 = guider_ui.screen_5_slider_2;
+    lv_obj_t *slider1 = guider_ui.light_CT_screen_slider_1;
+    lv_obj_t *slider2 = guider_ui.light_CT_screen_slider_2;
     if (!lv_obj_is_valid(slider1) || !lv_obj_is_valid(slider2)) {
         return;
     }
@@ -35,12 +35,12 @@ void screen_5_apply_light(void)
         o_orange = LV_OPA_TRANSP;
     }
 
-    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(guider_ui.screen_5_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(guider_ui.light_CT_screen_dev_white_img,  (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(guider_ui.light_CT_screen_dev_orange_img, (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     char buf[32];
     lv_snprintf(buf, sizeof(buf), "亮 度 | %d%%", (int)bri);
-    lv_label_set_text(guider_ui.screen_5_label_1, buf);
+    lv_label_set_text(guider_ui.light_CT_screen_label_1, buf);
     lv_snprintf(buf, sizeof(buf), "色 温 | %dK", (int)ct);
-    lv_label_set_text(guider_ui.screen_5_label_2, buf);
+    lv_label_set_text(guider_ui.light_CT_screen_label_2, buf);
 }

@@ -24,19 +24,19 @@
  * guider_ui.screen*，所以这里把全部 6 个屏都列上，最稳。
  * 新增屏时在这里加一行 &guider_ui.screen_xxx 即可。 */
 static lv_obj_t **const s_slots[] = {
-    &guider_ui.screen,
-    &guider_ui.screen_1,
-    &guider_ui.screen_2,
-    &guider_ui.screen_3,
-    &guider_ui.screen_4,
-    &guider_ui.screen_5,
+    &guider_ui.ui_home_screen,
+    &guider_ui.device_management_screen,
+    &guider_ui.light_scence_screen,
+    &guider_ui.curtain_scene_screen,
+    &guider_ui.setting_screen,
+    &guider_ui.light_CT_screen,
 };
 #define SLOT_CNT  (sizeof(s_slots) / sizeof(s_slots[0]))
 
 /* 需要随宿主屏一起"删除即置 NULL"的【子控件】指针槽位。
  *
  * 背景(本工程卡死的真凶)：generated/widgets_init.c 的 screen_digital_clock_1_timer 是
- * 常驻定时器(每秒一次)，里面 lv_obj_is_valid(guider_ui.screen_digital_clock_1) 通过后就写它。
+ * 常驻定时器(每秒一次)，里面 lv_obj_is_valid(guider_ui.ui_home_screen_digital_clock_1) 通过后就写它。
  * 主屏被 auto_del 删除后这个指针变野却没人清，lv_obj_is_valid 只比地址不解引用，于是
  * 来回切几次、旧地址被新屏对象复用后 is_valid 误判为真 → 把别的控件当数字时钟写 → 崩。
  * 删除即置 NULL 后 is_valid(NULL)=false，timer 老实跳过，问题根除。
@@ -44,7 +44,7 @@ static lv_obj_t **const s_slots[] = {
  * 屏槽位靠"给活动屏挂回调"覆盖，但子控件不是活动屏，需要单独给它本身挂删除回调，
  * 所以单列一张表。新增"被 generated 常驻代码引用的子控件"时，在这里加一行即可。 */
 static lv_obj_t **const s_child_slots[] = {
-    &guider_ui.screen_digital_clock_1,
+    &guider_ui.ui_home_screen_digital_clock_1,
 };
 #define CHILD_CNT  (sizeof(s_child_slots) / sizeof(s_child_slots[0]))
 

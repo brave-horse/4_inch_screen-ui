@@ -22,18 +22,18 @@
 static lv_obj_t *s_last_scr;
 
 /* 需要禁止整屏(上下)滚动的屏槽位。
- * - 主屏 screen: 720x720 大图超出 480x800 屏, 屏容器可滚 + 橡皮筋, 原地重绘吞手势。
- * - screen_1~5: tabview 屏。每个 tabview 只有 1 个 tab(无需左右切), 但屏/tabview 整体
+ * - 主屏 ui_home_screen: 720x720 大图超出 480x800 屏, 屏容器可滚 + 橡皮筋, 原地重绘吞手势。
+ * - 其余子屏(device_management/light_scence/curtain_scene/setting/light_CT_screen): tabview 屏。每个 tabview 只有 1 个 tab(无需左右切), 但屏/tabview 整体
  *   能上下滑, 会把 tabview 拖出屏外。列进来禁掉。
  * 注意: 只关"屏 + 屏的直接子(tabview 对象本身)", 不递归进 tab 内部, 所以 tab 里
  * list/slider 自身的滚动不受影响。 */
 static lv_obj_t **const s_targets[] = {
-    &guider_ui.screen,
-    &guider_ui.screen_1,
-    &guider_ui.screen_2,
-    &guider_ui.screen_3,
-    &guider_ui.screen_4,
-    &guider_ui.screen_5,
+    &guider_ui.ui_home_screen,
+    &guider_ui.device_management_screen,
+    &guider_ui.light_scence_screen,
+    &guider_ui.curtain_scene_screen,
+    &guider_ui.setting_screen,
+    &guider_ui.light_CT_screen,
 };
 #define TARGET_CNT  (sizeof(s_targets) / sizeof(s_targets[0]))
 
@@ -94,7 +94,7 @@ static void scr_noscroll_poll_cb(lv_timer_t *timer)
             for (c = 0; c < cnt; c++) {
                 lv_obj_t *child = lv_obj_get_child(act, c);
                 /* list 等本身要上下滚动看条目的控件不要关:
-                 * screen_4 的 list 就直接建在屏上(和 tabview 平级), 关了它就翻不动条目。 */
+                 * setting_screen 的 list 就直接建在屏上(和 tabview 平级), 关了它就翻不动条目。 */
                 if (lv_obj_check_type(child, &lv_list_class)) {
                     continue;
                 }

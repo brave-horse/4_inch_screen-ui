@@ -75,12 +75,12 @@ void ui_animation(void * var, int32_t duration, int32_t delay, int32_t start_val
 void init_scr_del_flag(lv_ui *ui)
 {
 
-    ui->screen_del = true;
-    ui->screen_1_del = true;
-    ui->screen_2_del = true;
-    ui->screen_3_del = true;
-    ui->screen_4_del = true;
-    ui->screen_5_del = true;
+    ui->ui_home_screen_del = true;
+    ui->device_management_screen_del = true;
+    ui->light_scence_screen_del = true;
+    ui->curtain_scene_screen_del = true;
+    ui->setting_screen_del = true;
+    ui->light_CT_screen_del = true;
     ui->screen_6_del = true;
 }
 
@@ -88,8 +88,8 @@ void setup_ui(lv_ui *ui)
 {
     init_scr_del_flag(ui);
     init_keyboard(ui);
-    setup_scr_screen(ui);
-    lv_scr_load(ui->screen);
+    setup_scr_ui_home_screen(ui);
+    lv_scr_load(ui->ui_home_screen);
 }
 
 void init_keyboard(lv_ui *ui)

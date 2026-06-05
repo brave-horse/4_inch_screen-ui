@@ -276,7 +276,7 @@
 	},
 	"FrontJson": [
 		{
-			"name": "screen",
+			"name": "ui_home_screen",
 			"id": "emg7n4dm",
 			"type": "scr",
 			"version": 190,
@@ -1296,11 +1296,10 @@
 					"bg_img_recolor": "#ffffff",
 					"bg_img_recolor_opa": 0
 				}
-			],
-			"layerName": "screen"
+			]
 		},
 		{
-			"name": "screen_1",
+			"name": "device_management_screen",
 			"id": "ntrxzetk",
 			"type": "scr",
 			"version": 190,
@@ -3278,7 +3277,7 @@
 																"actionList": {
 																	"custom_code": {
 																		"inc_c": "#include \"HWDataAccess.h\"",
-																		"code_c": "/* 点开关 → 读它点击后的新状态 → 写回中间层 → 刷 small_dev_off 透明度。 */\r\nlv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 有CHECKED=开, 没有=关 */\r\n\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层: 开→true, 关→false; 与 screen_5 共享同一份 */\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.screen_1_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);",
+																		"code_c": "/* 点开关 → 读它点击后的新状态 → 写回中间层 → 刷 small_dev_off 透明度。 */\r\nlv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 有CHECKED=开, 没有=关 */\r\n\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层: 开→true, 关→false; 与 screen_5 共享同一份 */\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.device_management_screen_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);",
 																		"inc_py": "",
 																		"code_py": ""
 																	}
@@ -3492,7 +3491,7 @@
 								"actionList": {
 									"custom_code": {
 										"inc_c": "#include \"HWDataAccess.h\"",
-										"code_c": "/* 进屏初始化: 从中间层读色温灯开关真值, 摆正开关 CHECKED + small_dev_off 透明度。 */\r\nbool light_on = HWInterface.LightCT.switch_status;   /* true=开, false=关 */\r\n\r\n/* 开关图标 CHECKED 摆到当前状态 */\r\nif (light_on) lv_obj_add_state(guider_ui.screen_1_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.screen_1_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.screen_1_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);\r\n",
+										"code_c": "/* 进屏初始化: 从中间层读色温灯开关真值, 摆正开关 CHECKED + small_dev_off 透明度。 */\r\nbool light_on = HWInterface.LightCT.switch_status;   /* true=开, false=关 */\r\n\r\n/* 开关图标 CHECKED 摆到当前状态 */\r\nif (light_on) lv_obj_add_state(guider_ui.device_management_screen_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.device_management_screen_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.device_management_screen_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);\r\n",
 										"inc_py": "",
 										"code_py": ""
 									}
@@ -3519,11 +3518,10 @@
 					"bg_img_recolor": "#ffffff",
 					"bg_img_recolor_opa": 0
 				}
-			],
-			"layerName": "screen_1"
+			]
 		},
 		{
-			"name": "screen_2",
+			"name": "light_scence_screen",
 			"id": "cg7hayut",
 			"type": "scr",
 			"version": 190,
@@ -5652,11 +5650,10 @@
 					"bg_img_recolor": "#ffffff",
 					"bg_img_recolor_opa": 0
 				}
-			],
-			"layerName": "screen_2"
+			]
 		},
 		{
-			"name": "screen_3",
+			"name": "curtain_scene_screen",
 			"id": "l1tp6agt",
 			"type": "scr",
 			"version": 190,
@@ -7766,11 +7763,10 @@
 					"bg_img_recolor": "#ffffff",
 					"bg_img_recolor_opa": 0
 				}
-			],
-			"layerName": "screen_3"
+			]
 		},
 		{
-			"name": "screen_4",
+			"name": "setting_screen",
 			"id": "gri8a3nq",
 			"type": "scr",
 			"version": 190,
@@ -8410,11 +8406,10 @@
 					"bg_img_recolor": "#ffffff",
 					"bg_img_recolor_opa": 0
 				}
-			],
-			"layerName": "screen_4"
+			]
 		},
 		{
-			"name": "screen_5",
+			"name": "light_CT_screen",
 			"id": "vb2flt23",
 			"type": "scr",
 			"version": 190,
@@ -8432,7 +8427,7 @@
 			"flag": [],
 			"list": [
 				{
-					"name": "Light_CT_on_off_2_img",
+					"name": "on_off_2_img",
 					"id": "60xjbwtk",
 					"type": "imgbtn",
 					"left": 20,
@@ -8525,7 +8520,7 @@
 										"actionList": {
 											"custom_code": {
 												"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"",
-												"code_c": "lv_obj_t *btn = lv_event_get_target(e);\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层 */\r\nscreen_5_apply_light();                    /* 灯光图: 关→0, 开→按亮度/色温恢复 + 标签 */\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.screen_5_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.screen_5_cont_1);\r\n    lv_obj_move_foreground(btn);\r\n}",
+												"code_c": "lv_obj_t *btn = lv_event_get_target(e);\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层 */\r\nlight_CT_screen_apply_light();                    /* 灯光图: 关→0, 开→按亮度/色温恢复 + 标签 */\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.light_CT_screen_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);\r\n    lv_obj_move_foreground(btn);\r\n}",
 												"inc_py": "",
 												"code_py": ""
 											}
@@ -9053,15 +9048,14 @@
 							"shadow_ofs_x": 0,
 							"shadow_ofs_y": 0
 						}
-					],
-					"layerName": "screen_5"
+					]
 				},
 				{
 					"name": "slider_1",
 					"id": "boic2h4j",
 					"type": "slider",
 					"left": -223,
-					"top": 452,
+					"top": 447,
 					"visible": true,
 					"isLock": false,
 					"flag": [],
@@ -9250,7 +9244,7 @@
 										"actionList": {
 											"custom_code": {
 												"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick;\r\n",
-												"code_c": "HWInterface.LightCT.SetBrightness((uint16_t)lv_slider_get_value(guider_ui.screen_5_slider_1));  /* 写回中间层(不节流) */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {   /* 重绘节流 */\r\n    s_ct_apply_tick = lv_tick_get();\r\n    screen_5_apply_light();\r\n}\r\n",
+												"code_c": "HWInterface.LightCT.SetBrightness((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_1));  /* 写回中间层(不节流) */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {   /* 重绘节流 */\r\n    s_ct_apply_tick = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}\r\n",
 												"inc_py": "",
 												"code_py": ""
 											}
@@ -9259,8 +9253,7 @@
 								]
 							}
 						}
-					},
-					"layerName": "screen_5"
+					}
 				},
 				{
 					"name": "slider_2",
@@ -9456,7 +9449,7 @@
 										"actionList": {
 											"custom_code": {
 												"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick2;",
-												"code_c": "HWInterface.LightCT.SetColorTemp((uint16_t)lv_slider_get_value(guider_ui.screen_5_slider_2));\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    screen_5_apply_light();\r\n}",
+												"code_c": "HWInterface.LightCT.SetColorTemp((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_2));\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}",
 												"inc_py": "",
 												"code_py": ""
 											}
@@ -9465,8 +9458,7 @@
 								]
 							}
 						}
-					},
-					"layerName": "screen_5"
+					}
 				},
 				{
 					"name": "label_2",
@@ -9566,8 +9558,7 @@
 							"shadow_ofs_x": 0,
 							"shadow_ofs_y": 0
 						}
-					],
-					"layerName": "screen_5"
+					]
 				},
 				{
 					"name": "cont_1",
@@ -9798,7 +9789,7 @@
 								"actionList": {
 									"custom_code": {
 										"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\" ",
-										"code_c": "bool light_on = HWInterface.LightCT.switch_status;\r\nlv_slider_set_value(guider_ui.screen_5_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);\r\nlv_slider_set_value(guider_ui.screen_5_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);\r\nscreen_5_apply_light();   /* 灯光图(关→0/开→算) + 标签 */\r\n\r\nif (light_on) lv_obj_add_state(guider_ui.screen_5_Light_CT_on_off_2_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.screen_5_Light_CT_on_off_2_img, LV_STATE_CHECKED);\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.screen_5_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.screen_5_cont_1);\r\n    lv_obj_move_foreground(guider_ui.screen_5_Light_CT_on_off_2_img);\r\n}",
+										"code_c": "bool light_on = HWInterface.LightCT.switch_status;\r\nlv_slider_set_value(guider_ui.light_CT_screen_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);\r\nlv_slider_set_value(guider_ui.light_CT_screen_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);\r\nlight_CT_screen_apply_light();   /* 灯光图(关→0/开→算) + 标签 */\r\n\r\nif (light_on) lv_obj_add_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.light_CT_screen_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_on_off_2_img);\r\n}",
 										"inc_py": "",
 										"code_py": ""
 									}
@@ -9825,8 +9816,7 @@
 					"bg_img_recolor": "#ffffff",
 					"bg_img_recolor_opa": 0
 				}
-			],
-			"layerName": "screen_5"
+			]
 		},
 		{
 			"name": "screen_6",
@@ -10436,11 +10426,11 @@
 			"keyboard_font_type": "SourceHanSerifSC_Regular",
 			"keyboard_font_size": 18
 		},
-		"default_scr": "screen",
+		"default_scr": "ui_home_screen",
 		"theme": "LV_THEME_MATERIAL_FLAG_LIGHT",
 		"screen": [
 			{
-				"name": "screen",
+				"name": "ui_home_screen",
 				"id": "emg7n4dm",
 				"type": "scr",
 				"version": 190,
@@ -10462,7 +10452,7 @@
 							"condition": [],
 							"action": [
 								{
-									"dst": "screen_1",
+									"dst": "device_management_screen",
 									"bindCondi": "",
 									"actionList": {
 										"load_screen": {
@@ -10476,7 +10466,7 @@
 									},
 									"dst_type": "scr",
 									"_target": {
-										"name": "screen_1",
+										"name": "device_management_screen",
 										"id": "ntrxzetk",
 										"type": "scr",
 										"version": 190,
@@ -12454,7 +12444,7 @@
 																							"actionList": {
 																								"custom_code": {
 																									"inc_c": "#include \"HWDataAccess.h\"",
-																									"code_c": "/* 点开关 → 读它点击后的新状态 → 写回中间层 → 刷 small_dev_off 透明度。 */\r\nlv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 有CHECKED=开, 没有=关 */\r\n\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层: 开→true, 关→false; 与 screen_5 共享同一份 */\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.screen_1_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);",
+																									"code_c": "/* 点开关 → 读它点击后的新状态 → 写回中间层 → 刷 small_dev_off 透明度。 */\r\nlv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 有CHECKED=开, 没有=关 */\r\n\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层: 开→true, 关→false; 与 screen_5 共享同一份 */\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.device_management_screen_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);",
 																									"inc_py": "",
 																									"code_py": ""
 																								}
@@ -12668,7 +12658,7 @@
 															"actionList": {
 																"custom_code": {
 																	"inc_c": "#include \"HWDataAccess.h\"",
-																	"code_c": "/* 进屏初始化: 从中间层读色温灯开关真值, 摆正开关 CHECKED + small_dev_off 透明度。 */\r\nbool light_on = HWInterface.LightCT.switch_status;   /* true=开, false=关 */\r\n\r\n/* 开关图标 CHECKED 摆到当前状态 */\r\nif (light_on) lv_obj_add_state(guider_ui.screen_1_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.screen_1_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.screen_1_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);\r\n",
+																	"code_c": "/* 进屏初始化: 从中间层读色温灯开关真值, 摆正开关 CHECKED + small_dev_off 透明度。 */\r\nbool light_on = HWInterface.LightCT.switch_status;   /* true=开, false=关 */\r\n\r\n/* 开关图标 CHECKED 摆到当前状态 */\r\nif (light_on) lv_obj_add_state(guider_ui.device_management_screen_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.device_management_screen_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.device_management_screen_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);\r\n",
 																	"inc_py": "",
 																	"code_py": ""
 																}
@@ -12696,7 +12686,7 @@
 												"bg_img_recolor_opa": 0
 											}
 										],
-										"layerName": "screen_1"
+										"layerName": "device_management_screen"
 									}
 								}
 							]
@@ -12744,7 +12734,7 @@
 				],
 				"widgets": [
 					{
-						"name": "screen_img_1",
+						"name": "ui_home_screen_img_1",
 						"id": "x0qhlryf",
 						"type": "img",
 						"visible": true,
@@ -12782,7 +12772,7 @@
 						]
 					},
 					{
-						"name": "screen_digital_clock_1",
+						"name": "ui_home_screen_digital_clock_1",
 						"id": "gjumuooj",
 						"type": "digital_clock",
 						"visible": true,
@@ -12867,7 +12857,7 @@
 						]
 					},
 					{
-						"name": "screen_label_1",
+						"name": "ui_home_screen_label_1",
 						"id": "wuqfig64",
 						"type": "label",
 						"visible": true,
@@ -12970,7 +12960,7 @@
 						]
 					},
 					{
-						"name": "screen_label_2",
+						"name": "ui_home_screen_label_2",
 						"id": "44vcm10a",
 						"type": "label",
 						"visible": true,
@@ -13073,7 +13063,7 @@
 						]
 					},
 					{
-						"name": "screen_btn_1",
+						"name": "ui_home_screen_btn_1",
 						"id": "nfme0zw2",
 						"type": "btn",
 						"visible": true,
@@ -13093,7 +13083,7 @@
 									"condition": [],
 									"action": [
 										{
-											"dst": "screen_4",
+											"dst": "setting_screen",
 											"bindCondi": "",
 											"actionList": {
 												"load_screen": {
@@ -13107,7 +13097,7 @@
 											},
 											"dst_type": "scr",
 											"_target": {
-												"name": "screen_4",
+												"name": "setting_screen",
 												"id": "gri8a3nq",
 												"type": "scr",
 												"version": 190,
@@ -13748,7 +13738,7 @@
 														"bg_img_recolor_opa": 0
 													}
 												],
-												"layerName": "screen_4"
+												"layerName": "setting_screen"
 											}
 										}
 									]
@@ -13929,7 +13919,7 @@
 						"toggle": true
 					},
 					{
-						"name": "screen_btn_2",
+						"name": "ui_home_screen_btn_2",
 						"id": "76yvpnww",
 						"type": "btn",
 						"visible": true,
@@ -14117,7 +14107,7 @@
 						"toggle": true
 					},
 					{
-						"name": "screen_btn_3",
+						"name": "ui_home_screen_btn_3",
 						"id": "m56zrrz1",
 						"type": "btn",
 						"visible": true,
@@ -14308,7 +14298,7 @@
 						"toggle": true
 					},
 					{
-						"name": "screen_cont_1",
+						"name": "ui_home_screen_cont_1",
 						"id": "z971bllw",
 						"type": "cont",
 						"visible": true,
@@ -14363,7 +14353,7 @@
 				]
 			},
 			{
-				"name": "screen_1",
+				"name": "device_management_screen",
 				"id": "ntrxzetk",
 				"type": "scr",
 				"version": 190,
@@ -14385,7 +14375,7 @@
 							"condition": [],
 							"action": [
 								{
-									"dst": "screen_2",
+									"dst": "light_scence_screen",
 									"bindCondi": "",
 									"actionList": {
 										"load_screen": {
@@ -14399,7 +14389,7 @@
 									},
 									"dst_type": "scr",
 									"_target": {
-										"name": "screen_2",
+										"name": "light_scence_screen",
 										"id": "cg7hayut",
 										"type": "scr",
 										"version": 190,
@@ -16529,7 +16519,7 @@
 												"bg_img_recolor_opa": 0
 											}
 										],
-										"layerName": "screen_2"
+										"layerName": "light_scence_screen"
 									}
 								}
 							]
@@ -16538,7 +16528,7 @@
 							"condition": [],
 							"action": [
 								{
-									"dst": "screen",
+									"dst": "ui_home_screen",
 									"bindCondi": "",
 									"actionList": {
 										"load_screen": {
@@ -16552,7 +16542,7 @@
 									},
 									"dst_type": "scr",
 									"_target": {
-										"name": "screen",
+										"name": "ui_home_screen",
 										"id": "emg7n4dm",
 										"type": "scr",
 										"version": 190,
@@ -17573,7 +17563,7 @@
 												"bg_img_recolor_opa": 0
 											}
 										],
-										"layerName": "screen"
+										"layerName": "ui_home_screen"
 									}
 								}
 							]
@@ -17587,7 +17577,7 @@
 									"actionList": {
 										"custom_code": {
 											"inc_c": "#include \"HWDataAccess.h\"",
-											"code_c": "/* 进屏初始化: 从中间层读色温灯开关真值, 摆正开关 CHECKED + small_dev_off 透明度。 */\r\nbool light_on = HWInterface.LightCT.switch_status;   /* true=开, false=关 */\r\n\r\n/* 开关图标 CHECKED 摆到当前状态 */\r\nif (light_on) lv_obj_add_state(guider_ui.screen_1_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.screen_1_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.screen_1_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);\r\n",
+											"code_c": "/* 进屏初始化: 从中间层读色温灯开关真值, 摆正开关 CHECKED + small_dev_off 透明度。 */\r\nbool light_on = HWInterface.LightCT.switch_status;   /* true=开, false=关 */\r\n\r\n/* 开关图标 CHECKED 摆到当前状态 */\r\nif (light_on) lv_obj_add_state(guider_ui.device_management_screen_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.device_management_screen_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.device_management_screen_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);\r\n",
 											"inc_py": "",
 											"code_py": ""
 										}
@@ -17615,14 +17605,14 @@
 						"bg_img_recolor_opa": 0
 					}
 				],
-				"layerName": "screen_1",
+				"layerName": "device_management_screen",
 				"size": [
 					720,
 					720
 				],
 				"widgets": [
 					{
-						"name": "screen_1_tabview_1",
+						"name": "device_management_screen_tabview_1",
 						"id": "pb5hbmji",
 						"type": "tabview",
 						"visible": true,
@@ -17644,7 +17634,7 @@
 								"type": "tab",
 								"child": [
 									{
-										"name": "screen_1_cont_1",
+										"name": "device_management_screen_cont_1",
 										"id": "xdh9r4v9",
 										"type": "cont",
 										"visible": true,
@@ -17665,7 +17655,7 @@
 													"condition": [],
 													"action": [
 														{
-															"dst": "screen_5",
+															"dst": "light_CT_screen",
 															"bindCondi": "",
 															"actionList": {
 																"load_screen": {
@@ -17679,7 +17669,7 @@
 															},
 															"dst_type": "scr",
 															"_target": {
-																"name": "screen_5",
+																"name": "light_CT_screen",
 																"id": "vb2flt23",
 																"type": "scr",
 																"version": 190,
@@ -17697,7 +17687,7 @@
 																"flag": [],
 																"list": [
 																	{
-																		"name": "Light_CT_on_off_2_img",
+																		"name": "on_off_2_img",
 																		"id": "60xjbwtk",
 																		"type": "imgbtn",
 																		"left": 20,
@@ -17790,7 +17780,7 @@
 																							"actionList": {
 																								"custom_code": {
 																									"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"",
-																									"code_c": "lv_obj_t *btn = lv_event_get_target(e);\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层 */\r\nscreen_5_apply_light();                    /* 灯光图: 关→0, 开→按亮度/色温恢复 + 标签 */\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.screen_5_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.screen_5_cont_1);\r\n    lv_obj_move_foreground(btn);\r\n}",
+																									"code_c": "lv_obj_t *btn = lv_event_get_target(e);\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层 */\r\nlight_CT_screen_apply_light();                    /* 灯光图: 关→0, 开→按亮度/色温恢复 + 标签 */\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.light_CT_screen_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);\r\n    lv_obj_move_foreground(btn);\r\n}",
 																									"inc_py": "",
 																									"code_py": ""
 																								}
@@ -18319,14 +18309,14 @@
 																				"shadow_ofs_y": 0
 																			}
 																		],
-																		"layerName": "screen_5"
+																		"layerName": "light_CT_screen"
 																	},
 																	{
 																		"name": "slider_1",
 																		"id": "boic2h4j",
 																		"type": "slider",
 																		"left": -223,
-																		"top": 452,
+																		"top": 447,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
@@ -18515,7 +18505,7 @@
 																							"actionList": {
 																								"custom_code": {
 																									"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick;\r\n",
-																									"code_c": "HWInterface.LightCT.SetBrightness((uint16_t)lv_slider_get_value(guider_ui.screen_5_slider_1));  /* 写回中间层(不节流) */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {   /* 重绘节流 */\r\n    s_ct_apply_tick = lv_tick_get();\r\n    screen_5_apply_light();\r\n}\r\n",
+																									"code_c": "HWInterface.LightCT.SetBrightness((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_1));  /* 写回中间层(不节流) */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {   /* 重绘节流 */\r\n    s_ct_apply_tick = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}\r\n",
 																									"inc_py": "",
 																									"code_py": ""
 																								}
@@ -18525,7 +18515,7 @@
 																				}
 																			}
 																		},
-																		"layerName": "screen_5"
+																		"layerName": "light_CT_screen"
 																	},
 																	{
 																		"name": "slider_2",
@@ -18721,7 +18711,7 @@
 																							"actionList": {
 																								"custom_code": {
 																									"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick2;",
-																									"code_c": "HWInterface.LightCT.SetColorTemp((uint16_t)lv_slider_get_value(guider_ui.screen_5_slider_2));\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    screen_5_apply_light();\r\n}",
+																									"code_c": "HWInterface.LightCT.SetColorTemp((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_2));\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}",
 																									"inc_py": "",
 																									"code_py": ""
 																								}
@@ -18731,7 +18721,7 @@
 																				}
 																			}
 																		},
-																		"layerName": "screen_5"
+																		"layerName": "light_CT_screen"
 																	},
 																	{
 																		"name": "label_2",
@@ -18832,7 +18822,7 @@
 																				"shadow_ofs_y": 0
 																			}
 																		],
-																		"layerName": "screen_5"
+																		"layerName": "light_CT_screen"
 																	},
 																	{
 																		"name": "cont_1",
@@ -19063,7 +19053,7 @@
 																					"actionList": {
 																						"custom_code": {
 																							"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\" ",
-																							"code_c": "bool light_on = HWInterface.LightCT.switch_status;\r\nlv_slider_set_value(guider_ui.screen_5_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);\r\nlv_slider_set_value(guider_ui.screen_5_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);\r\nscreen_5_apply_light();   /* 灯光图(关→0/开→算) + 标签 */\r\n\r\nif (light_on) lv_obj_add_state(guider_ui.screen_5_Light_CT_on_off_2_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.screen_5_Light_CT_on_off_2_img, LV_STATE_CHECKED);\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.screen_5_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.screen_5_cont_1);\r\n    lv_obj_move_foreground(guider_ui.screen_5_Light_CT_on_off_2_img);\r\n}",
+																							"code_c": "bool light_on = HWInterface.LightCT.switch_status;\r\nlv_slider_set_value(guider_ui.light_CT_screen_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);\r\nlv_slider_set_value(guider_ui.light_CT_screen_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);\r\nlight_CT_screen_apply_light();   /* 灯光图(关→0/开→算) + 标签 */\r\n\r\nif (light_on) lv_obj_add_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.light_CT_screen_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_on_off_2_img);\r\n}",
 																							"inc_py": "",
 																							"code_py": ""
 																						}
@@ -19091,7 +19081,7 @@
 																		"bg_img_recolor_opa": 0
 																	}
 																],
-																"layerName": "screen_5"
+																"layerName": "light_CT_screen"
 															}
 														}
 													]
@@ -19100,7 +19090,7 @@
 										},
 										"child": [
 											{
-												"name": "screen_1_Light_CT_on_off_1_img",
+												"name": "device_management_screen_Light_CT_on_off_1_img",
 												"id": "gvv97csu",
 												"type": "imgbtn",
 												"visible": true,
@@ -19125,7 +19115,7 @@
 																	"actionList": {
 																		"custom_code": {
 																			"inc_c": "#include \"HWDataAccess.h\"",
-																			"code_c": "/* 点开关 → 读它点击后的新状态 → 写回中间层 → 刷 small_dev_off 透明度。 */\r\nlv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 有CHECKED=开, 没有=关 */\r\n\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层: 开→true, 关→false; 与 screen_5 共享同一份 */\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.screen_1_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);",
+																			"code_c": "/* 点开关 → 读它点击后的新状态 → 写回中间层 → 刷 small_dev_off 透明度。 */\r\nlv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 有CHECKED=开, 没有=关 */\r\n\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层: 开→true, 关→false; 与 screen_5 共享同一份 */\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.device_management_screen_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);",
 																			"inc_py": "",
 																			"code_py": ""
 																		}
@@ -19216,7 +19206,7 @@
 												]
 											},
 											{
-												"name": "screen_1_small_dev_on_img",
+												"name": "device_management_screen_small_dev_on_img",
 												"id": "in7oisr4",
 												"type": "img",
 												"visible": true,
@@ -19251,7 +19241,7 @@
 												]
 											},
 											{
-												"name": "screen_1_small_dev_off_img",
+												"name": "device_management_screen_small_dev_off_img",
 												"id": "vi3ejnzh",
 												"type": "img",
 												"visible": true,
@@ -19271,7 +19261,7 @@
 															"condition": [],
 															"action": [
 																{
-																	"dst": "screen_5",
+																	"dst": "light_CT_screen",
 																	"bindCondi": "",
 																	"actionList": {
 																		"load_screen": {
@@ -19285,7 +19275,7 @@
 																	},
 																	"dst_type": "scr",
 																	"_target": {
-																		"name": "screen_5",
+																		"name": "light_CT_screen",
 																		"id": "vb2flt23",
 																		"type": "scr",
 																		"version": 190,
@@ -19303,7 +19293,7 @@
 																		"flag": [],
 																		"list": [
 																			{
-																				"name": "Light_CT_on_off_2_img",
+																				"name": "on_off_2_img",
 																				"id": "60xjbwtk",
 																				"type": "imgbtn",
 																				"left": 20,
@@ -19396,7 +19386,7 @@
 																									"actionList": {
 																										"custom_code": {
 																											"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"",
-																											"code_c": "lv_obj_t *btn = lv_event_get_target(e);\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层 */\r\nscreen_5_apply_light();                    /* 灯光图: 关→0, 开→按亮度/色温恢复 + 标签 */\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.screen_5_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.screen_5_cont_1);\r\n    lv_obj_move_foreground(btn);\r\n}",
+																											"code_c": "lv_obj_t *btn = lv_event_get_target(e);\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层 */\r\nlight_CT_screen_apply_light();                    /* 灯光图: 关→0, 开→按亮度/色温恢复 + 标签 */\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.light_CT_screen_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);\r\n    lv_obj_move_foreground(btn);\r\n}",
 																											"inc_py": "",
 																											"code_py": ""
 																										}
@@ -19925,14 +19915,14 @@
 																						"shadow_ofs_y": 0
 																					}
 																				],
-																				"layerName": "screen_5"
+																				"layerName": "light_CT_screen"
 																			},
 																			{
 																				"name": "slider_1",
 																				"id": "boic2h4j",
 																				"type": "slider",
 																				"left": -223,
-																				"top": 452,
+																				"top": 447,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
@@ -20121,7 +20111,7 @@
 																									"actionList": {
 																										"custom_code": {
 																											"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick;\r\n",
-																											"code_c": "HWInterface.LightCT.SetBrightness((uint16_t)lv_slider_get_value(guider_ui.screen_5_slider_1));  /* 写回中间层(不节流) */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {   /* 重绘节流 */\r\n    s_ct_apply_tick = lv_tick_get();\r\n    screen_5_apply_light();\r\n}\r\n",
+																											"code_c": "HWInterface.LightCT.SetBrightness((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_1));  /* 写回中间层(不节流) */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {   /* 重绘节流 */\r\n    s_ct_apply_tick = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}\r\n",
 																											"inc_py": "",
 																											"code_py": ""
 																										}
@@ -20131,7 +20121,7 @@
 																						}
 																					}
 																				},
-																				"layerName": "screen_5"
+																				"layerName": "light_CT_screen"
 																			},
 																			{
 																				"name": "slider_2",
@@ -20327,7 +20317,7 @@
 																									"actionList": {
 																										"custom_code": {
 																											"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick2;",
-																											"code_c": "HWInterface.LightCT.SetColorTemp((uint16_t)lv_slider_get_value(guider_ui.screen_5_slider_2));\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    screen_5_apply_light();\r\n}",
+																											"code_c": "HWInterface.LightCT.SetColorTemp((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_2));\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}",
 																											"inc_py": "",
 																											"code_py": ""
 																										}
@@ -20337,7 +20327,7 @@
 																						}
 																					}
 																				},
-																				"layerName": "screen_5"
+																				"layerName": "light_CT_screen"
 																			},
 																			{
 																				"name": "label_2",
@@ -20438,7 +20428,7 @@
 																						"shadow_ofs_y": 0
 																					}
 																				],
-																				"layerName": "screen_5"
+																				"layerName": "light_CT_screen"
 																			},
 																			{
 																				"name": "cont_1",
@@ -20669,7 +20659,7 @@
 																							"actionList": {
 																								"custom_code": {
 																									"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\" ",
-																									"code_c": "bool light_on = HWInterface.LightCT.switch_status;\r\nlv_slider_set_value(guider_ui.screen_5_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);\r\nlv_slider_set_value(guider_ui.screen_5_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);\r\nscreen_5_apply_light();   /* 灯光图(关→0/开→算) + 标签 */\r\n\r\nif (light_on) lv_obj_add_state(guider_ui.screen_5_Light_CT_on_off_2_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.screen_5_Light_CT_on_off_2_img, LV_STATE_CHECKED);\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.screen_5_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.screen_5_cont_1);\r\n    lv_obj_move_foreground(guider_ui.screen_5_Light_CT_on_off_2_img);\r\n}",
+																									"code_c": "bool light_on = HWInterface.LightCT.switch_status;\r\nlv_slider_set_value(guider_ui.light_CT_screen_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);\r\nlv_slider_set_value(guider_ui.light_CT_screen_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);\r\nlight_CT_screen_apply_light();   /* 灯光图(关→0/开→算) + 标签 */\r\n\r\nif (light_on) lv_obj_add_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.light_CT_screen_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_on_off_2_img);\r\n}",
 																									"inc_py": "",
 																									"code_py": ""
 																								}
@@ -20697,7 +20687,7 @@
 																				"bg_img_recolor_opa": 0
 																			}
 																		],
-																		"layerName": "screen_5"
+																		"layerName": "light_CT_screen"
 																	}
 																}
 															]
@@ -20725,7 +20715,7 @@
 												]
 											},
 											{
-												"name": "screen_1_label_2",
+												"name": "device_management_screen_label_2",
 												"id": "n5qxd4o6",
 												"type": "label",
 												"visible": true,
@@ -20747,7 +20737,7 @@
 															"condition": [],
 															"action": [
 																{
-																	"dst": "screen_5",
+																	"dst": "light_CT_screen",
 																	"bindCondi": "",
 																	"actionList": {
 																		"load_screen": {
@@ -20761,7 +20751,7 @@
 																	},
 																	"dst_type": "scr",
 																	"_target": {
-																		"name": "screen_5",
+																		"name": "light_CT_screen",
 																		"id": "vb2flt23",
 																		"type": "scr",
 																		"version": 190,
@@ -20779,7 +20769,7 @@
 																		"flag": [],
 																		"list": [
 																			{
-																				"name": "Light_CT_on_off_2_img",
+																				"name": "on_off_2_img",
 																				"id": "60xjbwtk",
 																				"type": "imgbtn",
 																				"left": 20,
@@ -20872,7 +20862,7 @@
 																									"actionList": {
 																										"custom_code": {
 																											"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"",
-																											"code_c": "lv_obj_t *btn = lv_event_get_target(e);\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层 */\r\nscreen_5_apply_light();                    /* 灯光图: 关→0, 开→按亮度/色温恢复 + 标签 */\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.screen_5_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.screen_5_cont_1);\r\n    lv_obj_move_foreground(btn);\r\n}",
+																											"code_c": "lv_obj_t *btn = lv_event_get_target(e);\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层 */\r\nlight_CT_screen_apply_light();                    /* 灯光图: 关→0, 开→按亮度/色温恢复 + 标签 */\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.light_CT_screen_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);\r\n    lv_obj_move_foreground(btn);\r\n}",
 																											"inc_py": "",
 																											"code_py": ""
 																										}
@@ -21401,14 +21391,14 @@
 																						"shadow_ofs_y": 0
 																					}
 																				],
-																				"layerName": "screen_5"
+																				"layerName": "light_CT_screen"
 																			},
 																			{
 																				"name": "slider_1",
 																				"id": "boic2h4j",
 																				"type": "slider",
 																				"left": -223,
-																				"top": 452,
+																				"top": 447,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
@@ -21597,7 +21587,7 @@
 																									"actionList": {
 																										"custom_code": {
 																											"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick;\r\n",
-																											"code_c": "HWInterface.LightCT.SetBrightness((uint16_t)lv_slider_get_value(guider_ui.screen_5_slider_1));  /* 写回中间层(不节流) */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {   /* 重绘节流 */\r\n    s_ct_apply_tick = lv_tick_get();\r\n    screen_5_apply_light();\r\n}\r\n",
+																											"code_c": "HWInterface.LightCT.SetBrightness((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_1));  /* 写回中间层(不节流) */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {   /* 重绘节流 */\r\n    s_ct_apply_tick = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}\r\n",
 																											"inc_py": "",
 																											"code_py": ""
 																										}
@@ -21607,7 +21597,7 @@
 																						}
 																					}
 																				},
-																				"layerName": "screen_5"
+																				"layerName": "light_CT_screen"
 																			},
 																			{
 																				"name": "slider_2",
@@ -21803,7 +21793,7 @@
 																									"actionList": {
 																										"custom_code": {
 																											"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick2;",
-																											"code_c": "HWInterface.LightCT.SetColorTemp((uint16_t)lv_slider_get_value(guider_ui.screen_5_slider_2));\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    screen_5_apply_light();\r\n}",
+																											"code_c": "HWInterface.LightCT.SetColorTemp((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_2));\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}",
 																											"inc_py": "",
 																											"code_py": ""
 																										}
@@ -21813,7 +21803,7 @@
 																						}
 																					}
 																				},
-																				"layerName": "screen_5"
+																				"layerName": "light_CT_screen"
 																			},
 																			{
 																				"name": "label_2",
@@ -21914,7 +21904,7 @@
 																						"shadow_ofs_y": 0
 																					}
 																				],
-																				"layerName": "screen_5"
+																				"layerName": "light_CT_screen"
 																			},
 																			{
 																				"name": "cont_1",
@@ -22145,7 +22135,7 @@
 																							"actionList": {
 																								"custom_code": {
 																									"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\" ",
-																									"code_c": "bool light_on = HWInterface.LightCT.switch_status;\r\nlv_slider_set_value(guider_ui.screen_5_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);\r\nlv_slider_set_value(guider_ui.screen_5_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);\r\nscreen_5_apply_light();   /* 灯光图(关→0/开→算) + 标签 */\r\n\r\nif (light_on) lv_obj_add_state(guider_ui.screen_5_Light_CT_on_off_2_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.screen_5_Light_CT_on_off_2_img, LV_STATE_CHECKED);\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.screen_5_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.screen_5_cont_1);\r\n    lv_obj_move_foreground(guider_ui.screen_5_Light_CT_on_off_2_img);\r\n}",
+																									"code_c": "bool light_on = HWInterface.LightCT.switch_status;\r\nlv_slider_set_value(guider_ui.light_CT_screen_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);\r\nlv_slider_set_value(guider_ui.light_CT_screen_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);\r\nlight_CT_screen_apply_light();   /* 灯光图(关→0/开→算) + 标签 */\r\n\r\nif (light_on) lv_obj_add_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.light_CT_screen_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_on_off_2_img);\r\n}",
 																									"inc_py": "",
 																									"code_py": ""
 																								}
@@ -22173,7 +22163,7 @@
 																				"bg_img_recolor_opa": 0
 																			}
 																		],
-																		"layerName": "screen_5"
+																		"layerName": "light_CT_screen"
 																	}
 																}
 															]
@@ -22304,7 +22294,7 @@
 										]
 									},
 									{
-										"name": "screen_1_btn_4",
+										"name": "device_management_screen_btn_4",
 										"id": "0o272drh",
 										"type": "btn",
 										"visible": true,
@@ -22492,7 +22482,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_1_btn_3",
+										"name": "device_management_screen_btn_3",
 										"id": "o8w9i7ni",
 										"type": "btn",
 										"visible": true,
@@ -22680,7 +22670,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_1_btn_6",
+										"name": "device_management_screen_btn_6",
 										"id": "y1q2l284",
 										"type": "btn",
 										"visible": true,
@@ -22868,7 +22858,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_1_btn_5",
+										"name": "device_management_screen_btn_5",
 										"id": "mi4ed3t0",
 										"type": "btn",
 										"visible": true,
@@ -23056,7 +23046,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_1_btn_8",
+										"name": "device_management_screen_btn_8",
 										"id": "t6tij4r5",
 										"type": "btn",
 										"visible": true,
@@ -23244,7 +23234,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_1_btn_7",
+										"name": "device_management_screen_btn_7",
 										"id": "0e4f6swt",
 										"type": "btn",
 										"visible": true,
@@ -23432,7 +23422,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_1_btn_9",
+										"name": "device_management_screen_btn_9",
 										"id": "tjrhg1af",
 										"type": "btn",
 										"visible": true,
@@ -23620,7 +23610,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_1_btn_10",
+										"name": "device_management_screen_btn_10",
 										"id": "jt6eh4es",
 										"type": "btn",
 										"visible": true,
@@ -23808,7 +23798,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_1_cont_2",
+										"name": "device_management_screen_cont_2",
 										"id": "mv4vgtua",
 										"type": "cont",
 										"visible": true,
@@ -23960,7 +23950,7 @@
 						]
 					},
 					{
-						"name": "screen_1_label_1",
+						"name": "device_management_screen_label_1",
 						"id": "fj6xu9o0",
 						"type": "label",
 						"visible": true,
@@ -24065,7 +24055,7 @@
 				]
 			},
 			{
-				"name": "screen_2",
+				"name": "light_scence_screen",
 				"id": "cg7hayut",
 				"type": "scr",
 				"version": 190,
@@ -24087,7 +24077,7 @@
 							"condition": [],
 							"action": [
 								{
-									"dst": "screen_3",
+									"dst": "curtain_scene_screen",
 									"bindCondi": "",
 									"actionList": {
 										"load_screen": {
@@ -24101,7 +24091,7 @@
 									},
 									"dst_type": "scr",
 									"_target": {
-										"name": "screen_3",
+										"name": "curtain_scene_screen",
 										"id": "l1tp6agt",
 										"type": "scr",
 										"version": 190,
@@ -26212,7 +26202,7 @@
 												"bg_img_recolor_opa": 0
 											}
 										],
-										"layerName": "screen_3"
+										"layerName": "curtain_scene_screen"
 									}
 								}
 							]
@@ -26221,7 +26211,7 @@
 							"condition": [],
 							"action": [
 								{
-									"dst": "screen_1",
+									"dst": "device_management_screen",
 									"bindCondi": "",
 									"actionList": {
 										"load_screen": {
@@ -26235,7 +26225,7 @@
 									},
 									"dst_type": "scr",
 									"_target": {
-										"name": "screen_1",
+										"name": "device_management_screen",
 										"id": "ntrxzetk",
 										"type": "scr",
 										"version": 190,
@@ -28213,7 +28203,7 @@
 																							"actionList": {
 																								"custom_code": {
 																									"inc_c": "#include \"HWDataAccess.h\"",
-																									"code_c": "/* 点开关 → 读它点击后的新状态 → 写回中间层 → 刷 small_dev_off 透明度。 */\r\nlv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 有CHECKED=开, 没有=关 */\r\n\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层: 开→true, 关→false; 与 screen_5 共享同一份 */\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.screen_1_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);",
+																									"code_c": "/* 点开关 → 读它点击后的新状态 → 写回中间层 → 刷 small_dev_off 透明度。 */\r\nlv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 有CHECKED=开, 没有=关 */\r\n\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层: 开→true, 关→false; 与 screen_5 共享同一份 */\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.device_management_screen_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);",
 																									"inc_py": "",
 																									"code_py": ""
 																								}
@@ -28427,7 +28417,7 @@
 															"actionList": {
 																"custom_code": {
 																	"inc_c": "#include \"HWDataAccess.h\"",
-																	"code_c": "/* 进屏初始化: 从中间层读色温灯开关真值, 摆正开关 CHECKED + small_dev_off 透明度。 */\r\nbool light_on = HWInterface.LightCT.switch_status;   /* true=开, false=关 */\r\n\r\n/* 开关图标 CHECKED 摆到当前状态 */\r\nif (light_on) lv_obj_add_state(guider_ui.screen_1_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.screen_1_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.screen_1_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);\r\n",
+																	"code_c": "/* 进屏初始化: 从中间层读色温灯开关真值, 摆正开关 CHECKED + small_dev_off 透明度。 */\r\nbool light_on = HWInterface.LightCT.switch_status;   /* true=开, false=关 */\r\n\r\n/* 开关图标 CHECKED 摆到当前状态 */\r\nif (light_on) lv_obj_add_state(guider_ui.device_management_screen_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.device_management_screen_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.device_management_screen_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);\r\n",
 																	"inc_py": "",
 																	"code_py": ""
 																}
@@ -28455,7 +28445,7 @@
 												"bg_img_recolor_opa": 0
 											}
 										],
-										"layerName": "screen_1"
+										"layerName": "device_management_screen"
 									}
 								}
 							]
@@ -28480,14 +28470,14 @@
 						"bg_img_recolor_opa": 0
 					}
 				],
-				"layerName": "screen_2",
+				"layerName": "light_scence_screen",
 				"size": [
 					720,
 					720
 				],
 				"widgets": [
 					{
-						"name": "screen_2_tabview_1",
+						"name": "light_scence_screen_tabview_1",
 						"id": "ffpmr4ex",
 						"type": "tabview",
 						"visible": true,
@@ -28509,7 +28499,7 @@
 								"type": "tab",
 								"child": [
 									{
-										"name": "screen_2_btn_10",
+										"name": "light_scence_screen_btn_10",
 										"id": "c4apxqix",
 										"type": "btn",
 										"visible": true,
@@ -28697,7 +28687,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_2_btn_9",
+										"name": "light_scence_screen_btn_9",
 										"id": "5xztkbbc",
 										"type": "btn",
 										"visible": true,
@@ -28885,7 +28875,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_2_btn_8",
+										"name": "light_scence_screen_btn_8",
 										"id": "kin9fatt",
 										"type": "btn",
 										"visible": true,
@@ -29073,7 +29063,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_2_btn_7",
+										"name": "light_scence_screen_btn_7",
 										"id": "ej97b6ie",
 										"type": "btn",
 										"visible": true,
@@ -29261,7 +29251,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_2_btn_6",
+										"name": "light_scence_screen_btn_6",
 										"id": "bxbi9luk",
 										"type": "btn",
 										"visible": true,
@@ -29449,7 +29439,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_2_btn_5",
+										"name": "light_scence_screen_btn_5",
 										"id": "gq2rtt7t",
 										"type": "btn",
 										"visible": true,
@@ -29637,7 +29627,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_2_btn_4",
+										"name": "light_scence_screen_btn_4",
 										"id": "1k2rsymg",
 										"type": "btn",
 										"visible": true,
@@ -29825,7 +29815,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_2_btn_3",
+										"name": "light_scence_screen_btn_3",
 										"id": "5hlnkuk5",
 										"type": "btn",
 										"visible": true,
@@ -30013,7 +30003,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_2_btn_2",
+										"name": "light_scence_screen_btn_2",
 										"id": "0om7ojc3",
 										"type": "btn",
 										"visible": true,
@@ -30201,7 +30191,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_2_btn_1",
+										"name": "light_scence_screen_btn_1",
 										"id": "ts0brliy",
 										"type": "btn",
 										"visible": true,
@@ -30488,7 +30478,7 @@
 						]
 					},
 					{
-						"name": "screen_2_label_1",
+						"name": "light_scence_screen_label_1",
 						"id": "twhkpbh1",
 						"type": "label",
 						"visible": true,
@@ -30593,7 +30583,7 @@
 				]
 			},
 			{
-				"name": "screen_3",
+				"name": "curtain_scene_screen",
 				"id": "l1tp6agt",
 				"type": "scr",
 				"version": 190,
@@ -30615,7 +30605,7 @@
 							"condition": [],
 							"action": [
 								{
-									"dst": "screen_2",
+									"dst": "light_scence_screen",
 									"bindCondi": "",
 									"actionList": {
 										"load_screen": {
@@ -30629,7 +30619,7 @@
 									},
 									"dst_type": "scr",
 									"_target": {
-										"name": "screen_2",
+										"name": "light_scence_screen",
 										"id": "cg7hayut",
 										"type": "scr",
 										"version": 190,
@@ -32759,7 +32749,7 @@
 												"bg_img_recolor_opa": 0
 											}
 										],
-										"layerName": "screen_2"
+										"layerName": "light_scence_screen"
 									}
 								}
 							]
@@ -32784,14 +32774,14 @@
 						"bg_img_recolor_opa": 0
 					}
 				],
-				"layerName": "screen_3",
+				"layerName": "curtain_scene_screen",
 				"size": [
 					720,
 					720
 				],
 				"widgets": [
 					{
-						"name": "screen_3_tabview_1",
+						"name": "curtain_scene_screen_tabview_1",
 						"id": "296o054j",
 						"type": "tabview",
 						"visible": true,
@@ -32813,7 +32803,7 @@
 								"type": "tab",
 								"child": [
 									{
-										"name": "screen_3_btn_10",
+										"name": "curtain_scene_screen_btn_10",
 										"id": "rknhgp1f",
 										"type": "btn",
 										"visible": true,
@@ -33001,7 +32991,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_3_btn_9",
+										"name": "curtain_scene_screen_btn_9",
 										"id": "73g1at4m",
 										"type": "btn",
 										"visible": true,
@@ -33189,7 +33179,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_3_btn_8",
+										"name": "curtain_scene_screen_btn_8",
 										"id": "33xi2iln",
 										"type": "btn",
 										"visible": true,
@@ -33377,7 +33367,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_3_btn_7",
+										"name": "curtain_scene_screen_btn_7",
 										"id": "kyswvtdh",
 										"type": "btn",
 										"visible": true,
@@ -33565,7 +33555,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_3_btn_6",
+										"name": "curtain_scene_screen_btn_6",
 										"id": "mos0epjk",
 										"type": "btn",
 										"visible": true,
@@ -33753,7 +33743,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_3_btn_5",
+										"name": "curtain_scene_screen_btn_5",
 										"id": "bghfaod0",
 										"type": "btn",
 										"visible": true,
@@ -33941,7 +33931,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_3_btn_4",
+										"name": "curtain_scene_screen_btn_4",
 										"id": "w8jz7dy7",
 										"type": "btn",
 										"visible": true,
@@ -34129,7 +34119,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_3_btn_3",
+										"name": "curtain_scene_screen_btn_3",
 										"id": "gyvnp9ci",
 										"type": "btn",
 										"visible": true,
@@ -34317,7 +34307,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_3_btn_2",
+										"name": "curtain_scene_screen_btn_2",
 										"id": "emrauv5j",
 										"type": "btn",
 										"visible": true,
@@ -34505,7 +34495,7 @@
 										"toggle": true
 									},
 									{
-										"name": "screen_3_btn_1",
+										"name": "curtain_scene_screen_btn_1",
 										"id": "cnwgun3l",
 										"type": "btn",
 										"visible": true,
@@ -34792,7 +34782,7 @@
 						]
 					},
 					{
-						"name": "screen_3_label_1",
+						"name": "curtain_scene_screen_label_1",
 						"id": "1acy2bu3",
 						"type": "label",
 						"visible": true,
@@ -34897,7 +34887,7 @@
 				]
 			},
 			{
-				"name": "screen_4",
+				"name": "setting_screen",
 				"id": "gri8a3nq",
 				"type": "scr",
 				"version": 190,
@@ -34932,14 +34922,14 @@
 						"bg_img_recolor_opa": 0
 					}
 				],
-				"layerName": "screen_4",
+				"layerName": "setting_screen",
 				"size": [
 					720,
 					720
 				],
 				"widgets": [
 					{
-						"name": "screen_4_tabview_1",
+						"name": "setting_screen_tabview_1",
 						"id": "cmva2u7y",
 						"type": "tabview",
 						"visible": true,
@@ -35059,7 +35049,7 @@
 						]
 					},
 					{
-						"name": "screen_4_list_1",
+						"name": "setting_screen_list_1",
 						"id": "mnfm2jxn",
 						"type": "list",
 						"visible": true,
@@ -35390,7 +35380,7 @@
 						]
 					},
 					{
-						"name": "screen_4_btn_1",
+						"name": "setting_screen_btn_1",
 						"id": "77ledyxp",
 						"type": "btn",
 						"visible": true,
@@ -35410,7 +35400,7 @@
 									"condition": [],
 									"action": [
 										{
-											"dst": "screen",
+											"dst": "ui_home_screen",
 											"bindCondi": "",
 											"actionList": {
 												"load_screen": {
@@ -35424,7 +35414,7 @@
 											},
 											"dst_type": "scr",
 											"_target": {
-												"name": "screen",
+												"name": "ui_home_screen",
 												"id": "emg7n4dm",
 												"type": "scr",
 												"version": 190,
@@ -36445,7 +36435,7 @@
 														"bg_img_recolor_opa": 0
 													}
 												],
-												"layerName": "screen"
+												"layerName": "ui_home_screen"
 											}
 										}
 									]
@@ -36628,7 +36618,7 @@
 				]
 			},
 			{
-				"name": "screen_5",
+				"name": "light_CT_screen",
 				"id": "vb2flt23",
 				"type": "scr",
 				"version": 190,
@@ -36650,7 +36640,7 @@
 							"condition": [],
 							"action": [
 								{
-									"dst": "screen_5_label_2",
+									"dst": "light_CT_screen_label_2",
 									"bindCondi": "",
 									"actionList": {
 										"x": {
@@ -36762,11 +36752,11 @@
 												"shadow_ofs_y": 0
 											}
 										],
-										"layerName": "screen_5"
+										"layerName": "light_CT_screen"
 									}
 								},
 								{
-									"dst": "screen_5_slider_1",
+									"dst": "light_CT_screen_slider_1",
 									"bindCondi": "",
 									"actionList": {
 										"x": {
@@ -36784,7 +36774,7 @@
 										"id": "boic2h4j",
 										"type": "slider",
 										"left": -223,
-										"top": 452,
+										"top": 447,
 										"visible": true,
 										"isLock": false,
 										"flag": [],
@@ -36973,7 +36963,7 @@
 															"actionList": {
 																"custom_code": {
 																	"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick;\r\n",
-																	"code_c": "HWInterface.LightCT.SetBrightness((uint16_t)lv_slider_get_value(guider_ui.screen_5_slider_1));  /* 写回中间层(不节流) */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {   /* 重绘节流 */\r\n    s_ct_apply_tick = lv_tick_get();\r\n    screen_5_apply_light();\r\n}\r\n",
+																	"code_c": "HWInterface.LightCT.SetBrightness((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_1));  /* 写回中间层(不节流) */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {   /* 重绘节流 */\r\n    s_ct_apply_tick = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}\r\n",
 																	"inc_py": "",
 																	"code_py": ""
 																}
@@ -36983,11 +36973,11 @@
 												}
 											}
 										},
-										"layerName": "screen_5"
+										"layerName": "light_CT_screen"
 									}
 								},
 								{
-									"dst": "screen_5_slider_2",
+									"dst": "light_CT_screen_slider_2",
 									"bindCondi": "",
 									"actionList": {
 										"x": {
@@ -37194,7 +37184,7 @@
 															"actionList": {
 																"custom_code": {
 																	"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick2;",
-																	"code_c": "HWInterface.LightCT.SetColorTemp((uint16_t)lv_slider_get_value(guider_ui.screen_5_slider_2));\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    screen_5_apply_light();\r\n}",
+																	"code_c": "HWInterface.LightCT.SetColorTemp((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_2));\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}",
 																	"inc_py": "",
 																	"code_py": ""
 																}
@@ -37204,11 +37194,11 @@
 												}
 											}
 										},
-										"layerName": "screen_5"
+										"layerName": "light_CT_screen"
 									}
 								},
 								{
-									"dst": "screen_5_label_1",
+									"dst": "light_CT_screen_label_1",
 									"bindCondi": "",
 									"actionList": {
 										"x": {
@@ -37320,7 +37310,7 @@
 												"shadow_ofs_y": 0
 											}
 										],
-										"layerName": "screen_5"
+										"layerName": "light_CT_screen"
 									}
 								},
 								{
@@ -37329,7 +37319,7 @@
 									"actionList": {
 										"custom_code": {
 											"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\" ",
-											"code_c": "bool light_on = HWInterface.LightCT.switch_status;\r\nlv_slider_set_value(guider_ui.screen_5_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);\r\nlv_slider_set_value(guider_ui.screen_5_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);\r\nscreen_5_apply_light();   /* 灯光图(关→0/开→算) + 标签 */\r\n\r\nif (light_on) lv_obj_add_state(guider_ui.screen_5_Light_CT_on_off_2_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.screen_5_Light_CT_on_off_2_img, LV_STATE_CHECKED);\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.screen_5_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.screen_5_cont_1);\r\n    lv_obj_move_foreground(guider_ui.screen_5_Light_CT_on_off_2_img);\r\n}",
+											"code_c": "bool light_on = HWInterface.LightCT.switch_status;\r\nlv_slider_set_value(guider_ui.light_CT_screen_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);\r\nlv_slider_set_value(guider_ui.light_CT_screen_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);\r\nlight_CT_screen_apply_light();   /* 灯光图(关→0/开→算) + 标签 */\r\n\r\nif (light_on) lv_obj_add_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.light_CT_screen_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_on_off_2_img);\r\n}",
 											"inc_py": "",
 											"code_py": ""
 										}
@@ -37357,14 +37347,14 @@
 						"bg_img_recolor_opa": 0
 					}
 				],
-				"layerName": "screen_5",
+				"layerName": "light_CT_screen",
 				"size": [
 					720,
 					720
 				],
 				"widgets": [
 					{
-						"name": "screen_5_tabview_1",
+						"name": "light_CT_screen_tabview_1",
 						"id": "exz5rbw2",
 						"type": "tabview",
 						"visible": true,
@@ -37484,7 +37474,7 @@
 						]
 					},
 					{
-						"name": "screen_5_cont_1",
+						"name": "light_CT_screen_cont_1",
 						"id": "322dp6a3",
 						"type": "cont",
 						"visible": true,
@@ -37537,7 +37527,7 @@
 						]
 					},
 					{
-						"name": "screen_5_label_2",
+						"name": "light_CT_screen_label_2",
 						"id": "o7wlda87",
 						"type": "label",
 						"visible": true,
@@ -37640,7 +37630,7 @@
 						]
 					},
 					{
-						"name": "screen_5_slider_2",
+						"name": "light_CT_screen_slider_2",
 						"id": "yhyuppk3",
 						"type": "slider",
 						"visible": true,
@@ -37667,7 +37657,7 @@
 											"actionList": {
 												"custom_code": {
 													"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick2;",
-													"code_c": "HWInterface.LightCT.SetColorTemp((uint16_t)lv_slider_get_value(guider_ui.screen_5_slider_2));\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    screen_5_apply_light();\r\n}",
+													"code_c": "HWInterface.LightCT.SetColorTemp((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_2));\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}",
 													"inc_py": "",
 													"code_py": ""
 												}
@@ -37852,14 +37842,14 @@
 						]
 					},
 					{
-						"name": "screen_5_slider_1",
+						"name": "light_CT_screen_slider_1",
 						"id": "boic2h4j",
 						"type": "slider",
 						"visible": true,
 						"flag": [],
 						"pos": [
 							-223,
-							452
+							447
 						],
 						"size": [
 							600,
@@ -37879,7 +37869,7 @@
 											"actionList": {
 												"custom_code": {
 													"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick;\r\n",
-													"code_c": "HWInterface.LightCT.SetBrightness((uint16_t)lv_slider_get_value(guider_ui.screen_5_slider_1));  /* 写回中间层(不节流) */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {   /* 重绘节流 */\r\n    s_ct_apply_tick = lv_tick_get();\r\n    screen_5_apply_light();\r\n}\r\n",
+													"code_c": "HWInterface.LightCT.SetBrightness((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_1));  /* 写回中间层(不节流) */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {   /* 重绘节流 */\r\n    s_ct_apply_tick = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}\r\n",
 													"inc_py": "",
 													"code_py": ""
 												}
@@ -38064,7 +38054,7 @@
 						]
 					},
 					{
-						"name": "screen_5_label_1",
+						"name": "light_CT_screen_label_1",
 						"id": "159mr46y",
 						"type": "label",
 						"visible": true,
@@ -38167,7 +38157,7 @@
 						]
 					},
 					{
-						"name": "screen_5_dev_shell_img",
+						"name": "light_CT_screen_dev_shell_img",
 						"id": "jevxq65f",
 						"type": "img",
 						"visible": true,
@@ -38202,7 +38192,7 @@
 						]
 					},
 					{
-						"name": "screen_5_dev_white_lid",
+						"name": "light_CT_screen_dev_white_lid",
 						"id": "sll6ltzy",
 						"type": "img",
 						"visible": true,
@@ -38237,7 +38227,7 @@
 						]
 					},
 					{
-						"name": "screen_5_dev_orange_img",
+						"name": "light_CT_screen_dev_orange_img",
 						"id": "0fpz4vpt",
 						"type": "img",
 						"visible": true,
@@ -38272,7 +38262,7 @@
 						]
 					},
 					{
-						"name": "screen_5_dev_white_img",
+						"name": "light_CT_screen_dev_white_img",
 						"id": "z4qu1qny",
 						"type": "img",
 						"visible": true,
@@ -38307,7 +38297,7 @@
 						]
 					},
 					{
-						"name": "screen_5_imgbtn_1",
+						"name": "light_CT_screen_imgbtn_1",
 						"id": "tcdxw5xe",
 						"type": "imgbtn",
 						"visible": true,
@@ -38402,7 +38392,7 @@
 						]
 					},
 					{
-						"name": "screen_5_btn_1",
+						"name": "light_CT_screen_btn_1",
 						"id": "uiw77k4f",
 						"type": "btn",
 						"visible": true,
@@ -38422,7 +38412,7 @@
 									"condition": [],
 									"action": [
 										{
-											"dst": "screen_1",
+											"dst": "device_management_screen",
 											"bindCondi": "",
 											"actionList": {
 												"load_screen": {
@@ -38436,7 +38426,7 @@
 											},
 											"dst_type": "scr",
 											"_target": {
-												"name": "screen_1",
+												"name": "device_management_screen",
 												"id": "ntrxzetk",
 												"type": "scr",
 												"version": 190,
@@ -40414,7 +40404,7 @@
 																									"actionList": {
 																										"custom_code": {
 																											"inc_c": "#include \"HWDataAccess.h\"",
-																											"code_c": "/* 点开关 → 读它点击后的新状态 → 写回中间层 → 刷 small_dev_off 透明度。 */\r\nlv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 有CHECKED=开, 没有=关 */\r\n\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层: 开→true, 关→false; 与 screen_5 共享同一份 */\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.screen_1_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);",
+																											"code_c": "/* 点开关 → 读它点击后的新状态 → 写回中间层 → 刷 small_dev_off 透明度。 */\r\nlv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 有CHECKED=开, 没有=关 */\r\n\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层: 开→true, 关→false; 与 screen_5 共享同一份 */\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.device_management_screen_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);",
 																											"inc_py": "",
 																											"code_py": ""
 																										}
@@ -40628,7 +40618,7 @@
 																	"actionList": {
 																		"custom_code": {
 																			"inc_c": "#include \"HWDataAccess.h\"",
-																			"code_c": "/* 进屏初始化: 从中间层读色温灯开关真值, 摆正开关 CHECKED + small_dev_off 透明度。 */\r\nbool light_on = HWInterface.LightCT.switch_status;   /* true=开, false=关 */\r\n\r\n/* 开关图标 CHECKED 摆到当前状态 */\r\nif (light_on) lv_obj_add_state(guider_ui.screen_1_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.screen_1_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.screen_1_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);\r\n",
+																			"code_c": "/* 进屏初始化: 从中间层读色温灯开关真值, 摆正开关 CHECKED + small_dev_off 透明度。 */\r\nbool light_on = HWInterface.LightCT.switch_status;   /* true=开, false=关 */\r\n\r\n/* 开关图标 CHECKED 摆到当前状态 */\r\nif (light_on) lv_obj_add_state(guider_ui.device_management_screen_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.device_management_screen_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.device_management_screen_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);\r\n",
 																			"inc_py": "",
 																			"code_py": ""
 																		}
@@ -40656,7 +40646,7 @@
 														"bg_img_recolor_opa": 0
 													}
 												],
-												"layerName": "screen_1"
+												"layerName": "device_management_screen"
 											}
 										}
 									]
@@ -40837,7 +40827,7 @@
 						"toggle": false
 					},
 					{
-						"name": "screen_5_Light_CT_on_off_2_img",
+						"name": "light_CT_screen_on_off_2_img",
 						"id": "60xjbwtk",
 						"type": "imgbtn",
 						"visible": true,
@@ -40862,7 +40852,7 @@
 											"actionList": {
 												"custom_code": {
 													"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"",
-													"code_c": "lv_obj_t *btn = lv_event_get_target(e);\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层 */\r\nscreen_5_apply_light();                    /* 灯光图: 关→0, 开→按亮度/色温恢复 + 标签 */\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.screen_5_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.screen_5_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.screen_5_cont_1);\r\n    lv_obj_move_foreground(btn);\r\n}",
+													"code_c": "lv_obj_t *btn = lv_event_get_target(e);\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层 */\r\nlight_CT_screen_apply_light();                    /* 灯光图: 关→0, 开→按亮度/色温恢复 + 标签 */\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.light_CT_screen_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);\r\n    lv_obj_move_foreground(btn);\r\n}",
 													"inc_py": "",
 													"code_py": ""
 												}

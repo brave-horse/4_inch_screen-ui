@@ -61,7 +61,7 @@ void custom_init(lv_ui *ui)
     scr_noscroll_init(ui);
 #endif
 
-    /* 跨屏控件：主屏顶部下拉面板（用 GUI-Guider 画的 screen_cont_1）。 */
+    /* 跨屏控件：主屏顶部下拉面板（用 GUI-Guider 画的 ui_home_screen_cont_1）。 */
     pulldown_init(ui);
 
     

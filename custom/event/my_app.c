@@ -31,11 +31,11 @@ void my_app_refresh_home_date(const char *date, const char *week)
         return;
     }
 
-    if (date && obj_alive(s_ui->screen_label_1)) {
-        lv_label_set_text(s_ui->screen_label_1, date);
+    if (date && obj_alive(s_ui->ui_home_screen_label_1)) {
+        lv_label_set_text(s_ui->ui_home_screen_label_1, date);
     }
-    if (week && obj_alive(s_ui->screen_label_2)) {
-        lv_label_set_text(s_ui->screen_label_2, week);
+    if (week && obj_alive(s_ui->ui_home_screen_label_2)) {
+        lv_label_set_text(s_ui->ui_home_screen_label_2, week);
     }
 }
 
@@ -49,13 +49,13 @@ void my_app_refresh_home_button_text(unsigned char index, const char *text)
 
     switch (index) {
     case 1:
-        label = s_ui->screen_btn_1_label;
+        label = s_ui->ui_home_screen_btn_1_label;
         break;
     case 2:
-        label = s_ui->screen_btn_2_label;
+        label = s_ui->ui_home_screen_btn_2_label;
         break;
     case 3:
-        label = s_ui->screen_btn_3_label;
+        label = s_ui->ui_home_screen_btn_3_label;
         break;
     default:
         return;
@@ -76,10 +76,10 @@ void my_app_refresh_screen5_slider_value(unsigned char index, int value)
 
     switch (index) {
     case 1:
-        slider = s_ui->screen_5_slider_1;
+        slider = s_ui->light_CT_screen_slider_1;
         break;
     case 2:
-        slider = s_ui->screen_5_slider_2;
+        slider = s_ui->light_CT_screen_slider_2;
         break;
     default:
         return;
@@ -97,13 +97,13 @@ void my_app_refresh_screen5_slider_value(unsigned char index, int value)
  *   - 本层只做"事件转发 + 对外刷新接口"，不写复杂业务逻辑(那是 App/Service 的事)。
  *
  * 接入示例：
- *   static void on_screen_btn_1_clicked(lv_event_t *e) {
+ *   static void on_home_btn_1_clicked(lv_event_t *e) {
  *       LV_UNUSED(e);
  *       // 这里调 App/Service 层的业务函数，例如 app_router_goto(APP_MENU);
  *   }
  *   void my_app_event_init(lv_ui *ui) {
- *       if (ui && ui->screen_btn_1) {
- *           lv_obj_add_event_cb(ui->screen_btn_1, on_screen_btn_1_clicked, LV_EVENT_CLICKED, NULL);
+ *       if (ui && ui->ui_home_screen_btn_1) {
+ *           lv_obj_add_event_cb(ui->ui_home_screen_btn_1, on_home_btn_1_clicked, LV_EVENT_CLICKED, NULL);
  *       }
  *   }
  */
@@ -115,7 +115,7 @@ void my_app_event_init(lv_ui *ui)
 
     s_ui = ui;
 
-    if (obj_alive(ui->screen_btn_2)) {
-        lv_obj_add_event_cb(ui->screen_btn_2, home_btn_2_clicked, LV_EVENT_CLICKED, NULL);
+    if (obj_alive(ui->ui_home_screen_btn_2)) {
+        lv_obj_add_event_cb(ui->ui_home_screen_btn_2, home_btn_2_clicked, LV_EVENT_CLICKED, NULL);
     }
 }

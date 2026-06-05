@@ -22,7 +22,7 @@ static preload_img_t s_imgs[] = {
 
 
 /* 单片机上资源的真实文件路径前缀。
- * 注意：generated/setup_scr_screen.c 里 GUI-Guider 写的是 PC 端盘符路径
+ * 注意：generated/setup_scr_ui_home_screen.c 里 GUI-Guider 写的是 PC 端盘符路径
  *   "S:/sdfile/EXT_RESERVED/uipackres/ui//1.jpg"
  * 那是 GUI-Guider 工程约定，板子上读不到；单片机真正能读 SD 的是下面这个 mnt/ 路径。
  * 预解码(preload_one)和兜底慢路径(custom_img_set_src)都用它去真正读 SD。
@@ -247,11 +247,11 @@ static void apply_imgs_for(lv_obj_t *scr, lv_ui *ui)
         return;
     }
 
-    /* 主屏 screen 的 screen_img_1：只换 src，不动尺寸/角度。
+    /* 主屏 ui_home_screen 的 ui_home_screen_img_1：只换 src，不动尺寸/角度。
      * generated 已把它设成 720x720 + pivot/clip_corner，这里保持原布局，
      * 仅把"每次从 SD 解码"换成"直接用 DDR buffer"。 */
-    if (scr == ui->screen) {
-        custom_img_set_src(ui->screen_img_1, "4.jpg");
+    if (scr == ui->ui_home_screen) {
+        custom_img_set_src(ui->ui_home_screen_img_1, "4.jpg");
     }
 }
 

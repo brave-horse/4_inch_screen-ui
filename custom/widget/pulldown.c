@@ -11,8 +11,8 @@
 
 /* 安卓式顶部下拉面板(单面板版, 参考 dem3333 的 pulldown 简化而来)。
  *
- * 用 GUI-Guider 在主屏画好的 screen_cont_1 当下拉页(它已被摆在屏外 (0,-600)):
- *   1. 开机 pulldown_init 把它从 screen 挪到 lv_layer_top, 藏在屏幕正上方并隐藏;
+ * 用 GUI-Guider 在主屏画好的 ui_home_screen_cont_1 当下拉页(它已被摆在屏外 (0,-600)):
+ *   1. 开机 pulldown_init 把它从 ui_home_screen 挪到 lv_layer_top, 藏在屏幕正上方并隐藏;
  *   2. 定时(20ms)扫触摸点, 从屏幕顶部 40px 内"竖直向下"滑 -> 面板跟手滑下露出;
  *   3. 松手时按"露出是否超过一半"决定展开(贴顶)或收起(缩回屏外);
  *   4. 展开后任意位置上滑可收起。
@@ -29,7 +29,7 @@
  *  STATIC VARIABLES
  **********************/
 
-static lv_obj_t   *s_panel    = NULL;  /* 下拉面板(screen_cont_1, 已挪到 layer_top) */
+static lv_obj_t   *s_panel    = NULL;  /* 下拉面板(ui_home_screen_cont_1, 已挪到 layer_top) */
 static lv_timer_t *s_timer    = NULL;
 static lv_coord_t  s_panel_h  = 0;     /* 面板高度 = 下拉完全露出的高度 */
 static bool        s_open      = false; /* 当前是否已展开 */
@@ -61,10 +61,10 @@ void pulldown_init(lv_ui *ui)
     if (s_timer != NULL) {
         return;                         /* 已初始化, 防重复 */
     }
-    if (ui == NULL || ui->screen_cont_1 == NULL) {
+    if (ui == NULL || ui->ui_home_screen_cont_1 == NULL) {
         return;                         /* GUI-Guider 里没画 cont_1 就不启用 */
     }
-    s_panel = ui->screen_cont_1;
+    s_panel = ui->ui_home_screen_cont_1;
     pulldown_prepare(s_panel);
     s_timer = lv_timer_create(pulldown_timer_cb, 20, NULL);
 }

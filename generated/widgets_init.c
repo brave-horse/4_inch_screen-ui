@@ -77,16 +77,16 @@ void clock_count(int *hour, int *min, int *sec)
 #endif
 
 
-extern int screen_digital_clock_1_hour_value;
-extern int screen_digital_clock_1_min_value;
-extern int screen_digital_clock_1_sec_value;
+extern int ui_home_screen_digital_clock_1_hour_value;
+extern int ui_home_screen_digital_clock_1_min_value;
+extern int ui_home_screen_digital_clock_1_sec_value;
 
-void screen_digital_clock_1_timer(lv_timer_t *timer)
+void ui_home_screen_digital_clock_1_timer(lv_timer_t *timer)
 {
-    clock_count_24(&screen_digital_clock_1_hour_value, &screen_digital_clock_1_min_value, &screen_digital_clock_1_sec_value);
-    if (lv_obj_is_valid(guider_ui.screen_digital_clock_1))
+    clock_count_24(&ui_home_screen_digital_clock_1_hour_value, &ui_home_screen_digital_clock_1_min_value, &ui_home_screen_digital_clock_1_sec_value);
+    if (lv_obj_is_valid(guider_ui.ui_home_screen_digital_clock_1))
     {
-        lv_dclock_set_text_fmt(guider_ui.screen_digital_clock_1, "%d:%02d", screen_digital_clock_1_hour_value, screen_digital_clock_1_min_value);
+        lv_dclock_set_text_fmt(guider_ui.ui_home_screen_digital_clock_1, "%d:%02d", ui_home_screen_digital_clock_1_hour_value, ui_home_screen_digital_clock_1_min_value);
     }
 }
 
