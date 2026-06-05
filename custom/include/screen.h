@@ -5,10 +5,10 @@
 extern "C" {
 #endif
 
-/* 单屏控件改动(custom/screen): 用轮询在每次屏重建后, 把"只影响单个屏"的控件微调重新 apply。
- * 目前: screen_5 的 slider_1(隐藏旋钮 + 指示条直角)。
- * 在 custom_init() 里调用一次。 */
-void screen_custom_init(void);
+/* 单屏控件改动(custom/screen): 用轮询在每次屏重建后, 把"只影响单个屏"的控件逻辑重新 apply/绑定。
+ * 各自在 custom_init() 里调用一次。 */
+void screen_custom_init(void);    /* screen_5: 灯光(亮度/色温→图片透明度+标签) + slider 防卡防误触 */
+void screen_1_custom_init(void);  /* screen_1: 色温灯开关(CT_on_off_1_img) 初始化为关 + 按下同步开关变量 */
 
 #ifdef __cplusplus
 }

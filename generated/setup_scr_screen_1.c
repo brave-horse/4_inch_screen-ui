@@ -143,7 +143,7 @@ void setup_scr_screen_1(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->screen_1_small_dev_on_img, 50,50);
     lv_img_set_angle(ui->screen_1_small_dev_on_img, 0);
-    lv_obj_set_pos(ui->screen_1_small_dev_on_img, 39, 33);
+    lv_obj_set_pos(ui->screen_1_small_dev_on_img, 39, 32);
     lv_obj_set_size(ui->screen_1_small_dev_on_img, 50, 57);
 
     //Write style for screen_1_small_dev_on_img, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -162,7 +162,7 @@ void setup_scr_screen_1(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->screen_1_small_dev_off_img, 50,50);
     lv_img_set_angle(ui->screen_1_small_dev_off_img, 0);
-    lv_obj_set_pos(ui->screen_1_small_dev_off_img, 38, 32);
+    lv_obj_set_pos(ui->screen_1_small_dev_off_img, 39, 32);
     lv_obj_set_size(ui->screen_1_small_dev_off_img, 50, 57);
 
     //Write style for screen_1_small_dev_off_img, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.

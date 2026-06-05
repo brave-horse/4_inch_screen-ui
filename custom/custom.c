@@ -67,6 +67,9 @@ void custom_init(lv_ui *ui)
     /* 单屏控件：screen_5 灯光控制——亮度/色温进度条联动白光/橙光图透明度 + 标签数字。 */
     screen_custom_init();
 
+    /* 单屏控件：screen_1 色温灯开关——初始化为关 + 按下时同步开关变量。 */
+    screen_1_custom_init();
+
     /* event 层：把 UI 事件桥接到 App 业务（当前为空骨架，无副作用）。 */
     my_app_event_init(ui);
 }

@@ -16,6 +16,7 @@
 #endif
 
 
+
 static void screen_event_handler (lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -97,6 +98,7 @@ static void screen_1_dev_lightCT_button_event_handler (lv_event_t *e)
     case LV_EVENT_CLICKED:
     {
         ui_load_scr_animation(&guider_ui, &guider_ui.screen_5, guider_ui.screen_5_del, &guider_ui.screen_1_del, setup_scr_screen_5, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+ 
         break;
     }
     default:
