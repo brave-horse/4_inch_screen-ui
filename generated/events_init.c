@@ -16,18 +16,10 @@
 #endif
 
 #include "HWDataAccess.h"
-#include "HWDataAccess.h"
-#include "HWDataAccess.h"
-#include "screen.h"
-#include "HWDataAccess.h"
-#include "screen.h"
+#include  "img.h"
 static uint32_t s_ct_apply_tick2;
-#include "HWDataAccess.h"
-#include "screen.h"
 static uint32_t s_ct_apply_tick;
 
-#include "HWDataAccess.h"
-#include "screen.h"
 
 static void ui_home_screen_event_handler (lv_event_t *e)
 {
@@ -96,6 +88,7 @@ static void device_management_screen_event_handler (lv_event_t *e)
                                  light_on ? LV_OPA_TRANSP : LV_OPA_COVER,
                                  LV_PART_MAIN | LV_STATE_DEFAULT);
 
+
         break;
     }
     case LV_EVENT_GESTURE:
@@ -161,7 +154,7 @@ static void device_management_screen_Light_CT_on_off_1_img_event_handler (lv_eve
     }
 }
 
-static void device_management_screen_small_dev_off_img_event_handler (lv_event_t *e)
+static void device_management_screen_sdev_off_event_handler (lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
     switch (code) {
@@ -194,7 +187,7 @@ void events_init_device_management_screen (lv_ui *ui)
     lv_obj_add_event_cb(ui->device_management_screen, device_management_screen_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->device_management_screen_cont_1, device_management_screen_cont_1_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->device_management_screen_Light_CT_on_off_1_img, device_management_screen_Light_CT_on_off_1_img_event_handler, LV_EVENT_ALL, ui);
-    lv_obj_add_event_cb(ui->device_management_screen_small_dev_off_img, device_management_screen_small_dev_off_img_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_sdev_off, device_management_screen_sdev_off_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->device_management_screen_label_2, device_management_screen_label_2_event_handler, LV_EVENT_ALL, ui);
 }
 
@@ -307,6 +300,7 @@ static void light_CT_screen_event_handler (lv_event_t *e)
             lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);
             lv_obj_move_foreground(guider_ui.light_CT_screen_on_off_2_img);
         }
+        ui_animation(guider_ui.light_CT_screen_ct_bar, 600, 0, lv_obj_get_x(guider_ui.light_CT_screen_ct_bar), 70, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
         break;
     }
     default:

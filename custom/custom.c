@@ -27,7 +27,7 @@
  *   第3步: 只开 EN_SCR_NOSCROLL
  * (每次只开一个，其余保持 0) */
 #define EN_SCR_GUARD     1   /* rule/scr_guard.c   : 屏指针守卫 + 数字时钟野指针守护(修来回切屏卡死) */
-#define EN_IMG           1   /* assert/img.c       : 图片 DDR 预解码 + 注册拦截解码器 */
+#define EN_IMG           0   /* external images are loaded through GUI Guider paths */
 #define EN_SCR_NOSCROLL  1   /* rule/scr_noscroll.c: 主屏禁滚 */
 
 /**********************

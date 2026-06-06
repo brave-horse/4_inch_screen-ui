@@ -38,8 +38,8 @@ typedef struct
 	lv_obj_t *device_management_screen_cont_1;
 	lv_obj_t *device_management_screen_Light_CT_on_off_1_img;
 	lv_obj_t *device_management_screen_Light_CT_on_off_1_img_label;
-	lv_obj_t *device_management_screen_small_dev_on_img;
-	lv_obj_t *device_management_screen_small_dev_off_img;
+	lv_obj_t *device_management_screen_sdev_on;
+	lv_obj_t *device_management_screen_sdev_off;
 	lv_obj_t *device_management_screen_label_2;
 	lv_obj_t *device_management_screen_btn_4;
 	lv_obj_t *device_management_screen_btn_4_label;
@@ -129,11 +129,12 @@ typedef struct
 	lv_obj_t *light_CT_screen_tabview_1_tab_1;
 	lv_obj_t *light_CT_screen_cont_1;
 	lv_obj_t *light_CT_screen_label_2;
+	lv_obj_t *light_CT_screen_ct_bar;
 	lv_obj_t *light_CT_screen_slider_2;
 	lv_obj_t *light_CT_screen_slider_1;
 	lv_obj_t *light_CT_screen_label_1;
 	lv_obj_t *light_CT_screen_dev_shell_img;
-	lv_obj_t *light_CT_screen_dev_white_lid;
+	lv_obj_t *light_CT_screen_white_lid;
 	lv_obj_t *light_CT_screen_dev_orange_img;
 	lv_obj_t *light_CT_screen_dev_white_img;
 	lv_obj_t *light_CT_screen_imgbtn_1;
@@ -180,16 +181,6 @@ void setup_scr_curtain_scene_screen(lv_ui *ui);
 void setup_scr_setting_screen(lv_ui *ui);
 void setup_scr_light_CT_screen(lv_ui *ui);
 void setup_scr_screen_6(lv_ui *ui);
-
-LV_IMG_DECLARE(_ct_bar_600x70);
-LV_IMG_DECLARE(_dev_shell_alpha_100x100);
-LV_IMG_DECLARE(_dev_white_lid_alpha_174x27);
-LV_IMG_DECLARE(_dev_orange_alpha_280x80);
-LV_IMG_DECLARE(_dev_white_alpha_280x80);
-LV_IMG_DECLARE(_scene_btn_alpha_48x48);
-LV_IMG_DECLARE(_scene_btn_close_alpha_48x48);
-LV_IMG_DECLARE(_onoff_off_alpha_48x48);
-LV_IMG_DECLARE(_onoff_on_alpha_48x48);
 
 LV_FONT_DECLARE(lv_font_ZiTiQuanWeiJunHeiW22_30)
 LV_FONT_DECLARE(lv_font_ZiTiQuanWeiJunHeiW22_16)

@@ -2,6 +2,7 @@
  *      INCLUDES
  *********************/
 #include <stddef.h>
+#include <stdio.h>
 #include "lvgl.h"
 #include "scr_noscroll.h"
 #include "gui_guider.h"
@@ -42,6 +43,14 @@ static lv_obj_t **const s_targets[] = {
  **********************/
 
 static void scr_noscroll_poll_cb(lv_timer_t *timer);
+
+/* DEBUG手势探针: 手势真冒泡到屏时打印一次, 用来判断"手势识别到了没/到没到屏"。 */
+static void scr_gesture_debug_cb(lv_event_t *e)
+{
+    LV_UNUSED(e);
+    printf("[scr_gesture] reached screen, dir=%d\n",
+           (int)lv_indev_get_gesture_dir(lv_indev_get_act()));
+}
 
 /**********************
  *  GLOBAL FUNCTIONS
@@ -91,13 +100,21 @@ static void scr_noscroll_poll_cb(lv_timer_t *timer)
             uint32_t cnt = lv_obj_get_child_cnt(act);
             uint32_t c;
             obj_kill_scroll(act);
+            lv_obj_add_event_cb(act, scr_gesture_debug_cb, LV_EVENT_GESTURE, NULL);  /* DEBUG: 探针, 定位完删 */
             for (c = 0; c < cnt; c++) {
                 lv_obj_t *child = lv_obj_get_child(act, c);
-                /* list 等本身要上下滚动看条目的控件不要关:
-                 * setting_screen 的 list 就直接建在屏上(和 tabview 平级), 关了它就翻不动条目。 */
-                if (lv_obj_check_type(child, &lv_list_class)) {
+                /* list / slider 这类靠自身拖动交互的控件: 既不关滚动, 也不挂 GESTURE_BUBBLE。
+                 * - list  : 直接建在屏上(setting_screen), 关了滚动就翻不动条目;
+                 * - slider: 横向拖动就是调节(亮度/色温), 一旦冒泡会被当成左右切屏手势吞掉。 */
+                if (lv_obj_check_type(child, &lv_list_class) ||
+                    lv_obj_check_type(child, &lv_slider_class)) {
                     continue;
                 }
+                /* 其余(全屏大图 / 容器 / tabview / 按钮)挂 GESTURE_BUBBLE, 让切屏手势能冒泡到屏:
+                 * LVGL 的 LV_EVENT_GESTURE 只发给"手指按住的对象", 全屏大图会把它吃掉, 屏收不到。
+                 * 挂上后 indev 会沿父链上溯把手势交给屏(见 lv_indev.c: gesture_obj 仅当对象带
+                 * GESTURE_BUBBLE 才向上走)。slider 在 tabview 内部(非屏直接子), 不受这里影响。 */
+                lv_obj_add_flag(child, LV_OBJ_FLAG_GESTURE_BUBBLE);
                 obj_kill_scroll(child);
             }
             break;

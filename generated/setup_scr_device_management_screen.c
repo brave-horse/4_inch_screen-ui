@@ -88,7 +88,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 
     //Write codes device_management_screen_cont_1
     ui->device_management_screen_cont_1 = lv_obj_create(ui->device_management_screen_tabview_1_tab_1);
-    lv_obj_set_pos(ui->device_management_screen_cont_1, 17, 1);
+    lv_obj_set_pos(ui->device_management_screen_cont_1, 18, 0);
     lv_obj_set_size(ui->device_management_screen_cont_1, 300, 150);
     lv_obj_set_scrollbar_mode(ui->device_management_screen_cont_1, LV_SCROLLBAR_MODE_OFF);
 
@@ -114,15 +114,15 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_imgbtn_set_src(ui->device_management_screen_Light_CT_on_off_1_img, LV_IMGBTN_STATE_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\onoff_off.png", NULL);
     lv_imgbtn_set_src(ui->device_management_screen_Light_CT_on_off_1_img, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\onoff_on.png", NULL);
 #else
-    lv_imgbtn_set_src(ui->device_management_screen_Light_CT_on_off_1_img, LV_IMGBTN_STATE_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/onoff_off.png", NULL);
-    lv_imgbtn_set_src(ui->device_management_screen_Light_CT_on_off_1_img, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/onoff_on.png", NULL);
+    lv_imgbtn_set_src(ui->device_management_screen_Light_CT_on_off_1_img, LV_IMGBTN_STATE_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/dev_manage/onoff_off.png", NULL);
+    lv_imgbtn_set_src(ui->device_management_screen_Light_CT_on_off_1_img, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/dev_manage/onoff_on.png", NULL);
 #endif
     ui->device_management_screen_Light_CT_on_off_1_img_label = lv_label_create(ui->device_management_screen_Light_CT_on_off_1_img);
     lv_label_set_text(ui->device_management_screen_Light_CT_on_off_1_img_label, "");
     lv_label_set_long_mode(ui->device_management_screen_Light_CT_on_off_1_img_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->device_management_screen_Light_CT_on_off_1_img_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->device_management_screen_Light_CT_on_off_1_img, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->device_management_screen_Light_CT_on_off_1_img, 211, 24);
+    lv_obj_set_pos(ui->device_management_screen_Light_CT_on_off_1_img, 212, 23);
     lv_obj_set_size(ui->device_management_screen_Light_CT_on_off_1_img, 48, 48);
 
     //Write style for device_management_screen_Light_CT_on_off_1_img, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -154,43 +154,43 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_obj_set_style_img_recolor_opa(ui->device_management_screen_Light_CT_on_off_1_img, 0, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
     lv_obj_set_style_img_opa(ui->device_management_screen_Light_CT_on_off_1_img, 255, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
 
-    //Write codes device_management_screen_small_dev_on_img
-    ui->device_management_screen_small_dev_on_img = lv_img_create(ui->device_management_screen_cont_1);
-    lv_obj_add_flag(ui->device_management_screen_small_dev_on_img, LV_OBJ_FLAG_CLICKABLE);
+    //Write codes device_management_screen_sdev_on
+    ui->device_management_screen_sdev_on = lv_img_create(ui->device_management_screen_cont_1);
+    lv_obj_add_flag(ui->device_management_screen_sdev_on, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->device_management_screen_small_dev_on_img, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\small_dev_on.png");
+    lv_img_set_src(ui->device_management_screen_sdev_on, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sdev_on.png");
 #else
-    lv_img_set_src(ui->device_management_screen_small_dev_on_img, "S:/sdfile/EXT_RESERVED/uipackres/ui/small_dev_on.png");
+    lv_img_set_src(ui->device_management_screen_sdev_on, "S:/sdfile/EXT_RESERVED/uipackres/ui/dev_manage/sdev_on.png");
 #endif
-    lv_img_set_pivot(ui->device_management_screen_small_dev_on_img, 50,50);
-    lv_img_set_angle(ui->device_management_screen_small_dev_on_img, 0);
-    lv_obj_set_pos(ui->device_management_screen_small_dev_on_img, 40, 13);
-    lv_obj_set_size(ui->device_management_screen_small_dev_on_img, 50, 57);
+    lv_img_set_pivot(ui->device_management_screen_sdev_on, 50,50);
+    lv_img_set_angle(ui->device_management_screen_sdev_on, 0);
+    lv_obj_set_pos(ui->device_management_screen_sdev_on, 40, 13);
+    lv_obj_set_size(ui->device_management_screen_sdev_on, 50, 57);
 
-    //Write style for device_management_screen_small_dev_on_img, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->device_management_screen_small_dev_on_img, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->device_management_screen_small_dev_on_img, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->device_management_screen_small_dev_on_img, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->device_management_screen_small_dev_on_img, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for device_management_screen_sdev_on, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->device_management_screen_sdev_on, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->device_management_screen_sdev_on, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->device_management_screen_sdev_on, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->device_management_screen_sdev_on, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes device_management_screen_small_dev_off_img
-    ui->device_management_screen_small_dev_off_img = lv_img_create(ui->device_management_screen_cont_1);
-    lv_obj_add_flag(ui->device_management_screen_small_dev_off_img, LV_OBJ_FLAG_CLICKABLE);
+    //Write codes device_management_screen_sdev_off
+    ui->device_management_screen_sdev_off = lv_img_create(ui->device_management_screen_cont_1);
+    lv_obj_add_flag(ui->device_management_screen_sdev_off, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->device_management_screen_small_dev_off_img, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\small_dev_off.png");
+    lv_img_set_src(ui->device_management_screen_sdev_off, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sdev_off.png");
 #else
-    lv_img_set_src(ui->device_management_screen_small_dev_off_img, "S:/sdfile/EXT_RESERVED/uipackres/ui/small_dev_off.png");
+    lv_img_set_src(ui->device_management_screen_sdev_off, "S:/sdfile/EXT_RESERVED/uipackres/ui/dev_manage/sdev_off.png");
 #endif
-    lv_img_set_pivot(ui->device_management_screen_small_dev_off_img, 50,50);
-    lv_img_set_angle(ui->device_management_screen_small_dev_off_img, 0);
-    lv_obj_set_pos(ui->device_management_screen_small_dev_off_img, 40, 13);
-    lv_obj_set_size(ui->device_management_screen_small_dev_off_img, 50, 57);
+    lv_img_set_pivot(ui->device_management_screen_sdev_off, 50,50);
+    lv_img_set_angle(ui->device_management_screen_sdev_off, 0);
+    lv_obj_set_pos(ui->device_management_screen_sdev_off, 40, 13);
+    lv_obj_set_size(ui->device_management_screen_sdev_off, 50, 57);
 
-    //Write style for device_management_screen_small_dev_off_img, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->device_management_screen_small_dev_off_img, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->device_management_screen_small_dev_off_img, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->device_management_screen_small_dev_off_img, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->device_management_screen_small_dev_off_img, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for device_management_screen_sdev_off, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->device_management_screen_sdev_off, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->device_management_screen_sdev_off, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->device_management_screen_sdev_off, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->device_management_screen_sdev_off, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes device_management_screen_label_2
     ui->device_management_screen_label_2 = lv_label_create(ui->device_management_screen_cont_1);

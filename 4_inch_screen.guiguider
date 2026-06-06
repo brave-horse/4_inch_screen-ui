@@ -4,7 +4,7 @@
 	"lvglVersion": "v8",
 	"projectSettings": {
 		"board_radius": 0,
-		"defaultFamily": "montserratMedium",
+		"defaultFamily": "ZiTiQuanWeiJunHeiW22",
 		"defaultScreen": "emg7n4dm",
 		"keyBoard": {
 			"display_kb": false,
@@ -235,7 +235,7 @@
 		"LV_MEM_ADR": false,
 		"LV_USE_GPU": true,
 		"LV_USE_LOG": false,
-		"LV_MEM_SIZE": 320,
+		"LV_MEM_SIZE": 3072,
 		"LV_LOG_LEVEL": "LV_LOG_LEVEL_ERROR",
 		"LV_LOG_PRINTF": true,
 		"LV_MEM_CUSTOM": false,
@@ -247,9 +247,9 @@
 		"LV_MEM_AUTO_DEFRAG": true,
 		"LV_MEM_CUSTOM_FREE": "free",
 		"LV_USE_GPU_NXP_PXP": "~~",
-		"LV_USE_MEM_MONITOR": false,
+		"LV_USE_MEM_MONITOR": true,
 		"LV_MEM_CUSTOM_ALLOC": "malloc",
-		"LV_USE_PERF_MONITOR": false,
+		"LV_USE_PERF_MONITOR": true,
 		"LV_MEM_CUSTOM_INCLUDE": "<stdlib.h>",
 		"LV_ATTRIBUTE_MEM_ALIGN": "~~",
 		"LV_USE_GPU_NXP_VG_LITE": "~~",
@@ -1207,7 +1207,7 @@
 					"name": "img_1",
 					"id": "x0qhlryf",
 					"type": "img",
-					"left": -1,
+					"left": 0,
 					"top": 0,
 					"visible": true,
 					"isLock": false,
@@ -1217,7 +1217,7 @@
 					"default_style": false,
 					"use_fs": true,
 					"fs_type": "sd",
-					"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
+					"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/home",
 					"img_path": "import\\image\\1.jpg",
 					"rotate": 0,
 					"x": 50,
@@ -1484,8 +1484,7 @@
 											"shadow_ofs_x": 0,
 											"shadow_ofs_y": 0
 										}
-									],
-									"dropToGap": false
+									]
 								},
 								{
 									"name": "btn_10",
@@ -2963,8 +2962,8 @@
 									"name": "cont_1",
 									"id": "xdh9r4v9",
 									"type": "cont",
-									"left": 17,
-									"top": 1,
+									"left": 18,
+									"top": 0,
 									"visible": true,
 									"isLock": false,
 									"flag": [],
@@ -3097,7 +3096,7 @@
 											}
 										},
 										{
-											"name": "small_dev_off_img",
+											"name": "sdev_off",
 											"id": "vi3ejnzh",
 											"type": "img",
 											"left": 40,
@@ -3110,8 +3109,8 @@
 											"default_style": false,
 											"use_fs": true,
 											"fs_type": "sd",
-											"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
-											"img_path": "import\\image\\small_dev_off.png",
+											"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/dev_manage",
+											"img_path": "import\\image\\sdev_off.png",
 											"rotate": 0,
 											"x": 50,
 											"y": 50,
@@ -3152,7 +3151,7 @@
 											}
 										},
 										{
-											"name": "small_dev_on_img",
+											"name": "sdev_on",
 											"id": "in7oisr4",
 											"type": "img",
 											"left": 40,
@@ -3165,8 +3164,8 @@
 											"default_style": false,
 											"use_fs": true,
 											"fs_type": "sd",
-											"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
-											"img_path": "import\\image\\small_dev_on.png",
+											"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/dev_manage",
+											"img_path": "import\\image\\sdev_on.png",
 											"rotate": 0,
 											"x": 50,
 											"y": 50,
@@ -3187,8 +3186,8 @@
 											"name": "Light_CT_on_off_1_img",
 											"id": "gvv97csu",
 											"type": "imgbtn",
-											"left": 211,
-											"top": 24,
+											"left": 212,
+											"top": 23,
 											"visible": true,
 											"isLock": false,
 											"flag": [],
@@ -3197,7 +3196,7 @@
 											"default_style": false,
 											"use_fs": true,
 											"fs_type": "sd",
-											"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
+											"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/dev_manage",
 											"text": "",
 											"toggle": true,
 											"src_released": "import\\image\\onoff_off.png",
@@ -3276,7 +3275,7 @@
 																"bindCondi": "",
 																"actionList": {
 																	"custom_code": {
-																		"inc_c": "#include \"HWDataAccess.h\"",
+																		"inc_c": "",
 																		"code_c": "/* 点开关 → 读它点击后的新状态 → 写回中间层 → 刷 small_dev_off 透明度。 */\r\nlv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 有CHECKED=开, 没有=关 */\r\n\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层: 开→true, 关→false; 与 screen_5 共享同一份 */\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.device_management_screen_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);",
 																		"inc_py": "",
 																		"code_py": ""
@@ -3324,7 +3323,6 @@
 											"shadow_ofs_y": 0
 										}
 									],
-									"dropToGap": false,
 									"event": {
 										"widget": {
 											"clicked": {
@@ -3492,6 +3490,18 @@
 									"custom_code": {
 										"inc_c": "#include \"HWDataAccess.h\"",
 										"code_c": "/* 进屏初始化: 从中间层读色温灯开关真值, 摆正开关 CHECKED + small_dev_off 透明度。 */\r\nbool light_on = HWInterface.LightCT.switch_status;   /* true=开, false=关 */\r\n\r\n/* 开关图标 CHECKED 摆到当前状态 */\r\nif (light_on) lv_obj_add_state(guider_ui.device_management_screen_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.device_management_screen_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.device_management_screen_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);\r\n",
+										"inc_py": "",
+										"code_py": ""
+									}
+								}
+							},
+							{
+								"dst": "custom_code",
+								"bindCondi": "",
+								"actionList": {
+									"custom_code": {
+										"inc_c": "#include  \"img.h\"",
+										"code_c": "",
 										"inc_py": "",
 										"code_py": ""
 									}
@@ -8438,9 +8448,9 @@
 					"width": 48,
 					"height": 48,
 					"default_style": false,
-					"use_fs": false,
-					"fs_type": "flash",
-					"sd_path": "",
+					"use_fs": true,
+					"fs_type": "sd",
+					"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
 					"text": "",
 					"toggle": true,
 					"src_released": "import\\image\\onoff_off.png",
@@ -8519,7 +8529,7 @@
 										"bindCondi": "",
 										"actionList": {
 											"custom_code": {
-												"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"",
+												"inc_c": "",
 												"code_c": "lv_obj_t *btn = lv_event_get_target(e);\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层 */\r\nlight_CT_screen_apply_light();                    /* 灯光图: 关→0, 开→按亮度/色温恢复 + 标签 */\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.light_CT_screen_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);\r\n    lv_obj_move_foreground(btn);\r\n}",
 												"inc_py": "",
 												"code_py": ""
@@ -8743,21 +8753,21 @@
 					"id": "tcdxw5xe",
 					"type": "imgbtn",
 					"left": 652,
-					"top": 100,
+					"top": 101,
 					"visible": true,
 					"isLock": false,
 					"flag": [],
 					"width": 48,
 					"height": 48,
 					"default_style": false,
-					"use_fs": false,
-					"fs_type": "flash",
-					"sd_path": "",
+					"use_fs": true,
+					"fs_type": "sd",
+					"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
 					"text": "",
 					"toggle": true,
 					"src_released": "import\\image\\scene_btn.png",
 					"src_pressed": "",
-					"src_checked_released": "import\\image\\scene_btn_close.png",
+					"src_checked_released": "import\\image\\btn_close.png",
 					"src_checked_pressed": "",
 					"color_format": "true-color-alpha",
 					"style": [
@@ -8826,17 +8836,17 @@
 					"name": "dev_white_img",
 					"id": "z4qu1qny",
 					"type": "img",
-					"left": 180,
-					"top": 185,
+					"left": 109,
+					"top": 232,
 					"visible": true,
 					"isLock": false,
 					"flag": [],
-					"width": 280,
-					"height": 80,
+					"width": 490,
+					"height": 164,
 					"default_style": false,
-					"use_fs": false,
+					"use_fs": true,
 					"fs_type": "sd",
-					"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
+					"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
 					"img_path": "import\\image\\dev_white.png",
 					"rotate": 1,
 					"x": 50,
@@ -8858,17 +8868,17 @@
 					"name": "dev_orange_img",
 					"id": "0fpz4vpt",
 					"type": "img",
-					"left": 180,
-					"top": 185,
+					"left": 107,
+					"top": 232,
 					"visible": true,
 					"isLock": false,
 					"flag": [],
-					"width": 280,
-					"height": 80,
+					"width": 490,
+					"height": 164,
 					"default_style": false,
-					"use_fs": false,
+					"use_fs": true,
 					"fs_type": "sd",
-					"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
+					"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
 					"img_path": "import\\image\\dev_orange.png",
 					"rotate": 1,
 					"x": 50,
@@ -8887,21 +8897,21 @@
 					]
 				},
 				{
-					"name": "dev_white_lid",
-					"id": "sll6ltzy",
+					"name": "white_lid",
+					"id": "iuehpedt",
 					"type": "img",
-					"left": 232,
-					"top": 181,
+					"left": 207,
+					"top": 222,
 					"visible": true,
 					"isLock": false,
 					"flag": [],
-					"width": 174,
-					"height": 27,
+					"width": 293,
+					"height": 60,
 					"default_style": false,
-					"use_fs": false,
-					"fs_type": "flash",
-					"sd_path": "",
-					"img_path": "import\\image\\dev_white_lid.png",
+					"use_fs": true,
+					"fs_type": "sd",
+					"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
+					"img_path": "import\\image\\white_lid.png",
 					"rotate": 0,
 					"x": 50,
 					"y": 50,
@@ -8911,28 +8921,29 @@
 							"part": "LV_PART_MAIN",
 							"state": "LV_STATE_DEFAULT",
 							"disable": false,
-							"image_recolor": "#0a0a0a",
-							"image_recolor_opa": 176,
+							"image_recolor": "#090909",
+							"image_recolor_opa": 184,
 							"image_opa": 255,
 							"radius": 0
 						}
-					]
+					],
+					"dropToGap": false
 				},
 				{
 					"name": "dev_shell_img",
 					"id": "jevxq65f",
 					"type": "img",
-					"left": 269,
-					"top": 101,
+					"left": 270,
+					"top": 72,
 					"visible": true,
 					"isLock": false,
 					"flag": [],
-					"width": 100,
-					"height": 100,
+					"width": 166,
+					"height": 190,
 					"default_style": false,
-					"use_fs": false,
+					"use_fs": true,
 					"fs_type": "sd",
-					"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
+					"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
 					"img_path": "import\\image\\dev_shell.png",
 					"rotate": 0,
 					"x": 50,
@@ -8954,8 +8965,8 @@
 					"name": "label_1",
 					"id": "159mr46y",
 					"type": "label",
-					"left": 239,
-					"top": 394,
+					"left": 241,
+					"top": 424,
 					"visible": true,
 					"isLock": false,
 					"flag": [],
@@ -9054,8 +9065,8 @@
 					"name": "slider_1",
 					"id": "boic2h4j",
 					"type": "slider",
-					"left": -223,
-					"top": 447,
+					"left": -221,
+					"top": 481,
 					"visible": true,
 					"isLock": false,
 					"flag": [],
@@ -9243,7 +9254,7 @@
 										"bindCondi": "",
 										"actionList": {
 											"custom_code": {
-												"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick;\r\n",
+												"inc_c": "static uint32_t s_ct_apply_tick;\r\n",
 												"code_c": "HWInterface.LightCT.SetBrightness((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_1));  /* 写回中间层(不节流) */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {   /* 重绘节流 */\r\n    s_ct_apply_tick = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}\r\n",
 												"inc_py": "",
 												"code_py": ""
@@ -9259,8 +9270,8 @@
 					"name": "slider_2",
 					"id": "yhyuppk3",
 					"type": "slider",
-					"left": -223,
-					"top": 616,
+					"left": -216,
+					"top": 623,
 					"visible": true,
 					"isLock": false,
 					"flag": [],
@@ -9290,7 +9301,7 @@
 							"outline_width": 0,
 							"outline_color": "#2195f6",
 							"outline_opa": 0,
-							"bg_img_src": "import\\image\\ct_bar.png",
+							"bg_img_src": "",
 							"bg_img_opa": 255,
 							"bg_img_recolor": "#ffffff",
 							"bg_img_recolor_opa": 0,
@@ -9448,7 +9459,7 @@
 										"bindCondi": "",
 										"actionList": {
 											"custom_code": {
-												"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick2;",
+												"inc_c": "static uint32_t s_ct_apply_tick2;",
 												"code_c": "HWInterface.LightCT.SetColorTemp((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_2));\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}",
 												"inc_py": "",
 												"code_py": ""
@@ -9461,11 +9472,44 @@
 					}
 				},
 				{
+					"name": "ct_bar",
+					"id": "866z1hgr",
+					"type": "img",
+					"left": -216,
+					"top": 623,
+					"visible": true,
+					"isLock": false,
+					"flag": [],
+					"width": 600,
+					"height": 70,
+					"default_style": false,
+					"use_fs": true,
+					"fs_type": "sd",
+					"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
+					"img_path": "import\\image\\ct_bar.png",
+					"rotate": 0,
+					"x": 50,
+					"y": 50,
+					"color_format": "true-color-alpha",
+					"style": [
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_DEFAULT",
+							"disable": false,
+							"image_recolor": "#ffffff",
+							"image_recolor_opa": 0,
+							"image_opa": 255,
+							"radius": 0
+						}
+					],
+					"dropToGap": false
+				},
+				{
 					"name": "label_2",
 					"id": "o7wlda87",
 					"type": "label",
-					"left": 259,
-					"top": 554,
+					"left": 258,
+					"top": 576,
 					"visible": true,
 					"isLock": false,
 					"flag": [],
@@ -9565,7 +9609,7 @@
 					"id": "322dp6a3",
 					"type": "cont",
 					"left": 0,
-					"top": 75,
+					"top": 72,
 					"visible": true,
 					"isLock": false,
 					"flag": [],
@@ -9788,10 +9832,24 @@
 								"bindCondi": "",
 								"actionList": {
 									"custom_code": {
-										"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\" ",
+										"inc_c": "",
 										"code_c": "bool light_on = HWInterface.LightCT.switch_status;\r\nlv_slider_set_value(guider_ui.light_CT_screen_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);\r\nlv_slider_set_value(guider_ui.light_CT_screen_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);\r\nlight_CT_screen_apply_light();   /* 灯光图(关→0/开→算) + 标签 */\r\n\r\nif (light_on) lv_obj_add_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.light_CT_screen_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_on_off_2_img);\r\n}",
 										"inc_py": "",
 										"code_py": ""
+									}
+								}
+							},
+							{
+								"dst": "866z1hgr",
+								"bindCondi": "",
+								"actionList": {
+									"x": {
+										"value": 70,
+										"animation": {
+											"path_type": "overshoot",
+											"delay": "0",
+											"duration": "600"
+										}
 									}
 								}
 							}
@@ -10389,6 +10447,7 @@
 					]
 				}
 			],
+			"event": {},
 			"style": [
 				{
 					"part": "LV_PART_MAIN",
@@ -10651,8 +10710,7 @@
 																		"shadow_ofs_x": 0,
 																		"shadow_ofs_y": 0
 																	}
-																],
-																"dropToGap": false
+																]
 															},
 															{
 																"name": "btn_10",
@@ -12130,8 +12188,8 @@
 																"name": "cont_1",
 																"id": "xdh9r4v9",
 																"type": "cont",
-																"left": 17,
-																"top": 1,
+																"left": 18,
+																"top": 0,
 																"visible": true,
 																"isLock": false,
 																"flag": [],
@@ -12264,7 +12322,7 @@
 																		}
 																	},
 																	{
-																		"name": "small_dev_off_img",
+																		"name": "sdev_off",
 																		"id": "vi3ejnzh",
 																		"type": "img",
 																		"left": 40,
@@ -12277,8 +12335,8 @@
 																		"default_style": false,
 																		"use_fs": true,
 																		"fs_type": "sd",
-																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
-																		"img_path": "import\\image\\small_dev_off.png",
+																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/dev_manage",
+																		"img_path": "import\\image\\sdev_off.png",
 																		"rotate": 0,
 																		"x": 50,
 																		"y": 50,
@@ -12319,7 +12377,7 @@
 																		}
 																	},
 																	{
-																		"name": "small_dev_on_img",
+																		"name": "sdev_on",
 																		"id": "in7oisr4",
 																		"type": "img",
 																		"left": 40,
@@ -12332,8 +12390,8 @@
 																		"default_style": false,
 																		"use_fs": true,
 																		"fs_type": "sd",
-																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
-																		"img_path": "import\\image\\small_dev_on.png",
+																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/dev_manage",
+																		"img_path": "import\\image\\sdev_on.png",
 																		"rotate": 0,
 																		"x": 50,
 																		"y": 50,
@@ -12354,8 +12412,8 @@
 																		"name": "Light_CT_on_off_1_img",
 																		"id": "gvv97csu",
 																		"type": "imgbtn",
-																		"left": 211,
-																		"top": 24,
+																		"left": 212,
+																		"top": 23,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
@@ -12364,7 +12422,7 @@
 																		"default_style": false,
 																		"use_fs": true,
 																		"fs_type": "sd",
-																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
+																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/dev_manage",
 																		"text": "",
 																		"toggle": true,
 																		"src_released": "import\\image\\onoff_off.png",
@@ -12443,7 +12501,7 @@
 																							"bindCondi": "",
 																							"actionList": {
 																								"custom_code": {
-																									"inc_c": "#include \"HWDataAccess.h\"",
+																									"inc_c": "",
 																									"code_c": "/* 点开关 → 读它点击后的新状态 → 写回中间层 → 刷 small_dev_off 透明度。 */\r\nlv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 有CHECKED=开, 没有=关 */\r\n\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层: 开→true, 关→false; 与 screen_5 共享同一份 */\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.device_management_screen_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);",
 																									"inc_py": "",
 																									"code_py": ""
@@ -12491,7 +12549,6 @@
 																		"shadow_ofs_y": 0
 																	}
 																],
-																"dropToGap": false,
 																"event": {
 																	"widget": {
 																		"clicked": {
@@ -12663,6 +12720,18 @@
 																	"code_py": ""
 																}
 															}
+														},
+														{
+															"dst": "custom_code",
+															"bindCondi": "",
+															"actionList": {
+																"custom_code": {
+																	"inc_c": "#include  \"img.h\"",
+																	"code_c": "",
+																	"inc_py": "",
+																	"code_py": ""
+																}
+															}
 														}
 													]
 												}
@@ -12740,7 +12809,7 @@
 						"visible": true,
 						"flag": [],
 						"pos": [
-							-1,
+							0,
 							0
 						],
 						"size": [
@@ -12758,7 +12827,7 @@
 						"use_fs": true,
 						"fs_type": "sd",
 						"img_flash_path": "F:/1.jpg",
-						"img_sd_path": "S:/sdfile/EXT_RESERVED/uipackres/ui/1.jpg",
+						"img_sd_path": "S:/sdfile/EXT_RESERVED/uipackres/ui/home/1.jpg",
 						"style": [
 							{
 								"part": "LV_PART_MAIN",
@@ -17473,7 +17542,7 @@
 												"name": "img_1",
 												"id": "x0qhlryf",
 												"type": "img",
-												"left": -1,
+												"left": 0,
 												"top": 0,
 												"visible": true,
 												"isLock": false,
@@ -17483,7 +17552,7 @@
 												"default_style": false,
 												"use_fs": true,
 												"fs_type": "sd",
-												"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
+												"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/home",
 												"img_path": "import\\image\\1.jpg",
 												"rotate": 0,
 												"x": 50,
@@ -17582,6 +17651,18 @@
 											"code_py": ""
 										}
 									}
+								},
+								{
+									"dst": "custom_code",
+									"bindCondi": "",
+									"actionList": {
+										"custom_code": {
+											"inc_c": "#include  \"img.h\"",
+											"code_c": "",
+											"inc_py": "",
+											"code_py": ""
+										}
+									}
 								}
 							]
 						}
@@ -17641,8 +17722,8 @@
 										"scrollbar_mode": "OFF",
 										"flag": [],
 										"pos": [
-											17,
-											1
+											18,
+											0
 										],
 										"size": [
 											300,
@@ -17698,9 +17779,9 @@
 																		"width": 48,
 																		"height": 48,
 																		"default_style": false,
-																		"use_fs": false,
-																		"fs_type": "flash",
-																		"sd_path": "",
+																		"use_fs": true,
+																		"fs_type": "sd",
+																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
 																		"text": "",
 																		"toggle": true,
 																		"src_released": "import\\image\\onoff_off.png",
@@ -17779,7 +17860,7 @@
 																							"bindCondi": "",
 																							"actionList": {
 																								"custom_code": {
-																									"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"",
+																									"inc_c": "",
 																									"code_c": "lv_obj_t *btn = lv_event_get_target(e);\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层 */\r\nlight_CT_screen_apply_light();                    /* 灯光图: 关→0, 开→按亮度/色温恢复 + 标签 */\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.light_CT_screen_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);\r\n    lv_obj_move_foreground(btn);\r\n}",
 																									"inc_py": "",
 																									"code_py": ""
@@ -18003,21 +18084,21 @@
 																		"id": "tcdxw5xe",
 																		"type": "imgbtn",
 																		"left": 652,
-																		"top": 100,
+																		"top": 101,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
 																		"width": 48,
 																		"height": 48,
 																		"default_style": false,
-																		"use_fs": false,
-																		"fs_type": "flash",
-																		"sd_path": "",
+																		"use_fs": true,
+																		"fs_type": "sd",
+																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
 																		"text": "",
 																		"toggle": true,
 																		"src_released": "import\\image\\scene_btn.png",
 																		"src_pressed": "",
-																		"src_checked_released": "import\\image\\scene_btn_close.png",
+																		"src_checked_released": "import\\image\\btn_close.png",
 																		"src_checked_pressed": "",
 																		"color_format": "true-color-alpha",
 																		"style": [
@@ -18086,17 +18167,17 @@
 																		"name": "dev_white_img",
 																		"id": "z4qu1qny",
 																		"type": "img",
-																		"left": 180,
-																		"top": 185,
+																		"left": 109,
+																		"top": 232,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
-																		"width": 280,
-																		"height": 80,
+																		"width": 490,
+																		"height": 164,
 																		"default_style": false,
-																		"use_fs": false,
+																		"use_fs": true,
 																		"fs_type": "sd",
-																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
+																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
 																		"img_path": "import\\image\\dev_white.png",
 																		"rotate": 1,
 																		"x": 50,
@@ -18118,17 +18199,17 @@
 																		"name": "dev_orange_img",
 																		"id": "0fpz4vpt",
 																		"type": "img",
-																		"left": 180,
-																		"top": 185,
+																		"left": 107,
+																		"top": 232,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
-																		"width": 280,
-																		"height": 80,
+																		"width": 490,
+																		"height": 164,
 																		"default_style": false,
-																		"use_fs": false,
+																		"use_fs": true,
 																		"fs_type": "sd",
-																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
+																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
 																		"img_path": "import\\image\\dev_orange.png",
 																		"rotate": 1,
 																		"x": 50,
@@ -18147,21 +18228,21 @@
 																		]
 																	},
 																	{
-																		"name": "dev_white_lid",
-																		"id": "sll6ltzy",
+																		"name": "white_lid",
+																		"id": "iuehpedt",
 																		"type": "img",
-																		"left": 232,
-																		"top": 181,
+																		"left": 207,
+																		"top": 222,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
-																		"width": 174,
-																		"height": 27,
+																		"width": 293,
+																		"height": 60,
 																		"default_style": false,
-																		"use_fs": false,
-																		"fs_type": "flash",
-																		"sd_path": "",
-																		"img_path": "import\\image\\dev_white_lid.png",
+																		"use_fs": true,
+																		"fs_type": "sd",
+																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
+																		"img_path": "import\\image\\white_lid.png",
 																		"rotate": 0,
 																		"x": 50,
 																		"y": 50,
@@ -18171,28 +18252,29 @@
 																				"part": "LV_PART_MAIN",
 																				"state": "LV_STATE_DEFAULT",
 																				"disable": false,
-																				"image_recolor": "#0a0a0a",
-																				"image_recolor_opa": 176,
+																				"image_recolor": "#090909",
+																				"image_recolor_opa": 184,
 																				"image_opa": 255,
 																				"radius": 0
 																			}
-																		]
+																		],
+																		"dropToGap": false
 																	},
 																	{
 																		"name": "dev_shell_img",
 																		"id": "jevxq65f",
 																		"type": "img",
-																		"left": 269,
-																		"top": 101,
+																		"left": 270,
+																		"top": 72,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
-																		"width": 100,
-																		"height": 100,
+																		"width": 166,
+																		"height": 190,
 																		"default_style": false,
-																		"use_fs": false,
+																		"use_fs": true,
 																		"fs_type": "sd",
-																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
+																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
 																		"img_path": "import\\image\\dev_shell.png",
 																		"rotate": 0,
 																		"x": 50,
@@ -18214,8 +18296,8 @@
 																		"name": "label_1",
 																		"id": "159mr46y",
 																		"type": "label",
-																		"left": 239,
-																		"top": 394,
+																		"left": 241,
+																		"top": 424,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
@@ -18315,8 +18397,8 @@
 																		"name": "slider_1",
 																		"id": "boic2h4j",
 																		"type": "slider",
-																		"left": -223,
-																		"top": 447,
+																		"left": -221,
+																		"top": 481,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
@@ -18504,7 +18586,7 @@
 																							"bindCondi": "",
 																							"actionList": {
 																								"custom_code": {
-																									"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick;\r\n",
+																									"inc_c": "static uint32_t s_ct_apply_tick;\r\n",
 																									"code_c": "HWInterface.LightCT.SetBrightness((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_1));  /* 写回中间层(不节流) */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {   /* 重绘节流 */\r\n    s_ct_apply_tick = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}\r\n",
 																									"inc_py": "",
 																									"code_py": ""
@@ -18521,8 +18603,8 @@
 																		"name": "slider_2",
 																		"id": "yhyuppk3",
 																		"type": "slider",
-																		"left": -223,
-																		"top": 616,
+																		"left": -216,
+																		"top": 623,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
@@ -18552,7 +18634,7 @@
 																				"outline_width": 0,
 																				"outline_color": "#2195f6",
 																				"outline_opa": 0,
-																				"bg_img_src": "import\\image\\ct_bar.png",
+																				"bg_img_src": "",
 																				"bg_img_opa": 255,
 																				"bg_img_recolor": "#ffffff",
 																				"bg_img_recolor_opa": 0,
@@ -18710,7 +18792,7 @@
 																							"bindCondi": "",
 																							"actionList": {
 																								"custom_code": {
-																									"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick2;",
+																									"inc_c": "static uint32_t s_ct_apply_tick2;",
 																									"code_c": "HWInterface.LightCT.SetColorTemp((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_2));\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}",
 																									"inc_py": "",
 																									"code_py": ""
@@ -18724,11 +18806,45 @@
 																		"layerName": "light_CT_screen"
 																	},
 																	{
+																		"name": "ct_bar",
+																		"id": "866z1hgr",
+																		"type": "img",
+																		"left": -216,
+																		"top": 623,
+																		"visible": true,
+																		"isLock": false,
+																		"flag": [],
+																		"width": 600,
+																		"height": 70,
+																		"default_style": false,
+																		"use_fs": true,
+																		"fs_type": "sd",
+																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
+																		"img_path": "import\\image\\ct_bar.png",
+																		"rotate": 0,
+																		"x": 50,
+																		"y": 50,
+																		"color_format": "true-color-alpha",
+																		"style": [
+																			{
+																				"part": "LV_PART_MAIN",
+																				"state": "LV_STATE_DEFAULT",
+																				"disable": false,
+																				"image_recolor": "#ffffff",
+																				"image_recolor_opa": 0,
+																				"image_opa": 255,
+																				"radius": 0
+																			}
+																		],
+																		"dropToGap": false,
+																		"layerName": "light_CT_screen"
+																	},
+																	{
 																		"name": "label_2",
 																		"id": "o7wlda87",
 																		"type": "label",
-																		"left": 259,
-																		"top": 554,
+																		"left": 258,
+																		"top": 576,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
@@ -18829,7 +18945,7 @@
 																		"id": "322dp6a3",
 																		"type": "cont",
 																		"left": 0,
-																		"top": 75,
+																		"top": 72,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
@@ -19052,10 +19168,24 @@
 																					"bindCondi": "",
 																					"actionList": {
 																						"custom_code": {
-																							"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\" ",
+																							"inc_c": "",
 																							"code_c": "bool light_on = HWInterface.LightCT.switch_status;\r\nlv_slider_set_value(guider_ui.light_CT_screen_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);\r\nlv_slider_set_value(guider_ui.light_CT_screen_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);\r\nlight_CT_screen_apply_light();   /* 灯光图(关→0/开→算) + 标签 */\r\n\r\nif (light_on) lv_obj_add_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.light_CT_screen_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_on_off_2_img);\r\n}",
 																							"inc_py": "",
 																							"code_py": ""
+																						}
+																					}
+																				},
+																				{
+																					"dst": "866z1hgr",
+																					"bindCondi": "",
+																					"actionList": {
+																						"x": {
+																							"value": 70,
+																							"animation": {
+																								"path_type": "overshoot",
+																								"delay": "0",
+																								"duration": "600"
+																							}
 																						}
 																					}
 																				}
@@ -19096,8 +19226,8 @@
 												"visible": true,
 												"flag": [],
 												"pos": [
-													211,
-													24
+													212,
+													23
 												],
 												"size": [
 													48,
@@ -19114,7 +19244,7 @@
 																	"bindCondi": "",
 																	"actionList": {
 																		"custom_code": {
-																			"inc_c": "#include \"HWDataAccess.h\"",
+																			"inc_c": "",
 																			"code_c": "/* 点开关 → 读它点击后的新状态 → 写回中间层 → 刷 small_dev_off 透明度。 */\r\nlv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 有CHECKED=开, 没有=关 */\r\n\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层: 开→true, 关→false; 与 screen_5 共享同一份 */\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.device_management_screen_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);",
 																			"inc_py": "",
 																			"code_py": ""
@@ -19135,10 +19265,10 @@
 												"src_checked_pressed": "",
 												"use_fs": true,
 												"fs_type": "sd",
-												"src_sd_released": "S:/sdfile/EXT_RESERVED/uipackres/ui/onoff_off.png",
-												"src_sd_pressed": "S:/sdfile/EXT_RESERVED/uipackres/ui/",
-												"src_sd_checked_released": "S:/sdfile/EXT_RESERVED/uipackres/ui/onoff_on.png",
-												"src_sd_checked_pressed": "S:/sdfile/EXT_RESERVED/uipackres/ui/",
+												"src_sd_released": "S:/sdfile/EXT_RESERVED/uipackres/ui/dev_manage/onoff_off.png",
+												"src_sd_pressed": "S:/sdfile/EXT_RESERVED/uipackres/ui/dev_manage/",
+												"src_sd_checked_released": "S:/sdfile/EXT_RESERVED/uipackres/ui/dev_manage/onoff_on.png",
+												"src_sd_checked_pressed": "S:/sdfile/EXT_RESERVED/uipackres/ui/dev_manage/",
 												"src_flash_released": "F:/onoff_off.png",
 												"src_flash_pressed": "F:/",
 												"src_flash_checked_released": "F:/onoff_on.png",
@@ -19206,7 +19336,7 @@
 												]
 											},
 											{
-												"name": "device_management_screen_small_dev_on_img",
+												"name": "device_management_screen_sdev_on",
 												"id": "in7oisr4",
 												"type": "img",
 												"visible": true,
@@ -19220,14 +19350,14 @@
 													57
 												],
 												"default_style": false,
-												"img_path": "import\\image\\small_dev_on.png",
+												"img_path": "import\\image\\sdev_on.png",
 												"color_format": "true-color-alpha",
 												"rotate": 0,
 												"pivot": "50,50",
 												"use_fs": true,
 												"fs_type": "sd",
-												"img_flash_path": "F:/small_dev_on.png",
-												"img_sd_path": "S:/sdfile/EXT_RESERVED/uipackres/ui/small_dev_on.png",
+												"img_flash_path": "F:/sdev_on.png",
+												"img_sd_path": "S:/sdfile/EXT_RESERVED/uipackres/ui/dev_manage/sdev_on.png",
 												"style": [
 													{
 														"part": "LV_PART_MAIN",
@@ -19241,7 +19371,7 @@
 												]
 											},
 											{
-												"name": "device_management_screen_small_dev_off_img",
+												"name": "device_management_screen_sdev_off",
 												"id": "vi3ejnzh",
 												"type": "img",
 												"visible": true,
@@ -19304,9 +19434,9 @@
 																				"width": 48,
 																				"height": 48,
 																				"default_style": false,
-																				"use_fs": false,
-																				"fs_type": "flash",
-																				"sd_path": "",
+																				"use_fs": true,
+																				"fs_type": "sd",
+																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
 																				"text": "",
 																				"toggle": true,
 																				"src_released": "import\\image\\onoff_off.png",
@@ -19385,7 +19515,7 @@
 																									"bindCondi": "",
 																									"actionList": {
 																										"custom_code": {
-																											"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"",
+																											"inc_c": "",
 																											"code_c": "lv_obj_t *btn = lv_event_get_target(e);\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层 */\r\nlight_CT_screen_apply_light();                    /* 灯光图: 关→0, 开→按亮度/色温恢复 + 标签 */\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.light_CT_screen_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);\r\n    lv_obj_move_foreground(btn);\r\n}",
 																											"inc_py": "",
 																											"code_py": ""
@@ -19609,21 +19739,21 @@
 																				"id": "tcdxw5xe",
 																				"type": "imgbtn",
 																				"left": 652,
-																				"top": 100,
+																				"top": 101,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
 																				"width": 48,
 																				"height": 48,
 																				"default_style": false,
-																				"use_fs": false,
-																				"fs_type": "flash",
-																				"sd_path": "",
+																				"use_fs": true,
+																				"fs_type": "sd",
+																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
 																				"text": "",
 																				"toggle": true,
 																				"src_released": "import\\image\\scene_btn.png",
 																				"src_pressed": "",
-																				"src_checked_released": "import\\image\\scene_btn_close.png",
+																				"src_checked_released": "import\\image\\btn_close.png",
 																				"src_checked_pressed": "",
 																				"color_format": "true-color-alpha",
 																				"style": [
@@ -19692,17 +19822,17 @@
 																				"name": "dev_white_img",
 																				"id": "z4qu1qny",
 																				"type": "img",
-																				"left": 180,
-																				"top": 185,
+																				"left": 109,
+																				"top": 232,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
-																				"width": 280,
-																				"height": 80,
+																				"width": 490,
+																				"height": 164,
 																				"default_style": false,
-																				"use_fs": false,
+																				"use_fs": true,
 																				"fs_type": "sd",
-																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
+																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
 																				"img_path": "import\\image\\dev_white.png",
 																				"rotate": 1,
 																				"x": 50,
@@ -19724,17 +19854,17 @@
 																				"name": "dev_orange_img",
 																				"id": "0fpz4vpt",
 																				"type": "img",
-																				"left": 180,
-																				"top": 185,
+																				"left": 107,
+																				"top": 232,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
-																				"width": 280,
-																				"height": 80,
+																				"width": 490,
+																				"height": 164,
 																				"default_style": false,
-																				"use_fs": false,
+																				"use_fs": true,
 																				"fs_type": "sd",
-																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
+																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
 																				"img_path": "import\\image\\dev_orange.png",
 																				"rotate": 1,
 																				"x": 50,
@@ -19753,21 +19883,21 @@
 																				]
 																			},
 																			{
-																				"name": "dev_white_lid",
-																				"id": "sll6ltzy",
+																				"name": "white_lid",
+																				"id": "iuehpedt",
 																				"type": "img",
-																				"left": 232,
-																				"top": 181,
+																				"left": 207,
+																				"top": 222,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
-																				"width": 174,
-																				"height": 27,
+																				"width": 293,
+																				"height": 60,
 																				"default_style": false,
-																				"use_fs": false,
-																				"fs_type": "flash",
-																				"sd_path": "",
-																				"img_path": "import\\image\\dev_white_lid.png",
+																				"use_fs": true,
+																				"fs_type": "sd",
+																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
+																				"img_path": "import\\image\\white_lid.png",
 																				"rotate": 0,
 																				"x": 50,
 																				"y": 50,
@@ -19777,28 +19907,29 @@
 																						"part": "LV_PART_MAIN",
 																						"state": "LV_STATE_DEFAULT",
 																						"disable": false,
-																						"image_recolor": "#0a0a0a",
-																						"image_recolor_opa": 176,
+																						"image_recolor": "#090909",
+																						"image_recolor_opa": 184,
 																						"image_opa": 255,
 																						"radius": 0
 																					}
-																				]
+																				],
+																				"dropToGap": false
 																			},
 																			{
 																				"name": "dev_shell_img",
 																				"id": "jevxq65f",
 																				"type": "img",
-																				"left": 269,
-																				"top": 101,
+																				"left": 270,
+																				"top": 72,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
-																				"width": 100,
-																				"height": 100,
+																				"width": 166,
+																				"height": 190,
 																				"default_style": false,
-																				"use_fs": false,
+																				"use_fs": true,
 																				"fs_type": "sd",
-																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
+																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
 																				"img_path": "import\\image\\dev_shell.png",
 																				"rotate": 0,
 																				"x": 50,
@@ -19820,8 +19951,8 @@
 																				"name": "label_1",
 																				"id": "159mr46y",
 																				"type": "label",
-																				"left": 239,
-																				"top": 394,
+																				"left": 241,
+																				"top": 424,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
@@ -19921,8 +20052,8 @@
 																				"name": "slider_1",
 																				"id": "boic2h4j",
 																				"type": "slider",
-																				"left": -223,
-																				"top": 447,
+																				"left": -221,
+																				"top": 481,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
@@ -20110,7 +20241,7 @@
 																									"bindCondi": "",
 																									"actionList": {
 																										"custom_code": {
-																											"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick;\r\n",
+																											"inc_c": "static uint32_t s_ct_apply_tick;\r\n",
 																											"code_c": "HWInterface.LightCT.SetBrightness((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_1));  /* 写回中间层(不节流) */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {   /* 重绘节流 */\r\n    s_ct_apply_tick = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}\r\n",
 																											"inc_py": "",
 																											"code_py": ""
@@ -20127,8 +20258,8 @@
 																				"name": "slider_2",
 																				"id": "yhyuppk3",
 																				"type": "slider",
-																				"left": -223,
-																				"top": 616,
+																				"left": -216,
+																				"top": 623,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
@@ -20158,7 +20289,7 @@
 																						"outline_width": 0,
 																						"outline_color": "#2195f6",
 																						"outline_opa": 0,
-																						"bg_img_src": "import\\image\\ct_bar.png",
+																						"bg_img_src": "",
 																						"bg_img_opa": 255,
 																						"bg_img_recolor": "#ffffff",
 																						"bg_img_recolor_opa": 0,
@@ -20316,7 +20447,7 @@
 																									"bindCondi": "",
 																									"actionList": {
 																										"custom_code": {
-																											"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick2;",
+																											"inc_c": "static uint32_t s_ct_apply_tick2;",
 																											"code_c": "HWInterface.LightCT.SetColorTemp((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_2));\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}",
 																											"inc_py": "",
 																											"code_py": ""
@@ -20330,11 +20461,45 @@
 																				"layerName": "light_CT_screen"
 																			},
 																			{
+																				"name": "ct_bar",
+																				"id": "866z1hgr",
+																				"type": "img",
+																				"left": -216,
+																				"top": 623,
+																				"visible": true,
+																				"isLock": false,
+																				"flag": [],
+																				"width": 600,
+																				"height": 70,
+																				"default_style": false,
+																				"use_fs": true,
+																				"fs_type": "sd",
+																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
+																				"img_path": "import\\image\\ct_bar.png",
+																				"rotate": 0,
+																				"x": 50,
+																				"y": 50,
+																				"color_format": "true-color-alpha",
+																				"style": [
+																					{
+																						"part": "LV_PART_MAIN",
+																						"state": "LV_STATE_DEFAULT",
+																						"disable": false,
+																						"image_recolor": "#ffffff",
+																						"image_recolor_opa": 0,
+																						"image_opa": 255,
+																						"radius": 0
+																					}
+																				],
+																				"dropToGap": false,
+																				"layerName": "light_CT_screen"
+																			},
+																			{
 																				"name": "label_2",
 																				"id": "o7wlda87",
 																				"type": "label",
-																				"left": 259,
-																				"top": 554,
+																				"left": 258,
+																				"top": 576,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
@@ -20435,7 +20600,7 @@
 																				"id": "322dp6a3",
 																				"type": "cont",
 																				"left": 0,
-																				"top": 75,
+																				"top": 72,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
@@ -20658,10 +20823,24 @@
 																							"bindCondi": "",
 																							"actionList": {
 																								"custom_code": {
-																									"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\" ",
+																									"inc_c": "",
 																									"code_c": "bool light_on = HWInterface.LightCT.switch_status;\r\nlv_slider_set_value(guider_ui.light_CT_screen_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);\r\nlv_slider_set_value(guider_ui.light_CT_screen_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);\r\nlight_CT_screen_apply_light();   /* 灯光图(关→0/开→算) + 标签 */\r\n\r\nif (light_on) lv_obj_add_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.light_CT_screen_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_on_off_2_img);\r\n}",
 																									"inc_py": "",
 																									"code_py": ""
+																								}
+																							}
+																						},
+																						{
+																							"dst": "866z1hgr",
+																							"bindCondi": "",
+																							"actionList": {
+																								"x": {
+																									"value": 70,
+																									"animation": {
+																										"path_type": "overshoot",
+																										"delay": "0",
+																										"duration": "600"
+																									}
 																								}
 																							}
 																						}
@@ -20694,14 +20873,14 @@
 														}
 													}
 												},
-												"img_path": "import\\image\\small_dev_off.png",
+												"img_path": "import\\image\\sdev_off.png",
 												"color_format": "true-color-alpha",
 												"rotate": 0,
 												"pivot": "50,50",
 												"use_fs": true,
 												"fs_type": "sd",
-												"img_flash_path": "F:/small_dev_off.png",
-												"img_sd_path": "S:/sdfile/EXT_RESERVED/uipackres/ui/small_dev_off.png",
+												"img_flash_path": "F:/sdev_off.png",
+												"img_sd_path": "S:/sdfile/EXT_RESERVED/uipackres/ui/dev_manage/sdev_off.png",
 												"style": [
 													{
 														"part": "LV_PART_MAIN",
@@ -20780,9 +20959,9 @@
 																				"width": 48,
 																				"height": 48,
 																				"default_style": false,
-																				"use_fs": false,
-																				"fs_type": "flash",
-																				"sd_path": "",
+																				"use_fs": true,
+																				"fs_type": "sd",
+																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
 																				"text": "",
 																				"toggle": true,
 																				"src_released": "import\\image\\onoff_off.png",
@@ -20861,7 +21040,7 @@
 																									"bindCondi": "",
 																									"actionList": {
 																										"custom_code": {
-																											"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"",
+																											"inc_c": "",
 																											"code_c": "lv_obj_t *btn = lv_event_get_target(e);\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层 */\r\nlight_CT_screen_apply_light();                    /* 灯光图: 关→0, 开→按亮度/色温恢复 + 标签 */\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.light_CT_screen_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);\r\n    lv_obj_move_foreground(btn);\r\n}",
 																											"inc_py": "",
 																											"code_py": ""
@@ -21085,21 +21264,21 @@
 																				"id": "tcdxw5xe",
 																				"type": "imgbtn",
 																				"left": 652,
-																				"top": 100,
+																				"top": 101,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
 																				"width": 48,
 																				"height": 48,
 																				"default_style": false,
-																				"use_fs": false,
-																				"fs_type": "flash",
-																				"sd_path": "",
+																				"use_fs": true,
+																				"fs_type": "sd",
+																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
 																				"text": "",
 																				"toggle": true,
 																				"src_released": "import\\image\\scene_btn.png",
 																				"src_pressed": "",
-																				"src_checked_released": "import\\image\\scene_btn_close.png",
+																				"src_checked_released": "import\\image\\btn_close.png",
 																				"src_checked_pressed": "",
 																				"color_format": "true-color-alpha",
 																				"style": [
@@ -21168,17 +21347,17 @@
 																				"name": "dev_white_img",
 																				"id": "z4qu1qny",
 																				"type": "img",
-																				"left": 180,
-																				"top": 185,
+																				"left": 109,
+																				"top": 232,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
-																				"width": 280,
-																				"height": 80,
+																				"width": 490,
+																				"height": 164,
 																				"default_style": false,
-																				"use_fs": false,
+																				"use_fs": true,
 																				"fs_type": "sd",
-																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
+																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
 																				"img_path": "import\\image\\dev_white.png",
 																				"rotate": 1,
 																				"x": 50,
@@ -21200,17 +21379,17 @@
 																				"name": "dev_orange_img",
 																				"id": "0fpz4vpt",
 																				"type": "img",
-																				"left": 180,
-																				"top": 185,
+																				"left": 107,
+																				"top": 232,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
-																				"width": 280,
-																				"height": 80,
+																				"width": 490,
+																				"height": 164,
 																				"default_style": false,
-																				"use_fs": false,
+																				"use_fs": true,
 																				"fs_type": "sd",
-																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
+																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
 																				"img_path": "import\\image\\dev_orange.png",
 																				"rotate": 1,
 																				"x": 50,
@@ -21229,21 +21408,21 @@
 																				]
 																			},
 																			{
-																				"name": "dev_white_lid",
-																				"id": "sll6ltzy",
+																				"name": "white_lid",
+																				"id": "iuehpedt",
 																				"type": "img",
-																				"left": 232,
-																				"top": 181,
+																				"left": 207,
+																				"top": 222,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
-																				"width": 174,
-																				"height": 27,
+																				"width": 293,
+																				"height": 60,
 																				"default_style": false,
-																				"use_fs": false,
-																				"fs_type": "flash",
-																				"sd_path": "",
-																				"img_path": "import\\image\\dev_white_lid.png",
+																				"use_fs": true,
+																				"fs_type": "sd",
+																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
+																				"img_path": "import\\image\\white_lid.png",
 																				"rotate": 0,
 																				"x": 50,
 																				"y": 50,
@@ -21253,28 +21432,29 @@
 																						"part": "LV_PART_MAIN",
 																						"state": "LV_STATE_DEFAULT",
 																						"disable": false,
-																						"image_recolor": "#0a0a0a",
-																						"image_recolor_opa": 176,
+																						"image_recolor": "#090909",
+																						"image_recolor_opa": 184,
 																						"image_opa": 255,
 																						"radius": 0
 																					}
-																				]
+																				],
+																				"dropToGap": false
 																			},
 																			{
 																				"name": "dev_shell_img",
 																				"id": "jevxq65f",
 																				"type": "img",
-																				"left": 269,
-																				"top": 101,
+																				"left": 270,
+																				"top": 72,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
-																				"width": 100,
-																				"height": 100,
+																				"width": 166,
+																				"height": 190,
 																				"default_style": false,
-																				"use_fs": false,
+																				"use_fs": true,
 																				"fs_type": "sd",
-																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
+																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
 																				"img_path": "import\\image\\dev_shell.png",
 																				"rotate": 0,
 																				"x": 50,
@@ -21296,8 +21476,8 @@
 																				"name": "label_1",
 																				"id": "159mr46y",
 																				"type": "label",
-																				"left": 239,
-																				"top": 394,
+																				"left": 241,
+																				"top": 424,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
@@ -21397,8 +21577,8 @@
 																				"name": "slider_1",
 																				"id": "boic2h4j",
 																				"type": "slider",
-																				"left": -223,
-																				"top": 447,
+																				"left": -221,
+																				"top": 481,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
@@ -21586,7 +21766,7 @@
 																									"bindCondi": "",
 																									"actionList": {
 																										"custom_code": {
-																											"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick;\r\n",
+																											"inc_c": "static uint32_t s_ct_apply_tick;\r\n",
 																											"code_c": "HWInterface.LightCT.SetBrightness((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_1));  /* 写回中间层(不节流) */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {   /* 重绘节流 */\r\n    s_ct_apply_tick = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}\r\n",
 																											"inc_py": "",
 																											"code_py": ""
@@ -21603,8 +21783,8 @@
 																				"name": "slider_2",
 																				"id": "yhyuppk3",
 																				"type": "slider",
-																				"left": -223,
-																				"top": 616,
+																				"left": -216,
+																				"top": 623,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
@@ -21634,7 +21814,7 @@
 																						"outline_width": 0,
 																						"outline_color": "#2195f6",
 																						"outline_opa": 0,
-																						"bg_img_src": "import\\image\\ct_bar.png",
+																						"bg_img_src": "",
 																						"bg_img_opa": 255,
 																						"bg_img_recolor": "#ffffff",
 																						"bg_img_recolor_opa": 0,
@@ -21792,7 +21972,7 @@
 																									"bindCondi": "",
 																									"actionList": {
 																										"custom_code": {
-																											"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick2;",
+																											"inc_c": "static uint32_t s_ct_apply_tick2;",
 																											"code_c": "HWInterface.LightCT.SetColorTemp((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_2));\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}",
 																											"inc_py": "",
 																											"code_py": ""
@@ -21806,11 +21986,45 @@
 																				"layerName": "light_CT_screen"
 																			},
 																			{
+																				"name": "ct_bar",
+																				"id": "866z1hgr",
+																				"type": "img",
+																				"left": -216,
+																				"top": 623,
+																				"visible": true,
+																				"isLock": false,
+																				"flag": [],
+																				"width": 600,
+																				"height": 70,
+																				"default_style": false,
+																				"use_fs": true,
+																				"fs_type": "sd",
+																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
+																				"img_path": "import\\image\\ct_bar.png",
+																				"rotate": 0,
+																				"x": 50,
+																				"y": 50,
+																				"color_format": "true-color-alpha",
+																				"style": [
+																					{
+																						"part": "LV_PART_MAIN",
+																						"state": "LV_STATE_DEFAULT",
+																						"disable": false,
+																						"image_recolor": "#ffffff",
+																						"image_recolor_opa": 0,
+																						"image_opa": 255,
+																						"radius": 0
+																					}
+																				],
+																				"dropToGap": false,
+																				"layerName": "light_CT_screen"
+																			},
+																			{
 																				"name": "label_2",
 																				"id": "o7wlda87",
 																				"type": "label",
-																				"left": 259,
-																				"top": 554,
+																				"left": 258,
+																				"top": 576,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
@@ -21911,7 +22125,7 @@
 																				"id": "322dp6a3",
 																				"type": "cont",
 																				"left": 0,
-																				"top": 75,
+																				"top": 72,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
@@ -22134,10 +22348,24 @@
 																							"bindCondi": "",
 																							"actionList": {
 																								"custom_code": {
-																									"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\" ",
+																									"inc_c": "",
 																									"code_c": "bool light_on = HWInterface.LightCT.switch_status;\r\nlv_slider_set_value(guider_ui.light_CT_screen_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);\r\nlv_slider_set_value(guider_ui.light_CT_screen_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);\r\nlight_CT_screen_apply_light();   /* 灯光图(关→0/开→算) + 标签 */\r\n\r\nif (light_on) lv_obj_add_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.light_CT_screen_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_on_off_2_img);\r\n}",
 																									"inc_py": "",
 																									"code_py": ""
+																								}
+																							}
+																						},
+																						{
+																							"dst": "866z1hgr",
+																							"bindCondi": "",
+																							"actionList": {
+																								"x": {
+																									"value": 70,
+																									"animation": {
+																										"path_type": "overshoot",
+																										"delay": "0",
+																										"duration": "600"
+																									}
 																								}
 																							}
 																						}
@@ -26410,8 +26638,7 @@
 																		"shadow_ofs_x": 0,
 																		"shadow_ofs_y": 0
 																	}
-																],
-																"dropToGap": false
+																]
 															},
 															{
 																"name": "btn_10",
@@ -27889,8 +28116,8 @@
 																"name": "cont_1",
 																"id": "xdh9r4v9",
 																"type": "cont",
-																"left": 17,
-																"top": 1,
+																"left": 18,
+																"top": 0,
 																"visible": true,
 																"isLock": false,
 																"flag": [],
@@ -28023,7 +28250,7 @@
 																		}
 																	},
 																	{
-																		"name": "small_dev_off_img",
+																		"name": "sdev_off",
 																		"id": "vi3ejnzh",
 																		"type": "img",
 																		"left": 40,
@@ -28036,8 +28263,8 @@
 																		"default_style": false,
 																		"use_fs": true,
 																		"fs_type": "sd",
-																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
-																		"img_path": "import\\image\\small_dev_off.png",
+																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/dev_manage",
+																		"img_path": "import\\image\\sdev_off.png",
 																		"rotate": 0,
 																		"x": 50,
 																		"y": 50,
@@ -28078,7 +28305,7 @@
 																		}
 																	},
 																	{
-																		"name": "small_dev_on_img",
+																		"name": "sdev_on",
 																		"id": "in7oisr4",
 																		"type": "img",
 																		"left": 40,
@@ -28091,8 +28318,8 @@
 																		"default_style": false,
 																		"use_fs": true,
 																		"fs_type": "sd",
-																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
-																		"img_path": "import\\image\\small_dev_on.png",
+																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/dev_manage",
+																		"img_path": "import\\image\\sdev_on.png",
 																		"rotate": 0,
 																		"x": 50,
 																		"y": 50,
@@ -28113,8 +28340,8 @@
 																		"name": "Light_CT_on_off_1_img",
 																		"id": "gvv97csu",
 																		"type": "imgbtn",
-																		"left": 211,
-																		"top": 24,
+																		"left": 212,
+																		"top": 23,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
@@ -28123,7 +28350,7 @@
 																		"default_style": false,
 																		"use_fs": true,
 																		"fs_type": "sd",
-																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
+																		"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/dev_manage",
 																		"text": "",
 																		"toggle": true,
 																		"src_released": "import\\image\\onoff_off.png",
@@ -28202,7 +28429,7 @@
 																							"bindCondi": "",
 																							"actionList": {
 																								"custom_code": {
-																									"inc_c": "#include \"HWDataAccess.h\"",
+																									"inc_c": "",
 																									"code_c": "/* 点开关 → 读它点击后的新状态 → 写回中间层 → 刷 small_dev_off 透明度。 */\r\nlv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 有CHECKED=开, 没有=关 */\r\n\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层: 开→true, 关→false; 与 screen_5 共享同一份 */\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.device_management_screen_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);",
 																									"inc_py": "",
 																									"code_py": ""
@@ -28250,7 +28477,6 @@
 																		"shadow_ofs_y": 0
 																	}
 																],
-																"dropToGap": false,
 																"event": {
 																	"widget": {
 																		"clicked": {
@@ -28418,6 +28644,18 @@
 																"custom_code": {
 																	"inc_c": "#include \"HWDataAccess.h\"",
 																	"code_c": "/* 进屏初始化: 从中间层读色温灯开关真值, 摆正开关 CHECKED + small_dev_off 透明度。 */\r\nbool light_on = HWInterface.LightCT.switch_status;   /* true=开, false=关 */\r\n\r\n/* 开关图标 CHECKED 摆到当前状态 */\r\nif (light_on) lv_obj_add_state(guider_ui.device_management_screen_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.device_management_screen_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.device_management_screen_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);\r\n",
+																	"inc_py": "",
+																	"code_py": ""
+																}
+															}
+														},
+														{
+															"dst": "custom_code",
+															"bindCondi": "",
+															"actionList": {
+																"custom_code": {
+																	"inc_c": "#include  \"img.h\"",
+																	"code_c": "",
 																	"inc_py": "",
 																	"code_py": ""
 																}
@@ -36345,7 +36583,7 @@
 														"name": "img_1",
 														"id": "x0qhlryf",
 														"type": "img",
-														"left": -1,
+														"left": 0,
 														"top": 0,
 														"visible": true,
 														"isLock": false,
@@ -36355,7 +36593,7 @@
 														"default_style": false,
 														"use_fs": true,
 														"fs_type": "sd",
-														"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
+														"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/home",
 														"img_path": "import\\image\\1.jpg",
 														"rotate": 0,
 														"x": 50,
@@ -36657,8 +36895,8 @@
 										"name": "label_2",
 										"id": "o7wlda87",
 										"type": "label",
-										"left": 259,
-										"top": 554,
+										"left": 258,
+										"top": 576,
 										"visible": true,
 										"isLock": false,
 										"flag": [],
@@ -36773,8 +37011,8 @@
 										"name": "slider_1",
 										"id": "boic2h4j",
 										"type": "slider",
-										"left": -223,
-										"top": 447,
+										"left": -221,
+										"top": 481,
 										"visible": true,
 										"isLock": false,
 										"flag": [],
@@ -36962,7 +37200,7 @@
 															"bindCondi": "",
 															"actionList": {
 																"custom_code": {
-																	"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick;\r\n",
+																	"inc_c": "static uint32_t s_ct_apply_tick;\r\n",
 																	"code_c": "HWInterface.LightCT.SetBrightness((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_1));  /* 写回中间层(不节流) */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {   /* 重绘节流 */\r\n    s_ct_apply_tick = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}\r\n",
 																	"inc_py": "",
 																	"code_py": ""
@@ -36994,8 +37232,8 @@
 										"name": "slider_2",
 										"id": "yhyuppk3",
 										"type": "slider",
-										"left": -223,
-										"top": 616,
+										"left": -216,
+										"top": 623,
 										"visible": true,
 										"isLock": false,
 										"flag": [],
@@ -37025,7 +37263,7 @@
 												"outline_width": 0,
 												"outline_color": "#2195f6",
 												"outline_opa": 0,
-												"bg_img_src": "import\\image\\ct_bar.png",
+												"bg_img_src": "",
 												"bg_img_opa": 255,
 												"bg_img_recolor": "#ffffff",
 												"bg_img_recolor_opa": 0,
@@ -37183,7 +37421,7 @@
 															"bindCondi": "",
 															"actionList": {
 																"custom_code": {
-																	"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick2;",
+																	"inc_c": "static uint32_t s_ct_apply_tick2;",
 																	"code_c": "HWInterface.LightCT.SetColorTemp((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_2));\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}",
 																	"inc_py": "",
 																	"code_py": ""
@@ -37215,8 +37453,8 @@
 										"name": "label_1",
 										"id": "159mr46y",
 										"type": "label",
-										"left": 239,
-										"top": 394,
+										"left": 241,
+										"top": 424,
 										"visible": true,
 										"isLock": false,
 										"flag": [],
@@ -37318,11 +37556,60 @@
 									"bindCondi": "",
 									"actionList": {
 										"custom_code": {
-											"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\" ",
+											"inc_c": "",
 											"code_c": "bool light_on = HWInterface.LightCT.switch_status;\r\nlv_slider_set_value(guider_ui.light_CT_screen_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);\r\nlv_slider_set_value(guider_ui.light_CT_screen_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);\r\nlight_CT_screen_apply_light();   /* 灯光图(关→0/开→算) + 标签 */\r\n\r\nif (light_on) lv_obj_add_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.light_CT_screen_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_on_off_2_img);\r\n}",
 											"inc_py": "",
 											"code_py": ""
 										}
+									}
+								},
+								{
+									"dst": "light_CT_screen_ct_bar",
+									"bindCondi": "",
+									"actionList": {
+										"x": {
+											"value": 70,
+											"animation": {
+												"path_type": "overshoot",
+												"delay": "0",
+												"duration": "600"
+											}
+										}
+									},
+									"dst_type": "img",
+									"_target": {
+										"name": "ct_bar",
+										"id": "866z1hgr",
+										"type": "img",
+										"left": -216,
+										"top": 623,
+										"visible": true,
+										"isLock": false,
+										"flag": [],
+										"width": 600,
+										"height": 70,
+										"default_style": false,
+										"use_fs": true,
+										"fs_type": "sd",
+										"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/lightCT",
+										"img_path": "import\\image\\ct_bar.png",
+										"rotate": 0,
+										"x": 50,
+										"y": 50,
+										"color_format": "true-color-alpha",
+										"style": [
+											{
+												"part": "LV_PART_MAIN",
+												"state": "LV_STATE_DEFAULT",
+												"disable": false,
+												"image_recolor": "#ffffff",
+												"image_recolor_opa": 0,
+												"image_opa": 255,
+												"radius": 0
+											}
+										],
+										"dropToGap": false,
+										"layerName": "light_CT_screen"
 									}
 								}
 							]
@@ -37482,7 +37769,7 @@
 						"flag": [],
 						"pos": [
 							0,
-							75
+							72
 						],
 						"size": [
 							720,
@@ -37533,8 +37820,8 @@
 						"visible": true,
 						"flag": [],
 						"pos": [
-							259,
-							554
+							258,
+							576
 						],
 						"size": [
 							211,
@@ -37630,14 +37917,49 @@
 						]
 					},
 					{
+						"name": "light_CT_screen_ct_bar",
+						"id": "866z1hgr",
+						"type": "img",
+						"visible": true,
+						"flag": [],
+						"pos": [
+							-216,
+							623
+						],
+						"size": [
+							600,
+							70
+						],
+						"default_style": false,
+						"img_path": "import\\image\\ct_bar.png",
+						"color_format": "true-color-alpha",
+						"rotate": 0,
+						"pivot": "50,50",
+						"use_fs": true,
+						"fs_type": "sd",
+						"img_flash_path": "F:/ct_bar.png",
+						"img_sd_path": "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/ct_bar.png",
+						"style": [
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_DEFAULT",
+								"disable": false,
+								"image_recolor": "#ffffff",
+								"image_recolor_opa": 0,
+								"image_opa": 255,
+								"radius": 0
+							}
+						]
+					},
+					{
 						"name": "light_CT_screen_slider_2",
 						"id": "yhyuppk3",
 						"type": "slider",
 						"visible": true,
 						"flag": [],
 						"pos": [
-							-223,
-							616
+							-216,
+							623
 						],
 						"size": [
 							600,
@@ -37656,7 +37978,7 @@
 											"bindCondi": "",
 											"actionList": {
 												"custom_code": {
-													"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick2;",
+													"inc_c": "static uint32_t s_ct_apply_tick2;",
 													"code_c": "HWInterface.LightCT.SetColorTemp((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_2));\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {\r\n    s_ct_apply_tick2 = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}",
 													"inc_py": "",
 													"code_py": ""
@@ -37688,7 +38010,7 @@
 								"outline_width": 0,
 								"outline_color": "#2195f6",
 								"outline_opa": 0,
-								"bg_img_src": "import\\image\\ct_bar.png",
+								"bg_img_src": "",
 								"bg_img_opa": 255,
 								"bg_img_recolor": "#ffffff",
 								"bg_img_recolor_opa": 0,
@@ -37848,8 +38170,8 @@
 						"visible": true,
 						"flag": [],
 						"pos": [
-							-223,
-							447
+							-221,
+							481
 						],
 						"size": [
 							600,
@@ -37868,7 +38190,7 @@
 											"bindCondi": "",
 											"actionList": {
 												"custom_code": {
-													"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"\r\nstatic uint32_t s_ct_apply_tick;\r\n",
+													"inc_c": "static uint32_t s_ct_apply_tick;\r\n",
 													"code_c": "HWInterface.LightCT.SetBrightness((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_1));  /* 写回中间层(不节流) */\r\nconst uint32_t APPLY_MIN_MS = 50;\r\nif (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {   /* 重绘节流 */\r\n    s_ct_apply_tick = lv_tick_get();\r\n    light_CT_screen_apply_light();\r\n}\r\n",
 													"inc_py": "",
 													"code_py": ""
@@ -38060,8 +38382,8 @@
 						"visible": true,
 						"flag": [],
 						"pos": [
-							239,
-							394
+							241,
+							424
 						],
 						"size": [
 							227,
@@ -38163,22 +38485,22 @@
 						"visible": true,
 						"flag": [],
 						"pos": [
-							269,
-							101
+							270,
+							72
 						],
 						"size": [
-							100,
-							100
+							166,
+							190
 						],
 						"default_style": false,
 						"img_path": "import\\image\\dev_shell.png",
 						"color_format": "true-color-alpha",
 						"rotate": 0,
 						"pivot": "50,50",
-						"use_fs": false,
+						"use_fs": true,
 						"fs_type": "sd",
 						"img_flash_path": "F:/dev_shell.png",
-						"img_sd_path": "S:/sdfile/EXT_RESERVED/uipackres/ui/dev_shell.png",
+						"img_sd_path": "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/dev_shell.png",
 						"style": [
 							{
 								"part": "LV_PART_MAIN",
@@ -38192,35 +38514,35 @@
 						]
 					},
 					{
-						"name": "light_CT_screen_dev_white_lid",
-						"id": "sll6ltzy",
+						"name": "light_CT_screen_white_lid",
+						"id": "iuehpedt",
 						"type": "img",
 						"visible": true,
 						"flag": [],
 						"pos": [
-							232,
-							181
+							207,
+							222
 						],
 						"size": [
-							174,
-							27
+							293,
+							60
 						],
 						"default_style": false,
-						"img_path": "import\\image\\dev_white_lid.png",
+						"img_path": "import\\image\\white_lid.png",
 						"color_format": "true-color-alpha",
 						"rotate": 0,
 						"pivot": "50,50",
-						"use_fs": false,
-						"fs_type": "flash",
-						"img_flash_path": "F:/dev_white_lid.png",
-						"img_sd_path": "S:/dev_white_lid.png",
+						"use_fs": true,
+						"fs_type": "sd",
+						"img_flash_path": "F:/white_lid.png",
+						"img_sd_path": "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/white_lid.png",
 						"style": [
 							{
 								"part": "LV_PART_MAIN",
 								"state": "LV_STATE_DEFAULT",
 								"disable": false,
-								"image_recolor": "#0a0a0a",
-								"image_recolor_opa": 176,
+								"image_recolor": "#090909",
+								"image_recolor_opa": 184,
 								"image_opa": 255,
 								"radius": 0
 							}
@@ -38233,22 +38555,22 @@
 						"visible": true,
 						"flag": [],
 						"pos": [
-							180,
-							185
+							107,
+							232
 						],
 						"size": [
-							280,
-							80
+							490,
+							164
 						],
 						"default_style": false,
 						"img_path": "import\\image\\dev_orange.png",
 						"color_format": "true-color-alpha",
 						"rotate": 10,
 						"pivot": "50,50",
-						"use_fs": false,
+						"use_fs": true,
 						"fs_type": "sd",
 						"img_flash_path": "F:/dev_orange.png",
-						"img_sd_path": "S:/sdfile/EXT_RESERVED/uipackres/ui/dev_orange.png",
+						"img_sd_path": "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/dev_orange.png",
 						"style": [
 							{
 								"part": "LV_PART_MAIN",
@@ -38268,22 +38590,22 @@
 						"visible": true,
 						"flag": [],
 						"pos": [
-							180,
-							185
+							109,
+							232
 						],
 						"size": [
-							280,
-							80
+							490,
+							164
 						],
 						"default_style": false,
 						"img_path": "import\\image\\dev_white.png",
 						"color_format": "true-color-alpha",
 						"rotate": 10,
 						"pivot": "50,50",
-						"use_fs": false,
+						"use_fs": true,
 						"fs_type": "sd",
 						"img_flash_path": "F:/dev_white.png",
-						"img_sd_path": "S:/sdfile/EXT_RESERVED/uipackres/ui/dev_white.png",
+						"img_sd_path": "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/dev_white.png",
 						"style": [
 							{
 								"part": "LV_PART_MAIN",
@@ -38304,7 +38626,7 @@
 						"flag": [],
 						"pos": [
 							652,
-							100
+							101
 						],
 						"size": [
 							48,
@@ -38317,17 +38639,17 @@
 						"color_format": "true-color-alpha",
 						"src_released": "import\\image\\scene_btn.png",
 						"src_pressed": "",
-						"src_checked_released": "import\\image\\scene_btn_close.png",
+						"src_checked_released": "import\\image\\btn_close.png",
 						"src_checked_pressed": "",
-						"use_fs": false,
-						"fs_type": "flash",
-						"src_sd_released": "S:/scene_btn.png",
-						"src_sd_pressed": "S:/",
-						"src_sd_checked_released": "S:/scene_btn_close.png",
-						"src_sd_checked_pressed": "S:/",
+						"use_fs": true,
+						"fs_type": "sd",
+						"src_sd_released": "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/scene_btn.png",
+						"src_sd_pressed": "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/",
+						"src_sd_checked_released": "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/btn_close.png",
+						"src_sd_checked_pressed": "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/",
 						"src_flash_released": "F:/scene_btn.png",
 						"src_flash_pressed": "F:/",
-						"src_flash_checked_released": "F:/scene_btn_close.png",
+						"src_flash_checked_released": "F:/btn_close.png",
 						"src_flash_checked_pressed": "F:/",
 						"style": [
 							{
@@ -38611,8 +38933,7 @@
 																				"shadow_ofs_x": 0,
 																				"shadow_ofs_y": 0
 																			}
-																		],
-																		"dropToGap": false
+																		]
 																	},
 																	{
 																		"name": "btn_10",
@@ -40090,8 +40411,8 @@
 																		"name": "cont_1",
 																		"id": "xdh9r4v9",
 																		"type": "cont",
-																		"left": 17,
-																		"top": 1,
+																		"left": 18,
+																		"top": 0,
 																		"visible": true,
 																		"isLock": false,
 																		"flag": [],
@@ -40224,7 +40545,7 @@
 																				}
 																			},
 																			{
-																				"name": "small_dev_off_img",
+																				"name": "sdev_off",
 																				"id": "vi3ejnzh",
 																				"type": "img",
 																				"left": 40,
@@ -40237,8 +40558,8 @@
 																				"default_style": false,
 																				"use_fs": true,
 																				"fs_type": "sd",
-																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
-																				"img_path": "import\\image\\small_dev_off.png",
+																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/dev_manage",
+																				"img_path": "import\\image\\sdev_off.png",
 																				"rotate": 0,
 																				"x": 50,
 																				"y": 50,
@@ -40279,7 +40600,7 @@
 																				}
 																			},
 																			{
-																				"name": "small_dev_on_img",
+																				"name": "sdev_on",
 																				"id": "in7oisr4",
 																				"type": "img",
 																				"left": 40,
@@ -40292,8 +40613,8 @@
 																				"default_style": false,
 																				"use_fs": true,
 																				"fs_type": "sd",
-																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
-																				"img_path": "import\\image\\small_dev_on.png",
+																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/dev_manage",
+																				"img_path": "import\\image\\sdev_on.png",
 																				"rotate": 0,
 																				"x": 50,
 																				"y": 50,
@@ -40314,8 +40635,8 @@
 																				"name": "Light_CT_on_off_1_img",
 																				"id": "gvv97csu",
 																				"type": "imgbtn",
-																				"left": 211,
-																				"top": 24,
+																				"left": 212,
+																				"top": 23,
 																				"visible": true,
 																				"isLock": false,
 																				"flag": [],
@@ -40324,7 +40645,7 @@
 																				"default_style": false,
 																				"use_fs": true,
 																				"fs_type": "sd",
-																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui",
+																				"sd_path": "sdfile/EXT_RESERVED/uipackres/ui/dev_manage",
 																				"text": "",
 																				"toggle": true,
 																				"src_released": "import\\image\\onoff_off.png",
@@ -40403,7 +40724,7 @@
 																									"bindCondi": "",
 																									"actionList": {
 																										"custom_code": {
-																											"inc_c": "#include \"HWDataAccess.h\"",
+																											"inc_c": "",
 																											"code_c": "/* 点开关 → 读它点击后的新状态 → 写回中间层 → 刷 small_dev_off 透明度。 */\r\nlv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 有CHECKED=开, 没有=关 */\r\n\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层: 开→true, 关→false; 与 screen_5 共享同一份 */\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.device_management_screen_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);",
 																											"inc_py": "",
 																											"code_py": ""
@@ -40451,7 +40772,6 @@
 																				"shadow_ofs_y": 0
 																			}
 																		],
-																		"dropToGap": false,
 																		"event": {
 																			"widget": {
 																				"clicked": {
@@ -40619,6 +40939,18 @@
 																		"custom_code": {
 																			"inc_c": "#include \"HWDataAccess.h\"",
 																			"code_c": "/* 进屏初始化: 从中间层读色温灯开关真值, 摆正开关 CHECKED + small_dev_off 透明度。 */\r\nbool light_on = HWInterface.LightCT.switch_status;   /* true=开, false=关 */\r\n\r\n/* 开关图标 CHECKED 摆到当前状态 */\r\nif (light_on) lv_obj_add_state(guider_ui.device_management_screen_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\nelse          lv_obj_clear_state(guider_ui.device_management_screen_Light_CT_on_off_1_img, LV_STATE_CHECKED);\r\n\r\n/* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */\r\nlv_obj_set_style_img_opa(guider_ui.device_management_screen_small_dev_off_img,\r\n                         light_on ? LV_OPA_TRANSP : LV_OPA_COVER,\r\n                         LV_PART_MAIN | LV_STATE_DEFAULT);\r\n",
+																			"inc_py": "",
+																			"code_py": ""
+																		}
+																	}
+																},
+																{
+																	"dst": "custom_code",
+																	"bindCondi": "",
+																	"actionList": {
+																		"custom_code": {
+																			"inc_c": "#include  \"img.h\"",
+																			"code_c": "",
 																			"inc_py": "",
 																			"code_py": ""
 																		}
@@ -40851,7 +41183,7 @@
 											"bindCondi": "",
 											"actionList": {
 												"custom_code": {
-													"inc_c": "#include \"HWDataAccess.h\"\r\n#include \"screen.h\"",
+													"inc_c": "",
 													"code_c": "lv_obj_t *btn = lv_event_get_target(e);\r\nbool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);\r\nHWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层 */\r\nlight_CT_screen_apply_light();                    /* 灯光图: 关→0, 开→按亮度/色温恢复 + 标签 */\r\n\r\nif (light_on) {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_background(guider_ui.light_CT_screen_cont_1);\r\n} else {\r\n    lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);\r\n    lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);\r\n    lv_obj_move_foreground(btn);\r\n}",
 													"inc_py": "",
 													"code_py": ""
@@ -40870,12 +41202,12 @@
 						"src_pressed": "",
 						"src_checked_released": "import\\image\\onoff_on.png",
 						"src_checked_pressed": "",
-						"use_fs": false,
-						"fs_type": "flash",
-						"src_sd_released": "S:/onoff_off.png",
-						"src_sd_pressed": "S:/",
-						"src_sd_checked_released": "S:/onoff_on.png",
-						"src_sd_checked_pressed": "S:/",
+						"use_fs": true,
+						"fs_type": "sd",
+						"src_sd_released": "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/onoff_off.png",
+						"src_sd_pressed": "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/",
+						"src_sd_checked_released": "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/onoff_on.png",
+						"src_sd_checked_pressed": "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/",
 						"src_flash_released": "F:/onoff_off.png",
 						"src_flash_pressed": "F:/",
 						"src_flash_checked_released": "F:/onoff_on.png",
@@ -40961,6 +41293,7 @@
 				"height": 720,
 				"visible": true,
 				"flag": [],
+				"event": {},
 				"style": [
 					{
 						"part": "LV_PART_MAIN",

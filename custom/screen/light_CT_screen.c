@@ -14,7 +14,7 @@
 
 /* 按当前亮度/色温刷两张灯光图透明度 + 两个标签数字; 关灯时灯光图隐藏(0)。
  * light_CT_screen 的 slider 拖动 / 进屏(SCREEN_LOADED) / 开关 事件都调它 —— 灯光公式只此一份。
- * 由 GUI Guider 事件调用: 事件 include 框写 #include "screen.h", 代码里调 screen_5_apply_light()。 */
+ * 由 GUI Guider 事件调用: 事件 include 框写 #include "screen.h", 代码里调 light_CT_screen_apply_light()。 */
 void light_CT_screen_apply_light(void)
 {
     lv_obj_t *slider1 = guider_ui.light_CT_screen_slider_1;
