@@ -136,7 +136,7 @@ void setup_scr_light_CT_screen(lv_ui *ui)
 #if LV_USE_GUIDER_SIMULATOR
     lv_img_set_src(ui->light_CT_screen_ct_bar, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\ct_bar.png");
 #else
-    lv_img_set_src(ui->light_CT_screen_ct_bar, "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/ct_bar.png");
+    lv_img_set_src(ui->light_CT_screen_ct_bar, "S:/sdfile/EXT_RESERVED/uipackres/ui/ct_bar.png");
 #endif
     lv_img_set_pivot(ui->light_CT_screen_ct_bar, 50,50);
     lv_img_set_angle(ui->light_CT_screen_ct_bar, 0);
@@ -234,7 +234,7 @@ void setup_scr_light_CT_screen(lv_ui *ui)
 #if LV_USE_GUIDER_SIMULATOR
     lv_img_set_src(ui->light_CT_screen_dev_shell_img, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\dev_shell.png");
 #else
-    lv_img_set_src(ui->light_CT_screen_dev_shell_img, "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/dev_shell.png");
+    lv_img_set_src(ui->light_CT_screen_dev_shell_img, "S:/sdfile/EXT_RESERVED/uipackres/ui/dev_shell.png");
 #endif
     lv_img_set_pivot(ui->light_CT_screen_dev_shell_img, 50,50);
     lv_img_set_angle(ui->light_CT_screen_dev_shell_img, 0);
@@ -253,7 +253,7 @@ void setup_scr_light_CT_screen(lv_ui *ui)
 #if LV_USE_GUIDER_SIMULATOR
     lv_img_set_src(ui->light_CT_screen_white_lid, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\white_lid.png");
 #else
-    lv_img_set_src(ui->light_CT_screen_white_lid, "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/white_lid.png");
+    lv_img_set_src(ui->light_CT_screen_white_lid, "S:/sdfile/EXT_RESERVED/uipackres/ui/white_lid.png");
 #endif
     lv_img_set_pivot(ui->light_CT_screen_white_lid, 50,50);
     lv_img_set_angle(ui->light_CT_screen_white_lid, 0);
@@ -273,7 +273,7 @@ void setup_scr_light_CT_screen(lv_ui *ui)
 #if LV_USE_GUIDER_SIMULATOR
     lv_img_set_src(ui->light_CT_screen_dev_orange_img, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\dev_orange.png");
 #else
-    lv_img_set_src(ui->light_CT_screen_dev_orange_img, "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/dev_orange.png");
+    lv_img_set_src(ui->light_CT_screen_dev_orange_img, "S:/sdfile/EXT_RESERVED/uipackres/ui/dev_orange.png");
 #endif
     lv_img_set_pivot(ui->light_CT_screen_dev_orange_img, 50,50);
     lv_img_set_angle(ui->light_CT_screen_dev_orange_img, 10);
@@ -292,7 +292,7 @@ void setup_scr_light_CT_screen(lv_ui *ui)
 #if LV_USE_GUIDER_SIMULATOR
     lv_img_set_src(ui->light_CT_screen_dev_white_img, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\dev_white.png");
 #else
-    lv_img_set_src(ui->light_CT_screen_dev_white_img, "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/dev_white.png");
+    lv_img_set_src(ui->light_CT_screen_dev_white_img, "S:/sdfile/EXT_RESERVED/uipackres/ui/dev_white.png");
 #endif
     lv_img_set_pivot(ui->light_CT_screen_dev_white_img, 50,50);
     lv_img_set_angle(ui->light_CT_screen_dev_white_img, 10);
@@ -312,8 +312,8 @@ void setup_scr_light_CT_screen(lv_ui *ui)
     lv_imgbtn_set_src(ui->light_CT_screen_imgbtn_1, LV_IMGBTN_STATE_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\scene_btn.png", NULL);
     lv_imgbtn_set_src(ui->light_CT_screen_imgbtn_1, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\btn_close.png", NULL);
 #else
-    lv_imgbtn_set_src(ui->light_CT_screen_imgbtn_1, LV_IMGBTN_STATE_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/scene_btn.png", NULL);
-    lv_imgbtn_set_src(ui->light_CT_screen_imgbtn_1, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/btn_close.png", NULL);
+    lv_imgbtn_set_src(ui->light_CT_screen_imgbtn_1, LV_IMGBTN_STATE_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/scene_btn.png", NULL);
+    lv_imgbtn_set_src(ui->light_CT_screen_imgbtn_1, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/btn_close.png", NULL);
 #endif
     ui->light_CT_screen_imgbtn_1_label = lv_label_create(ui->light_CT_screen_imgbtn_1);
     lv_label_set_text(ui->light_CT_screen_imgbtn_1_label, "");
@@ -380,8 +380,8 @@ void setup_scr_light_CT_screen(lv_ui *ui)
     lv_imgbtn_set_src(ui->light_CT_screen_on_off_2_img, LV_IMGBTN_STATE_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\onoff_off.png", NULL);
     lv_imgbtn_set_src(ui->light_CT_screen_on_off_2_img, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\onoff_on.png", NULL);
 #else
-    lv_imgbtn_set_src(ui->light_CT_screen_on_off_2_img, LV_IMGBTN_STATE_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/onoff_off.png", NULL);
-    lv_imgbtn_set_src(ui->light_CT_screen_on_off_2_img, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/lightCT/onoff_on.png", NULL);
+    lv_imgbtn_set_src(ui->light_CT_screen_on_off_2_img, LV_IMGBTN_STATE_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/onoff_off.png", NULL);
+    lv_imgbtn_set_src(ui->light_CT_screen_on_off_2_img, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/onoff_on.png", NULL);
 #endif
     ui->light_CT_screen_on_off_2_img_label = lv_label_create(ui->light_CT_screen_on_off_2_img);
     lv_label_set_text(ui->light_CT_screen_on_off_2_img_label, "");

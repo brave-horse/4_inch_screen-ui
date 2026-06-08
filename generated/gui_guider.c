@@ -82,6 +82,7 @@ void init_scr_del_flag(lv_ui *ui)
     ui->setting_screen_del = true;
     ui->light_CT_screen_del = true;
     ui->screen_6_del = true;
+    ui->screen_7_del = true;
 }
 
 void setup_ui(lv_ui *ui)

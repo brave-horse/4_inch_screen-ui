@@ -2,7 +2,6 @@
  *      INCLUDES
  *********************/
 #include <stddef.h>
-#include <stdio.h>
 #include "lvgl.h"
 #include "scr_noscroll.h"
 #include "gui_guider.h"
@@ -43,14 +42,6 @@ static lv_obj_t **const s_targets[] = {
  **********************/
 
 static void scr_noscroll_poll_cb(lv_timer_t *timer);
-
-/* DEBUG手势探针: 手势真冒泡到屏时打印一次, 用来判断"手势识别到了没/到没到屏"。 */
-static void scr_gesture_debug_cb(lv_event_t *e)
-{
-    LV_UNUSED(e);
-    printf("[scr_gesture] reached screen, dir=%d\n",
-           (int)lv_indev_get_gesture_dir(lv_indev_get_act()));
-}
 
 /**********************
  *  GLOBAL FUNCTIONS
@@ -100,7 +91,6 @@ static void scr_noscroll_poll_cb(lv_timer_t *timer)
             uint32_t cnt = lv_obj_get_child_cnt(act);
             uint32_t c;
             obj_kill_scroll(act);
-            lv_obj_add_event_cb(act, scr_gesture_debug_cb, LV_EVENT_GESTURE, NULL);  /* DEBUG: 探针, 定位完删 */
             for (c = 0; c < cnt; c++) {
                 lv_obj_t *child = lv_obj_get_child(act, c);
                 /* list / slider 这类靠自身拖动交互的控件: 既不关滚动, 也不挂 GESTURE_BUBBLE。

@@ -39,7 +39,7 @@ typedef struct
 	lv_obj_t *device_management_screen_Light_CT_on_off_1_img;
 	lv_obj_t *device_management_screen_Light_CT_on_off_1_img_label;
 	lv_obj_t *device_management_screen_sdev_on;
-	lv_obj_t *device_management_screen_sdev_off;
+	lv_obj_t *device_management_screen_small_dev_off_img;
 	lv_obj_t *device_management_screen_label_2;
 	lv_obj_t *device_management_screen_btn_4;
 	lv_obj_t *device_management_screen_btn_4_label;
@@ -151,6 +151,26 @@ typedef struct
 	lv_obj_t *screen_6_btn_2_label;
 	lv_obj_t *screen_6_btn_3;
 	lv_obj_t *screen_6_btn_3_label;
+	lv_obj_t *screen_7;
+	bool screen_7_del;
+	lv_obj_t *screen_7_tabview_1;
+	lv_obj_t *screen_7_tabview_1_tab_1;
+	lv_obj_t *screen_7_cont_1;
+	lv_obj_t *screen_7_label_2;
+	lv_obj_t *screen_7_ct_bar;
+	lv_obj_t *screen_7_slider_2;
+	lv_obj_t *screen_7_slider_1;
+	lv_obj_t *screen_7_label_1;
+	lv_obj_t *screen_7_dev_shell_img;
+	lv_obj_t *screen_7_white_lid;
+	lv_obj_t *screen_7_dev_orange_img;
+	lv_obj_t *screen_7_dev_white_img;
+	lv_obj_t *screen_7_imgbtn_1;
+	lv_obj_t *screen_7_imgbtn_1_label;
+	lv_obj_t *screen_7_btn_1;
+	lv_obj_t *screen_7_btn_1_label;
+	lv_obj_t *screen_7_on_off_2_img;
+	lv_obj_t *screen_7_on_off_2_img_label;
 }lv_ui;
 
 typedef void (*ui_setup_scr_t)(lv_ui * ui);
@@ -181,6 +201,7 @@ void setup_scr_curtain_scene_screen(lv_ui *ui);
 void setup_scr_setting_screen(lv_ui *ui);
 void setup_scr_light_CT_screen(lv_ui *ui);
 void setup_scr_screen_6(lv_ui *ui);
+void setup_scr_screen_7(lv_ui *ui);
 
 LV_FONT_DECLARE(lv_font_ZiTiQuanWeiJunHeiW22_30)
 LV_FONT_DECLARE(lv_font_ZiTiQuanWeiJunHeiW22_16)

@@ -37,7 +37,7 @@ void setup_scr_ui_home_screen(lv_ui *ui)
 #if LV_USE_GUIDER_SIMULATOR
     lv_img_set_src(ui->ui_home_screen_img_1, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\1.jpg");
 #else
-    lv_img_set_src(ui->ui_home_screen_img_1, "S:/sdfile/EXT_RESERVED/uipackres/ui/home/1.jpg");
+    lv_img_set_src(ui->ui_home_screen_img_1, "S:/sdfile/EXT_RESERVED/uipackres/ui/1.jpg");
 #endif
     lv_img_set_pivot(ui->ui_home_screen_img_1, 50,50);
     lv_img_set_angle(ui->ui_home_screen_img_1, 0);
