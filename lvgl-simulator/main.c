@@ -18,6 +18,7 @@
 #include "lv_drivers/indev/keyboard.h"
 #include "gui_guider.h"
 #include "custom.h"
+#include "HWDataAccess.h"
 #include "widgets_init.h"
 #include <pthread.h>
 #include <stdio.h>
@@ -92,6 +93,7 @@ int main(int argc, char ** argv)
 #endif
 
     /*Create a GUI-Guider app */
+    HW_Init();
     setup_ui(&guider_ui);
     custom_init(&guider_ui);
 #if LV_USE_FREEMASTER

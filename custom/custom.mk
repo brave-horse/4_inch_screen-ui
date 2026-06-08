@@ -8,15 +8,17 @@
 # 注：含 .c 的目录列进 CUSTOM_SRC_DIRS；空目录(widget/screen)wildcard 返回空，无害。
 
 CUSTOM_SRC_DIRS := \
-	$(PRJ_DIR)/custom \
-	$(PRJ_DIR)/custom/assert \
-	$(PRJ_DIR)/custom/rule \
-	$(PRJ_DIR)/custom/screen \
-	$(PRJ_DIR)/custom/widget \
-	$(PRJ_DIR)/custom/event
+		$(PRJ_DIR)/custom \
+		$(PRJ_DIR)/custom/assert \
+		$(PRJ_DIR)/custom/rule \
+		$(PRJ_DIR)/custom/screen \
+		$(PRJ_DIR)/custom/widget \
+		$(PRJ_DIR)/custom/event \
+		$(PRJ_DIR)/class/Soc
 
 CUSTOM_INC_DIRS := \
-	$(PRJ_DIR)/custom/include
+		$(PRJ_DIR)/custom/include \
+		$(PRJ_DIR)/class/Inc
 
 GEN_CSRCS += $(notdir $(foreach dir,$(CUSTOM_SRC_DIRS),$(wildcard $(dir)/*.c)))
 

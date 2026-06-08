@@ -1,103 +1,148 @@
-/**
- *  @file   HWDataAccess.c
- *  @brief  硬件中间层实现, 当前: 色温灯(LightCT)。
- *
- *  @note   位置说明见 include/HWDataAccess.h 文件头: 暂从 demo_ui/Fuc 移到 custom 下,
- *          让 GUI-Guider 模拟器(只编 custom+generated)也能链接到 HWInterface。
- */
-
-#include <stdio.h>
 #include "HWDataAccess.h"
+#include "LightCT.h"
+#include "Curtain.h"
 
+static LightCT  g_light_ct;
+static Curtain  g_curtain[CURTAIN_COUNT_MAX];
+static uint8_t  g_curtain_cnt;   /* 已初始化的窗帘数 */
 
-/***************************
- *  色温灯 LightCT Functions
- ***************************/
-
-/** 把 value 限制到 [min_val, max_val]。 */
-static uint16_t LightCT_Clamp(uint16_t value, uint16_t min_val, uint16_t max_val)
+static uint16_t clamp_to(uint16_t v, uint16_t lo, uint16_t hi)
 {
-    if (value < min_val) {
-        return min_val;
-    }
-    if (value > max_val) {
-        return max_val;
-    }
-    return value;
+    if (v < lo) return lo;
+    if (v > hi) return hi;
+    return v;
 }
 
-/** 色温灯硬件初始化(HW_Light_CT 关时为空操作)。 */
-void HW_LightCT_Init(void)
+/* ═══════════ 色温灯 ═══════════ */
+
+static void impl_LightCT_Init(void)
 {
-#if HW_Light_CT
-    LightCT_Init();
-#endif
+    LightCT_Init(&g_light_ct, "CT主灯", 1, 4600, 50);
+    HWInterface.LightCT.switch_status = Light_IsOn(&g_light_ct.base);
+    HWInterface.LightCT.brightness    = Light_GetBrightness(&g_light_ct.base);
+    HWInterface.LightCT.color_temp    = LightCT_GetColorTemp(&g_light_ct);
+    HWInterface.LightCT.changed       = 1;   /* 首轮必然下发 */
 }
 
-/**
- * 开关灯(UI 调用): 有变化则置 changed。
- * @param on true 开, false 关
- */
-void HW_LightCT_SetOnOff(bool on)
+static void impl_LightCT_SetOnOff(bool on)
 {
-    if (HWInterface.LightCT.switch_status != on) {
+    if (Light_IsOn(&g_light_ct.base) != on) {
+        Light_SetOn(&g_light_ct.base, on);
         HWInterface.LightCT.switch_status = on;
         HWInterface.LightCT.changed = 1;
     }
 }
 
-/**
- * 设置亮度(UI 调用): clamp 后缓存, 有变化则置 changed。
- * @param brightness 亮度(%), LIGHTCT_BRIGHTNESS_MIN..MAX
- */
-void HW_LightCT_SetBrightness(uint16_t brightness)
+static void impl_LightCT_SetBrightness(uint16_t bri)
 {
-    brightness = LightCT_Clamp(brightness, LIGHTCT_BRIGHTNESS_MIN, LIGHTCT_BRIGHTNESS_MAX);
-    if (HWInterface.LightCT.brightness != brightness) {
-        HWInterface.LightCT.brightness = brightness;
+    bri = clamp_to(bri, LIGHTCT_BRIGHTNESS_MIN, LIGHTCT_BRIGHTNESS_MAX);
+    if (Light_GetBrightness(&g_light_ct.base) != bri) {
+        Light_SetBrightness(&g_light_ct.base, bri);
+        HWInterface.LightCT.brightness = bri;
         HWInterface.LightCT.changed = 1;
     }
 }
 
-/**
- * 设置色温(UI 调用): clamp 后缓存, 有变化则置 changed。
- * @param color_temp 色温(K), LIGHTCT_COLOR_TEMP_MIN..MAX
- */
-void HW_LightCT_SetColorTemp(uint16_t color_temp)
+static void impl_LightCT_SetColorTemp(uint16_t ct)
 {
-    color_temp = LightCT_Clamp(color_temp, LIGHTCT_COLOR_TEMP_MIN, LIGHTCT_COLOR_TEMP_MAX);
-    if (HWInterface.LightCT.color_temp != color_temp) {
-        HWInterface.LightCT.color_temp = color_temp;
+    ct = clamp_to(ct, LIGHTCT_COLOR_TEMP_MIN, LIGHTCT_COLOR_TEMP_MAX);
+    if (LightCT_GetColorTemp(&g_light_ct) != ct) {
+        LightCT_SetColorTemp(&g_light_ct, ct);
+        HWInterface.LightCT.color_temp = ct;
         HWInterface.LightCT.changed = 1;
     }
 }
 
-/** 把缓存的开关/亮度/色温下发硬件(任务调用); 无硬件时打印占位。关灯按亮度 0 下发。 */
-void HW_LightCT_Apply(void)
+static void impl_LightCT_Apply(void)
 {
-    uint16_t brightness = HWInterface.LightCT.switch_status ? HWInterface.LightCT.brightness : 0;
-#if HW_Light_CT
-    LightCT_Set(brightness, HWInterface.LightCT.color_temp);
-#else
-    printf("[LightCT] -> HW  on=%d  brightness=%d%%  color_temp=%dK\n",
-           HWInterface.LightCT.switch_status, brightness, HWInterface.LightCT.color_temp);
-#endif
+    uint16_t bri = HWInterface.LightCT.switch_status
+                   ? HWInterface.LightCT.brightness : 0;
+    Light_SetBrightness(&g_light_ct.base, bri);
+    Light_Apply(&g_light_ct.base);
+    HWInterface.LightCT.changed = 0;
 }
 
+/* ═══════════ 窗帘 ═══════════ */
 
-/***************************
- *  External Variables
- ***************************/
+static void impl_Curtain_Init(uint8_t idx)
+{
+    if (idx >= g_curtain_cnt) return;
+    Curtain_Init(&g_curtain[idx], "窗帘", 10 + idx, 50);
+    if (idx == 0) {
+        HWInterface.Curtain.switch_status = Curtain_IsOn(&g_curtain[0]);
+        HWInterface.Curtain.position      = Curtain_GetPos(&g_curtain[0]);
+        HWInterface.Curtain.changed       = 1;
+    }
+}
+
+static void impl_Curtain_SetOnOff(uint8_t idx, bool on)
+{
+    if (idx >= g_curtain_cnt) return;
+    if (Curtain_IsOn(&g_curtain[idx]) != on) {
+        Curtain_SetOn(&g_curtain[idx], on);
+        if (idx == 0) {
+            HWInterface.Curtain.switch_status = on;
+            HWInterface.Curtain.changed = 1;
+        }
+    }
+}
+
+static void impl_Curtain_SetPos(uint8_t idx, uint16_t pos)
+{
+    if (idx >= g_curtain_cnt) return;
+    pos = clamp_to(pos, CURTAIN_POS_MIN, CURTAIN_POS_MAX);
+    if (Curtain_GetPos(&g_curtain[idx]) != pos) {
+        Curtain_SetPos(&g_curtain[idx], pos);
+        if (idx == 0) {
+            HWInterface.Curtain.position = pos;
+            HWInterface.Curtain.changed = 1;
+        }
+    }
+}
+
+static void impl_Curtain_Apply(uint8_t idx)
+{
+    if (idx >= g_curtain_cnt) return;
+    uint16_t pos = Curtain_IsOn(&g_curtain[idx])
+                   ? Curtain_GetPos(&g_curtain[idx]) : 0;
+    Curtain_SetPos(&g_curtain[idx], pos);
+    Curtain_Apply(&g_curtain[idx]);
+    if (idx == 0) {
+        HWInterface.Curtain.changed = 0;
+    }
+}
+
+/* ═══════════ 全局实例 ═══════════ */
+
 HW_InterfaceTypeDef HWInterface = {
     .LightCT = {
-        .switch_status = false,   //开关: 默认关
-        .brightness = 50,
-        .color_temp = 4600,
-        .changed = 0,        //是否变化
-        .Init = HW_LightCT_Init,
-        .SetOnOff = HW_LightCT_SetOnOff,
-        .SetBrightness = HW_LightCT_SetBrightness,
-        .SetColorTemp = HW_LightCT_SetColorTemp,
-        .Apply = HW_LightCT_Apply,
+        .switch_status = false,
+        .brightness    = 50,
+        .color_temp    = 4600,
+        .changed       = 1,
+        .Init          = impl_LightCT_Init,
+        .SetOnOff      = impl_LightCT_SetOnOff,
+        .SetBrightness = impl_LightCT_SetBrightness,
+        .SetColorTemp  = impl_LightCT_SetColorTemp,
+        .Apply         = impl_LightCT_Apply,
+    },
+    .Curtain = {
+        .switch_status = false,
+        .position      = 50,
+        .changed       = 1,
+        .Init          = impl_Curtain_Init,
+        .SetOnOff      = impl_Curtain_SetOnOff,
+        .SetPos        = impl_Curtain_SetPos,
+        .Apply         = impl_Curtain_Apply,
     },
 };
+
+void HW_Init(void)
+{
+    /* 色温灯: 1 个 */
+    impl_LightCT_Init();
+
+    /* 窗帘: 1 路(改 CURTAIN_COUNT_MAX 和此处 for 上限即可扩展) */
+    g_curtain_cnt = 1;
+    impl_Curtain_Init(0);
+}

@@ -81,8 +81,20 @@ void init_scr_del_flag(lv_ui *ui)
     ui->curtain_scene_screen_del = true;
     ui->setting_screen_del = true;
     ui->light_CT_screen_del = true;
-    ui->screen_6_del = true;
-    ui->screen_7_del = true;
+    ui->LightCT_del = true;
+    ui->LedStrip_del = true;
+    ui->MagLight_del = true;
+    ui->RGBLight_del = true;
+    ui->FabricCurtian_del = true;
+    ui->Sheers_del = true;
+    ui->RollBlind_del = true;
+    ui->Dream_del = true;
+    ui->AirCondition_del = true;
+    ui->Music_del = true;
+    ui->DryRack_del = true;
+    ui->FanLight_del = true;
+    ui->Heater_del = true;
+    ui->screen_1_del = true;
 }
 
 void setup_ui(lv_ui *ui)
