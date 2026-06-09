@@ -112,7 +112,7 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_label_set_text(ui->RGBLight_label_2, "颜 色 | #00718D");
     lv_label_set_long_mode(ui->RGBLight_label_2, LV_LABEL_LONG_WRAP);
     lv_obj_set_pos(ui->RGBLight_label_2, 258, 576);
-    lv_obj_set_size(ui->RGBLight_label_2, 211, 34);
+    lv_obj_set_size(ui->RGBLight_label_2, 257, 34);
 
     //Write style for RGBLight_label_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->RGBLight_label_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);

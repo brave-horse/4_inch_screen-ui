@@ -272,12 +272,8 @@ typedef struct
 	lv_obj_t *Dream_tabview_1;
 	lv_obj_t *Dream_tabview_1_tab_1;
 	lv_obj_t *Dream_cont_1;
-	lv_obj_t *Dream_imgbtn_1;
-	lv_obj_t *Dream_imgbtn_1_label;
 	lv_obj_t *Dream_btn_1;
 	lv_obj_t *Dream_btn_1_label;
-	lv_obj_t *Dream_on_off_2_img;
-	lv_obj_t *Dream_on_off_2_img_label;
 	lv_obj_t *Dream_FabCurtianOpen;
 	lv_obj_t *Dream_FabCurtianClose;
 	lv_obj_t *Dream_FabCurtianPause;

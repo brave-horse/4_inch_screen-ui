@@ -345,7 +345,7 @@ void setup_scr_Sheers(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->Sheers_FabCurtianPull1, 50,50);
     lv_img_set_angle(ui->Sheers_FabCurtianPull1, 0);
-    lv_obj_set_pos(ui->Sheers_FabCurtianPull1, 267, 321);
+    lv_obj_set_pos(ui->Sheers_FabCurtianPull1, 303, 321);
     lv_obj_set_size(ui->Sheers_FabCurtianPull1, 45, 45);
 
     //Write style for Sheers_FabCurtianPull1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.

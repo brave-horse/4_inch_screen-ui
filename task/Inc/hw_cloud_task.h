@@ -18,6 +18,7 @@ enum {
     HW_MSG_LIGHT_RGB_COLOR,
     HW_MSG_CURTAIN_SWITCH,    /* uint8_t idx, bool on */
     HW_MSG_CURTAIN_POS,       /* uint8_t idx, uint16_t pos */
+    HW_MSG_CURTAIN_ANGLE,     /* uint16_t val — 梦幻帘旋转角(度) */
     HW_MSG_CLOUD_CMD,
 
     HW_MSG_COUNT

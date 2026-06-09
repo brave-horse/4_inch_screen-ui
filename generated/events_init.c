@@ -21,6 +21,11 @@
 #include "light_CT_screen.h"
 #include "LEDStrip.h"
 #include "MagLight.h"
+#include "RGBLight.h"
+#include "FabricCurtian.h"
+#include "Sheers.h"
+#include "RollBlind.h"
+#include "Dream.h"
 
 static void ui_home_screen_event_handler (lv_event_t *e)
 {
@@ -992,6 +997,35 @@ static void RGBLight_event_handler (lv_event_t *e)
         ui_animation(guider_ui.RGBLight_ct_bar, 600, 0, lv_obj_get_x(guider_ui.RGBLight_ct_bar), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
         ui_animation(guider_ui.RGBLight_label_2, 600, 0, lv_obj_get_x(guider_ui.RGBLight_label_2), 20, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
         ui_animation(guider_ui.RGBLight_slider_1, 600, 0, lv_obj_get_x(guider_ui.RGBLight_slider_1), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        rgb_light_on_screen_load();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void RGBLight_slider_2_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_VALUE_CHANGED:
+    {
+        rgb_light_on_color_slider_change();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void RGBLight_slider_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_VALUE_CHANGED:
+    {
+        rgb_light_on_bri_slider_change();
         break;
     }
     default:
@@ -1013,10 +1047,27 @@ static void RGBLight_btn_1_event_handler (lv_event_t *e)
     }
 }
 
+static void RGBLight_on_off_2_img_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_VALUE_CHANGED:
+    {
+        rgb_light_on_switch_toggle(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
 void events_init_RGBLight (lv_ui *ui)
 {
     lv_obj_add_event_cb(ui->RGBLight, RGBLight_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->RGBLight_slider_2, RGBLight_slider_2_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->RGBLight_slider_1, RGBLight_slider_1_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->RGBLight_btn_1, RGBLight_btn_1_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->RGBLight_on_off_2_img, RGBLight_on_off_2_img_event_handler, LV_EVENT_ALL, ui);
 }
 
 static void FabricCurtian_event_handler (lv_event_t *e)
@@ -1028,6 +1079,7 @@ static void FabricCurtian_event_handler (lv_event_t *e)
         ui_animation(guider_ui.FabricCurtian_FabCurtianPause, 300, 0, lv_obj_get_y(guider_ui.FabricCurtian_FabCurtianPause), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
         ui_animation(guider_ui.FabricCurtian_FabCurtianClose, 300, 0, lv_obj_get_y(guider_ui.FabricCurtian_FabCurtianClose), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
         ui_animation(guider_ui.FabricCurtian_FabCurtianOpen, 300, 0, lv_obj_get_y(guider_ui.FabricCurtian_FabCurtianOpen), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
+        fab_curtain_on_screen_load();
         break;
     }
     default:
@@ -1049,10 +1101,115 @@ static void FabricCurtian_btn_1_event_handler (lv_event_t *e)
     }
 }
 
+static void FabricCurtian_FabCurtianOpen_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        fab_curtain_on_open();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void FabricCurtian_FabCurtianClose_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        fab_curtain_on_close();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void FabricCurtian_FabCurtianPause_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        fab_curtain_on_pause();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void FabricCurtian_FabCurtianLeft_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        fab_curtain_on_drag(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void FabricCurtian_FabCurtianright_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        fab_curtain_on_drag(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void FabricCurtian_FabCurtianPull2_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_PRESSING:
+    {
+        fab_curtain_on_drag(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void FabricCurtian_FabCurtianPull1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_PRESSING:
+    {
+        fab_curtain_on_drag(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
 void events_init_FabricCurtian (lv_ui *ui)
 {
     lv_obj_add_event_cb(ui->FabricCurtian, FabricCurtian_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->FabricCurtian_btn_1, FabricCurtian_btn_1_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->FabricCurtian_FabCurtianOpen, FabricCurtian_FabCurtianOpen_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->FabricCurtian_FabCurtianClose, FabricCurtian_FabCurtianClose_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->FabricCurtian_FabCurtianPause, FabricCurtian_FabCurtianPause_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->FabricCurtian_FabCurtianLeft, FabricCurtian_FabCurtianLeft_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->FabricCurtian_FabCurtianright, FabricCurtian_FabCurtianright_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->FabricCurtian_FabCurtianPull2, FabricCurtian_FabCurtianPull2_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->FabricCurtian_FabCurtianPull1, FabricCurtian_FabCurtianPull1_event_handler, LV_EVENT_ALL, ui);
 }
 
 static void Sheers_event_handler (lv_event_t *e)
@@ -1064,6 +1221,7 @@ static void Sheers_event_handler (lv_event_t *e)
         ui_animation(guider_ui.Sheers_FabCurtianPause, 300, 0, lv_obj_get_y(guider_ui.Sheers_FabCurtianPause), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
         ui_animation(guider_ui.Sheers_FabCurtianClose, 300, 0, lv_obj_get_y(guider_ui.Sheers_FabCurtianClose), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
         ui_animation(guider_ui.Sheers_FabCurtianOpen, 300, 0, lv_obj_get_y(guider_ui.Sheers_FabCurtianOpen), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
+        sheers_on_screen_load();
         break;
     }
     default:
@@ -1085,10 +1243,115 @@ static void Sheers_btn_1_event_handler (lv_event_t *e)
     }
 }
 
+static void Sheers_FabCurtianOpen_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        sheers_on_open();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void Sheers_FabCurtianClose_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        sheers_on_close();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void Sheers_FabCurtianPause_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        sheers_on_pause();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void Sheers_FabCurtianLeft_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        sheers_on_drag(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void Sheers_FabCurtianright_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        sheers_on_drag(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void Sheers_FabCurtianPull2_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_PRESSING:
+    {
+        sheers_on_drag(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void Sheers_FabCurtianPull1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_PRESSING:
+    {
+        sheers_on_drag(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
 void events_init_Sheers (lv_ui *ui)
 {
     lv_obj_add_event_cb(ui->Sheers, Sheers_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->Sheers_btn_1, Sheers_btn_1_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->Sheers_FabCurtianOpen, Sheers_FabCurtianOpen_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->Sheers_FabCurtianClose, Sheers_FabCurtianClose_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->Sheers_FabCurtianPause, Sheers_FabCurtianPause_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->Sheers_FabCurtianLeft, Sheers_FabCurtianLeft_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->Sheers_FabCurtianright, Sheers_FabCurtianright_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->Sheers_FabCurtianPull2, Sheers_FabCurtianPull2_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->Sheers_FabCurtianPull1, Sheers_FabCurtianPull1_event_handler, LV_EVENT_ALL, ui);
 }
 
 static void RollBlind_event_handler (lv_event_t *e)
@@ -1100,6 +1363,77 @@ static void RollBlind_event_handler (lv_event_t *e)
         ui_animation(guider_ui.RollBlind_FabCurtianPause, 300, 0, lv_obj_get_y(guider_ui.RollBlind_FabCurtianPause), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
         ui_animation(guider_ui.RollBlind_FabCurtianClose, 300, 0, lv_obj_get_y(guider_ui.RollBlind_FabCurtianClose), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
         ui_animation(guider_ui.RollBlind_FabCurtianOpen, 300, 0, lv_obj_get_y(guider_ui.RollBlind_FabCurtianOpen), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
+        roll_blind_on_screen_load();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void RollBlind_FabCurtianOpen_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        roll_blind_on_open();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void RollBlind_FabCurtianClose_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        roll_blind_on_close();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void RollBlind_FabCurtianPause_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        roll_blind_on_pause();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void RollBlind_FabCurtianLeft_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        roll_blind_on_drag(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void RollBlind_FabCurtianPull1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_PRESSING:
+    {
+        roll_blind_on_drag(e);
         break;
     }
     default:
@@ -1124,6 +1458,11 @@ static void RollBlind_btn_1_event_handler (lv_event_t *e)
 void events_init_RollBlind (lv_ui *ui)
 {
     lv_obj_add_event_cb(ui->RollBlind, RollBlind_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->RollBlind_FabCurtianOpen, RollBlind_FabCurtianOpen_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->RollBlind_FabCurtianClose, RollBlind_FabCurtianClose_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->RollBlind_FabCurtianPause, RollBlind_FabCurtianPause_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->RollBlind_FabCurtianLeft, RollBlind_FabCurtianLeft_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->RollBlind_FabCurtianPull1, RollBlind_FabCurtianPull1_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->RollBlind_btn_1, RollBlind_btn_1_event_handler, LV_EVENT_ALL, ui);
 }
 
@@ -1136,6 +1475,7 @@ static void Dream_event_handler (lv_event_t *e)
         ui_animation(guider_ui.Dream_FabCurtianPause, 300, 0, lv_obj_get_y(guider_ui.Dream_FabCurtianPause), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
         ui_animation(guider_ui.Dream_FabCurtianClose, 300, 0, lv_obj_get_y(guider_ui.Dream_FabCurtianClose), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
         ui_animation(guider_ui.Dream_FabCurtianOpen, 300, 0, lv_obj_get_y(guider_ui.Dream_FabCurtianOpen), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
+        dream_on_screen_load();
         break;
     }
     default:
@@ -1157,10 +1497,130 @@ static void Dream_btn_1_event_handler (lv_event_t *e)
     }
 }
 
+static void Dream_FabCurtianOpen_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        dream_on_open();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void Dream_FabCurtianClose_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        dream_on_close();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void Dream_FabCurtianPause_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        dream_on_pause();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void Dream_FabCurtianLeft_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        dream_on_drag(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void Dream_FabCurtianright_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_PRESSING:
+    {
+        dream_on_drag(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void Dream_FabCurtianPull2_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_PRESSING:
+    {
+        dream_on_drag(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void Dream_FabCurtianPull1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_PRESSING:
+    {
+        dream_on_drag(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void Dream_slider_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_VALUE_CHANGED:
+    {
+        dream_on_angle_slider_change();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
 void events_init_Dream (lv_ui *ui)
 {
     lv_obj_add_event_cb(ui->Dream, Dream_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->Dream_btn_1, Dream_btn_1_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->Dream_FabCurtianOpen, Dream_FabCurtianOpen_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->Dream_FabCurtianClose, Dream_FabCurtianClose_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->Dream_FabCurtianPause, Dream_FabCurtianPause_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->Dream_FabCurtianLeft, Dream_FabCurtianLeft_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->Dream_FabCurtianright, Dream_FabCurtianright_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->Dream_FabCurtianPull2, Dream_FabCurtianPull2_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->Dream_FabCurtianPull1, Dream_FabCurtianPull1_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->Dream_slider_1, Dream_slider_1_event_handler, LV_EVENT_ALL, ui);
 }
 
 static void AirCondition_btn_1_event_handler (lv_event_t *e)
