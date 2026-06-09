@@ -35,17 +35,17 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_obj_set_scrollbar_mode(ui->RGBLight_tabview_1, LV_SCROLLBAR_MODE_ON);
 
     //Write style for RGBLight_tabview_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->RGBLight_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->RGBLight_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->RGBLight_tabview_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->RGBLight_tabview_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->RGBLight_tabview_1, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->RGBLight_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(ui->RGBLight_tabview_1, lv_color_hex(0x4d4d4d), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->RGBLight_tabview_1, &lv_font_ZiTiQuanWeiJunHeiW22_12, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->RGBLight_tabview_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_letter_space(ui->RGBLight_tabview_1, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_line_space(ui->RGBLight_tabview_1, 16, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->RGBLight_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->RGBLight_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->RGBLight_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write style state: LV_STATE_DEFAULT for &style_RGBLight_tabview_1_extra_btnm_main_default
     static lv_style_t style_RGBLight_tabview_1_extra_btnm_main_default;
@@ -102,9 +102,9 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_obj_set_style_bg_color(ui->RGBLight_cont_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->RGBLight_cont_1, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_top(ui->RGBLight_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_right(ui->RGBLight_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_bottom(ui->RGBLight_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_left(ui->RGBLight_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui->RGBLight_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->RGBLight_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes RGBLight_label_2
@@ -115,8 +115,8 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_obj_set_size(ui->RGBLight_label_2, 211, 34);
 
     //Write style for RGBLight_label_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->RGBLight_label_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_border_width(ui->RGBLight_label_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->RGBLight_label_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(ui->RGBLight_label_2, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->RGBLight_label_2, &lv_font_ZiTiQuanWeiJunHeiW22_30, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->RGBLight_label_2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -134,28 +134,28 @@ void setup_scr_RGBLight(lv_ui *ui)
     ui->RGBLight_ct_bar = lv_img_create(ui->RGBLight);
     lv_obj_add_flag(ui->RGBLight_ct_bar, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->RGBLight_ct_bar, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\ct_bar.png");
+    lv_img_set_src(ui->RGBLight_ct_bar, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\rgb_bar.png");
 #else
-    lv_img_set_src(ui->RGBLight_ct_bar, "S:/sdfile/EXT_RESERVED/uipackres/ui/ct_bar.png");
+    lv_img_set_src(ui->RGBLight_ct_bar, "S:/sdfile/EXT_RESERVED/uipackres/ui/rgb_bar.png");
 #endif
     lv_img_set_pivot(ui->RGBLight_ct_bar, 50,50);
     lv_img_set_angle(ui->RGBLight_ct_bar, 0);
-    lv_obj_set_pos(ui->RGBLight_ct_bar, -216, 623);
-    lv_obj_set_size(ui->RGBLight_ct_bar, 600, 70);
+    lv_obj_set_pos(ui->RGBLight_ct_bar, -221, 610);
+    lv_obj_set_size(ui->RGBLight_ct_bar, 650, 70);
 
     //Write style for RGBLight_ct_bar, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->RGBLight_ct_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->RGBLight_ct_bar, true, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_recolor_opa(ui->RGBLight_ct_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_opa(ui->RGBLight_ct_bar, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->RGBLight_ct_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->RGBLight_ct_bar, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes RGBLight_slider_2
     ui->RGBLight_slider_2 = lv_slider_create(ui->RGBLight);
     lv_slider_set_range(ui->RGBLight_slider_2, 2700, 6500);
     lv_slider_set_mode(ui->RGBLight_slider_2, LV_SLIDER_MODE_SYMMETRICAL);
     lv_slider_set_value(ui->RGBLight_slider_2, 4600, LV_ANIM_OFF);
-    lv_obj_set_pos(ui->RGBLight_slider_2, -216, 623);
-    lv_obj_set_size(ui->RGBLight_slider_2, 600, 70);
+    lv_obj_set_pos(ui->RGBLight_slider_2, -217, 610);
+    lv_obj_set_size(ui->RGBLight_slider_2, 650, 70);
 
     //Write style for RGBLight_slider_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_bg_opa(ui->RGBLight_slider_2, 40, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -181,15 +181,15 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_slider_set_mode(ui->RGBLight_slider_1, LV_SLIDER_MODE_SYMMETRICAL);
     lv_slider_set_value(ui->RGBLight_slider_1, 50, LV_ANIM_OFF);
     lv_obj_set_pos(ui->RGBLight_slider_1, -221, 481);
-    lv_obj_set_size(ui->RGBLight_slider_1, 600, 70);
+    lv_obj_set_size(ui->RGBLight_slider_1, 632, 70);
 
     //Write style for RGBLight_slider_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->RGBLight_slider_1, 60, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->RGBLight_slider_1, 60, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->RGBLight_slider_1, lv_color_hex(0xdedfdf), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->RGBLight_slider_1, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->RGBLight_slider_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->RGBLight_slider_1, 60, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_outline_width(ui->RGBLight_slider_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->RGBLight_slider_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write style for RGBLight_slider_1, Part: LV_PART_INDICATOR, State: LV_STATE_DEFAULT.
     lv_obj_set_style_bg_opa(ui->RGBLight_slider_1, 255, LV_PART_INDICATOR|LV_STATE_DEFAULT);
@@ -213,8 +213,8 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_obj_set_size(ui->RGBLight_label_1, 227, 39);
 
     //Write style for RGBLight_label_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->RGBLight_label_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_border_width(ui->RGBLight_label_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->RGBLight_label_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(ui->RGBLight_label_1, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->RGBLight_label_1, &lv_font_ZiTiQuanWeiJunHeiW22_30, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->RGBLight_label_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -243,33 +243,33 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_label_set_long_mode(ui->RGBLight_imgbtn_1_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->RGBLight_imgbtn_1_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->RGBLight_imgbtn_1, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->RGBLight_imgbtn_1, 652, 101);
-    lv_obj_set_size(ui->RGBLight_imgbtn_1, 48, 48);
+    lv_obj_set_pos(ui->RGBLight_imgbtn_1, 633, 97);
+    lv_obj_set_size(ui->RGBLight_imgbtn_1, 70, 70);
 
     //Write style for RGBLight_imgbtn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->RGBLight_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->RGBLight_imgbtn_1, true, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->RGBLight_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(ui->RGBLight_imgbtn_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->RGBLight_imgbtn_1, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->RGBLight_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui->RGBLight_imgbtn_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->RGBLight_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->RGBLight_imgbtn_1, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->RGBLight_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write style for RGBLight_imgbtn_1, Part: LV_PART_MAIN, State: LV_STATE_PRESSED.
-    lv_obj_set_style_shadow_width(ui->RGBLight_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_img_recolor_opa(ui->RGBLight_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_img_opa(ui->RGBLight_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_PRESSED);
     lv_obj_set_style_text_color(ui->RGBLight_imgbtn_1, lv_color_hex(0xFF33FF), LV_PART_MAIN|LV_STATE_PRESSED);
     lv_obj_set_style_text_font(ui->RGBLight_imgbtn_1, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_PRESSED);
     lv_obj_set_style_text_opa(ui->RGBLight_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_img_recolor_opa(ui->RGBLight_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_img_opa(ui->RGBLight_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_shadow_width(ui->RGBLight_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_PRESSED);
 
     //Write style for RGBLight_imgbtn_1, Part: LV_PART_MAIN, State: LV_STATE_CHECKED.
-    lv_obj_set_style_shadow_width(ui->RGBLight_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_img_recolor_opa(ui->RGBLight_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_img_opa(ui->RGBLight_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_CHECKED);
     lv_obj_set_style_text_color(ui->RGBLight_imgbtn_1, lv_color_hex(0xFF33FF), LV_PART_MAIN|LV_STATE_CHECKED);
     lv_obj_set_style_text_font(ui->RGBLight_imgbtn_1, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_CHECKED);
     lv_obj_set_style_text_opa(ui->RGBLight_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_img_recolor_opa(ui->RGBLight_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_img_opa(ui->RGBLight_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_shadow_width(ui->RGBLight_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_CHECKED);
 
     //Write style for RGBLight_imgbtn_1, Part: LV_PART_MAIN, State: LV_IMGBTN_STATE_RELEASED.
     lv_obj_set_style_img_recolor_opa(ui->RGBLight_imgbtn_1, 0, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
@@ -287,14 +287,14 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_obj_set_size(ui->RGBLight_btn_1, 156, 50);
 
     //Write style for RGBLight_btn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_bg_opa(ui->RGBLight_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->RGBLight_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->RGBLight_btn_1, 5, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->RGBLight_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(ui->RGBLight_btn_1, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->RGBLight_btn_1, &lv_font_ZiTiQuanWeiJunHeiW22_30, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->RGBLight_btn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui->RGBLight_btn_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->RGBLight_btn_1, 5, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->RGBLight_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui->RGBLight_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_width(ui->RGBLight_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes RGBLight_on_off_2_img
     ui->RGBLight_on_off_2_img = lv_imgbtn_create(ui->RGBLight);
@@ -315,12 +315,12 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_obj_set_size(ui->RGBLight_on_off_2_img, 48, 48);
 
     //Write style for RGBLight_on_off_2_img, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->RGBLight_on_off_2_img, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->RGBLight_on_off_2_img, true, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(ui->RGBLight_on_off_2_img, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->RGBLight_on_off_2_img, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->RGBLight_on_off_2_img, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui->RGBLight_on_off_2_img, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->RGBLight_on_off_2_img, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->RGBLight_on_off_2_img, true, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->RGBLight_on_off_2_img, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write style for RGBLight_on_off_2_img, Part: LV_PART_MAIN, State: LV_STATE_PRESSED.
@@ -346,7 +346,11 @@ void setup_scr_RGBLight(lv_ui *ui)
     //Write codes RGBLight_RGBCover
     ui->RGBLight_RGBCover = lv_img_create(ui->RGBLight);
     lv_obj_add_flag(ui->RGBLight_RGBCover, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->RGBLight_RGBCover, &_RGBCover_alpha_196x190);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->RGBLight_RGBCover, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\RGBCover.png");
+#else
+    lv_img_set_src(ui->RGBLight_RGBCover, "S:/sdfile/EXT_RESERVED/uipackres/ui/RGBCover.png");
+#endif
     lv_img_set_pivot(ui->RGBLight_RGBCover, 50,50);
     lv_img_set_angle(ui->RGBLight_RGBCover, 0);
     lv_obj_set_pos(ui->RGBLight_RGBCover, 231, 80);
@@ -361,7 +365,11 @@ void setup_scr_RGBLight(lv_ui *ui)
     //Write codes RGBLight_RGBblue
     ui->RGBLight_RGBblue = lv_img_create(ui->RGBLight);
     lv_obj_add_flag(ui->RGBLight_RGBblue, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->RGBLight_RGBblue, &_RGBblue_alpha_537x170);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->RGBLight_RGBblue, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\RGBblue.png");
+#else
+    lv_img_set_src(ui->RGBLight_RGBblue, "S:/sdfile/EXT_RESERVED/uipackres/ui/RGBblue.png");
+#endif
     lv_img_set_pivot(ui->RGBLight_RGBblue, 50,50);
     lv_img_set_angle(ui->RGBLight_RGBblue, 0);
     lv_obj_set_pos(ui->RGBLight_RGBblue, 62, 244);
@@ -376,7 +384,11 @@ void setup_scr_RGBLight(lv_ui *ui)
     //Write codes RGBLight_Red
     ui->RGBLight_Red = lv_img_create(ui->RGBLight);
     lv_obj_add_flag(ui->RGBLight_Red, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->RGBLight_Red, &_RGBRed_alpha_537x170);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->RGBLight_Red, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\RGBRed.png");
+#else
+    lv_img_set_src(ui->RGBLight_Red, "S:/sdfile/EXT_RESERVED/uipackres/ui/RGBRed.png");
+#endif
     lv_img_set_pivot(ui->RGBLight_Red, 50,50);
     lv_img_set_angle(ui->RGBLight_Red, 0);
     lv_obj_set_pos(ui->RGBLight_Red, 62, 244);
@@ -391,7 +403,11 @@ void setup_scr_RGBLight(lv_ui *ui)
     //Write codes RGBLight_Green
     ui->RGBLight_Green = lv_img_create(ui->RGBLight);
     lv_obj_add_flag(ui->RGBLight_Green, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->RGBLight_Green, &_RGBGreen_alpha_537x170);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->RGBLight_Green, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\RGBGreen.png");
+#else
+    lv_img_set_src(ui->RGBLight_Green, "S:/sdfile/EXT_RESERVED/uipackres/ui/RGBGreen.png");
+#endif
     lv_img_set_pivot(ui->RGBLight_Green, 50,50);
     lv_img_set_angle(ui->RGBLight_Green, 0);
     lv_obj_set_pos(ui->RGBLight_Green, 62, 244);
@@ -409,4 +425,6 @@ void setup_scr_RGBLight(lv_ui *ui)
     //Update current screen layout.
     lv_obj_update_layout(ui->RGBLight);
 
+    //Init events for screen.
+    events_init_RGBLight(ui);
 }

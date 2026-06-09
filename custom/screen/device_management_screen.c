@@ -27,26 +27,28 @@ static DevSlot g_slots[DEV_SLOT_COUNT] = {
     },
 };
 
-static void slot_bind(DevSlot *s,
+//绑定控件
+static void slot_bind(DevSlot *slot,
                       lv_obj_t *sw, lv_obj_t *on, lv_obj_t *off)
 {
-    s->sw  = sw;
-    s->on  = on;
-    s->off = off;
+    slot->sw  = sw;
+    slot->on  = on;
+    slot->off = off;
 }
 
-static void slot_refresh(DevSlot *s)
+//访问中间层同步ui控件
+static void slot_refresh(DevSlot *slot)
 {
-    if (!s || !s->sw) return;
-    bool on = s->is_on();
+    if (!slot || !slot->sw) return;
+    bool on = slot->is_on();
 
-    if (on) lv_obj_add_state(s->sw, LV_STATE_CHECKED);
-    else    lv_obj_clear_state(s->sw, LV_STATE_CHECKED);
+    if (on) lv_obj_add_state(slot->sw, LV_STATE_CHECKED);
+    else    lv_obj_clear_state(slot->sw, LV_STATE_CHECKED);
 
-    if (s->on)  lv_obj_set_style_img_opa(s->on,
+    if (slot->on)  lv_obj_set_style_img_opa(slot->on,
                     on ? LV_OPA_COVER : LV_OPA_TRANSP,
                     LV_PART_MAIN | LV_STATE_DEFAULT);
-    if (s->off) lv_obj_set_style_img_opa(s->off,
+    if (slot->off) lv_obj_set_style_img_opa(slot->off,
                     on ? LV_OPA_TRANSP : LV_OPA_COVER,
                     LV_PART_MAIN | LV_STATE_DEFAULT);
 }
@@ -71,9 +73,9 @@ void dev_mgmt_on_load(void)
 
 void dev_mgmt_ct_on_toggle(void)
 {
-    DevSlot *s = &g_slots[DEV_SLOT_CT_LIGHT];
-    if (!s->sw) return;
-    bool on = lv_obj_has_state(s->sw, LV_STATE_CHECKED);
-    s->set_on(on);
-    slot_refresh(s);
+    DevSlot *slot = &g_slots[DEV_SLOT_CT_LIGHT];
+    if (!slot->sw) return;
+    bool on = lv_obj_has_state(slot->sw, LV_STATE_CHECKED);
+    slot->set_on(on);
+    slot_refresh(slot);
 }

@@ -35,17 +35,17 @@ void setup_scr_Sheers(lv_ui *ui)
     lv_obj_set_scrollbar_mode(ui->Sheers_tabview_1, LV_SCROLLBAR_MODE_ON);
 
     //Write style for Sheers_tabview_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->Sheers_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Sheers_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->Sheers_tabview_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->Sheers_tabview_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->Sheers_tabview_1, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->Sheers_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(ui->Sheers_tabview_1, lv_color_hex(0x4d4d4d), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->Sheers_tabview_1, &lv_font_ZiTiQuanWeiJunHeiW22_12, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->Sheers_tabview_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_letter_space(ui->Sheers_tabview_1, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_line_space(ui->Sheers_tabview_1, 16, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->Sheers_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Sheers_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->Sheers_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write style state: LV_STATE_DEFAULT for &style_Sheers_tabview_1_extra_btnm_main_default
     static lv_style_t style_Sheers_tabview_1_extra_btnm_main_default;
@@ -102,9 +102,9 @@ void setup_scr_Sheers(lv_ui *ui)
     lv_obj_set_style_bg_color(ui->Sheers_cont_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->Sheers_cont_1, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_top(ui->Sheers_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_right(ui->Sheers_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_bottom(ui->Sheers_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_left(ui->Sheers_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui->Sheers_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->Sheers_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes Sheers_imgbtn_1
@@ -122,33 +122,33 @@ void setup_scr_Sheers(lv_ui *ui)
     lv_label_set_long_mode(ui->Sheers_imgbtn_1_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->Sheers_imgbtn_1_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->Sheers_imgbtn_1, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->Sheers_imgbtn_1, 652, 101);
-    lv_obj_set_size(ui->Sheers_imgbtn_1, 48, 48);
+    lv_obj_set_pos(ui->Sheers_imgbtn_1, 630, 89);
+    lv_obj_set_size(ui->Sheers_imgbtn_1, 70, 70);
 
     //Write style for Sheers_imgbtn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->Sheers_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Sheers_imgbtn_1, true, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->Sheers_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(ui->Sheers_imgbtn_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->Sheers_imgbtn_1, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->Sheers_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui->Sheers_imgbtn_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Sheers_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Sheers_imgbtn_1, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->Sheers_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write style for Sheers_imgbtn_1, Part: LV_PART_MAIN, State: LV_STATE_PRESSED.
-    lv_obj_set_style_shadow_width(ui->Sheers_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_img_recolor_opa(ui->Sheers_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_img_opa(ui->Sheers_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_PRESSED);
     lv_obj_set_style_text_color(ui->Sheers_imgbtn_1, lv_color_hex(0xFF33FF), LV_PART_MAIN|LV_STATE_PRESSED);
     lv_obj_set_style_text_font(ui->Sheers_imgbtn_1, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_PRESSED);
     lv_obj_set_style_text_opa(ui->Sheers_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_img_recolor_opa(ui->Sheers_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_img_opa(ui->Sheers_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_shadow_width(ui->Sheers_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_PRESSED);
 
     //Write style for Sheers_imgbtn_1, Part: LV_PART_MAIN, State: LV_STATE_CHECKED.
-    lv_obj_set_style_shadow_width(ui->Sheers_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_img_recolor_opa(ui->Sheers_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_img_opa(ui->Sheers_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_CHECKED);
     lv_obj_set_style_text_color(ui->Sheers_imgbtn_1, lv_color_hex(0xFF33FF), LV_PART_MAIN|LV_STATE_CHECKED);
     lv_obj_set_style_text_font(ui->Sheers_imgbtn_1, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_CHECKED);
     lv_obj_set_style_text_opa(ui->Sheers_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_img_recolor_opa(ui->Sheers_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_img_opa(ui->Sheers_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_shadow_width(ui->Sheers_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_CHECKED);
 
     //Write style for Sheers_imgbtn_1, Part: LV_PART_MAIN, State: LV_IMGBTN_STATE_RELEASED.
     lv_obj_set_style_img_recolor_opa(ui->Sheers_imgbtn_1, 0, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
@@ -166,14 +166,14 @@ void setup_scr_Sheers(lv_ui *ui)
     lv_obj_set_size(ui->Sheers_btn_1, 156, 50);
 
     //Write style for Sheers_btn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_bg_opa(ui->Sheers_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->Sheers_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Sheers_btn_1, 5, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->Sheers_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(ui->Sheers_btn_1, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->Sheers_btn_1, &lv_font_ZiTiQuanWeiJunHeiW22_30, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->Sheers_btn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui->Sheers_btn_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Sheers_btn_1, 5, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->Sheers_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui->Sheers_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_width(ui->Sheers_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes Sheers_on_off_2_img
     ui->Sheers_on_off_2_img = lv_imgbtn_create(ui->Sheers);
@@ -194,12 +194,12 @@ void setup_scr_Sheers(lv_ui *ui)
     lv_obj_set_size(ui->Sheers_on_off_2_img, 48, 48);
 
     //Write style for Sheers_on_off_2_img, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->Sheers_on_off_2_img, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Sheers_on_off_2_img, true, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(ui->Sheers_on_off_2_img, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->Sheers_on_off_2_img, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->Sheers_on_off_2_img, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui->Sheers_on_off_2_img, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Sheers_on_off_2_img, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Sheers_on_off_2_img, true, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->Sheers_on_off_2_img, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write style for Sheers_on_off_2_img, Part: LV_PART_MAIN, State: LV_STATE_PRESSED.
@@ -225,10 +225,14 @@ void setup_scr_Sheers(lv_ui *ui)
     //Write codes Sheers_FabCurtianOpen
     ui->Sheers_FabCurtianOpen = lv_img_create(ui->Sheers);
     lv_obj_add_flag(ui->Sheers_FabCurtianOpen, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Sheers_FabCurtianOpen, &_FabCurtianOpen_alpha_94x95);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Sheers_FabCurtianOpen, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianOpen.png");
+#else
+    lv_img_set_src(ui->Sheers_FabCurtianOpen, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianOpen.png");
+#endif
     lv_img_set_pivot(ui->Sheers_FabCurtianOpen, 50,50);
     lv_img_set_angle(ui->Sheers_FabCurtianOpen, 0);
-    lv_obj_set_pos(ui->Sheers_FabCurtianOpen, 62, 568);
+    lv_obj_set_pos(ui->Sheers_FabCurtianOpen, 69, 670);
     lv_obj_set_size(ui->Sheers_FabCurtianOpen, 94, 95);
 
     //Write style for Sheers_FabCurtianOpen, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -240,10 +244,14 @@ void setup_scr_Sheers(lv_ui *ui)
     //Write codes Sheers_FabCurtianClose
     ui->Sheers_FabCurtianClose = lv_img_create(ui->Sheers);
     lv_obj_add_flag(ui->Sheers_FabCurtianClose, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Sheers_FabCurtianClose, &_FabCurtianClose_alpha_95x95);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Sheers_FabCurtianClose, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianClose.png");
+#else
+    lv_img_set_src(ui->Sheers_FabCurtianClose, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianClose.png");
+#endif
     lv_img_set_pivot(ui->Sheers_FabCurtianClose, 50,50);
     lv_img_set_angle(ui->Sheers_FabCurtianClose, 0);
-    lv_obj_set_pos(ui->Sheers_FabCurtianClose, 560, 562);
+    lv_obj_set_pos(ui->Sheers_FabCurtianClose, 567, 670);
     lv_obj_set_size(ui->Sheers_FabCurtianClose, 95, 95);
 
     //Write style for Sheers_FabCurtianClose, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -255,11 +263,15 @@ void setup_scr_Sheers(lv_ui *ui)
     //Write codes Sheers_FabCurtianPause
     ui->Sheers_FabCurtianPause = lv_img_create(ui->Sheers);
     lv_obj_add_flag(ui->Sheers_FabCurtianPause, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Sheers_FabCurtianPause, &_FabCurtianPause_alpha_109x110);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Sheers_FabCurtianPause, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianPause.png");
+#else
+    lv_img_set_src(ui->Sheers_FabCurtianPause, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianPause.png");
+#endif
     lv_img_set_pivot(ui->Sheers_FabCurtianPause, 50,50);
     lv_img_set_angle(ui->Sheers_FabCurtianPause, 0);
-    lv_obj_set_pos(ui->Sheers_FabCurtianPause, 267, 562);
-    lv_obj_set_size(ui->Sheers_FabCurtianPause, 109, 110);
+    lv_obj_set_pos(ui->Sheers_FabCurtianPause, 317, 670);
+    lv_obj_set_size(ui->Sheers_FabCurtianPause, 95, 95);
 
     //Write style for Sheers_FabCurtianPause, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_img_recolor_opa(ui->Sheers_FabCurtianPause, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -270,7 +282,11 @@ void setup_scr_Sheers(lv_ui *ui)
     //Write codes Sheers_FabCurtianBg1
     ui->Sheers_FabCurtianBg1 = lv_img_create(ui->Sheers);
     lv_obj_add_flag(ui->Sheers_FabCurtianBg1, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Sheers_FabCurtianBg1, &_FabCurtianBg1_alpha_62x60);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Sheers_FabCurtianBg1, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianBg1.png");
+#else
+    lv_img_set_src(ui->Sheers_FabCurtianBg1, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianBg1.png");
+#endif
     lv_img_set_pivot(ui->Sheers_FabCurtianBg1, 50,50);
     lv_img_set_angle(ui->Sheers_FabCurtianBg1, 0);
     lv_obj_set_pos(ui->Sheers_FabCurtianBg1, 232, 255);
@@ -285,7 +301,11 @@ void setup_scr_Sheers(lv_ui *ui)
     //Write codes Sheers_FabCurtianBg3
     ui->Sheers_FabCurtianBg3 = lv_img_create(ui->Sheers);
     lv_obj_add_flag(ui->Sheers_FabCurtianBg3, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Sheers_FabCurtianBg3, &_FabCurtianBg3_alpha_42x14);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Sheers_FabCurtianBg3, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianBg3.png");
+#else
+    lv_img_set_src(ui->Sheers_FabCurtianBg3, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianBg3.png");
+#endif
     lv_img_set_pivot(ui->Sheers_FabCurtianBg3, 50,50);
     lv_img_set_angle(ui->Sheers_FabCurtianBg3, 0);
     lv_obj_set_pos(ui->Sheers_FabCurtianBg3, 252, 384);
@@ -300,7 +320,11 @@ void setup_scr_Sheers(lv_ui *ui)
     //Write codes Sheers_FabCurtianBg2
     ui->Sheers_FabCurtianBg2 = lv_img_create(ui->Sheers);
     lv_obj_add_flag(ui->Sheers_FabCurtianBg2, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Sheers_FabCurtianBg2, &_FabCurtianBg2_alpha_34x73);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Sheers_FabCurtianBg2, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianBg2.png");
+#else
+    lv_img_set_src(ui->Sheers_FabCurtianBg2, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianBg2.png");
+#endif
     lv_img_set_pivot(ui->Sheers_FabCurtianBg2, 50,50);
     lv_img_set_angle(ui->Sheers_FabCurtianBg2, 0);
     lv_obj_set_pos(ui->Sheers_FabCurtianBg2, 415, 272);
@@ -315,7 +339,11 @@ void setup_scr_Sheers(lv_ui *ui)
     //Write codes Sheers_FabCurtianLeft
     ui->Sheers_FabCurtianLeft = lv_img_create(ui->Sheers);
     lv_obj_add_flag(ui->Sheers_FabCurtianLeft, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Sheers_FabCurtianLeft, &_SheersLeft_alpha_231x287);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Sheers_FabCurtianLeft, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\SheersLeft.png");
+#else
+    lv_img_set_src(ui->Sheers_FabCurtianLeft, "S:/sdfile/EXT_RESERVED/uipackres/ui/SheersLeft.png");
+#endif
     lv_img_set_pivot(ui->Sheers_FabCurtianLeft, 50,50);
     lv_img_set_angle(ui->Sheers_FabCurtianLeft, 0);
     lv_obj_set_pos(ui->Sheers_FabCurtianLeft, 128, 193);
@@ -330,7 +358,11 @@ void setup_scr_Sheers(lv_ui *ui)
     //Write codes Sheers_FabCurtianright
     ui->Sheers_FabCurtianright = lv_img_create(ui->Sheers);
     lv_obj_add_flag(ui->Sheers_FabCurtianright, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Sheers_FabCurtianright, &_SheersRight_alpha_231x287);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Sheers_FabCurtianright, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\SheersRight.png");
+#else
+    lv_img_set_src(ui->Sheers_FabCurtianright, "S:/sdfile/EXT_RESERVED/uipackres/ui/SheersRight.png");
+#endif
     lv_img_set_pivot(ui->Sheers_FabCurtianright, 50,50);
     lv_img_set_angle(ui->Sheers_FabCurtianright, 0);
     lv_obj_set_pos(ui->Sheers_FabCurtianright, 359, 193);
@@ -345,7 +377,11 @@ void setup_scr_Sheers(lv_ui *ui)
     //Write codes Sheers_FabCurtianPull2
     ui->Sheers_FabCurtianPull2 = lv_img_create(ui->Sheers);
     lv_obj_add_flag(ui->Sheers_FabCurtianPull2, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Sheers_FabCurtianPull2, &_FabCurtianPull_alpha_45x45);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Sheers_FabCurtianPull2, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianPull.png");
+#else
+    lv_img_set_src(ui->Sheers_FabCurtianPull2, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianPull.png");
+#endif
     lv_img_set_pivot(ui->Sheers_FabCurtianPull2, 50,50);
     lv_img_set_angle(ui->Sheers_FabCurtianPull2, 0);
     lv_obj_set_pos(ui->Sheers_FabCurtianPull2, 367, 321);
@@ -360,7 +396,11 @@ void setup_scr_Sheers(lv_ui *ui)
     //Write codes Sheers_FabCurtianPull1
     ui->Sheers_FabCurtianPull1 = lv_img_create(ui->Sheers);
     lv_obj_add_flag(ui->Sheers_FabCurtianPull1, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Sheers_FabCurtianPull1, &_FabCurtianPull_alpha_45x45);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Sheers_FabCurtianPull1, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianPull.png");
+#else
+    lv_img_set_src(ui->Sheers_FabCurtianPull1, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianPull.png");
+#endif
     lv_img_set_pivot(ui->Sheers_FabCurtianPull1, 50,50);
     lv_img_set_angle(ui->Sheers_FabCurtianPull1, 0);
     lv_obj_set_pos(ui->Sheers_FabCurtianPull1, 267, 321);
@@ -375,7 +415,11 @@ void setup_scr_Sheers(lv_ui *ui)
     //Write codes Sheers_FabCurtianPole
     ui->Sheers_FabCurtianPole = lv_img_create(ui->Sheers);
     lv_obj_add_flag(ui->Sheers_FabCurtianPole, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Sheers_FabCurtianPole, &_FabCurtianPole_alpha_494x34);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Sheers_FabCurtianPole, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianPole.png");
+#else
+    lv_img_set_src(ui->Sheers_FabCurtianPole, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianPole.png");
+#endif
     lv_img_set_pivot(ui->Sheers_FabCurtianPole, 50,50);
     lv_img_set_angle(ui->Sheers_FabCurtianPole, 0);
     lv_obj_set_pos(ui->Sheers_FabCurtianPole, 112, 178);
@@ -393,4 +437,6 @@ void setup_scr_Sheers(lv_ui *ui)
     //Update current screen layout.
     lv_obj_update_layout(ui->Sheers);
 
+    //Init events for screen.
+    events_init_Sheers(ui);
 }

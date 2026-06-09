@@ -111,7 +111,7 @@ void setup_scr_light_CT_screen(lv_ui *ui)
     ui->light_CT_screen_label_2 = lv_label_create(ui->light_CT_screen);
     lv_label_set_text(ui->light_CT_screen_label_2, "色 温 | 4850K");
     lv_label_set_long_mode(ui->light_CT_screen_label_2, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->light_CT_screen_label_2, 258, 576);
+    lv_obj_set_pos(ui->light_CT_screen_label_2, 243, 574);
     lv_obj_set_size(ui->light_CT_screen_label_2, 211, 34);
 
     //Write style for light_CT_screen_label_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -141,7 +141,7 @@ void setup_scr_light_CT_screen(lv_ui *ui)
     lv_img_set_pivot(ui->light_CT_screen_ct_bar, 50,50);
     lv_img_set_angle(ui->light_CT_screen_ct_bar, 0);
     lv_obj_set_pos(ui->light_CT_screen_ct_bar, -216, 623);
-    lv_obj_set_size(ui->light_CT_screen_ct_bar, 600, 70);
+    lv_obj_set_size(ui->light_CT_screen_ct_bar, 650, 70);
 
     //Write style for light_CT_screen_ct_bar, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_img_recolor_opa(ui->light_CT_screen_ct_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -155,7 +155,7 @@ void setup_scr_light_CT_screen(lv_ui *ui)
     lv_slider_set_mode(ui->light_CT_screen_slider_2, LV_SLIDER_MODE_SYMMETRICAL);
     lv_slider_set_value(ui->light_CT_screen_slider_2, 4600, LV_ANIM_OFF);
     lv_obj_set_pos(ui->light_CT_screen_slider_2, -216, 623);
-    lv_obj_set_size(ui->light_CT_screen_slider_2, 600, 70);
+    lv_obj_set_size(ui->light_CT_screen_slider_2, 650, 70);
 
     //Write style for light_CT_screen_slider_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_bg_opa(ui->light_CT_screen_slider_2, 40, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -181,7 +181,7 @@ void setup_scr_light_CT_screen(lv_ui *ui)
     lv_slider_set_mode(ui->light_CT_screen_slider_1, LV_SLIDER_MODE_SYMMETRICAL);
     lv_slider_set_value(ui->light_CT_screen_slider_1, 50, LV_ANIM_OFF);
     lv_obj_set_pos(ui->light_CT_screen_slider_1, -221, 481);
-    lv_obj_set_size(ui->light_CT_screen_slider_1, 600, 70);
+    lv_obj_set_size(ui->light_CT_screen_slider_1, 650, 70);
 
     //Write style for light_CT_screen_slider_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_bg_opa(ui->light_CT_screen_slider_1, 60, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -209,8 +209,8 @@ void setup_scr_light_CT_screen(lv_ui *ui)
     ui->light_CT_screen_label_1 = lv_label_create(ui->light_CT_screen);
     lv_label_set_text(ui->light_CT_screen_label_1, "亮 度 | 50%");
     lv_label_set_long_mode(ui->light_CT_screen_label_1, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->light_CT_screen_label_1, 241, 424);
-    lv_obj_set_size(ui->light_CT_screen_label_1, 227, 39);
+    lv_obj_set_pos(ui->light_CT_screen_label_1, 240, 426);
+    lv_obj_set_size(ui->light_CT_screen_label_1, 168, 39);
 
     //Write style for light_CT_screen_label_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->light_CT_screen_label_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -320,8 +320,8 @@ void setup_scr_light_CT_screen(lv_ui *ui)
     lv_label_set_long_mode(ui->light_CT_screen_imgbtn_1_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->light_CT_screen_imgbtn_1_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->light_CT_screen_imgbtn_1, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->light_CT_screen_imgbtn_1, 652, 101);
-    lv_obj_set_size(ui->light_CT_screen_imgbtn_1, 48, 48);
+    lv_obj_set_pos(ui->light_CT_screen_imgbtn_1, 626, 86);
+    lv_obj_set_size(ui->light_CT_screen_imgbtn_1, 70, 70);
 
     //Write style for light_CT_screen_imgbtn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_text_color(ui->light_CT_screen_imgbtn_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);

@@ -77,11 +77,8 @@ void init_scr_del_flag(lv_ui *ui)
 
     ui->ui_home_screen_del = true;
     ui->device_management_screen_del = true;
-    ui->light_scence_screen_del = true;
-    ui->curtain_scene_screen_del = true;
     ui->setting_screen_del = true;
     ui->light_CT_screen_del = true;
-    ui->LightCT_del = true;
     ui->LedStrip_del = true;
     ui->MagLight_del = true;
     ui->RGBLight_del = true;
@@ -94,7 +91,6 @@ void init_scr_del_flag(lv_ui *ui)
     ui->DryRack_del = true;
     ui->FanLight_del = true;
     ui->Heater_del = true;
-    ui->screen_1_del = true;
 }
 
 void setup_ui(lv_ui *ui)

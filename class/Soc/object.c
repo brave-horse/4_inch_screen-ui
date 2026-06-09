@@ -11,7 +11,8 @@ void Object_Init(Object *obj, const char *name, uint32_t id)
     } else {
         obj->name[0] = '\0';
     }
-    obj->id = id;
+    obj->id    = id;
+    obj->apply = NULL;
 }
 
 Object *Object_New(const char *name, uint32_t id)

@@ -35,17 +35,17 @@ void setup_scr_RollBlind(lv_ui *ui)
     lv_obj_set_scrollbar_mode(ui->RollBlind_tabview_1, LV_SCROLLBAR_MODE_ON);
 
     //Write style for RollBlind_tabview_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->RollBlind_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->RollBlind_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->RollBlind_tabview_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->RollBlind_tabview_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->RollBlind_tabview_1, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->RollBlind_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(ui->RollBlind_tabview_1, lv_color_hex(0x4d4d4d), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->RollBlind_tabview_1, &lv_font_ZiTiQuanWeiJunHeiW22_12, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->RollBlind_tabview_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_letter_space(ui->RollBlind_tabview_1, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_line_space(ui->RollBlind_tabview_1, 16, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->RollBlind_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->RollBlind_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->RollBlind_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write style state: LV_STATE_DEFAULT for &style_RollBlind_tabview_1_extra_btnm_main_default
     static lv_style_t style_RollBlind_tabview_1_extra_btnm_main_default;
@@ -101,11 +101,11 @@ void setup_scr_RollBlind(lv_ui *ui)
     lv_obj_set_style_bg_opa(ui->RollBlind_cont_1, 133, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->RollBlind_cont_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->RollBlind_cont_1, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->RollBlind_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_top(ui->RollBlind_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_right(ui->RollBlind_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_bottom(ui->RollBlind_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_left(ui->RollBlind_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui->RollBlind_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->RollBlind_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes RollBlind_btn_1
     ui->RollBlind_btn_1 = lv_btn_create(ui->RollBlind);
@@ -119,37 +119,45 @@ void setup_scr_RollBlind(lv_ui *ui)
     lv_obj_set_size(ui->RollBlind_btn_1, 156, 50);
 
     //Write style for RollBlind_btn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_bg_opa(ui->RollBlind_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->RollBlind_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_radius(ui->RollBlind_btn_1, 5, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->RollBlind_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(ui->RollBlind_btn_1, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->RollBlind_btn_1, &lv_font_ZiTiQuanWeiJunHeiW22_30, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->RollBlind_btn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui->RollBlind_btn_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui->RollBlind_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_width(ui->RollBlind_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes RollBlind_FabCurtianOpen
     ui->RollBlind_FabCurtianOpen = lv_img_create(ui->RollBlind);
     lv_obj_add_flag(ui->RollBlind_FabCurtianOpen, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->RollBlind_FabCurtianOpen, &_RollBlindUp_alpha_94x95);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->RollBlind_FabCurtianOpen, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\RollBlindUp.png");
+#else
+    lv_img_set_src(ui->RollBlind_FabCurtianOpen, "S:/sdfile/EXT_RESERVED/uipackres/ui/RollBlindUp.png");
+#endif
     lv_img_set_pivot(ui->RollBlind_FabCurtianOpen, 50,50);
     lv_img_set_angle(ui->RollBlind_FabCurtianOpen, 0);
-    lv_obj_set_pos(ui->RollBlind_FabCurtianOpen, 62, 568);
+    lv_obj_set_pos(ui->RollBlind_FabCurtianOpen, 57, 662);
     lv_obj_set_size(ui->RollBlind_FabCurtianOpen, 94, 95);
 
     //Write style for RollBlind_FabCurtianOpen, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->RollBlind_FabCurtianOpen, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->RollBlind_FabCurtianOpen, true, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_recolor_opa(ui->RollBlind_FabCurtianOpen, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_opa(ui->RollBlind_FabCurtianOpen, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->RollBlind_FabCurtianOpen, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->RollBlind_FabCurtianOpen, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes RollBlind_FabCurtianClose
     ui->RollBlind_FabCurtianClose = lv_img_create(ui->RollBlind);
     lv_obj_add_flag(ui->RollBlind_FabCurtianClose, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->RollBlind_FabCurtianClose, &_RollBlindDown_alpha_94x95);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->RollBlind_FabCurtianClose, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\RollBlindDown.png");
+#else
+    lv_img_set_src(ui->RollBlind_FabCurtianClose, "S:/sdfile/EXT_RESERVED/uipackres/ui/RollBlindDown.png");
+#endif
     lv_img_set_pivot(ui->RollBlind_FabCurtianClose, 50,50);
     lv_img_set_angle(ui->RollBlind_FabCurtianClose, 0);
-    lv_obj_set_pos(ui->RollBlind_FabCurtianClose, 560, 562);
+    lv_obj_set_pos(ui->RollBlind_FabCurtianClose, 554, 662);
     lv_obj_set_size(ui->RollBlind_FabCurtianClose, 94, 95);
 
     //Write style for RollBlind_FabCurtianClose, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -180,11 +188,15 @@ void setup_scr_RollBlind(lv_ui *ui)
     //Write codes RollBlind_FabCurtianPause
     ui->RollBlind_FabCurtianPause = lv_img_create(ui->RollBlind);
     lv_obj_add_flag(ui->RollBlind_FabCurtianPause, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->RollBlind_FabCurtianPause, &_FabCurtianPause_alpha_109x110);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->RollBlind_FabCurtianPause, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianPause.png");
+#else
+    lv_img_set_src(ui->RollBlind_FabCurtianPause, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianPause.png");
+#endif
     lv_img_set_pivot(ui->RollBlind_FabCurtianPause, 50,50);
     lv_img_set_angle(ui->RollBlind_FabCurtianPause, 0);
-    lv_obj_set_pos(ui->RollBlind_FabCurtianPause, 283, 557);
-    lv_obj_set_size(ui->RollBlind_FabCurtianPause, 109, 110);
+    lv_obj_set_pos(ui->RollBlind_FabCurtianPause, 305, 662);
+    lv_obj_set_size(ui->RollBlind_FabCurtianPause, 95, 95);
 
     //Write style for RollBlind_FabCurtianPause, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_img_recolor_opa(ui->RollBlind_FabCurtianPause, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -195,7 +207,11 @@ void setup_scr_RollBlind(lv_ui *ui)
     //Write codes RollBlind_FabCurtianBg1
     ui->RollBlind_FabCurtianBg1 = lv_img_create(ui->RollBlind);
     lv_obj_add_flag(ui->RollBlind_FabCurtianBg1, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->RollBlind_FabCurtianBg1, &_FabCurtianBg1_alpha_62x60);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->RollBlind_FabCurtianBg1, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianBg1.png");
+#else
+    lv_img_set_src(ui->RollBlind_FabCurtianBg1, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianBg1.png");
+#endif
     lv_img_set_pivot(ui->RollBlind_FabCurtianBg1, 50,50);
     lv_img_set_angle(ui->RollBlind_FabCurtianBg1, 0);
     lv_obj_set_pos(ui->RollBlind_FabCurtianBg1, 232, 255);
@@ -210,7 +226,11 @@ void setup_scr_RollBlind(lv_ui *ui)
     //Write codes RollBlind_FabCurtianBg3
     ui->RollBlind_FabCurtianBg3 = lv_img_create(ui->RollBlind);
     lv_obj_add_flag(ui->RollBlind_FabCurtianBg3, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->RollBlind_FabCurtianBg3, &_FabCurtianBg3_alpha_42x14);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->RollBlind_FabCurtianBg3, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianBg3.png");
+#else
+    lv_img_set_src(ui->RollBlind_FabCurtianBg3, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianBg3.png");
+#endif
     lv_img_set_pivot(ui->RollBlind_FabCurtianBg3, 50,50);
     lv_img_set_angle(ui->RollBlind_FabCurtianBg3, 0);
     lv_obj_set_pos(ui->RollBlind_FabCurtianBg3, 252, 384);
@@ -225,7 +245,11 @@ void setup_scr_RollBlind(lv_ui *ui)
     //Write codes RollBlind_FabCurtianBg2
     ui->RollBlind_FabCurtianBg2 = lv_img_create(ui->RollBlind);
     lv_obj_add_flag(ui->RollBlind_FabCurtianBg2, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->RollBlind_FabCurtianBg2, &_FabCurtianBg2_alpha_34x73);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->RollBlind_FabCurtianBg2, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianBg2.png");
+#else
+    lv_img_set_src(ui->RollBlind_FabCurtianBg2, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianBg2.png");
+#endif
     lv_img_set_pivot(ui->RollBlind_FabCurtianBg2, 50,50);
     lv_img_set_angle(ui->RollBlind_FabCurtianBg2, 0);
     lv_obj_set_pos(ui->RollBlind_FabCurtianBg2, 415, 272);
@@ -240,7 +264,11 @@ void setup_scr_RollBlind(lv_ui *ui)
     //Write codes RollBlind_FabCurtianLeft
     ui->RollBlind_FabCurtianLeft = lv_img_create(ui->RollBlind);
     lv_obj_add_flag(ui->RollBlind_FabCurtianLeft, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->RollBlind_FabCurtianLeft, &_RollBlindCloth_alpha_435x353);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->RollBlind_FabCurtianLeft, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\RollBlindCloth.png");
+#else
+    lv_img_set_src(ui->RollBlind_FabCurtianLeft, "S:/sdfile/EXT_RESERVED/uipackres/ui/RollBlindCloth.png");
+#endif
     lv_img_set_pivot(ui->RollBlind_FabCurtianLeft, 50,50);
     lv_img_set_angle(ui->RollBlind_FabCurtianLeft, 0);
     lv_obj_set_pos(ui->RollBlind_FabCurtianLeft, 127, 181);
@@ -255,7 +283,11 @@ void setup_scr_RollBlind(lv_ui *ui)
     //Write codes RollBlind_FabCurtianPull1
     ui->RollBlind_FabCurtianPull1 = lv_img_create(ui->RollBlind);
     lv_obj_add_flag(ui->RollBlind_FabCurtianPull1, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->RollBlind_FabCurtianPull1, &_CurtainPull_alpha_39x39);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->RollBlind_FabCurtianPull1, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\CurtainPull.png");
+#else
+    lv_img_set_src(ui->RollBlind_FabCurtianPull1, "S:/sdfile/EXT_RESERVED/uipackres/ui/CurtainPull.png");
+#endif
     lv_img_set_pivot(ui->RollBlind_FabCurtianPull1, 50,50);
     lv_img_set_angle(ui->RollBlind_FabCurtianPull1, 0);
     lv_obj_set_pos(ui->RollBlind_FabCurtianPull1, 316, 481);
@@ -270,7 +302,11 @@ void setup_scr_RollBlind(lv_ui *ui)
     //Write codes RollBlind_RollBlindPole
     ui->RollBlind_RollBlindPole = lv_img_create(ui->RollBlind);
     lv_obj_add_flag(ui->RollBlind_RollBlindPole, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->RollBlind_RollBlindPole, &_RollBlindPole_alpha_462x26);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->RollBlind_RollBlindPole, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\RollBlindPole.png");
+#else
+    lv_img_set_src(ui->RollBlind_RollBlindPole, "S:/sdfile/EXT_RESERVED/uipackres/ui/RollBlindPole.png");
+#endif
     lv_img_set_pivot(ui->RollBlind_RollBlindPole, 50,50);
     lv_img_set_angle(ui->RollBlind_RollBlindPole, 0);
     lv_obj_set_pos(ui->RollBlind_RollBlindPole, 112, 178);
@@ -288,4 +324,6 @@ void setup_scr_RollBlind(lv_ui *ui)
     //Update current screen layout.
     lv_obj_update_layout(ui->RollBlind);
 
+    //Init events for screen.
+    events_init_RollBlind(ui);
 }

@@ -1,0 +1,40 @@
+#ifndef HW_CLOUD_TASK_H
+#define HW_CLOUD_TASK_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "stdint.h"
+#include <stdbool.h>
+
+enum {
+    HW_MSG_NONE = 0,
+
+    HW_MSG_LIGHT_CT_SWITCH,   /* bool on      — 色温灯开关 */
+    HW_MSG_LIGHT_CT_BRI,      /* uint16_t val — 色温灯亮度 */
+    HW_MSG_LIGHT_CT_CT,       /* uint16_t val — 色温灯色温 */
+    HW_MSG_LIGHT_RGB_SWITCH,
+    HW_MSG_LIGHT_RGB_COLOR,
+    HW_MSG_CURTAIN_SWITCH,    /* uint8_t idx, bool on */
+    HW_MSG_CURTAIN_POS,       /* uint8_t idx, uint16_t pos */
+    HW_MSG_CLOUD_CMD,
+
+    HW_MSG_COUNT
+};
+
+typedef struct {
+    uint8_t  type;
+    uint8_t  idx;
+    uint16_t val;
+    bool     on;
+} HW_Msg;
+
+int  hw_cloud_task_create(void);
+void hw_cloud_post(HW_Msg *msg);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

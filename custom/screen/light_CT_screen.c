@@ -3,18 +3,21 @@
  *********************/
 #include "lvgl.h"
 #include "gui_guider.h"
-#include "HWDataAccess.h"   
-#include "screen.h"         
-/* 注: 这些头在 make 构建里有 -I 路径; IDE 报"无法打开"是 c_cpp_properties 的 includePath
- *     没配, 不是编译错误。 */
+#include "HWDataAccess.h"
+#include "hw_cloud_task.h"
+#include "light_CT_screen.h"
+
+/**********************
+ *  STATIC VARIABLES
+ **********************/
+static uint32_t s_bri_tick;
+static uint32_t s_ct_tick;
+#define APPLY_MIN_MS  50
 
 /**********************
  *  GLOBAL FUNCTIONS
  **********************/
 
-/* 按当前亮度/色温刷两张灯光图透明度 + 两个标签数字; 关灯时灯光图隐藏(0)。
- * light_CT_screen 的 slider 拖动 / 进屏(SCREEN_LOADED) / 开关 事件都调它 —— 灯光公式只此一份。
- * 由 GUI Guider 事件调用: 事件 include 框写 #include "screen.h", 代码里调 light_CT_screen_apply_light()。 */
 void light_CT_screen_apply_light(void)
 {
     lv_obj_t *slider1 = guider_ui.light_CT_screen_slider_1;
@@ -30,7 +33,7 @@ void light_CT_screen_apply_light(void)
     uint32_t o_white  = (uint32_t)bri * tnum             * LV_OPA_COVER / ((uint32_t)LIGHTCT_BRIGHTNESS_MAX * ct_span);
     uint32_t o_orange = (uint32_t)bri * (ct_span - tnum) * LV_OPA_COVER / ((uint32_t)LIGHTCT_BRIGHTNESS_MAX * ct_span);
 
-    if (!HWInterface.LightCT.switch_status) {   /* 关灯: 两张灯光图隐藏 */
+    if (!HWInterface.LightCT.switch_status) {
         o_white  = LV_OPA_TRANSP;
         o_orange = LV_OPA_TRANSP;
     }
@@ -43,4 +46,71 @@ void light_CT_screen_apply_light(void)
     lv_label_set_text(guider_ui.light_CT_screen_label_1, buf);
     lv_snprintf(buf, sizeof(buf), "色 温 | %dK", (int)ct);
     lv_label_set_text(guider_ui.light_CT_screen_label_2, buf);
+}
+
+/* 共用: 刷灯光图+标签+开关UI */
+static void light_ct_refresh(bool btn_status)
+{
+    light_CT_screen_apply_light();
+
+    if (btn_status) lv_obj_add_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);
+    else            lv_obj_clear_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);
+
+    if (btn_status) {
+        lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+        lv_obj_move_background(guider_ui.light_CT_screen_cont_1);
+    } else {
+        lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);
+        lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);
+        lv_obj_move_foreground(guider_ui.light_CT_screen_on_off_2_img);
+    }
+}
+
+/* ══════ 4 个事件接口(供 GUI-Guider 事件一行调用) ══════ */
+
+void light_ct_on_screen_load(void)
+{
+    bool btn_status = HWInterface.LightCT.switch_status;
+    lv_slider_set_value(guider_ui.light_CT_screen_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);
+    lv_slider_set_value(guider_ui.light_CT_screen_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);
+    light_ct_refresh(btn_status);
+}
+
+void light_ct_on_switch_toggle(lv_event_t *e)
+{
+    lv_obj_t *btn = lv_event_get_target(e);
+    bool btn_status = lv_obj_has_state(btn, LV_STATE_CHECKED);
+
+    HWInterface.LightCT.SetOnOff(btn_status);       /* 更新缓存, UI 立刻可读 */
+    hw_cloud_post(&(HW_Msg){                        /* 入队, 硬云任务下发硬件 */
+        .type = HW_MSG_LIGHT_CT_SWITCH,
+        .on   = btn_status
+    });
+    light_ct_refresh(btn_status);
+}
+
+void light_ct_on_bri_slider_change(void)
+{
+    HWInterface.LightCT.SetBrightness((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_1));
+    if (lv_tick_elaps(s_bri_tick) >= APPLY_MIN_MS) {
+        s_bri_tick = lv_tick_get();
+        hw_cloud_post(&(HW_Msg){
+            .type = HW_MSG_LIGHT_CT_BRI,
+            .val  = HWInterface.LightCT.brightness
+        });
+        light_CT_screen_apply_light();
+    }
+}
+
+void light_ct_on_ct_slider_change(void)
+{
+    HWInterface.LightCT.SetColorTemp((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_2));
+    if (lv_tick_elaps(s_ct_tick) >= APPLY_MIN_MS) {
+        s_ct_tick = lv_tick_get();
+        hw_cloud_post(&(HW_Msg){
+            .type = HW_MSG_LIGHT_CT_CT,
+            .val  = HWInterface.LightCT.color_temp
+        });
+        light_CT_screen_apply_light();
+    }
 }

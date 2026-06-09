@@ -20,10 +20,17 @@ void events_init(lv_ui *ui);
 
 void events_init_ui_home_screen(lv_ui *ui);
 void events_init_device_management_screen(lv_ui *ui);
-void events_init_light_scence_screen(lv_ui *ui);
-void events_init_curtain_scene_screen(lv_ui *ui);
 void events_init_setting_screen(lv_ui *ui);
 void events_init_light_CT_screen(lv_ui *ui);
+void events_init_LedStrip(lv_ui *ui);
+void events_init_MagLight(lv_ui *ui);
+void events_init_RGBLight(lv_ui *ui);
+void events_init_FabricCurtian(lv_ui *ui);
+void events_init_Sheers(lv_ui *ui);
+void events_init_RollBlind(lv_ui *ui);
+void events_init_Dream(lv_ui *ui);
+void events_init_AirCondition(lv_ui *ui);
+void events_init_DryRack(lv_ui *ui);
 
 #ifdef __cplusplus
 }

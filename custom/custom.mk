@@ -18,7 +18,8 @@ CUSTOM_SRC_DIRS := \
 
 CUSTOM_INC_DIRS := \
 		$(PRJ_DIR)/custom/include \
-		$(PRJ_DIR)/class/Inc
+		$(PRJ_DIR)/class/Inc \
+		$(PRJ_DIR)/task/Inc
 
 GEN_CSRCS += $(notdir $(foreach dir,$(CUSTOM_SRC_DIRS),$(wildcard $(dir)/*.c)))
 

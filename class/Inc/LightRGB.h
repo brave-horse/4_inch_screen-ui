@@ -6,19 +6,21 @@ extern "C" {
 #endif
 
 #include "stdint.h"
-#include "Light.h"
+#include "object.h"
+#include "Switch.h"
+#include "Percent.h"
 
-// RGB灯: Light + RGB三色
+/* RGB灯 = Object + Switch + 亮度 + RGB */
 typedef struct {
-    Light   base;    // 父类(first member → 可上溯)
-    uint8_t r;       // 0~255
-    uint8_t g;
-    uint8_t b;
+    Object   base;       /* name + id + apply */
+    Switch   sw;         /* 开关 */
+    Percent  bri;        /* 亮度 0~100 */
+    uint8_t  r, g, b;    /* RGB 0~255 */
 } LightRGB;
 
-void     LightRGB_Init(LightRGB *light, const char *name, uint32_t id, uint16_t brightness);
-LightRGB *LightRGB_New(const char *name, uint32_t id, uint16_t brightness);
-void     LightRGB_SetColor(LightRGB *light, uint8_t r, uint8_t g, uint8_t b);
+void     LightRGB_Init(LightRGB *dev, const char *name, uint32_t id,
+                       uint16_t bri);
+LightRGB *LightRGB_New(const char *name, uint32_t id, uint16_t bri);
 
 #ifdef __cplusplus
 }

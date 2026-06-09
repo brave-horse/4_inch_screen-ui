@@ -15,12 +15,11 @@
 #include "freemaster_client.h"
 #endif
 
-#include "HWDataAccess.h"
-#include  "img.h"
-static uint32_t s_ct_apply_tick2;
-static uint32_t s_ct_apply_tick;
+#include "device_management.h"
 
-#include "screen.h"
+
+#include "light_CT_screen.h"
+#include "LEDStrip.h"
 
 static void ui_home_screen_event_handler (lv_event_t *e)
 {
@@ -77,19 +76,7 @@ static void device_management_screen_event_handler (lv_event_t *e)
     switch (code) {
     case LV_EVENT_SCREEN_LOADED:
     {
-        /* 进屏初始化: 从中间层读色温灯开关真值, 摆正开关 CHECKED + small_dev_off 透明度。 */
-        bool light_on = HWInterface.LightCT.switch_status;   /* true=开, false=关 */
-
-        /* 开关图标 CHECKED 摆到当前状态 */
-        if (light_on) lv_obj_add_state(guider_ui.device_management_screen_Light_CT_on_off_1_img, LV_STATE_CHECKED);
-        else          lv_obj_clear_state(guider_ui.device_management_screen_Light_CT_on_off_1_img, LV_STATE_CHECKED);
-
-        /* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */
-        lv_obj_set_style_img_opa(guider_ui.device_management_screen_small_dev_off_img,
-                                 light_on ? LV_OPA_TRANSP : LV_OPA_COVER,
-                                 LV_PART_MAIN | LV_STATE_DEFAULT);
-
-
+        dev_mgmt_on_load();
         break;
     }
     case LV_EVENT_GESTURE:
@@ -99,7 +86,6 @@ static void device_management_screen_event_handler (lv_event_t *e)
         case LV_DIR_LEFT:
         {
             lv_indev_wait_release(lv_indev_get_act());
-            ui_load_scr_animation(&guider_ui, &guider_ui.light_scence_screen, guider_ui.light_scence_screen_del, &guider_ui.device_management_screen_del, setup_scr_light_scence_screen, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
             break;
         }
         case LV_DIR_RIGHT:
@@ -138,16 +124,7 @@ static void device_management_screen_Light_CT_on_off_1_img_event_handler (lv_eve
     switch (code) {
     case LV_EVENT_VALUE_CHANGED:
     {
-        /* 点开关 → 读它点击后的新状态 → 写回中间层 → 刷 small_dev_off 透明度。 */
-        lv_obj_t *btn = lv_event_get_target(e);                    /* 触发事件的开关本身 */
-        bool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);   /* 有CHECKED=开, 没有=关 */
-
-        HWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层: 开→true, 关→false; 与 screen_5 共享同一份 */
-
-        /* small_dev_off: 开→LV_OPA_TRANSP(0%, 隐藏), 关→LV_OPA_COVER(100%, 显示) */
-        lv_obj_set_style_img_opa(guider_ui.device_management_screen_small_dev_off_img,
-                                 light_on ? LV_OPA_TRANSP : LV_OPA_COVER,
-                                 LV_PART_MAIN | LV_STATE_DEFAULT);
+        dev_mgmt_ct_on_toggle();
         break;
     }
     default:
@@ -183,6 +160,510 @@ static void device_management_screen_label_2_event_handler (lv_event_t *e)
     }
 }
 
+static void device_management_screen_cont_2_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.LedStrip, guider_ui.LedStrip_del, &guider_ui.device_management_screen_del, setup_scr_LedStrip, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_sLEDStripOn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.LedStrip, guider_ui.LedStrip_del, &guider_ui.device_management_screen_del, setup_scr_LedStrip, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_sLEDStripOff_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.LedStrip, guider_ui.LedStrip_del, &guider_ui.device_management_screen_del, setup_scr_LedStrip, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_label_3_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.LedStrip, guider_ui.LedStrip_del, &guider_ui.device_management_screen_del, setup_scr_LedStrip, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_cont_3_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.MagLight, guider_ui.MagLight_del, &guider_ui.device_management_screen_del, setup_scr_MagLight, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_sMagLightOff_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.MagLight, guider_ui.MagLight_del, &guider_ui.device_management_screen_del, setup_scr_MagLight, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_label_4_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.MagLight, guider_ui.MagLight_del, &guider_ui.device_management_screen_del, setup_scr_MagLight, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_cont_4_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.RGBLight, guider_ui.RGBLight_del, &guider_ui.device_management_screen_del, setup_scr_RGBLight, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_sRGBLightOn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.RGBLight, guider_ui.RGBLight_del, &guider_ui.device_management_screen_del, setup_scr_RGBLight, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_sRGBLightOff_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.RGBLight, guider_ui.RGBLight_del, &guider_ui.device_management_screen_del, setup_scr_RGBLight, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_label_5_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.RGBLight, guider_ui.RGBLight_del, &guider_ui.device_management_screen_del, setup_scr_RGBLight, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_cont_5_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.FabricCurtian, guider_ui.FabricCurtian_del, &guider_ui.device_management_screen_del, setup_scr_FabricCurtian, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_sFabricCurtainOn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.FabricCurtian, guider_ui.FabricCurtian_del, &guider_ui.device_management_screen_del, setup_scr_FabricCurtian, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_sFabricCurtianOff_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.FabricCurtian, guider_ui.FabricCurtian_del, &guider_ui.device_management_screen_del, setup_scr_FabricCurtian, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_label_6_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.FabricCurtian, guider_ui.FabricCurtian_del, &guider_ui.device_management_screen_del, setup_scr_FabricCurtian, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_cont_6_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.Sheers, guider_ui.Sheers_del, &guider_ui.device_management_screen_del, setup_scr_Sheers, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_sSheersOn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.Sheers, guider_ui.Sheers_del, &guider_ui.device_management_screen_del, setup_scr_Sheers, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_sSheersOff_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.Sheers, guider_ui.Sheers_del, &guider_ui.device_management_screen_del, setup_scr_Sheers, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_label_7_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.Sheers, guider_ui.Sheers_del, &guider_ui.device_management_screen_del, setup_scr_Sheers, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_cont_7_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.RollBlind, guider_ui.RollBlind_del, &guider_ui.device_management_screen_del, setup_scr_RollBlind, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_sRollBlindOn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.RollBlind, guider_ui.RollBlind_del, &guider_ui.device_management_screen_del, setup_scr_RollBlind, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_sRollBlindOff_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.RollBlind, guider_ui.RollBlind_del, &guider_ui.device_management_screen_del, setup_scr_RollBlind, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_label_8_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.RollBlind, guider_ui.RollBlind_del, &guider_ui.device_management_screen_del, setup_scr_RollBlind, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_cont_8_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.Dream, guider_ui.Dream_del, &guider_ui.device_management_screen_del, setup_scr_Dream, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_sDreamOn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.Dream, guider_ui.Dream_del, &guider_ui.device_management_screen_del, setup_scr_Dream, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_sDreamOff_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.Dream, guider_ui.Dream_del, &guider_ui.device_management_screen_del, setup_scr_Dream, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_label_10_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.Dream, guider_ui.Dream_del, &guider_ui.device_management_screen_del, setup_scr_Dream, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_cont_9_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.AirCondition, guider_ui.AirCondition_del, &guider_ui.device_management_screen_del, setup_scr_AirCondition, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_img_12_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.AirCondition, guider_ui.AirCondition_del, &guider_ui.device_management_screen_del, setup_scr_AirCondition, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_label_9_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.AirCondition, guider_ui.AirCondition_del, &guider_ui.device_management_screen_del, setup_scr_AirCondition, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_cont_11_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.DryRack, guider_ui.DryRack_del, &guider_ui.device_management_screen_del, setup_scr_DryRack, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_sDryRackdown_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.DryRack, guider_ui.DryRack_del, &guider_ui.device_management_screen_del, setup_scr_DryRack, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_sDryRackup_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.Music, guider_ui.Music_del, &guider_ui.device_management_screen_del, setup_scr_Music, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_label_11_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.DryRack, guider_ui.DryRack_del, &guider_ui.device_management_screen_del, setup_scr_DryRack, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_label_15_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.AirCondition, guider_ui.AirCondition_del, &guider_ui.device_management_screen_del, setup_scr_AirCondition, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void device_management_screen_label_16_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.AirCondition, guider_ui.AirCondition_del, &guider_ui.device_management_screen_del, setup_scr_AirCondition, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
 void events_init_device_management_screen (lv_ui *ui)
 {
     lv_obj_add_event_cb(ui->device_management_screen, device_management_screen_event_handler, LV_EVENT_ALL, ui);
@@ -190,70 +671,42 @@ void events_init_device_management_screen (lv_ui *ui)
     lv_obj_add_event_cb(ui->device_management_screen_Light_CT_on_off_1_img, device_management_screen_Light_CT_on_off_1_img_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->device_management_screen_small_dev_off_img, device_management_screen_small_dev_off_img_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->device_management_screen_label_2, device_management_screen_label_2_event_handler, LV_EVENT_ALL, ui);
-}
-
-static void light_scence_screen_event_handler (lv_event_t *e)
-{
-    lv_event_code_t code = lv_event_get_code(e);
-    switch (code) {
-    case LV_EVENT_GESTURE:
-    {
-        lv_dir_t dir = lv_indev_get_gesture_dir(lv_indev_get_act());
-        switch(dir) {
-        case LV_DIR_LEFT:
-        {
-            lv_indev_wait_release(lv_indev_get_act());
-            ui_load_scr_animation(&guider_ui, &guider_ui.curtain_scene_screen, guider_ui.curtain_scene_screen_del, &guider_ui.light_scence_screen_del, setup_scr_curtain_scene_screen, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
-            break;
-        }
-        case LV_DIR_RIGHT:
-        {
-            lv_indev_wait_release(lv_indev_get_act());
-            ui_load_scr_animation(&guider_ui, &guider_ui.device_management_screen, guider_ui.device_management_screen_del, &guider_ui.light_scence_screen_del, setup_scr_device_management_screen, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
-            break;
-        }
-        default:
-            break;
-        }
-        break;
-    }
-    default:
-        break;
-    }
-}
-
-void events_init_light_scence_screen (lv_ui *ui)
-{
-    lv_obj_add_event_cb(ui->light_scence_screen, light_scence_screen_event_handler, LV_EVENT_ALL, ui);
-}
-
-static void curtain_scene_screen_event_handler (lv_event_t *e)
-{
-    lv_event_code_t code = lv_event_get_code(e);
-    switch (code) {
-    case LV_EVENT_GESTURE:
-    {
-        lv_dir_t dir = lv_indev_get_gesture_dir(lv_indev_get_act());
-        switch(dir) {
-        case LV_DIR_RIGHT:
-        {
-            lv_indev_wait_release(lv_indev_get_act());
-            ui_load_scr_animation(&guider_ui, &guider_ui.light_scence_screen, guider_ui.light_scence_screen_del, &guider_ui.curtain_scene_screen_del, setup_scr_light_scence_screen, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
-            break;
-        }
-        default:
-            break;
-        }
-        break;
-    }
-    default:
-        break;
-    }
-}
-
-void events_init_curtain_scene_screen (lv_ui *ui)
-{
-    lv_obj_add_event_cb(ui->curtain_scene_screen, curtain_scene_screen_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_cont_2, device_management_screen_cont_2_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_sLEDStripOn, device_management_screen_sLEDStripOn_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_sLEDStripOff, device_management_screen_sLEDStripOff_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_label_3, device_management_screen_label_3_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_cont_3, device_management_screen_cont_3_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_sMagLightOff, device_management_screen_sMagLightOff_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_label_4, device_management_screen_label_4_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_cont_4, device_management_screen_cont_4_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_sRGBLightOn, device_management_screen_sRGBLightOn_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_sRGBLightOff, device_management_screen_sRGBLightOff_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_label_5, device_management_screen_label_5_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_cont_5, device_management_screen_cont_5_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_sFabricCurtainOn, device_management_screen_sFabricCurtainOn_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_sFabricCurtianOff, device_management_screen_sFabricCurtianOff_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_label_6, device_management_screen_label_6_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_cont_6, device_management_screen_cont_6_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_sSheersOn, device_management_screen_sSheersOn_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_sSheersOff, device_management_screen_sSheersOff_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_label_7, device_management_screen_label_7_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_cont_7, device_management_screen_cont_7_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_sRollBlindOn, device_management_screen_sRollBlindOn_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_sRollBlindOff, device_management_screen_sRollBlindOff_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_label_8, device_management_screen_label_8_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_cont_8, device_management_screen_cont_8_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_sDreamOn, device_management_screen_sDreamOn_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_sDreamOff, device_management_screen_sDreamOff_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_label_10, device_management_screen_label_10_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_cont_9, device_management_screen_cont_9_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_img_12, device_management_screen_img_12_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_label_9, device_management_screen_label_9_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_cont_11, device_management_screen_cont_11_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_sDryRackdown, device_management_screen_sDryRackdown_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_sDryRackup, device_management_screen_sDryRackup_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_label_11, device_management_screen_label_11_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_label_15, device_management_screen_label_15_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_label_16, device_management_screen_label_16_event_handler, LV_EVENT_ALL, ui);
 }
 
 static void setting_screen_btn_1_event_handler (lv_event_t *e)
@@ -281,27 +734,12 @@ static void light_CT_screen_event_handler (lv_event_t *e)
     switch (code) {
     case LV_EVENT_SCREEN_LOADED:
     {
-        ui_animation(guider_ui.light_CT_screen_label_2, 600, 0, lv_obj_get_x(guider_ui.light_CT_screen_label_2), 70, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
-        ui_animation(guider_ui.light_CT_screen_slider_1, 600, 0, lv_obj_get_x(guider_ui.light_CT_screen_slider_1), 70, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
-        ui_animation(guider_ui.light_CT_screen_slider_2, 600, 0, lv_obj_get_x(guider_ui.light_CT_screen_slider_2), 70, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
-        ui_animation(guider_ui.light_CT_screen_label_1, 600, 0, lv_obj_get_x(guider_ui.light_CT_screen_label_1), 70, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
-        bool light_on = HWInterface.LightCT.switch_status;
-        lv_slider_set_value(guider_ui.light_CT_screen_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);
-        lv_slider_set_value(guider_ui.light_CT_screen_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);
-        light_CT_screen_apply_light();   /* 灯光图(关→0/开→算) + 标签 */
-
-        if (light_on) lv_obj_add_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);
-        else          lv_obj_clear_state(guider_ui.light_CT_screen_on_off_2_img, LV_STATE_CHECKED);
-
-        if (light_on) {
-            lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_move_background(guider_ui.light_CT_screen_cont_1);
-        } else {
-            lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);
-            lv_obj_move_foreground(guider_ui.light_CT_screen_on_off_2_img);
-        }
-        ui_animation(guider_ui.light_CT_screen_ct_bar, 600, 0, lv_obj_get_x(guider_ui.light_CT_screen_ct_bar), 70, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        ui_animation(guider_ui.light_CT_screen_label_2, 600, 0, lv_obj_get_x(guider_ui.light_CT_screen_label_2), 20, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        ui_animation(guider_ui.light_CT_screen_slider_1, 600, 0, lv_obj_get_x(guider_ui.light_CT_screen_slider_1), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        ui_animation(guider_ui.light_CT_screen_slider_2, 600, 0, lv_obj_get_x(guider_ui.light_CT_screen_slider_2), 20, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        ui_animation(guider_ui.light_CT_screen_label_1, 600, 0, lv_obj_get_x(guider_ui.light_CT_screen_label_1), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        light_ct_on_screen_load();
+        ui_animation(guider_ui.light_CT_screen_ct_bar, 600, 0, lv_obj_get_x(guider_ui.light_CT_screen_ct_bar), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
         break;
     }
     default:
@@ -315,12 +753,7 @@ static void light_CT_screen_slider_2_event_handler (lv_event_t *e)
     switch (code) {
     case LV_EVENT_VALUE_CHANGED:
     {
-        HWInterface.LightCT.SetColorTemp((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_2));
-        const uint32_t APPLY_MIN_MS = 50;
-        if (lv_tick_elaps(s_ct_apply_tick2) >= APPLY_MIN_MS) {
-            s_ct_apply_tick2 = lv_tick_get();
-            light_CT_screen_apply_light();
-        }
+        light_ct_on_ct_slider_change();
         break;
     }
     default:
@@ -334,13 +767,7 @@ static void light_CT_screen_slider_1_event_handler (lv_event_t *e)
     switch (code) {
     case LV_EVENT_VALUE_CHANGED:
     {
-        HWInterface.LightCT.SetBrightness((uint16_t)lv_slider_get_value(guider_ui.light_CT_screen_slider_1));  /* 写回中间层(不节流) */
-        const uint32_t APPLY_MIN_MS = 50;
-        if (lv_tick_elaps(s_ct_apply_tick) >= APPLY_MIN_MS) {   /* 重绘节流 */
-            s_ct_apply_tick = lv_tick_get();
-            light_CT_screen_apply_light();
-        }
-
+        light_ct_on_bri_slider_change();
         break;
     }
     default:
@@ -368,19 +795,7 @@ static void light_CT_screen_on_off_2_img_event_handler (lv_event_t *e)
     switch (code) {
     case LV_EVENT_VALUE_CHANGED:
     {
-        lv_obj_t *btn = lv_event_get_target(e);
-        bool light_on = lv_obj_has_state(btn, LV_STATE_CHECKED);
-        HWInterface.LightCT.SetOnOff(light_on);   /* 写回中间层 */
-        light_CT_screen_apply_light();                    /* 灯光图: 关→0, 开→按亮度/色温恢复 + 标签 */
-
-        if (light_on) {
-            lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_move_background(guider_ui.light_CT_screen_cont_1);
-        } else {
-            lv_obj_set_style_bg_opa(guider_ui.light_CT_screen_cont_1, 162, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);
-            lv_obj_move_foreground(btn);
-        }
+        light_ct_on_switch_toggle(e);
         break;
     }
     default:
@@ -395,6 +810,365 @@ void events_init_light_CT_screen (lv_ui *ui)
     lv_obj_add_event_cb(ui->light_CT_screen_slider_1, light_CT_screen_slider_1_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->light_CT_screen_btn_1, light_CT_screen_btn_1_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->light_CT_screen_on_off_2_img, light_CT_screen_on_off_2_img_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void LedStrip_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOADED:
+    {
+        ui_animation(guider_ui.LedStrip_label_1, 600, 0, lv_obj_get_x(guider_ui.LedStrip_label_1), 20, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        ui_animation(guider_ui.LedStrip_slider_1, 600, 0, lv_obj_get_x(guider_ui.LedStrip_slider_1), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        ui_animation(guider_ui.LedStrip_slider_2, 600, 0, lv_obj_get_x(guider_ui.LedStrip_slider_2), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        ui_animation(guider_ui.LedStrip_label_2, 600, 0, lv_obj_get_x(guider_ui.LedStrip_label_2), 20, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        ui_animation(guider_ui.LedStrip_ct_bar, 600, 0, lv_obj_get_x(guider_ui.LedStrip_ct_bar), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        led_strip_on_screen_load();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void LedStrip_slider_2_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_VALUE_CHANGED:
+    {
+        led_strip_on_ct_slider_change();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void LedStrip_slider_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_VALUE_CHANGED:
+    {
+        led_strip_on_bri_slider_change();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void LedStrip_btn_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.device_management_screen, guider_ui.device_management_screen_del, &guider_ui.LedStrip_del, setup_scr_device_management_screen, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void LedStrip_on_off_2_img_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_VALUE_CHANGED:
+    {
+        led_strip_on_switch_toggle(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_LedStrip (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->LedStrip, LedStrip_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->LedStrip_slider_2, LedStrip_slider_2_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->LedStrip_slider_1, LedStrip_slider_1_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->LedStrip_btn_1, LedStrip_btn_1_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->LedStrip_on_off_2_img, LedStrip_on_off_2_img_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void MagLight_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOADED:
+    {
+        ui_animation(guider_ui.MagLight_label_1, 600, 0, lv_obj_get_x(guider_ui.MagLight_label_1), 20, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        ui_animation(guider_ui.MagLight_slider_1, 600, 0, lv_obj_get_x(guider_ui.MagLight_slider_1), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        ui_animation(guider_ui.MagLight_slider_2, 600, 0, lv_obj_get_x(guider_ui.MagLight_slider_2), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        ui_animation(guider_ui.MagLight_ct_bar, 600, 0, lv_obj_get_x(guider_ui.MagLight_ct_bar), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        ui_animation(guider_ui.MagLight_label_2, 600, 0, lv_obj_get_x(guider_ui.MagLight_label_2), 20, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void MagLight_btn_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.device_management_screen, guider_ui.device_management_screen_del, &guider_ui.MagLight_del, setup_scr_device_management_screen, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_MagLight (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->MagLight, MagLight_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->MagLight_btn_1, MagLight_btn_1_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void RGBLight_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOADED:
+    {
+        ui_animation(guider_ui.RGBLight_label_1, 600, 0, lv_obj_get_x(guider_ui.RGBLight_label_1), 20, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        ui_animation(guider_ui.RGBLight_slider_2, 600, 0, lv_obj_get_x(guider_ui.RGBLight_slider_2), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        ui_animation(guider_ui.RGBLight_ct_bar, 600, 0, lv_obj_get_x(guider_ui.RGBLight_ct_bar), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        ui_animation(guider_ui.RGBLight_label_2, 600, 0, lv_obj_get_x(guider_ui.RGBLight_label_2), 20, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        ui_animation(guider_ui.RGBLight_slider_1, 600, 0, lv_obj_get_x(guider_ui.RGBLight_slider_1), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void RGBLight_btn_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.device_management_screen, guider_ui.device_management_screen_del, &guider_ui.RGBLight_del, setup_scr_device_management_screen, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_RGBLight (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->RGBLight, RGBLight_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->RGBLight_btn_1, RGBLight_btn_1_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void FabricCurtian_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOADED:
+    {
+        ui_animation(guider_ui.FabricCurtian_FabCurtianPause, 300, 0, lv_obj_get_y(guider_ui.FabricCurtian_FabCurtianPause), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
+        ui_animation(guider_ui.FabricCurtian_FabCurtianClose, 300, 0, lv_obj_get_y(guider_ui.FabricCurtian_FabCurtianClose), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
+        ui_animation(guider_ui.FabricCurtian_FabCurtianOpen, 300, 0, lv_obj_get_y(guider_ui.FabricCurtian_FabCurtianOpen), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void FabricCurtian_btn_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.device_management_screen, guider_ui.device_management_screen_del, &guider_ui.FabricCurtian_del, setup_scr_device_management_screen, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_FabricCurtian (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->FabricCurtian, FabricCurtian_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->FabricCurtian_btn_1, FabricCurtian_btn_1_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void Sheers_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOADED:
+    {
+        ui_animation(guider_ui.Sheers_FabCurtianPause, 300, 0, lv_obj_get_y(guider_ui.Sheers_FabCurtianPause), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
+        ui_animation(guider_ui.Sheers_FabCurtianClose, 300, 0, lv_obj_get_y(guider_ui.Sheers_FabCurtianClose), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
+        ui_animation(guider_ui.Sheers_FabCurtianOpen, 300, 0, lv_obj_get_y(guider_ui.Sheers_FabCurtianOpen), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void Sheers_btn_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.device_management_screen, guider_ui.device_management_screen_del, &guider_ui.Sheers_del, setup_scr_device_management_screen, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_Sheers (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->Sheers, Sheers_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->Sheers_btn_1, Sheers_btn_1_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void RollBlind_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOADED:
+    {
+        ui_animation(guider_ui.RollBlind_FabCurtianPause, 300, 0, lv_obj_get_y(guider_ui.RollBlind_FabCurtianPause), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
+        ui_animation(guider_ui.RollBlind_FabCurtianClose, 300, 0, lv_obj_get_y(guider_ui.RollBlind_FabCurtianClose), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
+        ui_animation(guider_ui.RollBlind_FabCurtianOpen, 300, 0, lv_obj_get_y(guider_ui.RollBlind_FabCurtianOpen), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void RollBlind_btn_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.device_management_screen, guider_ui.device_management_screen_del, &guider_ui.RollBlind_del, setup_scr_device_management_screen, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_RollBlind (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->RollBlind, RollBlind_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->RollBlind_btn_1, RollBlind_btn_1_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void Dream_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOADED:
+    {
+        ui_animation(guider_ui.Dream_FabCurtianPause, 300, 0, lv_obj_get_y(guider_ui.Dream_FabCurtianPause), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
+        ui_animation(guider_ui.Dream_FabCurtianClose, 300, 0, lv_obj_get_y(guider_ui.Dream_FabCurtianClose), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
+        ui_animation(guider_ui.Dream_FabCurtianOpen, 300, 0, lv_obj_get_y(guider_ui.Dream_FabCurtianOpen), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void Dream_btn_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.device_management_screen, guider_ui.device_management_screen_del, &guider_ui.Dream_del, setup_scr_device_management_screen, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_Dream (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->Dream, Dream_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->Dream_btn_1, Dream_btn_1_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void AirCondition_btn_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.device_management_screen, guider_ui.device_management_screen_del, &guider_ui.AirCondition_del, setup_scr_device_management_screen, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_AirCondition (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->AirCondition_btn_1, AirCondition_btn_1_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void DryRack_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOADED:
+    {
+        ui_animation(guider_ui.DryRack_FabCurtianPause, 300, 0, lv_obj_get_y(guider_ui.DryRack_FabCurtianPause), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
+        ui_animation(guider_ui.DryRack_FabCurtianClose, 300, 0, lv_obj_get_y(guider_ui.DryRack_FabCurtianClose), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
+        ui_animation(guider_ui.DryRack_FabCurtianOpen, 300, 0, lv_obj_get_y(guider_ui.DryRack_FabCurtianOpen), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void DryRack_btn_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.device_management_screen, guider_ui.device_management_screen_del, &guider_ui.DryRack_del, setup_scr_device_management_screen, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_DryRack (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->DryRack, DryRack_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->DryRack_btn_1, DryRack_btn_1_event_handler, LV_EVENT_ALL, ui);
 }
 
 

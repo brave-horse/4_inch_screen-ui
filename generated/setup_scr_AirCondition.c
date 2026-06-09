@@ -35,17 +35,17 @@ void setup_scr_AirCondition(lv_ui *ui)
     lv_obj_set_scrollbar_mode(ui->AirCondition_tabview_1, LV_SCROLLBAR_MODE_ON);
 
     //Write style for AirCondition_tabview_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->AirCondition_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->AirCondition_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->AirCondition_tabview_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->AirCondition_tabview_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->AirCondition_tabview_1, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->AirCondition_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(ui->AirCondition_tabview_1, lv_color_hex(0x4d4d4d), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->AirCondition_tabview_1, &lv_font_ZiTiQuanWeiJunHeiW22_12, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->AirCondition_tabview_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_letter_space(ui->AirCondition_tabview_1, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_line_space(ui->AirCondition_tabview_1, 16, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->AirCondition_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->AirCondition_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->AirCondition_tabview_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write style state: LV_STATE_DEFAULT for &style_AirCondition_tabview_1_extra_btnm_main_default
     static lv_style_t style_AirCondition_tabview_1_extra_btnm_main_default;
@@ -101,11 +101,11 @@ void setup_scr_AirCondition(lv_ui *ui)
     lv_obj_set_style_bg_opa(ui->AirCondition_cont_1, 133, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->AirCondition_cont_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->AirCondition_cont_1, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->AirCondition_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_top(ui->AirCondition_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_right(ui->AirCondition_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_bottom(ui->AirCondition_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_left(ui->AirCondition_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui->AirCondition_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->AirCondition_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes AirCondition_btn_1
     ui->AirCondition_btn_1 = lv_btn_create(ui->AirCondition);
@@ -119,34 +119,42 @@ void setup_scr_AirCondition(lv_ui *ui)
     lv_obj_set_size(ui->AirCondition_btn_1, 156, 50);
 
     //Write style for AirCondition_btn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_bg_opa(ui->AirCondition_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->AirCondition_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_radius(ui->AirCondition_btn_1, 5, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->AirCondition_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(ui->AirCondition_btn_1, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->AirCondition_btn_1, &lv_font_ZiTiQuanWeiJunHeiW22_30, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->AirCondition_btn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui->AirCondition_btn_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui->AirCondition_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_width(ui->AirCondition_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes AirCondition_ACDry
     ui->AirCondition_ACDry = lv_img_create(ui->AirCondition);
     lv_obj_add_flag(ui->AirCondition_ACDry, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->AirCondition_ACDry, &_ACDry_alpha_109x109);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->AirCondition_ACDry, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\ACDry.png");
+#else
+    lv_img_set_src(ui->AirCondition_ACDry, "S:/sdfile/EXT_RESERVED/uipackres/ui/ACDry.png");
+#endif
     lv_img_set_pivot(ui->AirCondition_ACDry, 50,50);
     lv_img_set_angle(ui->AirCondition_ACDry, 0);
     lv_obj_set_pos(ui->AirCondition_ACDry, -480, 557);
     lv_obj_set_size(ui->AirCondition_ACDry, 109, 109);
 
     //Write style for AirCondition_ACDry, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->AirCondition_ACDry, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->AirCondition_ACDry, true, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_recolor_opa(ui->AirCondition_ACDry, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_opa(ui->AirCondition_ACDry, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->AirCondition_ACDry, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->AirCondition_ACDry, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes AirCondition_ACSpeedAuto
     ui->AirCondition_ACSpeedAuto = lv_img_create(ui->AirCondition);
     lv_obj_add_flag(ui->AirCondition_ACSpeedAuto, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->AirCondition_ACSpeedAuto, &_ACSpeedAuto_alpha_109x109);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->AirCondition_ACSpeedAuto, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\ACSpeedAuto.png");
+#else
+    lv_img_set_src(ui->AirCondition_ACSpeedAuto, "S:/sdfile/EXT_RESERVED/uipackres/ui/ACSpeedAuto.png");
+#endif
     lv_img_set_pivot(ui->AirCondition_ACSpeedAuto, 50,50);
     lv_img_set_angle(ui->AirCondition_ACSpeedAuto, 0);
     lv_obj_set_pos(ui->AirCondition_ACSpeedAuto, 561, 515);
@@ -161,7 +169,11 @@ void setup_scr_AirCondition(lv_ui *ui)
     //Write codes AirCondition_FabCurtianLeft
     ui->AirCondition_FabCurtianLeft = lv_img_create(ui->AirCondition);
     lv_obj_add_flag(ui->AirCondition_FabCurtianLeft, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->AirCondition_FabCurtianLeft, &_AirConditionImg_alpha_332x140);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->AirCondition_FabCurtianLeft, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\AirConditionImg.png");
+#else
+    lv_img_set_src(ui->AirCondition_FabCurtianLeft, "S:/sdfile/EXT_RESERVED/uipackres/ui/AirConditionImg.png");
+#endif
     lv_img_set_pivot(ui->AirCondition_FabCurtianLeft, 50,50);
     lv_img_set_angle(ui->AirCondition_FabCurtianLeft, 0);
     lv_obj_set_pos(ui->AirCondition_FabCurtianLeft, 151, 111);
@@ -176,7 +188,11 @@ void setup_scr_AirCondition(lv_ui *ui)
     //Write codes AirCondition_AcSpd1
     ui->AirCondition_AcSpd1 = lv_img_create(ui->AirCondition);
     lv_obj_add_flag(ui->AirCondition_AcSpd1, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->AirCondition_AcSpd1, &_AcSpd1_alpha_349x94);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->AirCondition_AcSpd1, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\AcSpd1.png");
+#else
+    lv_img_set_src(ui->AirCondition_AcSpd1, "S:/sdfile/EXT_RESERVED/uipackres/ui/AcSpd1.png");
+#endif
     lv_img_set_pivot(ui->AirCondition_AcSpd1, 50,50);
     lv_img_set_angle(ui->AirCondition_AcSpd1, 0);
     lv_obj_set_pos(ui->AirCondition_AcSpd1, 582, 133);
@@ -191,8 +207,13 @@ void setup_scr_AirCondition(lv_ui *ui)
     //Write codes AirCondition_ACBtn
     ui->AirCondition_ACBtn = lv_imgbtn_create(ui->AirCondition);
     lv_obj_add_flag(ui->AirCondition_ACBtn, LV_OBJ_FLAG_CHECKABLE);
-    lv_imgbtn_set_src(ui->AirCondition_ACBtn, LV_IMGBTN_STATE_RELEASED, NULL, &_ACOff_alpha_109x109, NULL);
-    lv_imgbtn_set_src(ui->AirCondition_ACBtn, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, &_ACOn_alpha_109x109, NULL);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_imgbtn_set_src(ui->AirCondition_ACBtn, LV_IMGBTN_STATE_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\ACOff.png", NULL);
+    lv_imgbtn_set_src(ui->AirCondition_ACBtn, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\ACOn.png", NULL);
+#else
+    lv_imgbtn_set_src(ui->AirCondition_ACBtn, LV_IMGBTN_STATE_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/ACOff.png", NULL);
+    lv_imgbtn_set_src(ui->AirCondition_ACBtn, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/ACOn.png", NULL);
+#endif
     ui->AirCondition_ACBtn_label = lv_label_create(ui->AirCondition_ACBtn);
     lv_label_set_text(ui->AirCondition_ACBtn_label, "");
     lv_label_set_long_mode(ui->AirCondition_ACBtn_label, LV_LABEL_LONG_WRAP);
@@ -233,7 +254,11 @@ void setup_scr_AirCondition(lv_ui *ui)
     //Write codes AirCondition_ACSpeed1
     ui->AirCondition_ACSpeed1 = lv_img_create(ui->AirCondition);
     lv_obj_add_flag(ui->AirCondition_ACSpeed1, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->AirCondition_ACSpeed1, &_ACSpeed1_alpha_109x109);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->AirCondition_ACSpeed1, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\ACSpeed1.png");
+#else
+    lv_img_set_src(ui->AirCondition_ACSpeed1, "S:/sdfile/EXT_RESERVED/uipackres/ui/ACSpeed1.png");
+#endif
     lv_img_set_pivot(ui->AirCondition_ACSpeed1, 50,50);
     lv_img_set_angle(ui->AirCondition_ACSpeed1, 0);
     lv_obj_set_pos(ui->AirCondition_ACSpeed1, 705, 515);
@@ -248,7 +273,11 @@ void setup_scr_AirCondition(lv_ui *ui)
     //Write codes AirCondition_ACSpeed2
     ui->AirCondition_ACSpeed2 = lv_img_create(ui->AirCondition);
     lv_obj_add_flag(ui->AirCondition_ACSpeed2, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->AirCondition_ACSpeed2, &_ACSpeed2_alpha_109x109);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->AirCondition_ACSpeed2, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\ACSpeed2.png");
+#else
+    lv_img_set_src(ui->AirCondition_ACSpeed2, "S:/sdfile/EXT_RESERVED/uipackres/ui/ACSpeed2.png");
+#endif
     lv_img_set_pivot(ui->AirCondition_ACSpeed2, 50,50);
     lv_img_set_angle(ui->AirCondition_ACSpeed2, 0);
     lv_obj_set_pos(ui->AirCondition_ACSpeed2, 878, 515);
@@ -263,7 +292,11 @@ void setup_scr_AirCondition(lv_ui *ui)
     //Write codes AirCondition_ACSpeed3
     ui->AirCondition_ACSpeed3 = lv_img_create(ui->AirCondition);
     lv_obj_add_flag(ui->AirCondition_ACSpeed3, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->AirCondition_ACSpeed3, &_ACSpeed3_alpha_109x109);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->AirCondition_ACSpeed3, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\ACSpeed3.png");
+#else
+    lv_img_set_src(ui->AirCondition_ACSpeed3, "S:/sdfile/EXT_RESERVED/uipackres/ui/ACSpeed3.png");
+#endif
     lv_img_set_pivot(ui->AirCondition_ACSpeed3, 50,50);
     lv_img_set_angle(ui->AirCondition_ACSpeed3, 0);
     lv_obj_set_pos(ui->AirCondition_ACSpeed3, 1043, 515);
@@ -278,7 +311,11 @@ void setup_scr_AirCondition(lv_ui *ui)
     //Write codes AirCondition_ACSpeed4
     ui->AirCondition_ACSpeed4 = lv_img_create(ui->AirCondition);
     lv_obj_add_flag(ui->AirCondition_ACSpeed4, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->AirCondition_ACSpeed4, &_ACSpeed4_alpha_109x109);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->AirCondition_ACSpeed4, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\ACSpeed4.png");
+#else
+    lv_img_set_src(ui->AirCondition_ACSpeed4, "S:/sdfile/EXT_RESERVED/uipackres/ui/ACSpeed4.png");
+#endif
     lv_img_set_pivot(ui->AirCondition_ACSpeed4, 50,50);
     lv_img_set_angle(ui->AirCondition_ACSpeed4, 0);
     lv_obj_set_pos(ui->AirCondition_ACSpeed4, 1187, 515);
@@ -293,52 +330,68 @@ void setup_scr_AirCondition(lv_ui *ui)
     //Write codes AirCondition_AcCool
     ui->AirCondition_AcCool = lv_img_create(ui->AirCondition);
     lv_obj_add_flag(ui->AirCondition_AcCool, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->AirCondition_AcCool, &_AcCool_alpha_109x109);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->AirCondition_AcCool, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\AcCool.png");
+#else
+    lv_img_set_src(ui->AirCondition_AcCool, "S:/sdfile/EXT_RESERVED/uipackres/ui/AcCool.png");
+#endif
     lv_img_set_pivot(ui->AirCondition_AcCool, 50,50);
     lv_img_set_angle(ui->AirCondition_AcCool, 0);
     lv_obj_set_pos(ui->AirCondition_AcCool, -26, 545);
     lv_obj_set_size(ui->AirCondition_AcCool, 109, 109);
 
     //Write style for AirCondition_AcCool, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->AirCondition_AcCool, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->AirCondition_AcCool, true, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_recolor_opa(ui->AirCondition_AcCool, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_opa(ui->AirCondition_AcCool, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->AirCondition_AcCool, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->AirCondition_AcCool, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes AirCondition_ACFan
     ui->AirCondition_ACFan = lv_img_create(ui->AirCondition);
     lv_obj_add_flag(ui->AirCondition_ACFan, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->AirCondition_ACFan, &_ACFan_alpha_109x109);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->AirCondition_ACFan, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\ACFan.png");
+#else
+    lv_img_set_src(ui->AirCondition_ACFan, "S:/sdfile/EXT_RESERVED/uipackres/ui/ACFan.png");
+#endif
     lv_img_set_pivot(ui->AirCondition_ACFan, 50,50);
     lv_img_set_angle(ui->AirCondition_ACFan, 0);
     lv_obj_set_pos(ui->AirCondition_ACFan, -337, 561);
     lv_obj_set_size(ui->AirCondition_ACFan, 109, 109);
 
     //Write style for AirCondition_ACFan, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->AirCondition_ACFan, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->AirCondition_ACFan, true, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_recolor_opa(ui->AirCondition_ACFan, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_opa(ui->AirCondition_ACFan, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->AirCondition_ACFan, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->AirCondition_ACFan, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes AirCondition_ACHot
     ui->AirCondition_ACHot = lv_img_create(ui->AirCondition);
     lv_obj_add_flag(ui->AirCondition_ACHot, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->AirCondition_ACHot, &_ACHot_alpha_109x109);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->AirCondition_ACHot, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\ACHot.png");
+#else
+    lv_img_set_src(ui->AirCondition_ACHot, "S:/sdfile/EXT_RESERVED/uipackres/ui/ACHot.png");
+#endif
     lv_img_set_pivot(ui->AirCondition_ACHot, 50,50);
     lv_img_set_angle(ui->AirCondition_ACHot, 0);
     lv_obj_set_pos(ui->AirCondition_ACHot, -188, 557);
     lv_obj_set_size(ui->AirCondition_ACHot, 109, 109);
 
     //Write style for AirCondition_ACHot, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->AirCondition_ACHot, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->AirCondition_ACHot, true, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_recolor_opa(ui->AirCondition_ACHot, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_opa(ui->AirCondition_ACHot, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->AirCondition_ACHot, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->AirCondition_ACHot, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes AirCondition_AcSpd2
     ui->AirCondition_AcSpd2 = lv_img_create(ui->AirCondition);
     lv_obj_add_flag(ui->AirCondition_AcSpd2, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->AirCondition_AcSpd2, &_AcSpd2_alpha_349x94);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->AirCondition_AcSpd2, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\AcSpd2.png");
+#else
+    lv_img_set_src(ui->AirCondition_AcSpd2, "S:/sdfile/EXT_RESERVED/uipackres/ui/AcSpd2.png");
+#endif
     lv_img_set_pivot(ui->AirCondition_AcSpd2, 50,50);
     lv_img_set_angle(ui->AirCondition_AcSpd2, 0);
     lv_obj_set_pos(ui->AirCondition_AcSpd2, 945, 125);
@@ -353,7 +406,11 @@ void setup_scr_AirCondition(lv_ui *ui)
     //Write codes AirCondition_AcSpd3
     ui->AirCondition_AcSpd3 = lv_img_create(ui->AirCondition);
     lv_obj_add_flag(ui->AirCondition_AcSpd3, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->AirCondition_AcSpd3, &_AcSpd3_alpha_349x94);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->AirCondition_AcSpd3, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\AcSpd3.png");
+#else
+    lv_img_set_src(ui->AirCondition_AcSpd3, "S:/sdfile/EXT_RESERVED/uipackres/ui/AcSpd3.png");
+#endif
     lv_img_set_pivot(ui->AirCondition_AcSpd3, 50,50);
     lv_img_set_angle(ui->AirCondition_AcSpd3, 0);
     lv_obj_set_pos(ui->AirCondition_AcSpd3, 1343, 111);
@@ -371,4 +428,6 @@ void setup_scr_AirCondition(lv_ui *ui)
     //Update current screen layout.
     lv_obj_update_layout(ui->AirCondition);
 
+    //Init events for screen.
+    events_init_AirCondition(ui);
 }

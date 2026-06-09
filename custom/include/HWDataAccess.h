@@ -22,9 +22,7 @@ typedef struct
     bool     switch_status;
     uint16_t brightness;
     uint16_t color_temp;
-    uint8_t  changed;
 
-    void (*Init)(void);
     void (*SetOnOff)(bool on);
     void (*SetBrightness)(uint16_t brightness);
     void (*SetColorTemp)(uint16_t color_temp);
@@ -34,10 +32,20 @@ typedef struct
 typedef struct
 {
     bool     switch_status;
-    uint16_t position;
-    uint8_t  changed;
+    uint16_t brightness;
+    uint16_t color_temp;
 
-    void (*Init)(uint8_t idx);
+    void (*SetOnOff)(bool on);
+    void (*SetBrightness)(uint16_t brightness);
+    void (*SetColorTemp)(uint16_t color_temp);
+    void (*Apply)(void);
+} HW_LEDStrip_InterfaceTypeDef;
+
+typedef struct
+{
+    bool     switch_status;
+    uint16_t position;
+
     void (*SetOnOff)(uint8_t idx, bool on);
     void (*SetPos)(uint8_t idx, uint16_t pos);
     void (*Apply)(uint8_t idx);
@@ -46,6 +54,7 @@ typedef struct
 typedef struct
 {
     HW_LightCT_InterfaceTypeDef  LightCT;
+    HW_LEDStrip_InterfaceTypeDef LEDStrip;
     HW_Curtain_InterfaceTypeDef  Curtain;
 } HW_InterfaceTypeDef;
 

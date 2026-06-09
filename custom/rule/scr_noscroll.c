@@ -30,8 +30,6 @@ static lv_obj_t *s_last_scr;
 static lv_obj_t **const s_targets[] = {
     &guider_ui.ui_home_screen,
     &guider_ui.device_management_screen,
-    &guider_ui.light_scence_screen,
-    &guider_ui.curtain_scene_screen,
     &guider_ui.setting_screen,
     &guider_ui.light_CT_screen,
 };

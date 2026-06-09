@@ -69,3 +69,13 @@ void custom_init(lv_ui *ui)
     /* event 层：把 UI 事件桥接到 App 业务（当前为空骨架，无副作用）。 */
     my_app_event_init(ui);
 }
+
+/* 模拟器桩: hw_cloud_post() 在板子上由 Task/Soc/hw_cloud_task.c 提供 */
+#ifdef LV_USE_GUIDER_SIMULATOR
+#include "hw_cloud_task.h"
+void hw_cloud_post(HW_Msg *msg)
+{
+    (void)msg;
+    printf("[sim] hw_cloud_post type=%u\n", msg ? msg->type : 0);
+}
+#endif
