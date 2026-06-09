@@ -6,22 +6,20 @@ extern "C" {
 #endif
 
 #include "stdint.h"
-#include "object.h"
-#include "Switch.h"
-#include "Percent.h"
+#include "Light.h"
 
-/* 色温灯 = Object + Switch + 亮度 + 色温 */
+// 色温灯: Light + 色温
 typedef struct {
-    Object   base;       /* name + id + apply */
-    Switch   sw;         /* 开关 */
-    Percent  bri;        /* 亮度 0~100 */
-    uint16_t ct;         /* 色温 K */
+    Light    base;         // 父类(first member → 可上溯)
+    uint16_t color_temp;   // K
 } LightCT;
 
-void     LightCT_Init(LightCT *dev, const char *name, uint32_t id,
-                      uint16_t bri, uint16_t ct);
-LightCT *LightCT_New(const char *name, uint32_t id,
-                      uint16_t bri, uint16_t ct);
+void      LightCT_Init(LightCT *light, const char *name, uint32_t id,
+                       uint16_t color_temp, uint16_t brightness);
+LightCT  *LightCT_New(const char *name, uint32_t id,
+                       uint16_t color_temp, uint16_t brightness);
+void      LightCT_SetColorTemp(LightCT *light, uint16_t color_temp);
+uint16_t  LightCT_GetColorTemp(const LightCT *light);
 
 #ifdef __cplusplus
 }

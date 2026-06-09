@@ -20,6 +20,7 @@
 
 #include "light_CT_screen.h"
 #include "LEDStrip.h"
+#include "MagLight.h"
 
 static void ui_home_screen_event_handler (lv_event_t *e)
 {
@@ -907,6 +908,35 @@ static void MagLight_event_handler (lv_event_t *e)
         ui_animation(guider_ui.MagLight_slider_2, 600, 0, lv_obj_get_x(guider_ui.MagLight_slider_2), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
         ui_animation(guider_ui.MagLight_ct_bar, 600, 0, lv_obj_get_x(guider_ui.MagLight_ct_bar), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
         ui_animation(guider_ui.MagLight_label_2, 600, 0, lv_obj_get_x(guider_ui.MagLight_label_2), 20, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        mag_light_on_screen_load();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void MagLight_slider_2_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_VALUE_CHANGED:
+    {
+        mag_light_on_ct_slider_change();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void MagLight_slider_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_VALUE_CHANGED:
+    {
+        mag_light_on_bri_slider_change();
         break;
     }
     default:
@@ -928,10 +958,27 @@ static void MagLight_btn_1_event_handler (lv_event_t *e)
     }
 }
 
+static void MagLight_on_off_2_img_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_VALUE_CHANGED:
+    {
+        mag_light_on_switch_toggle(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
 void events_init_MagLight (lv_ui *ui)
 {
     lv_obj_add_event_cb(ui->MagLight, MagLight_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->MagLight_slider_2, MagLight_slider_2_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->MagLight_slider_1, MagLight_slider_1_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->MagLight_btn_1, MagLight_btn_1_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->MagLight_on_off_2_img, MagLight_on_off_2_img_event_handler, LV_EVENT_ALL, ui);
 }
 
 static void RGBLight_event_handler (lv_event_t *e)

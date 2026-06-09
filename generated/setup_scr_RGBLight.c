@@ -109,7 +109,7 @@ void setup_scr_RGBLight(lv_ui *ui)
 
     //Write codes RGBLight_label_2
     ui->RGBLight_label_2 = lv_label_create(ui->RGBLight);
-    lv_label_set_text(ui->RGBLight_label_2, "色 温 | 4850K");
+    lv_label_set_text(ui->RGBLight_label_2, "颜 色 | #00718D");
     lv_label_set_long_mode(ui->RGBLight_label_2, LV_LABEL_LONG_WRAP);
     lv_obj_set_pos(ui->RGBLight_label_2, 258, 576);
     lv_obj_set_size(ui->RGBLight_label_2, 211, 34);
@@ -362,24 +362,24 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_obj_set_style_radius(ui->RGBLight_RGBCover, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_clip_corner(ui->RGBLight_RGBCover, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes RGBLight_RGBblue
-    ui->RGBLight_RGBblue = lv_img_create(ui->RGBLight);
-    lv_obj_add_flag(ui->RGBLight_RGBblue, LV_OBJ_FLAG_CLICKABLE);
+    //Write codes RGBLight_Blue
+    ui->RGBLight_Blue = lv_img_create(ui->RGBLight);
+    lv_obj_add_flag(ui->RGBLight_Blue, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->RGBLight_RGBblue, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\RGBblue.png");
+    lv_img_set_src(ui->RGBLight_Blue, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\RGBblue.png");
 #else
-    lv_img_set_src(ui->RGBLight_RGBblue, "S:/sdfile/EXT_RESERVED/uipackres/ui/RGBblue.png");
+    lv_img_set_src(ui->RGBLight_Blue, "S:/sdfile/EXT_RESERVED/uipackres/ui/RGBblue.png");
 #endif
-    lv_img_set_pivot(ui->RGBLight_RGBblue, 50,50);
-    lv_img_set_angle(ui->RGBLight_RGBblue, 0);
-    lv_obj_set_pos(ui->RGBLight_RGBblue, 62, 244);
-    lv_obj_set_size(ui->RGBLight_RGBblue, 537, 170);
+    lv_img_set_pivot(ui->RGBLight_Blue, 50,50);
+    lv_img_set_angle(ui->RGBLight_Blue, 0);
+    lv_obj_set_pos(ui->RGBLight_Blue, 62, 244);
+    lv_obj_set_size(ui->RGBLight_Blue, 537, 170);
 
-    //Write style for RGBLight_RGBblue, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->RGBLight_RGBblue, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->RGBLight_RGBblue, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->RGBLight_RGBblue, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->RGBLight_RGBblue, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for RGBLight_Blue, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->RGBLight_Blue, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->RGBLight_Blue, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->RGBLight_Blue, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->RGBLight_Blue, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes RGBLight_Red
     ui->RGBLight_Red = lv_img_create(ui->RGBLight);

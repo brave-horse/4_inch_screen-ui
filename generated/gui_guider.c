@@ -91,6 +91,7 @@ void init_scr_del_flag(lv_ui *ui)
     ui->DryRack_del = true;
     ui->FanLight_del = true;
     ui->Heater_del = true;
+    ui->screen_1_del = true;
 }
 
 void setup_ui(lv_ui *ui)

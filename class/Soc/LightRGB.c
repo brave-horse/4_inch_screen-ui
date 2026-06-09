@@ -2,33 +2,43 @@
 #include <stdlib.h>
 #include "LightRGB.h"
 
-static void lightrgb_apply(void *dev)
+static void lightrgb_apply(const Light *self)
 {
-    LightRGB *l = (LightRGB *)dev;
-    if (!Switch_IsOn(&l->sw)) {
-        printf("  -> [RGB灯 %s] 关\n", l->base.name);
+    const LightRGB *l = (const LightRGB *)self;
+    if (!Light_IsOn(self)) {
+        printf("  -> [RGB灯 %s] 关\n", Light_Name(self));
         return;
     }
-    printf("  -> [RGB灯 %s] 亮度=%u%% RGB=(%u,%u,%u)\n",
-           l->base.name, Percent_Get(&l->bri), l->r, l->g, l->b);
+    printf("  -> [RGB灯 %s] RGB=(%u,%u,%u) 亮度=%u%%\n",
+           Light_Name(self), l->r, l->g, l->b, Light_GetBrightness(self));
 }
 
-void LightRGB_Init(LightRGB *dev, const char *name, uint32_t id, uint16_t bri)
+static const LightOps LIGHTRGB_OPS = {
+    .apply   = lightrgb_apply,
+    .destroy = NULL,
+};
+
+void LightRGB_Init(LightRGB *light, const char *name, uint32_t id, uint16_t brightness)
 {
-    if (!dev) return;
-    Object_Init(&dev->base, name, id);
-    dev->base.apply = lightrgb_apply;
-    Switch_Init(&dev->sw, false);
-    Percent_Init(&dev->bri, bri);
-    dev->r = 255;
-    dev->g = 255;
-    dev->b = 255;
+    if (!light) return;
+    Light_BaseInit(&light->base, name, id, brightness, &LIGHTRGB_OPS);
+    light->r = 255;
+    light->g = 255;
+    light->b = 255;
 }
 
-LightRGB *LightRGB_New(const char *name, uint32_t id, uint16_t bri)
+LightRGB *LightRGB_New(const char *name, uint32_t id, uint16_t brightness)
 {
-    LightRGB *dev = (LightRGB *)malloc(sizeof(LightRGB));
-    if (!dev) return NULL;
-    LightRGB_Init(dev, name, id, bri);
-    return dev;
+    LightRGB *light = (LightRGB *)malloc(sizeof(LightRGB));
+    if (!light) return NULL;
+    LightRGB_Init(light, name, id, brightness);
+    return light;
+}
+
+void LightRGB_SetColor(LightRGB *light, uint8_t r, uint8_t g, uint8_t b)
+{
+    if (!light) return;
+    light->r = r;
+    light->g = g;
+    light->b = b;
 }

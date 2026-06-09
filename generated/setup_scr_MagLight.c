@@ -343,6 +343,21 @@ void setup_scr_MagLight(lv_ui *ui)
     lv_obj_set_style_img_recolor_opa(ui->MagLight_on_off_2_img, 0, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
     lv_obj_set_style_img_opa(ui->MagLight_on_off_2_img, 255, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
 
+    //Write codes MagLight_MagPole
+    ui->MagLight_MagPole = lv_img_create(ui->MagLight);
+    lv_obj_add_flag(ui->MagLight_MagPole, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->MagLight_MagPole, &_MagPole_alpha_453x13);
+    lv_img_set_pivot(ui->MagLight_MagPole, 50,50);
+    lv_img_set_angle(ui->MagLight_MagPole, 0);
+    lv_obj_set_pos(ui->MagLight_MagPole, 123, 200);
+    lv_obj_set_size(ui->MagLight_MagPole, 453, 13);
+
+    //Write style for MagLight_MagPole, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->MagLight_MagPole, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->MagLight_MagPole, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->MagLight_MagPole, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->MagLight_MagPole, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
     //Write codes MagLight_Orange
     ui->MagLight_Orange = lv_img_create(ui->MagLight);
     lv_obj_add_flag(ui->MagLight_Orange, LV_OBJ_FLAG_CLICKABLE);
@@ -353,7 +368,7 @@ void setup_scr_MagLight(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->MagLight_Orange, 50,50);
     lv_img_set_angle(ui->MagLight_Orange, 0);
-    lv_obj_set_pos(ui->MagLight_Orange, 161, 198);
+    lv_obj_set_pos(ui->MagLight_Orange, 123, 200);
     lv_obj_set_size(ui->MagLight_Orange, 453, 13);
 
     //Write style for MagLight_Orange, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -372,7 +387,7 @@ void setup_scr_MagLight(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->MagLight_white, 50,50);
     lv_img_set_angle(ui->MagLight_white, 0);
-    lv_obj_set_pos(ui->MagLight_white, 161, 198);
+    lv_obj_set_pos(ui->MagLight_white, 123, 200);
     lv_obj_set_size(ui->MagLight_white, 453, 13);
 
     //Write style for MagLight_white, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.

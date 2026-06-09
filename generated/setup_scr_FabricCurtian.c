@@ -107,53 +107,6 @@ void setup_scr_FabricCurtian(lv_ui *ui)
     lv_obj_set_style_pad_right(ui->FabricCurtian_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->FabricCurtian_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes FabricCurtian_imgbtn_1
-    ui->FabricCurtian_imgbtn_1 = lv_imgbtn_create(ui->FabricCurtian);
-    lv_obj_add_flag(ui->FabricCurtian_imgbtn_1, LV_OBJ_FLAG_CHECKABLE);
-#if LV_USE_GUIDER_SIMULATOR
-    lv_imgbtn_set_src(ui->FabricCurtian_imgbtn_1, LV_IMGBTN_STATE_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\scene_btn.png", NULL);
-    lv_imgbtn_set_src(ui->FabricCurtian_imgbtn_1, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\btn_close.png", NULL);
-#else
-    lv_imgbtn_set_src(ui->FabricCurtian_imgbtn_1, LV_IMGBTN_STATE_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/scene_btn.png", NULL);
-    lv_imgbtn_set_src(ui->FabricCurtian_imgbtn_1, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/btn_close.png", NULL);
-#endif
-    ui->FabricCurtian_imgbtn_1_label = lv_label_create(ui->FabricCurtian_imgbtn_1);
-    lv_label_set_text(ui->FabricCurtian_imgbtn_1_label, "");
-    lv_label_set_long_mode(ui->FabricCurtian_imgbtn_1_label, LV_LABEL_LONG_WRAP);
-    lv_obj_align(ui->FabricCurtian_imgbtn_1_label, LV_ALIGN_CENTER, 0, 0);
-    lv_obj_set_style_pad_all(ui->FabricCurtian_imgbtn_1, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->FabricCurtian_imgbtn_1, 632, 86);
-    lv_obj_set_size(ui->FabricCurtian_imgbtn_1, 70, 70);
-
-    //Write style for FabricCurtian_imgbtn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_text_color(ui->FabricCurtian_imgbtn_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui->FabricCurtian_imgbtn_1, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui->FabricCurtian_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_align(ui->FabricCurtian_imgbtn_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->FabricCurtian_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->FabricCurtian_imgbtn_1, true, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->FabricCurtian_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-
-    //Write style for FabricCurtian_imgbtn_1, Part: LV_PART_MAIN, State: LV_STATE_PRESSED.
-    lv_obj_set_style_img_recolor_opa(ui->FabricCurtian_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_img_opa(ui->FabricCurtian_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_text_color(ui->FabricCurtian_imgbtn_1, lv_color_hex(0xFF33FF), LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_text_font(ui->FabricCurtian_imgbtn_1, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_text_opa(ui->FabricCurtian_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_shadow_width(ui->FabricCurtian_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_PRESSED);
-
-    //Write style for FabricCurtian_imgbtn_1, Part: LV_PART_MAIN, State: LV_STATE_CHECKED.
-    lv_obj_set_style_img_recolor_opa(ui->FabricCurtian_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_img_opa(ui->FabricCurtian_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_text_color(ui->FabricCurtian_imgbtn_1, lv_color_hex(0xFF33FF), LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_text_font(ui->FabricCurtian_imgbtn_1, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_text_opa(ui->FabricCurtian_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_shadow_width(ui->FabricCurtian_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_CHECKED);
-
-    //Write style for FabricCurtian_imgbtn_1, Part: LV_PART_MAIN, State: LV_IMGBTN_STATE_RELEASED.
-    lv_obj_set_style_img_recolor_opa(ui->FabricCurtian_imgbtn_1, 0, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
-    lv_obj_set_style_img_opa(ui->FabricCurtian_imgbtn_1, 255, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
-
     //Write codes FabricCurtian_btn_1
     ui->FabricCurtian_btn_1 = lv_btn_create(ui->FabricCurtian);
     ui->FabricCurtian_btn_1_label = lv_label_create(ui->FabricCurtian_btn_1);
@@ -174,53 +127,6 @@ void setup_scr_FabricCurtian(lv_ui *ui)
     lv_obj_set_style_text_font(ui->FabricCurtian_btn_1, &lv_font_ZiTiQuanWeiJunHeiW22_30, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->FabricCurtian_btn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui->FabricCurtian_btn_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
-
-    //Write codes FabricCurtian_on_off_2_img
-    ui->FabricCurtian_on_off_2_img = lv_imgbtn_create(ui->FabricCurtian);
-    lv_obj_add_flag(ui->FabricCurtian_on_off_2_img, LV_OBJ_FLAG_CHECKABLE);
-#if LV_USE_GUIDER_SIMULATOR
-    lv_imgbtn_set_src(ui->FabricCurtian_on_off_2_img, LV_IMGBTN_STATE_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\onoff_off.png", NULL);
-    lv_imgbtn_set_src(ui->FabricCurtian_on_off_2_img, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\onoff_on.png", NULL);
-#else
-    lv_imgbtn_set_src(ui->FabricCurtian_on_off_2_img, LV_IMGBTN_STATE_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/onoff_off.png", NULL);
-    lv_imgbtn_set_src(ui->FabricCurtian_on_off_2_img, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/onoff_on.png", NULL);
-#endif
-    ui->FabricCurtian_on_off_2_img_label = lv_label_create(ui->FabricCurtian_on_off_2_img);
-    lv_label_set_text(ui->FabricCurtian_on_off_2_img_label, "");
-    lv_label_set_long_mode(ui->FabricCurtian_on_off_2_img_label, LV_LABEL_LONG_WRAP);
-    lv_obj_align(ui->FabricCurtian_on_off_2_img_label, LV_ALIGN_CENTER, 0, 0);
-    lv_obj_set_style_pad_all(ui->FabricCurtian_on_off_2_img, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->FabricCurtian_on_off_2_img, 20, 101);
-    lv_obj_set_size(ui->FabricCurtian_on_off_2_img, 48, 48);
-
-    //Write style for FabricCurtian_on_off_2_img, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_text_color(ui->FabricCurtian_on_off_2_img, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui->FabricCurtian_on_off_2_img, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui->FabricCurtian_on_off_2_img, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_align(ui->FabricCurtian_on_off_2_img, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->FabricCurtian_on_off_2_img, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->FabricCurtian_on_off_2_img, true, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->FabricCurtian_on_off_2_img, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-
-    //Write style for FabricCurtian_on_off_2_img, Part: LV_PART_MAIN, State: LV_STATE_PRESSED.
-    lv_obj_set_style_img_recolor_opa(ui->FabricCurtian_on_off_2_img, 0, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_img_opa(ui->FabricCurtian_on_off_2_img, 255, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_text_color(ui->FabricCurtian_on_off_2_img, lv_color_hex(0xFF33FF), LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_text_font(ui->FabricCurtian_on_off_2_img, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_text_opa(ui->FabricCurtian_on_off_2_img, 255, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_shadow_width(ui->FabricCurtian_on_off_2_img, 0, LV_PART_MAIN|LV_STATE_PRESSED);
-
-    //Write style for FabricCurtian_on_off_2_img, Part: LV_PART_MAIN, State: LV_STATE_CHECKED.
-    lv_obj_set_style_img_recolor_opa(ui->FabricCurtian_on_off_2_img, 0, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_img_opa(ui->FabricCurtian_on_off_2_img, 255, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_text_color(ui->FabricCurtian_on_off_2_img, lv_color_hex(0xFF33FF), LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_text_font(ui->FabricCurtian_on_off_2_img, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_text_opa(ui->FabricCurtian_on_off_2_img, 255, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_shadow_width(ui->FabricCurtian_on_off_2_img, 0, LV_PART_MAIN|LV_STATE_CHECKED);
-
-    //Write style for FabricCurtian_on_off_2_img, Part: LV_PART_MAIN, State: LV_IMGBTN_STATE_RELEASED.
-    lv_obj_set_style_img_recolor_opa(ui->FabricCurtian_on_off_2_img, 0, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
-    lv_obj_set_style_img_opa(ui->FabricCurtian_on_off_2_img, 255, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
 
     //Write codes FabricCurtian_FabCurtianOpen
     ui->FabricCurtian_FabCurtianOpen = lv_img_create(ui->FabricCurtian);
@@ -346,7 +252,7 @@ void setup_scr_FabricCurtian(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->FabricCurtian_FabCurtianLeft, 50,50);
     lv_img_set_angle(ui->FabricCurtian_FabCurtianLeft, 0);
-    lv_obj_set_pos(ui->FabricCurtian_FabCurtianLeft, 128, 193);
+    lv_obj_set_pos(ui->FabricCurtian_FabCurtianLeft, 130, 193);
     lv_obj_set_size(ui->FabricCurtian_FabCurtianLeft, 231, 287);
 
     //Write style for FabricCurtian_FabCurtianLeft, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -373,6 +279,42 @@ void setup_scr_FabricCurtian(lv_ui *ui)
     lv_obj_set_style_img_opa(ui->FabricCurtian_FabCurtianright, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_radius(ui->FabricCurtian_FabCurtianright, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_clip_corner(ui->FabricCurtian_FabCurtianright, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes FabricCurtian_cont_2
+    ui->FabricCurtian_cont_2 = lv_obj_create(ui->FabricCurtian);
+    lv_obj_set_pos(ui->FabricCurtian_cont_2, -176, 155);
+    lv_obj_set_size(ui->FabricCurtian_cont_2, 300, 324);
+    lv_obj_set_scrollbar_mode(ui->FabricCurtian_cont_2, LV_SCROLLBAR_MODE_OFF);
+
+    //Write style for FabricCurtian_cont_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_border_width(ui->FabricCurtian_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->FabricCurtian_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui->FabricCurtian_cont_2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui->FabricCurtian_cont_2, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_grad_dir(ui->FabricCurtian_cont_2, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui->FabricCurtian_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui->FabricCurtian_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_left(ui->FabricCurtian_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui->FabricCurtian_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->FabricCurtian_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes FabricCurtian_cont_3
+    ui->FabricCurtian_cont_3 = lv_obj_create(ui->FabricCurtian);
+    lv_obj_set_pos(ui->FabricCurtian_cont_3, 593, 175);
+    lv_obj_set_size(ui->FabricCurtian_cont_3, 300, 324);
+    lv_obj_set_scrollbar_mode(ui->FabricCurtian_cont_3, LV_SCROLLBAR_MODE_OFF);
+
+    //Write style for FabricCurtian_cont_3, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_border_width(ui->FabricCurtian_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->FabricCurtian_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui->FabricCurtian_cont_3, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui->FabricCurtian_cont_3, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_grad_dir(ui->FabricCurtian_cont_3, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui->FabricCurtian_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui->FabricCurtian_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_left(ui->FabricCurtian_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui->FabricCurtian_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->FabricCurtian_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes FabricCurtian_FabCurtianPull2
     ui->FabricCurtian_FabCurtianPull2 = lv_img_create(ui->FabricCurtian);

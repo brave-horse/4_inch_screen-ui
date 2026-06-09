@@ -18,21 +18,21 @@ static uint16_t clamp_to(uint16_t v, uint16_t lo, uint16_t hi)
 
 static void impl_LightCT_SetOnOff(bool btn_status)
 {
-    Switch_Set(&g_light_ct.sw, btn_status);
+    Switch_Set(&g_light_ct.base.sw, btn_status);
     HWInterface.LightCT.switch_status = btn_status;
 }
 
 static void impl_LightCT_SetBrightness(uint16_t bri)
 {
     bri = clamp_to(bri, LIGHTCT_BRIGHTNESS_MIN, LIGHTCT_BRIGHTNESS_MAX);
-    Percent_Set(&g_light_ct.bri, bri);
+    Percent_Set(&g_light_ct.base.brightness, bri);
     HWInterface.LightCT.brightness = bri;
 }
 
 static void impl_LightCT_SetColorTemp(uint16_t ct)
 {
     ct = clamp_to(ct, LIGHTCT_COLOR_TEMP_MIN, LIGHTCT_COLOR_TEMP_MAX);
-    g_light_ct.ct = ct;
+    g_light_ct.color_temp = ct;
     HWInterface.LightCT.color_temp = ct;
 }
 
@@ -40,30 +40,29 @@ static void impl_LightCT_Apply(void)
 {
     uint16_t bri = HWInterface.LightCT.switch_status
                    ? HWInterface.LightCT.brightness : 0;
-    Percent_Set(&g_light_ct.bri, bri);
-    if (g_light_ct.base.apply)
-        g_light_ct.base.apply(&g_light_ct);
+    Percent_Set(&g_light_ct.base.brightness, bri);
+    Light_Apply(&g_light_ct.base);
 }
 
 /* ═══════════ LED灯带 ═══════════ */
 
 static void impl_LEDStrip_SetOnOff(bool btn_status)
 {
-    Switch_Set(&g_led_strip.sw, btn_status);
+    Switch_Set(&g_led_strip.base.sw, btn_status);
     HWInterface.LEDStrip.switch_status = btn_status;
 }
 
 static void impl_LEDStrip_SetBrightness(uint16_t bri)
 {
     bri = clamp_to(bri, LIGHTCT_BRIGHTNESS_MIN, LIGHTCT_BRIGHTNESS_MAX);
-    Percent_Set(&g_led_strip.bri, bri);
+    Percent_Set(&g_led_strip.base.brightness, bri);
     HWInterface.LEDStrip.brightness = bri;
 }
 
 static void impl_LEDStrip_SetColorTemp(uint16_t ct)
 {
     ct = clamp_to(ct, LIGHTCT_COLOR_TEMP_MIN, LIGHTCT_COLOR_TEMP_MAX);
-    g_led_strip.ct = ct;
+    g_led_strip.color_temp = ct;
     HWInterface.LEDStrip.color_temp = ct;
 }
 
@@ -71,9 +70,8 @@ static void impl_LEDStrip_Apply(void)
 {
     uint16_t bri = HWInterface.LEDStrip.switch_status
                    ? HWInterface.LEDStrip.brightness : 0;
-    Percent_Set(&g_led_strip.bri, bri);
-    if (g_led_strip.base.apply)
-        g_led_strip.base.apply(&g_led_strip);
+    Percent_Set(&g_led_strip.base.brightness, bri);
+    Light_Apply(&g_led_strip.base);
 }
 
 /* ═══════════ 窗帘 ═══════════ */

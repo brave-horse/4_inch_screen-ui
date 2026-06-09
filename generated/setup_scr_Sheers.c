@@ -107,53 +107,6 @@ void setup_scr_Sheers(lv_ui *ui)
     lv_obj_set_style_pad_right(ui->Sheers_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->Sheers_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes Sheers_imgbtn_1
-    ui->Sheers_imgbtn_1 = lv_imgbtn_create(ui->Sheers);
-    lv_obj_add_flag(ui->Sheers_imgbtn_1, LV_OBJ_FLAG_CHECKABLE);
-#if LV_USE_GUIDER_SIMULATOR
-    lv_imgbtn_set_src(ui->Sheers_imgbtn_1, LV_IMGBTN_STATE_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\scene_btn.png", NULL);
-    lv_imgbtn_set_src(ui->Sheers_imgbtn_1, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\btn_close.png", NULL);
-#else
-    lv_imgbtn_set_src(ui->Sheers_imgbtn_1, LV_IMGBTN_STATE_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/scene_btn.png", NULL);
-    lv_imgbtn_set_src(ui->Sheers_imgbtn_1, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/btn_close.png", NULL);
-#endif
-    ui->Sheers_imgbtn_1_label = lv_label_create(ui->Sheers_imgbtn_1);
-    lv_label_set_text(ui->Sheers_imgbtn_1_label, "");
-    lv_label_set_long_mode(ui->Sheers_imgbtn_1_label, LV_LABEL_LONG_WRAP);
-    lv_obj_align(ui->Sheers_imgbtn_1_label, LV_ALIGN_CENTER, 0, 0);
-    lv_obj_set_style_pad_all(ui->Sheers_imgbtn_1, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->Sheers_imgbtn_1, 630, 89);
-    lv_obj_set_size(ui->Sheers_imgbtn_1, 70, 70);
-
-    //Write style for Sheers_imgbtn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_text_color(ui->Sheers_imgbtn_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui->Sheers_imgbtn_1, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui->Sheers_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_align(ui->Sheers_imgbtn_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Sheers_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Sheers_imgbtn_1, true, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->Sheers_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-
-    //Write style for Sheers_imgbtn_1, Part: LV_PART_MAIN, State: LV_STATE_PRESSED.
-    lv_obj_set_style_img_recolor_opa(ui->Sheers_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_img_opa(ui->Sheers_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_text_color(ui->Sheers_imgbtn_1, lv_color_hex(0xFF33FF), LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_text_font(ui->Sheers_imgbtn_1, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_text_opa(ui->Sheers_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_shadow_width(ui->Sheers_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_PRESSED);
-
-    //Write style for Sheers_imgbtn_1, Part: LV_PART_MAIN, State: LV_STATE_CHECKED.
-    lv_obj_set_style_img_recolor_opa(ui->Sheers_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_img_opa(ui->Sheers_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_text_color(ui->Sheers_imgbtn_1, lv_color_hex(0xFF33FF), LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_text_font(ui->Sheers_imgbtn_1, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_text_opa(ui->Sheers_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_shadow_width(ui->Sheers_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_CHECKED);
-
-    //Write style for Sheers_imgbtn_1, Part: LV_PART_MAIN, State: LV_IMGBTN_STATE_RELEASED.
-    lv_obj_set_style_img_recolor_opa(ui->Sheers_imgbtn_1, 0, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
-    lv_obj_set_style_img_opa(ui->Sheers_imgbtn_1, 255, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
-
     //Write codes Sheers_btn_1
     ui->Sheers_btn_1 = lv_btn_create(ui->Sheers);
     ui->Sheers_btn_1_label = lv_label_create(ui->Sheers_btn_1);
@@ -174,53 +127,6 @@ void setup_scr_Sheers(lv_ui *ui)
     lv_obj_set_style_text_font(ui->Sheers_btn_1, &lv_font_ZiTiQuanWeiJunHeiW22_30, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->Sheers_btn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui->Sheers_btn_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
-
-    //Write codes Sheers_on_off_2_img
-    ui->Sheers_on_off_2_img = lv_imgbtn_create(ui->Sheers);
-    lv_obj_add_flag(ui->Sheers_on_off_2_img, LV_OBJ_FLAG_CHECKABLE);
-#if LV_USE_GUIDER_SIMULATOR
-    lv_imgbtn_set_src(ui->Sheers_on_off_2_img, LV_IMGBTN_STATE_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\onoff_off.png", NULL);
-    lv_imgbtn_set_src(ui->Sheers_on_off_2_img, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\onoff_on.png", NULL);
-#else
-    lv_imgbtn_set_src(ui->Sheers_on_off_2_img, LV_IMGBTN_STATE_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/onoff_off.png", NULL);
-    lv_imgbtn_set_src(ui->Sheers_on_off_2_img, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/onoff_on.png", NULL);
-#endif
-    ui->Sheers_on_off_2_img_label = lv_label_create(ui->Sheers_on_off_2_img);
-    lv_label_set_text(ui->Sheers_on_off_2_img_label, "");
-    lv_label_set_long_mode(ui->Sheers_on_off_2_img_label, LV_LABEL_LONG_WRAP);
-    lv_obj_align(ui->Sheers_on_off_2_img_label, LV_ALIGN_CENTER, 0, 0);
-    lv_obj_set_style_pad_all(ui->Sheers_on_off_2_img, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->Sheers_on_off_2_img, 20, 101);
-    lv_obj_set_size(ui->Sheers_on_off_2_img, 48, 48);
-
-    //Write style for Sheers_on_off_2_img, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_text_color(ui->Sheers_on_off_2_img, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui->Sheers_on_off_2_img, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui->Sheers_on_off_2_img, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_align(ui->Sheers_on_off_2_img, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Sheers_on_off_2_img, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Sheers_on_off_2_img, true, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->Sheers_on_off_2_img, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-
-    //Write style for Sheers_on_off_2_img, Part: LV_PART_MAIN, State: LV_STATE_PRESSED.
-    lv_obj_set_style_img_recolor_opa(ui->Sheers_on_off_2_img, 0, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_img_opa(ui->Sheers_on_off_2_img, 255, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_text_color(ui->Sheers_on_off_2_img, lv_color_hex(0xFF33FF), LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_text_font(ui->Sheers_on_off_2_img, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_text_opa(ui->Sheers_on_off_2_img, 255, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_shadow_width(ui->Sheers_on_off_2_img, 0, LV_PART_MAIN|LV_STATE_PRESSED);
-
-    //Write style for Sheers_on_off_2_img, Part: LV_PART_MAIN, State: LV_STATE_CHECKED.
-    lv_obj_set_style_img_recolor_opa(ui->Sheers_on_off_2_img, 0, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_img_opa(ui->Sheers_on_off_2_img, 255, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_text_color(ui->Sheers_on_off_2_img, lv_color_hex(0xFF33FF), LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_text_font(ui->Sheers_on_off_2_img, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_text_opa(ui->Sheers_on_off_2_img, 255, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_shadow_width(ui->Sheers_on_off_2_img, 0, LV_PART_MAIN|LV_STATE_CHECKED);
-
-    //Write style for Sheers_on_off_2_img, Part: LV_PART_MAIN, State: LV_IMGBTN_STATE_RELEASED.
-    lv_obj_set_style_img_recolor_opa(ui->Sheers_on_off_2_img, 0, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
-    lv_obj_set_style_img_opa(ui->Sheers_on_off_2_img, 255, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
 
     //Write codes Sheers_FabCurtianOpen
     ui->Sheers_FabCurtianOpen = lv_img_create(ui->Sheers);
@@ -373,6 +279,42 @@ void setup_scr_Sheers(lv_ui *ui)
     lv_obj_set_style_img_opa(ui->Sheers_FabCurtianright, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_radius(ui->Sheers_FabCurtianright, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_clip_corner(ui->Sheers_FabCurtianright, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes Sheers_cont_2
+    ui->Sheers_cont_2 = lv_obj_create(ui->Sheers);
+    lv_obj_set_pos(ui->Sheers_cont_2, -176, 164);
+    lv_obj_set_size(ui->Sheers_cont_2, 300, 336);
+    lv_obj_set_scrollbar_mode(ui->Sheers_cont_2, LV_SCROLLBAR_MODE_OFF);
+
+    //Write style for Sheers_cont_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_border_width(ui->Sheers_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Sheers_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui->Sheers_cont_2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui->Sheers_cont_2, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_grad_dir(ui->Sheers_cont_2, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui->Sheers_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui->Sheers_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_left(ui->Sheers_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui->Sheers_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->Sheers_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes Sheers_cont_3
+    ui->Sheers_cont_3 = lv_obj_create(ui->Sheers);
+    lv_obj_set_pos(ui->Sheers_cont_3, 595, 174);
+    lv_obj_set_size(ui->Sheers_cont_3, 300, 336);
+    lv_obj_set_scrollbar_mode(ui->Sheers_cont_3, LV_SCROLLBAR_MODE_OFF);
+
+    //Write style for Sheers_cont_3, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_border_width(ui->Sheers_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Sheers_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui->Sheers_cont_3, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui->Sheers_cont_3, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_grad_dir(ui->Sheers_cont_3, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui->Sheers_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui->Sheers_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_left(ui->Sheers_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui->Sheers_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->Sheers_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes Sheers_FabCurtianPull2
     ui->Sheers_FabCurtianPull2 = lv_img_create(ui->Sheers);
