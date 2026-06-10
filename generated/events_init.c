@@ -20,12 +20,14 @@
 
 #include "light_CT_screen.h"
 #include "LEDStrip.h"
-#include "MagLight.h"
 #include "RGBLight.h"
+#include "MagLight.h"
 #include "FabricCurtian.h"
 #include "Sheers.h"
 #include "RollBlind.h"
 #include "Dream.h"
+#include "AirCondition.h"
+#include "DryRack.h"
 
 static void ui_home_screen_event_handler (lv_event_t *e)
 {
@@ -620,7 +622,7 @@ static void device_management_screen_sDryRackup_event_handler (lv_event_t *e)
     switch (code) {
     case LV_EVENT_CLICKED:
     {
-        ui_load_scr_animation(&guider_ui, &guider_ui.Music, guider_ui.Music_del, &guider_ui.device_management_screen_del, setup_scr_Music, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        ui_load_scr_animation(&guider_ui, &guider_ui.DryRack, guider_ui.DryRack_del, &guider_ui.device_management_screen_del, setup_scr_DryRack, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
         break;
     }
     default:
@@ -902,90 +904,6 @@ void events_init_LedStrip (lv_ui *ui)
     lv_obj_add_event_cb(ui->LedStrip_on_off_2_img, LedStrip_on_off_2_img_event_handler, LV_EVENT_ALL, ui);
 }
 
-static void MagLight_event_handler (lv_event_t *e)
-{
-    lv_event_code_t code = lv_event_get_code(e);
-    switch (code) {
-    case LV_EVENT_SCREEN_LOADED:
-    {
-        ui_animation(guider_ui.MagLight_label_1, 600, 0, lv_obj_get_x(guider_ui.MagLight_label_1), 20, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
-        ui_animation(guider_ui.MagLight_slider_1, 600, 0, lv_obj_get_x(guider_ui.MagLight_slider_1), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
-        ui_animation(guider_ui.MagLight_slider_2, 600, 0, lv_obj_get_x(guider_ui.MagLight_slider_2), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
-        ui_animation(guider_ui.MagLight_ct_bar, 600, 0, lv_obj_get_x(guider_ui.MagLight_ct_bar), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
-        ui_animation(guider_ui.MagLight_label_2, 600, 0, lv_obj_get_x(guider_ui.MagLight_label_2), 20, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
-        mag_light_on_screen_load();
-        break;
-    }
-    default:
-        break;
-    }
-}
-
-static void MagLight_slider_2_event_handler (lv_event_t *e)
-{
-    lv_event_code_t code = lv_event_get_code(e);
-    switch (code) {
-    case LV_EVENT_VALUE_CHANGED:
-    {
-        mag_light_on_ct_slider_change();
-        break;
-    }
-    default:
-        break;
-    }
-}
-
-static void MagLight_slider_1_event_handler (lv_event_t *e)
-{
-    lv_event_code_t code = lv_event_get_code(e);
-    switch (code) {
-    case LV_EVENT_VALUE_CHANGED:
-    {
-        mag_light_on_bri_slider_change();
-        break;
-    }
-    default:
-        break;
-    }
-}
-
-static void MagLight_btn_1_event_handler (lv_event_t *e)
-{
-    lv_event_code_t code = lv_event_get_code(e);
-    switch (code) {
-    case LV_EVENT_CLICKED:
-    {
-        ui_load_scr_animation(&guider_ui, &guider_ui.device_management_screen, guider_ui.device_management_screen_del, &guider_ui.MagLight_del, setup_scr_device_management_screen, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
-        break;
-    }
-    default:
-        break;
-    }
-}
-
-static void MagLight_on_off_2_img_event_handler (lv_event_t *e)
-{
-    lv_event_code_t code = lv_event_get_code(e);
-    switch (code) {
-    case LV_EVENT_VALUE_CHANGED:
-    {
-        mag_light_on_switch_toggle(e);
-        break;
-    }
-    default:
-        break;
-    }
-}
-
-void events_init_MagLight (lv_ui *ui)
-{
-    lv_obj_add_event_cb(ui->MagLight, MagLight_event_handler, LV_EVENT_ALL, ui);
-    lv_obj_add_event_cb(ui->MagLight_slider_2, MagLight_slider_2_event_handler, LV_EVENT_ALL, ui);
-    lv_obj_add_event_cb(ui->MagLight_slider_1, MagLight_slider_1_event_handler, LV_EVENT_ALL, ui);
-    lv_obj_add_event_cb(ui->MagLight_btn_1, MagLight_btn_1_event_handler, LV_EVENT_ALL, ui);
-    lv_obj_add_event_cb(ui->MagLight_on_off_2_img, MagLight_on_off_2_img_event_handler, LV_EVENT_ALL, ui);
-}
-
 static void RGBLight_event_handler (lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -1068,6 +986,90 @@ void events_init_RGBLight (lv_ui *ui)
     lv_obj_add_event_cb(ui->RGBLight_slider_1, RGBLight_slider_1_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->RGBLight_btn_1, RGBLight_btn_1_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->RGBLight_on_off_2_img, RGBLight_on_off_2_img_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void MagLight_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOADED:
+    {
+        ui_animation(guider_ui.MagLight_label_1, 600, 0, lv_obj_get_x(guider_ui.MagLight_label_1), 20, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        ui_animation(guider_ui.MagLight_slider_1, 600, 0, lv_obj_get_x(guider_ui.MagLight_slider_1), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        ui_animation(guider_ui.MagLight_slider_2, 600, 0, lv_obj_get_x(guider_ui.MagLight_slider_2), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        ui_animation(guider_ui.MagLight_ct_bar, 600, 0, lv_obj_get_x(guider_ui.MagLight_ct_bar), 33, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        ui_animation(guider_ui.MagLight_label_2, 600, 0, lv_obj_get_x(guider_ui.MagLight_label_2), 20, &lv_anim_path_overshoot, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, NULL, NULL, NULL);
+        mag_light_on_screen_load();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void MagLight_slider_2_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_VALUE_CHANGED:
+    {
+        mag_light_on_ct_slider_change();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void MagLight_slider_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_VALUE_CHANGED:
+    {
+        mag_light_on_bri_slider_change();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void MagLight_btn_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.device_management_screen, guider_ui.device_management_screen_del, &guider_ui.MagLight_del, setup_scr_device_management_screen, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void MagLight_on_off_2_img_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_VALUE_CHANGED:
+    {
+        mag_light_on_switch_toggle(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_MagLight (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->MagLight, MagLight_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->MagLight_slider_2, MagLight_slider_2_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->MagLight_slider_1, MagLight_slider_1_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->MagLight_btn_1, MagLight_btn_1_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->MagLight_on_off_2_img, MagLight_on_off_2_img_event_handler, LV_EVENT_ALL, ui);
 }
 
 static void FabricCurtian_event_handler (lv_event_t *e)
@@ -1623,6 +1625,20 @@ void events_init_Dream (lv_ui *ui)
     lv_obj_add_event_cb(ui->Dream_slider_1, Dream_slider_1_event_handler, LV_EVENT_ALL, ui);
 }
 
+static void AirCondition_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOADED:
+    {
+        aircon_on_screen_load();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
 static void AirCondition_btn_1_event_handler (lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -1637,9 +1653,145 @@ static void AirCondition_btn_1_event_handler (lv_event_t *e)
     }
 }
 
+static void AirCondition_ACBtn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        aircon_on_power_toggle(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void AirCondition_ACSpeedAuto_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        aircon_on_speed_click();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void AirCondition_ACSpeed3_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        aircon_on_speed_click();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void AirCondition_ACSpeed2_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        aircon_on_speed_click();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void AirCondition_ACSpeed1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        aircon_on_speed_click();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void AirCondition_AcCool_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        aircon_on_mode_click();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void AirCondition_ACFan_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        aircon_on_mode_click();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void AirCondition_ACHot_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        aircon_on_mode_click();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void AirCondition_ACDry_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        aircon_on_mode_click();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
 void events_init_AirCondition (lv_ui *ui)
 {
+    lv_obj_add_event_cb(ui->AirCondition, AirCondition_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->AirCondition_btn_1, AirCondition_btn_1_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->AirCondition_ACBtn, AirCondition_ACBtn_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->AirCondition_ACSpeedAuto, AirCondition_ACSpeedAuto_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->AirCondition_ACSpeed3, AirCondition_ACSpeed3_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->AirCondition_ACSpeed2, AirCondition_ACSpeed2_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->AirCondition_ACSpeed1, AirCondition_ACSpeed1_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->AirCondition_AcCool, AirCondition_AcCool_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->AirCondition_ACFan, AirCondition_ACFan_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->AirCondition_ACHot, AirCondition_ACHot_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->AirCondition_ACDry, AirCondition_ACDry_event_handler, LV_EVENT_ALL, ui);
 }
 
 static void DryRack_event_handler (lv_event_t *e)
@@ -1651,6 +1803,77 @@ static void DryRack_event_handler (lv_event_t *e)
         ui_animation(guider_ui.DryRack_FabCurtianPause, 300, 0, lv_obj_get_y(guider_ui.DryRack_FabCurtianPause), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
         ui_animation(guider_ui.DryRack_FabCurtianClose, 300, 0, lv_obj_get_y(guider_ui.DryRack_FabCurtianClose), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
         ui_animation(guider_ui.DryRack_FabCurtianOpen, 300, 0, lv_obj_get_y(guider_ui.DryRack_FabCurtianOpen), 588, &lv_anim_path_linear, 0, 0, 0, 0, (lv_anim_exec_xcb_t)lv_obj_set_y, NULL, NULL, NULL);
+        dryrack_on_screen_load();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void DryRack_FabCurtianOpen_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        dryrack_on_open();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void DryRack_FabCurtianClose_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        dryrack_on_close();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void DryRack_FabCurtianPause_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        dryrack_on_pause();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void DryRack_img_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_PRESSING:
+    {
+        dryrack_on_drag(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void DryRack_imgbtn_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        dryrack_on_light_toggle(e);
         break;
     }
     default:
@@ -1672,10 +1895,30 @@ static void DryRack_btn_1_event_handler (lv_event_t *e)
     }
 }
 
+static void DryRack_label_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_PRESSING:
+    {
+        dryrack_on_drag(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
 void events_init_DryRack (lv_ui *ui)
 {
     lv_obj_add_event_cb(ui->DryRack, DryRack_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->DryRack_FabCurtianOpen, DryRack_FabCurtianOpen_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->DryRack_FabCurtianClose, DryRack_FabCurtianClose_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->DryRack_FabCurtianPause, DryRack_FabCurtianPause_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->DryRack_img_1, DryRack_img_1_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->DryRack_imgbtn_1, DryRack_imgbtn_1_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->DryRack_btn_1, DryRack_btn_1_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->DryRack_label_1, DryRack_label_1_event_handler, LV_EVENT_ALL, ui);
 }
 
 

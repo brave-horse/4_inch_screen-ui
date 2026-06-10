@@ -4,66 +4,68 @@
 #include "hw_cloud_task.h"
 #include "Dream.h"
 
-/* 取自 generated 布局(无 cont_2/3 遮罩, 两帘直接滑出屏幕边缘) */
-#define LEFT_X0     128
-#define RIGHT_X0    359
-#define PULL1_X0    307
-#define PULL2_X0    367
-#define PULL1_CX    329
-#define PULL2_CX    389
-#define DR_CENTER   360
-#define TRAVEL_MAX  181
-#define ANIM_MS_PCT 22
-#define APPLY_MIN_MS 50
-#define ANGLE_MAX   180          /* 旋转角范围 0..180° */
-#define SLIDER_MAX  100          /* slider_1 量程 */
+#define TRAVEL_PX    181        //PX pixels —— 全开行程, 改开多少调这里
+#define ANIM_MS_PCT  22         //ANIM animation, MS milliseconds, PCT percent
+#define APPLY_MIN_MS 50         //MIN minimum, MS milliseconds
+#define ANGLE_MAX    180        /* 旋转角范围 0..180° */
+#define SLIDER_MAX   100        /* slider_1 量程 */
 
-static int32_t  s_pct;
-static int32_t  s_angle_pos = SLIDER_MAX / 2;   /* 初始 90° */
-static uint32_t s_post_tick;
-static uint32_t s_ang_tick;
+static int32_t    s_offset;                        /* 当前开合位移 0..TRAVEL_PX */
+static int32_t    s_angle_slider = SLIDER_MAX / 2; /* 旋转角滑条值, 初始 50=90° */
+static uint32_t   s_post_tick;
+static uint32_t   s_angle_tick;
+static lv_coord_t s_left_x0, s_right_x0, s_pull1_x0, s_pull2_x0;   //x0 initial x, 运行时捕获
 
-static void dream_apply(int32_t pct)
+/* 两帘+两拉手从各自设计位置对称平移 offset, label 显示百分比 */
+static void dream_apply(int32_t offset)
 {
-    int32_t d = pct * TRAVEL_MAX / 100;
-    lv_obj_set_x(guider_ui.Dream_FabCurtianLeft,  LEFT_X0  - d);
-    lv_obj_set_x(guider_ui.Dream_FabCurtianright, RIGHT_X0 + d);
-    lv_obj_set_x(guider_ui.Dream_FabCurtianPull1, PULL1_X0 - d);
-    lv_obj_set_x(guider_ui.Dream_FabCurtianPull2, PULL2_X0 + d);
-    lv_label_set_text_fmt(guider_ui.Dream_label_1, "%d%%", (int)pct);
+    if (!lv_obj_is_valid(guider_ui.Dream_FabCurtianLeft)) return;
+    lv_obj_set_x(guider_ui.Dream_FabCurtianLeft,  s_left_x0  - offset);
+    lv_obj_set_x(guider_ui.Dream_FabCurtianright, s_right_x0 + offset);
+    lv_obj_set_x(guider_ui.Dream_FabCurtianPull1, s_pull1_x0 - offset);
+    lv_obj_set_x(guider_ui.Dream_FabCurtianPull2, s_pull2_x0 + offset);
+    lv_label_set_text_fmt(guider_ui.Dream_label_1, "%d%%", (int)(offset * 100 / TRAVEL_PX));
 }
 
-static void dream_post(int32_t pct)
+static void dream_post(int32_t offset)
 {
-    HWInterface.Curtain.SetPos(0, (uint16_t)pct);
-    hw_cloud_post(&(HW_Msg){ .type = HW_MSG_CURTAIN_POS, .idx = 0, .val = (uint16_t)pct });
+    int percent = offset * 100 / TRAVEL_PX;
+    HWInterface.Curtain.SetPos(0, (uint16_t)percent);
+    hw_cloud_post(&(HW_Msg){ .type = HW_MSG_CURTAIN_POS, .idx = 0, .val = (uint16_t)percent });
 }
 
 /* 旋转角只入队下发, UI 不转 */
-static void dream_post_angle(int32_t angle)
+static void dream_post_angle(int32_t degree)
 {
-    hw_cloud_post(&(HW_Msg){ .type = HW_MSG_CURTAIN_ANGLE, .idx = 0, .val = (uint16_t)angle });
+    hw_cloud_post(&(HW_Msg){ .type = HW_MSG_CURTAIN_ANGLE, .idx = 0, .val = (uint16_t)degree });
 }
 
-static void dream_anim_cb(void *var, int32_t v)
+static void dream_anim_exec(void *unused, int32_t value)
 {
-    LV_UNUSED(var);
-    s_pct = v;
-    dream_apply(v);
+    LV_UNUSED(unused);
+    s_offset = value;
+    dream_apply(value);
 }
 
 static void dream_anim_to(int32_t target)
 {
-    lv_anim_del(&s_pct, dream_anim_cb);
-    int32_t diff = target - s_pct;
-    if (diff < 0) diff = -diff;
-    lv_anim_t a;
-    lv_anim_init(&a);
-    lv_anim_set_var(&a, &s_pct);
-    lv_anim_set_exec_cb(&a, dream_anim_cb);
-    lv_anim_set_values(&a, s_pct, target);
-    lv_anim_set_time(&a, (uint32_t)diff * ANIM_MS_PCT);
-    lv_anim_start(&a);
+    lv_anim_del(&s_offset, dream_anim_exec);
+    int32_t difference = target - s_offset;
+    if (difference < 0) difference = -difference;
+    lv_anim_t animation;
+    lv_anim_init(&animation);
+    lv_anim_set_var(&animation, &s_offset);
+    lv_anim_set_exec_cb(&animation, dream_anim_exec);   //cb callback
+    lv_anim_set_values(&animation, s_offset, target);
+    lv_anim_set_time(&animation, (uint32_t)(difference * 100 / TRAVEL_PX) * ANIM_MS_PCT);
+    lv_anim_start(&animation);
+}
+
+/* 本屏不在 scr_guard, 自挂删除回调停动画防野指针 */
+static void dream_on_screen_delete(lv_event_t *event)
+{
+    LV_UNUSED(event);
+    lv_anim_del(&s_offset, dream_anim_exec);
 }
 
 /* ══════ 事件接口(GUI-Guider 一行调用) ══════ */
@@ -71,54 +73,54 @@ static void dream_anim_to(int32_t target)
 void dream_on_screen_load(void)
 {
     lv_obj_clear_flag(guider_ui.Dream, LV_OBJ_FLAG_SCROLLABLE);
-    lv_slider_set_value(guider_ui.Dream_slider_1, s_angle_pos, LV_ANIM_OFF);
-    dream_apply(s_pct);
-    dream_post_angle(s_angle_pos * ANGLE_MAX / SLIDER_MAX);
+    lv_obj_add_event_cb(guider_ui.Dream, dream_on_screen_delete, LV_EVENT_DELETE, NULL);
+    s_left_x0  = lv_obj_get_x(guider_ui.Dream_FabCurtianLeft);
+    s_right_x0 = lv_obj_get_x(guider_ui.Dream_FabCurtianright);
+    s_pull1_x0 = lv_obj_get_x(guider_ui.Dream_FabCurtianPull1);
+    s_pull2_x0 = lv_obj_get_x(guider_ui.Dream_FabCurtianPull2);
+    lv_slider_set_value(guider_ui.Dream_slider_1, s_angle_slider, LV_ANIM_OFF);
+    dream_apply(s_offset);
+    dream_post_angle(s_angle_slider * ANGLE_MAX / SLIDER_MAX);
 }
 
-void dream_on_open(void)  { dream_anim_to(100); dream_post(100); }
-void dream_on_close(void) { dream_anim_to(0);   dream_post(0);   }
+void dream_on_open(void)  { dream_anim_to(TRAVEL_PX); dream_post(TRAVEL_PX); }
+void dream_on_close(void) { dream_anim_to(0);         dream_post(0);         }
 
 void dream_on_pause(void)
 {
-    lv_anim_del(&s_pct, dream_anim_cb);
-    dream_post(s_pct);
+    lv_anim_del(&s_offset, dream_anim_exec);
+    dream_post(s_offset);
 }
 
-void dream_on_drag(lv_event_t *e)
+/* 拖拉手: 跟手累加位移(像素), 按抓住的拉手锁定方向(越过中线不切边) */
+void dream_on_drag(lv_event_t *event)
 {
-    lv_indev_t *indev = lv_indev_get_act();
+    lv_indev_t *indev = lv_indev_get_act();   //indev input device
     if (!indev) return;
-    lv_point_t p;
-    lv_indev_get_point(indev, &p);
+    lv_anim_del(&s_offset, dream_anim_exec);
 
-    lv_anim_del(&s_pct, dream_anim_cb);
+    lv_obj_t *target = lv_event_get_target(event);
+    bool right = (target == guider_ui.Dream_FabCurtianPull2 ||
+                  target == guider_ui.Dream_FabCurtianright);
+    lv_point_t delta;
+    lv_indev_get_vect(indev, &delta);         //vect vector
+    s_offset += right ? delta.x : -delta.x;    /* 右拉手右移=开, 左拉手左移=开 */
+    if (s_offset < 0)         s_offset = 0;
+    if (s_offset > TRAVEL_PX) s_offset = TRAVEL_PX;
 
-    /* 按抓住的拉手锁定算法侧, 手指越过中线也不切边 */
-    lv_obj_t *target = lv_event_get_target(e);
-    bool right;
-    if      (target == guider_ui.Dream_FabCurtianPull1) right = false;
-    else if (target == guider_ui.Dream_FabCurtianPull2) right = true;
-    else    right = (p.x >= DR_CENTER);     /* 点窗帘空白处: 按位置 */
-
-    int32_t pct = right ? (p.x - PULL2_CX) * 100 / TRAVEL_MAX
-                        : (PULL1_CX - p.x) * 100 / TRAVEL_MAX;
-    if (pct < 0)   pct = 0;
-    if (pct > 100) pct = 100;
-
-    s_pct = pct;
-    dream_apply(pct);
+    dream_apply(s_offset);
     if (lv_tick_elaps(s_post_tick) >= APPLY_MIN_MS) {
         s_post_tick = lv_tick_get();
-        dream_post(pct);
+        dream_post(s_offset);
     }
 }
 
+/* 旋转角滑条 0..100 → 0..180° 下发 */
 void dream_on_angle_slider_change(void)
 {
-    s_angle_pos = lv_slider_get_value(guider_ui.Dream_slider_1);
-    if (lv_tick_elaps(s_ang_tick) >= APPLY_MIN_MS) {
-        s_ang_tick = lv_tick_get();
-        dream_post_angle(s_angle_pos * ANGLE_MAX / SLIDER_MAX);
+    s_angle_slider = lv_slider_get_value(guider_ui.Dream_slider_1);
+    if (lv_tick_elaps(s_angle_tick) >= APPLY_MIN_MS) {
+        s_angle_tick = lv_tick_get();
+        dream_post_angle(s_angle_slider * ANGLE_MAX / SLIDER_MAX);
     }
 }

@@ -144,7 +144,7 @@ void setup_scr_RollBlind(lv_ui *ui)
 
     //Write codes RollBlind_cont_2
     ui->RollBlind_cont_2 = lv_obj_create(ui->RollBlind);
-    lv_obj_set_pos(ui->RollBlind_cont_2, 127, 181);
+    lv_obj_set_pos(ui->RollBlind_cont_2, 142, 181);
     lv_obj_set_size(ui->RollBlind_cont_2, 435, 353);
     lv_obj_set_scrollbar_mode(ui->RollBlind_cont_2, LV_SCROLLBAR_MODE_OFF);
 
@@ -247,7 +247,7 @@ void setup_scr_RollBlind(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->RollBlind_FabCurtianLeft, 50,50);
     lv_img_set_angle(ui->RollBlind_FabCurtianLeft, 0);
-    lv_obj_set_pos(ui->RollBlind_FabCurtianLeft, 127, 181);
+    lv_obj_set_pos(ui->RollBlind_FabCurtianLeft, 142, 181);
     lv_obj_set_size(ui->RollBlind_FabCurtianLeft, 435, 353);
 
     //Write style for RollBlind_FabCurtianLeft, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -302,7 +302,7 @@ void setup_scr_RollBlind(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->RollBlind_FabCurtianPull1, 50,50);
     lv_img_set_angle(ui->RollBlind_FabCurtianPull1, 0);
-    lv_obj_set_pos(ui->RollBlind_FabCurtianPull1, 316, 481);
+    lv_obj_set_pos(ui->RollBlind_FabCurtianPull1, 340, 480);
     lv_obj_set_size(ui->RollBlind_FabCurtianPull1, 39, 39);
 
     //Write style for RollBlind_FabCurtianPull1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -321,7 +321,7 @@ void setup_scr_RollBlind(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->RollBlind_RollBlindPole, 50,50);
     lv_img_set_angle(ui->RollBlind_RollBlindPole, 0);
-    lv_obj_set_pos(ui->RollBlind_RollBlindPole, 112, 178);
+    lv_obj_set_pos(ui->RollBlind_RollBlindPole, 129, 178);
     lv_obj_set_size(ui->RollBlind_RollBlindPole, 462, 26);
 
     //Write style for RollBlind_RollBlindPole, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.

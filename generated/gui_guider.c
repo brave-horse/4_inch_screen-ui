@@ -80,8 +80,8 @@ void init_scr_del_flag(lv_ui *ui)
     ui->setting_screen_del = true;
     ui->light_CT_screen_del = true;
     ui->LedStrip_del = true;
-    ui->MagLight_del = true;
     ui->RGBLight_del = true;
+    ui->MagLight_del = true;
     ui->FabricCurtian_del = true;
     ui->Sheers_del = true;
     ui->RollBlind_del = true;

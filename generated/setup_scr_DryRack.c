@@ -93,10 +93,7 @@ void setup_scr_DryRack(lv_ui *ui)
     lv_obj_set_scrollbar_mode(ui->DryRack_cont_1, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for DryRack_cont_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->DryRack_cont_1, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->DryRack_cont_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->DryRack_cont_1, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui->DryRack_cont_1, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->DryRack_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_radius(ui->DryRack_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->DryRack_cont_1, 133, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->DryRack_cont_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -106,27 +103,6 @@ void setup_scr_DryRack(lv_ui *ui)
     lv_obj_set_style_pad_left(ui->DryRack_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_right(ui->DryRack_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->DryRack_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-
-    //Write codes DryRack_btn_1
-    ui->DryRack_btn_1 = lv_btn_create(ui->DryRack);
-    ui->DryRack_btn_1_label = lv_label_create(ui->DryRack_btn_1);
-    lv_label_set_text(ui->DryRack_btn_1_label, "<  晾衣机");
-    lv_label_set_long_mode(ui->DryRack_btn_1_label, LV_LABEL_LONG_WRAP);
-    lv_obj_align(ui->DryRack_btn_1_label, LV_ALIGN_CENTER, 0, 0);
-    lv_obj_set_style_pad_all(ui->DryRack_btn_1, 0, LV_STATE_DEFAULT);
-    lv_obj_set_width(ui->DryRack_btn_1_label, LV_PCT(100));
-    lv_obj_set_pos(ui->DryRack_btn_1, 11, 5);
-    lv_obj_set_size(ui->DryRack_btn_1, 156, 50);
-
-    //Write style for DryRack_btn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_bg_opa(ui->DryRack_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_width(ui->DryRack_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->DryRack_btn_1, 5, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->DryRack_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_color(ui->DryRack_btn_1, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui->DryRack_btn_1, &lv_font_ZiTiQuanWeiJunHeiW22_30, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui->DryRack_btn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_align(ui->DryRack_btn_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes DryRack_FabCurtianOpen
     ui->DryRack_FabCurtianOpen = lv_img_create(ui->DryRack);
@@ -195,7 +171,7 @@ void setup_scr_DryRack(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->DryRack_img_1, 50,50);
     lv_img_set_angle(ui->DryRack_img_1, 0);
-    lv_obj_set_pos(ui->DryRack_img_1, 142, 173);
+    lv_obj_set_pos(ui->DryRack_img_1, 163, -109);
     lv_obj_set_size(ui->DryRack_img_1, 405, 319);
 
     //Write style for DryRack_img_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -203,6 +179,80 @@ void setup_scr_DryRack(lv_ui *ui)
     lv_obj_set_style_img_opa(ui->DryRack_img_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_radius(ui->DryRack_img_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_clip_corner(ui->DryRack_img_1, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes DryRack_img_2
+    ui->DryRack_img_2 = lv_img_create(ui->DryRack);
+    lv_obj_add_flag(ui->DryRack_img_2, LV_OBJ_FLAG_CLICKABLE);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->DryRack_img_2, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\DryRackLight.png");
+#else
+    lv_img_set_src(ui->DryRack_img_2, "S:/sdfile/EXT_RESERVED/uipackres/ui/DryRackLight.png");
+#endif
+    lv_img_set_pivot(ui->DryRack_img_2, 50,50);
+    lv_img_set_angle(ui->DryRack_img_2, 0);
+    lv_obj_set_pos(ui->DryRack_img_2, 284, 154);
+    lv_obj_set_size(ui->DryRack_img_2, 163, 30);
+
+    //Write style for DryRack_img_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->DryRack_img_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->DryRack_img_2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->DryRack_img_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->DryRack_img_2, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes DryRack_RollBlindPole
+    ui->DryRack_RollBlindPole = lv_img_create(ui->DryRack);
+    lv_obj_add_flag(ui->DryRack_RollBlindPole, LV_OBJ_FLAG_CLICKABLE);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->DryRack_RollBlindPole, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\DryRackTop.png");
+#else
+    lv_img_set_src(ui->DryRack_RollBlindPole, "S:/sdfile/EXT_RESERVED/uipackres/ui/DryRackTop.png");
+#endif
+    lv_img_set_pivot(ui->DryRack_RollBlindPole, 50,50);
+    lv_img_set_angle(ui->DryRack_RollBlindPole, 0);
+    lv_obj_set_pos(ui->DryRack_RollBlindPole, 230, 146);
+    lv_obj_set_size(ui->DryRack_RollBlindPole, 272, 26);
+
+    //Write style for DryRack_RollBlindPole, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->DryRack_RollBlindPole, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->DryRack_RollBlindPole, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->DryRack_RollBlindPole, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->DryRack_RollBlindPole, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes DryRack_cont_2
+    ui->DryRack_cont_2 = lv_obj_create(ui->DryRack);
+    lv_obj_set_pos(ui->DryRack_cont_2, 0, 64);
+    lv_obj_set_size(ui->DryRack_cont_2, 720, 82);
+    lv_obj_set_scrollbar_mode(ui->DryRack_cont_2, LV_SCROLLBAR_MODE_OFF);
+
+    //Write style for DryRack_cont_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_border_width(ui->DryRack_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->DryRack_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui->DryRack_cont_2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui->DryRack_cont_2, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_grad_dir(ui->DryRack_cont_2, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui->DryRack_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui->DryRack_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_left(ui->DryRack_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui->DryRack_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->DryRack_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes DryRack_cont_3
+    ui->DryRack_cont_3 = lv_obj_create(ui->DryRack);
+    lv_obj_set_pos(ui->DryRack_cont_3, 0, -10);
+    lv_obj_set_size(ui->DryRack_cont_3, 720, 85);
+    lv_obj_set_scrollbar_mode(ui->DryRack_cont_3, LV_SCROLLBAR_MODE_OFF);
+
+    //Write style for DryRack_cont_3, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_border_width(ui->DryRack_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->DryRack_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui->DryRack_cont_3, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui->DryRack_cont_3, lv_color_hex(0x0f0f12), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_grad_dir(ui->DryRack_cont_3, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui->DryRack_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui->DryRack_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_left(ui->DryRack_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui->DryRack_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->DryRack_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes DryRack_imgbtn_1
     ui->DryRack_imgbtn_1 = lv_imgbtn_create(ui->DryRack);
@@ -219,7 +269,7 @@ void setup_scr_DryRack(lv_ui *ui)
     lv_label_set_long_mode(ui->DryRack_imgbtn_1_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->DryRack_imgbtn_1_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->DryRack_imgbtn_1, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->DryRack_imgbtn_1, 37, 136);
+    lv_obj_set_pos(ui->DryRack_imgbtn_1, 30, 99);
     lv_obj_set_size(ui->DryRack_imgbtn_1, 109, 109);
 
     //Write style for DryRack_imgbtn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -251,30 +301,32 @@ void setup_scr_DryRack(lv_ui *ui)
     lv_obj_set_style_img_recolor_opa(ui->DryRack_imgbtn_1, 0, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
     lv_obj_set_style_img_opa(ui->DryRack_imgbtn_1, 255, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
 
-    //Write codes DryRack_img_2
-    ui->DryRack_img_2 = lv_img_create(ui->DryRack);
-    lv_obj_add_flag(ui->DryRack_img_2, LV_OBJ_FLAG_CLICKABLE);
-#if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->DryRack_img_2, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\DryRackLight.png");
-#else
-    lv_img_set_src(ui->DryRack_img_2, "S:/sdfile/EXT_RESERVED/uipackres/ui/DryRackLight.png");
-#endif
-    lv_img_set_pivot(ui->DryRack_img_2, 50,50);
-    lv_img_set_angle(ui->DryRack_img_2, 0);
-    lv_obj_set_pos(ui->DryRack_img_2, 260, 155);
-    lv_obj_set_size(ui->DryRack_img_2, 163, 30);
+    //Write codes DryRack_btn_1
+    ui->DryRack_btn_1 = lv_btn_create(ui->DryRack);
+    ui->DryRack_btn_1_label = lv_label_create(ui->DryRack_btn_1);
+    lv_label_set_text(ui->DryRack_btn_1_label, "<  晾衣机");
+    lv_label_set_long_mode(ui->DryRack_btn_1_label, LV_LABEL_LONG_WRAP);
+    lv_obj_align(ui->DryRack_btn_1_label, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_style_pad_all(ui->DryRack_btn_1, 0, LV_STATE_DEFAULT);
+    lv_obj_set_width(ui->DryRack_btn_1_label, LV_PCT(100));
+    lv_obj_set_pos(ui->DryRack_btn_1, 11, 5);
+    lv_obj_set_size(ui->DryRack_btn_1, 156, 50);
 
-    //Write style for DryRack_img_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->DryRack_img_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->DryRack_img_2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->DryRack_img_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->DryRack_img_2, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for DryRack_btn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_bg_opa(ui->DryRack_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->DryRack_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->DryRack_btn_1, 5, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->DryRack_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->DryRack_btn_1, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->DryRack_btn_1, &lv_font_ZiTiQuanWeiJunHeiW22_30, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->DryRack_btn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->DryRack_btn_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes DryRack_label_1
     ui->DryRack_label_1 = lv_label_create(ui->DryRack);
-    lv_label_set_text(ui->DryRack_label_1, "0%");
+    lv_label_set_text(ui->DryRack_label_1, "100%");
     lv_label_set_long_mode(ui->DryRack_label_1, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->DryRack_label_1, 290, 505);
+    lv_obj_set_pos(ui->DryRack_label_1, 314, 230);
     lv_obj_set_size(ui->DryRack_label_1, 100, 32);
 
     //Write style for DryRack_label_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -292,25 +344,6 @@ void setup_scr_DryRack(lv_ui *ui)
     lv_obj_set_style_pad_bottom(ui->DryRack_label_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_left(ui->DryRack_label_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->DryRack_label_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-
-    //Write codes DryRack_RollBlindPole
-    ui->DryRack_RollBlindPole = lv_img_create(ui->DryRack);
-    lv_obj_add_flag(ui->DryRack_RollBlindPole, LV_OBJ_FLAG_CLICKABLE);
-#if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->DryRack_RollBlindPole, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\DryRackTop.png");
-#else
-    lv_img_set_src(ui->DryRack_RollBlindPole, "S:/sdfile/EXT_RESERVED/uipackres/ui/DryRackTop.png");
-#endif
-    lv_img_set_pivot(ui->DryRack_RollBlindPole, 50,50);
-    lv_img_set_angle(ui->DryRack_RollBlindPole, 0);
-    lv_obj_set_pos(ui->DryRack_RollBlindPole, 211, 147);
-    lv_obj_set_size(ui->DryRack_RollBlindPole, 272, 26);
-
-    //Write style for DryRack_RollBlindPole, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->DryRack_RollBlindPole, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->DryRack_RollBlindPole, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->DryRack_RollBlindPole, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->DryRack_RollBlindPole, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of DryRack.
 

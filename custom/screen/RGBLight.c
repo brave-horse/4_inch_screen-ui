@@ -94,6 +94,11 @@ void rgb_light_on_screen_load(void)
     lv_slider_set_value(guider_ui.RGBLight_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);
     lv_slider_set_value(guider_ui.RGBLight_slider_2, s_color_pos, LV_ANIM_OFF);
     rgb_light_refresh(HWInterface.LightCT.switch_status);
+
+    /* 按下反馈: 降透明度(松手自动还原) */
+    lv_obj_t *btns[] = { guider_ui.RGBLight_on_off_2_img, guider_ui.RGBLight_imgbtn_1 };
+    for (uint8_t i = 0; i < 2; i++)
+        lv_obj_set_style_img_opa(btns[i], 100, LV_PART_MAIN | LV_STATE_PRESSED);
 }
 
 void rgb_light_on_switch_toggle(lv_event_t *e)

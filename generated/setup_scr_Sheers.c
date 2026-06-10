@@ -249,8 +249,8 @@ void setup_scr_Sheers(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->Sheers_FabCurtianLeft, 50,50);
     lv_img_set_angle(ui->Sheers_FabCurtianLeft, 0);
-    lv_obj_set_pos(ui->Sheers_FabCurtianLeft, 128, 193);
-    lv_obj_set_size(ui->Sheers_FabCurtianLeft, 231, 287);
+    lv_obj_set_pos(ui->Sheers_FabCurtianLeft, 129, 193);
+    lv_obj_set_size(ui->Sheers_FabCurtianLeft, 230, 282);
 
     //Write style for Sheers_FabCurtianLeft, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_img_recolor_opa(ui->Sheers_FabCurtianLeft, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -269,7 +269,7 @@ void setup_scr_Sheers(lv_ui *ui)
     lv_img_set_pivot(ui->Sheers_FabCurtianright, 50,50);
     lv_img_set_angle(ui->Sheers_FabCurtianright, 0);
     lv_obj_set_pos(ui->Sheers_FabCurtianright, 359, 193);
-    lv_obj_set_size(ui->Sheers_FabCurtianright, 231, 287);
+    lv_obj_set_size(ui->Sheers_FabCurtianright, 230, 282);
 
     //Write style for Sheers_FabCurtianright, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_img_recolor_opa(ui->Sheers_FabCurtianright, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -279,7 +279,7 @@ void setup_scr_Sheers(lv_ui *ui)
 
     //Write codes Sheers_cont_2
     ui->Sheers_cont_2 = lv_obj_create(ui->Sheers);
-    lv_obj_set_pos(ui->Sheers_cont_2, -176, 164);
+    lv_obj_set_pos(ui->Sheers_cont_2, -172, 164);
     lv_obj_set_size(ui->Sheers_cont_2, 300, 336);
     lv_obj_set_scrollbar_mode(ui->Sheers_cont_2, LV_SCROLLBAR_MODE_OFF);
 
@@ -297,7 +297,7 @@ void setup_scr_Sheers(lv_ui *ui)
 
     //Write codes Sheers_cont_3
     ui->Sheers_cont_3 = lv_obj_create(ui->Sheers);
-    lv_obj_set_pos(ui->Sheers_cont_3, 595, 174);
+    lv_obj_set_pos(ui->Sheers_cont_3, 591, 174);
     lv_obj_set_size(ui->Sheers_cont_3, 300, 336);
     lv_obj_set_scrollbar_mode(ui->Sheers_cont_3, LV_SCROLLBAR_MODE_OFF);
 
@@ -323,7 +323,7 @@ void setup_scr_Sheers(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->Sheers_FabCurtianPull2, 50,50);
     lv_img_set_angle(ui->Sheers_FabCurtianPull2, 0);
-    lv_obj_set_pos(ui->Sheers_FabCurtianPull2, 359, 321);
+    lv_obj_set_pos(ui->Sheers_FabCurtianPull2, 361, 321);
     lv_obj_set_size(ui->Sheers_FabCurtianPull2, 45, 45);
 
     //Write style for Sheers_FabCurtianPull2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.

@@ -76,6 +76,11 @@ void light_ct_on_screen_load(void)
     lv_slider_set_value(guider_ui.light_CT_screen_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);
     lv_slider_set_value(guider_ui.light_CT_screen_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);
     light_ct_refresh(btn_status);
+
+    /* 按下反馈: 降透明度(松手自动还原) */
+    lv_obj_t *btns[] = { guider_ui.light_CT_screen_on_off_2_img, guider_ui.light_CT_screen_imgbtn_1 };
+    for (uint8_t i = 0; i < 2; i++)
+        lv_obj_set_style_img_opa(btns[i], 100, LV_PART_MAIN | LV_STATE_PRESSED);
 }
 
 void light_ct_on_switch_toggle(lv_event_t *e)
