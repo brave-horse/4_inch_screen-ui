@@ -8,20 +8,34 @@ static uint32_t s_bri_tick;
 static uint32_t s_color_tick;
 static uint16_t s_color_pos;            /* 颜色滑条位置, 切屏后回填 */
 #define APPLY_MIN_MS  50
-#define RGB_SEG_LEN   256
-#define RGB_POS_MAX   (RGB_SEG_LEN * 3 - 1)   /* 767: 红→绿→蓝→红 三段 */
+#define RGB_SEG_LEN   100
+#define RGB_ANCHORS   7
+#define RGB_POS_MAX   (RGB_SEG_LEN * (RGB_ANCHORS - 1))   /* 600: 红→黄→绿→浅蓝→深蓝→紫→红 */
+#define RGB_BRI_FLOOR 20    /* 亮度下限: 拖到底也按 20% 出光, 防止灯光消失 */
 
-/* 滑条位置 → RGB(至多两原色交叉叠加) */
+/* 用户指定锚点色, 段间线性插值出过渡色 */
+static const uint8_t s_rgb_key[RGB_ANCHORS][3] = {
+    {0xFF, 0x00, 0x00},   /* 红   */
+    {0x73, 0x8C, 0x00},   /* 黄   */
+    {0x00, 0xFE, 0x01},   /* 绿   */
+    {0x00, 0x5C, 0xA3},   /* 浅蓝 */
+    {0x13, 0x00, 0xEC},   /* 深蓝 */
+    {0x6C, 0x00, 0x93},   /* 紫   */
+    {0xFF, 0x00, 0x00},   /* 红   */
+};
+
+/* 滑条位置 → 锚点间插值 RGB */
 static void rgb_pos_to_color(uint32_t pos, uint8_t *r, uint8_t *g, uint8_t *b)
 {
-    uint32_t seg  = pos / RGB_SEG_LEN;
-    if (seg > 2) seg = 2;
-    uint32_t frac = pos - seg * RGB_SEG_LEN;
-    switch (seg) {
-    case 0:  *r = 255 - frac; *g = frac;       *b = 0;          break;  /* 红→绿 */
-    case 1:  *r = 0;          *g = 255 - frac; *b = frac;       break;  /* 绿→蓝 */
-    default: *r = frac;       *g = 0;          *b = 255 - frac; break;  /* 蓝→红 */
-    }
+    if (pos > RGB_POS_MAX) pos = RGB_POS_MAX;
+    uint32_t seg = pos / RGB_SEG_LEN;
+    if (seg >= RGB_ANCHORS - 1) seg = RGB_ANCHORS - 2;
+    int32_t frac = (int32_t)(pos - seg * RGB_SEG_LEN);
+    const uint8_t *c0 = s_rgb_key[seg];
+    const uint8_t *c1 = s_rgb_key[seg + 1];
+    *r = (uint8_t)(c0[0] + ((int32_t)c1[0] - c0[0]) * frac / RGB_SEG_LEN);
+    *g = (uint8_t)(c0[1] + ((int32_t)c1[1] - c0[1]) * frac / RGB_SEG_LEN);
+    *b = (uint8_t)(c0[2] + ((int32_t)c1[2] - c0[2]) * frac / RGB_SEG_LEN);
 }
 
 static void rgb_light_apply_light(void)
@@ -32,12 +46,13 @@ static void rgb_light_apply_light(void)
         return;
 
     int32_t bri = lv_slider_get_value(slider1);
+    int32_t eff = RGB_BRI_FLOOR + bri * (LIGHTCT_BRIGHTNESS_MAX - RGB_BRI_FLOOR) / LIGHTCT_BRIGHTNESS_MAX;  /* 套 20% 下限 */
     uint8_t r, g, b;
     rgb_pos_to_color((uint32_t)lv_slider_get_value(slider2), &r, &g, &b);
 
-    uint8_t opa_r = (uint8_t)((uint32_t)r * bri / LIGHTCT_BRIGHTNESS_MAX);
-    uint8_t opa_g = (uint8_t)((uint32_t)g * bri / LIGHTCT_BRIGHTNESS_MAX);
-    uint8_t opa_b = (uint8_t)((uint32_t)b * bri / LIGHTCT_BRIGHTNESS_MAX);
+    uint8_t opa_r = (uint8_t)((uint32_t)r * eff / LIGHTCT_BRIGHTNESS_MAX);
+    uint8_t opa_g = (uint8_t)((uint32_t)g * eff / LIGHTCT_BRIGHTNESS_MAX);
+    uint8_t opa_b = (uint8_t)((uint32_t)b * eff / LIGHTCT_BRIGHTNESS_MAX);
     if (!HWInterface.LightCT.switch_status)
         opa_r = opa_g = opa_b = 0;
 
@@ -74,6 +89,7 @@ static void rgb_light_refresh(bool btn_status)
 
 void rgb_light_on_screen_load(void)
 {
+    lv_slider_set_range(guider_ui.RGBLight_slider_1, 1, LIGHTCT_BRIGHTNESS_MAX);
     lv_slider_set_range(guider_ui.RGBLight_slider_2, 0, RGB_POS_MAX);
     lv_slider_set_value(guider_ui.RGBLight_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);
     lv_slider_set_value(guider_ui.RGBLight_slider_2, s_color_pos, LV_ANIM_OFF);

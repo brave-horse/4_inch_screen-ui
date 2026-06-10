@@ -131,7 +131,7 @@ HW_InterfaceTypeDef HWInterface = {
         .SetPos        = impl_Curtain_SetPos,
         .Apply         = impl_Curtain_Apply,
     },
-};
+};/*  */
 
 void HW_Init(void)
 {

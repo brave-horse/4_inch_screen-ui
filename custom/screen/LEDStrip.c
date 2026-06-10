@@ -14,6 +14,7 @@
 static uint32_t s_bri_tick;
 static uint32_t s_ct_tick;
 #define APPLY_MIN_MS  50
+#define LEDSTRIP_OPA_MIN  (LV_OPA_COVER * 1 / 100)    /* 亮度最低时灯条最低可见度(=1%) */
 
 /**********************
  *  GLOBAL FUNCTIONS
@@ -30,8 +31,9 @@ static void led_strip_apply_light(void)
     int32_t  ct  = lv_slider_get_value(slider2);
     uint32_t ct_span  = LIGHTCT_COLOR_TEMP_MAX - LIGHTCT_COLOR_TEMP_MIN;
     uint32_t tnum     = (uint32_t)(ct - LIGHTCT_COLOR_TEMP_MIN);
-    uint32_t o_white  = (uint32_t)bri * tnum             * LV_OPA_COVER / ((uint32_t)LIGHTCT_BRIGHTNESS_MAX * ct_span);
-    uint32_t o_orange = (uint32_t)bri * (ct_span - tnum) * LV_OPA_COVER / ((uint32_t)LIGHTCT_BRIGHTNESS_MAX * ct_span);
+    uint32_t total    = LEDSTRIP_OPA_MIN + (uint32_t)bri * (LV_OPA_COVER - LEDSTRIP_OPA_MIN) / LIGHTCT_BRIGHTNESS_MAX;
+    uint32_t o_white  = total * tnum             / ct_span;
+    uint32_t o_orange = total * (ct_span - tnum) / ct_span;
 
     lv_obj_set_style_img_opa(guider_ui.LedStrip_LSOff, (lv_opa_t)o_white,  LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_img_opa(guider_ui.LedStrip_LSOn,  (lv_opa_t)o_orange, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -65,6 +67,7 @@ static void led_strip_refresh(bool btn_status)
 void led_strip_on_screen_load(void)
 {
     bool btn_status = HWInterface.LightCT.switch_status;
+    lv_slider_set_range(guider_ui.LedStrip_slider_1, 1, LIGHTCT_BRIGHTNESS_MAX);
     lv_slider_set_value(guider_ui.LedStrip_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);
     lv_slider_set_value(guider_ui.LedStrip_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);
     led_strip_refresh(btn_status);

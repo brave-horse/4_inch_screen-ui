@@ -93,10 +93,7 @@ void setup_scr_FabricCurtian(lv_ui *ui)
     lv_obj_set_scrollbar_mode(ui->FabricCurtian_cont_1, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for FabricCurtian_cont_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->FabricCurtian_cont_1, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->FabricCurtian_cont_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->FabricCurtian_cont_1, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui->FabricCurtian_cont_1, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->FabricCurtian_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_radius(ui->FabricCurtian_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->FabricCurtian_cont_1, 133, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->FabricCurtian_cont_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -345,7 +342,7 @@ void setup_scr_FabricCurtian(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->FabricCurtian_FabCurtianPull1, 50,50);
     lv_img_set_angle(ui->FabricCurtian_FabCurtianPull1, 0);
-    lv_obj_set_pos(ui->FabricCurtian_FabCurtianPull1, 307, 321);
+    lv_obj_set_pos(ui->FabricCurtian_FabCurtianPull1, 302, 321);
     lv_obj_set_size(ui->FabricCurtian_FabCurtianPull1, 45, 45);
 
     //Write style for FabricCurtian_FabCurtianPull1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.

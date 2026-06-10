@@ -282,6 +282,8 @@ typedef struct
 	lv_obj_t *Dream_FabCurtianBg2;
 	lv_obj_t *Dream_FabCurtianLeft;
 	lv_obj_t *Dream_FabCurtianright;
+	lv_obj_t *Dream_cont_2;
+	lv_obj_t *Dream_cont_3;
 	lv_obj_t *Dream_FabCurtianPull2;
 	lv_obj_t *Dream_FabCurtianPull1;
 	lv_obj_t *Dream_FabCurtianPole;
@@ -306,7 +308,6 @@ typedef struct
 	lv_obj_t *AirCondition_ACSpeed1;
 	lv_obj_t *AirCondition_ACSpeed2;
 	lv_obj_t *AirCondition_ACSpeed3;
-	lv_obj_t *AirCondition_ACSpeed4;
 	lv_obj_t *AirCondition_AcCool;
 	lv_obj_t *AirCondition_ACFan;
 	lv_obj_t *AirCondition_ACHot;

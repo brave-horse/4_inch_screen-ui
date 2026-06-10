@@ -93,10 +93,7 @@ void setup_scr_AirCondition(lv_ui *ui)
     lv_obj_set_scrollbar_mode(ui->AirCondition_cont_1, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for AirCondition_cont_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->AirCondition_cont_1, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->AirCondition_cont_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->AirCondition_cont_1, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui->AirCondition_cont_1, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->AirCondition_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_radius(ui->AirCondition_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->AirCondition_cont_1, 133, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->AirCondition_cont_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -138,7 +135,7 @@ void setup_scr_AirCondition(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->AirCondition_ACDry, 50,50);
     lv_img_set_angle(ui->AirCondition_ACDry, 0);
-    lv_obj_set_pos(ui->AirCondition_ACDry, -480, 557);
+    lv_obj_set_pos(ui->AirCondition_ACDry, -452, 515);
     lv_obj_set_size(ui->AirCondition_ACDry, 109, 109);
 
     //Write style for AirCondition_ACDry, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -157,7 +154,7 @@ void setup_scr_AirCondition(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->AirCondition_ACSpeedAuto, 50,50);
     lv_img_set_angle(ui->AirCondition_ACSpeedAuto, 0);
-    lv_obj_set_pos(ui->AirCondition_ACSpeedAuto, 561, 515);
+    lv_obj_set_pos(ui->AirCondition_ACSpeedAuto, 1005, 521);
     lv_obj_set_size(ui->AirCondition_ACSpeedAuto, 109, 109);
 
     //Write style for AirCondition_ACSpeedAuto, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -195,7 +192,7 @@ void setup_scr_AirCondition(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->AirCondition_AcSpd1, 50,50);
     lv_img_set_angle(ui->AirCondition_AcSpd1, 0);
-    lv_obj_set_pos(ui->AirCondition_AcSpd1, 582, 133);
+    lv_obj_set_pos(ui->AirCondition_AcSpd1, 599, 219);
     lv_obj_set_size(ui->AirCondition_AcSpd1, 349, 94);
 
     //Write style for AirCondition_AcSpd1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -261,7 +258,7 @@ void setup_scr_AirCondition(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->AirCondition_ACSpeed1, 50,50);
     lv_img_set_angle(ui->AirCondition_ACSpeed1, 0);
-    lv_obj_set_pos(ui->AirCondition_ACSpeed1, 705, 515);
+    lv_obj_set_pos(ui->AirCondition_ACSpeed1, 555, 521);
     lv_obj_set_size(ui->AirCondition_ACSpeed1, 109, 109);
 
     //Write style for AirCondition_ACSpeed1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -280,7 +277,7 @@ void setup_scr_AirCondition(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->AirCondition_ACSpeed2, 50,50);
     lv_img_set_angle(ui->AirCondition_ACSpeed2, 0);
-    lv_obj_set_pos(ui->AirCondition_ACSpeed2, 878, 515);
+    lv_obj_set_pos(ui->AirCondition_ACSpeed2, 705, 521);
     lv_obj_set_size(ui->AirCondition_ACSpeed2, 109, 109);
 
     //Write style for AirCondition_ACSpeed2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -299,7 +296,7 @@ void setup_scr_AirCondition(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->AirCondition_ACSpeed3, 50,50);
     lv_img_set_angle(ui->AirCondition_ACSpeed3, 0);
-    lv_obj_set_pos(ui->AirCondition_ACSpeed3, 1043, 515);
+    lv_obj_set_pos(ui->AirCondition_ACSpeed3, 855, 521);
     lv_obj_set_size(ui->AirCondition_ACSpeed3, 109, 109);
 
     //Write style for AirCondition_ACSpeed3, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -307,25 +304,6 @@ void setup_scr_AirCondition(lv_ui *ui)
     lv_obj_set_style_img_opa(ui->AirCondition_ACSpeed3, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_radius(ui->AirCondition_ACSpeed3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_clip_corner(ui->AirCondition_ACSpeed3, true, LV_PART_MAIN|LV_STATE_DEFAULT);
-
-    //Write codes AirCondition_ACSpeed4
-    ui->AirCondition_ACSpeed4 = lv_img_create(ui->AirCondition);
-    lv_obj_add_flag(ui->AirCondition_ACSpeed4, LV_OBJ_FLAG_CLICKABLE);
-#if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->AirCondition_ACSpeed4, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\ACSpeed4.png");
-#else
-    lv_img_set_src(ui->AirCondition_ACSpeed4, "S:/sdfile/EXT_RESERVED/uipackres/ui/ACSpeed4.png");
-#endif
-    lv_img_set_pivot(ui->AirCondition_ACSpeed4, 50,50);
-    lv_img_set_angle(ui->AirCondition_ACSpeed4, 0);
-    lv_obj_set_pos(ui->AirCondition_ACSpeed4, 1187, 515);
-    lv_obj_set_size(ui->AirCondition_ACSpeed4, 109, 109);
-
-    //Write style for AirCondition_ACSpeed4, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->AirCondition_ACSpeed4, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->AirCondition_ACSpeed4, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->AirCondition_ACSpeed4, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->AirCondition_ACSpeed4, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes AirCondition_AcCool
     ui->AirCondition_AcCool = lv_img_create(ui->AirCondition);
@@ -337,7 +315,7 @@ void setup_scr_AirCondition(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->AirCondition_AcCool, 50,50);
     lv_img_set_angle(ui->AirCondition_AcCool, 0);
-    lv_obj_set_pos(ui->AirCondition_AcCool, -26, 545);
+    lv_obj_set_pos(ui->AirCondition_AcCool, -2, 515);
     lv_obj_set_size(ui->AirCondition_AcCool, 109, 109);
 
     //Write style for AirCondition_AcCool, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -356,7 +334,7 @@ void setup_scr_AirCondition(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->AirCondition_ACFan, 50,50);
     lv_img_set_angle(ui->AirCondition_ACFan, 0);
-    lv_obj_set_pos(ui->AirCondition_ACFan, -337, 561);
+    lv_obj_set_pos(ui->AirCondition_ACFan, -302, 515);
     lv_obj_set_size(ui->AirCondition_ACFan, 109, 109);
 
     //Write style for AirCondition_ACFan, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -375,7 +353,7 @@ void setup_scr_AirCondition(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->AirCondition_ACHot, 50,50);
     lv_img_set_angle(ui->AirCondition_ACHot, 0);
-    lv_obj_set_pos(ui->AirCondition_ACHot, -188, 557);
+    lv_obj_set_pos(ui->AirCondition_ACHot, -152, 515);
     lv_obj_set_size(ui->AirCondition_ACHot, 109, 109);
 
     //Write style for AirCondition_ACHot, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -394,7 +372,7 @@ void setup_scr_AirCondition(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->AirCondition_AcSpd2, 50,50);
     lv_img_set_angle(ui->AirCondition_AcSpd2, 0);
-    lv_obj_set_pos(ui->AirCondition_AcSpd2, 945, 125);
+    lv_obj_set_pos(ui->AirCondition_AcSpd2, 979, 219);
     lv_obj_set_size(ui->AirCondition_AcSpd2, 349, 94);
 
     //Write style for AirCondition_AcSpd2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -413,7 +391,7 @@ void setup_scr_AirCondition(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->AirCondition_AcSpd3, 50,50);
     lv_img_set_angle(ui->AirCondition_AcSpd3, 0);
-    lv_obj_set_pos(ui->AirCondition_AcSpd3, 1343, 111);
+    lv_obj_set_pos(ui->AirCondition_AcSpd3, 1359, 219);
     lv_obj_set_size(ui->AirCondition_AcSpd3, 349, 94);
 
     //Write style for AirCondition_AcSpd3, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.

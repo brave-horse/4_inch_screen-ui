@@ -64,6 +64,7 @@ static void light_ct_refresh(bool btn_status)
         lv_obj_move_foreground(guider_ui.light_CT_screen_cont_1);
         lv_obj_move_foreground(guider_ui.light_CT_screen_on_off_2_img);
     }
+
 }
 
 /* ══════ 4 个事件接口(供 GUI-Guider 事件一行调用) ══════ */
@@ -71,6 +72,7 @@ static void light_ct_refresh(bool btn_status)
 void light_ct_on_screen_load(void)
 {
     bool btn_status = HWInterface.LightCT.switch_status;
+    lv_slider_set_range(guider_ui.light_CT_screen_slider_1, 1, LIGHTCT_BRIGHTNESS_MAX);
     lv_slider_set_value(guider_ui.light_CT_screen_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);
     lv_slider_set_value(guider_ui.light_CT_screen_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);
     light_ct_refresh(btn_status);

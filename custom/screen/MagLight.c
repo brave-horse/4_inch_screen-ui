@@ -13,7 +13,7 @@
 static uint32_t s_bri_tick;
 static uint32_t s_ct_tick;
 #define APPLY_MIN_MS  50
-#define MAGLIGHT_OPA_MIN  64   /* 亮度0时灯图最低可见度 */
+#define MAGLIGHT_OPA_MIN  (LV_OPA_COVER * 1 / 100)   /* 亮度最低时灯图最低可见度(=1%) */
 
 /**********************
  *  GLOBAL FUNCTIONS
@@ -67,6 +67,7 @@ static void mag_light_refresh(bool btn_status)
 void mag_light_on_screen_load(void)
 {
     bool btn_status = HWInterface.LightCT.switch_status;
+    lv_slider_set_range(guider_ui.MagLight_slider_1, 1, LIGHTCT_BRIGHTNESS_MAX);
     lv_slider_set_value(guider_ui.MagLight_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);
     lv_slider_set_value(guider_ui.MagLight_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);
     mag_light_refresh(btn_status);

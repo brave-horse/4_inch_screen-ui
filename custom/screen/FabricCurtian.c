@@ -76,7 +76,6 @@ void fab_curtain_on_pause(void)
 /* 拖拉手/点窗帘 → 开到手指处(两帘对称) */
 void fab_curtain_on_drag(lv_event_t *e)
 {
-    LV_UNUSED(e);
     lv_indev_t *indev = lv_indev_get_act();
     if (!indev) return;
     lv_point_t p;
@@ -84,8 +83,15 @@ void fab_curtain_on_drag(lv_event_t *e)
 
     lv_anim_del(&s_pct, fab_anim_cb);
 
-    int32_t pct = (p.x < FAB_CENTER) ? (PULL1_CX - p.x) * 100 / TRAVEL_MAX
-                                     : (p.x - PULL2_CX) * 100 / TRAVEL_MAX;
+    /* 按抓住的拉手锁定算法侧, 手指越过中线也不切边 */
+    lv_obj_t *target = lv_event_get_target(e);
+    bool right;
+    if      (target == guider_ui.FabricCurtian_FabCurtianPull1) right = false;
+    else if (target == guider_ui.FabricCurtian_FabCurtianPull2) right = true;
+    else    right = (p.x >= FAB_CENTER);     /* 点窗帘空白处: 按位置 */
+
+    int32_t pct = right ? (p.x - PULL2_CX) * 100 / TRAVEL_MAX
+                        : (PULL1_CX - p.x) * 100 / TRAVEL_MAX;
     if (pct < 0)   pct = 0;
     if (pct > 100) pct = 100;
 

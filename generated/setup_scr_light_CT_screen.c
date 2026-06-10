@@ -93,10 +93,7 @@ void setup_scr_light_CT_screen(lv_ui *ui)
     lv_obj_set_scrollbar_mode(ui->light_CT_screen_cont_1, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for light_CT_screen_cont_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->light_CT_screen_cont_1, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->light_CT_screen_cont_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->light_CT_screen_cont_1, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui->light_CT_screen_cont_1, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->light_CT_screen_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_radius(ui->light_CT_screen_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->light_CT_screen_cont_1, 133, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->light_CT_screen_cont_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -257,12 +254,12 @@ void setup_scr_light_CT_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->light_CT_screen_white_lid, 50,50);
     lv_img_set_angle(ui->light_CT_screen_white_lid, 0);
-    lv_obj_set_pos(ui->light_CT_screen_white_lid, 207, 222);
-    lv_obj_set_size(ui->light_CT_screen_white_lid, 293, 60);
+    lv_obj_set_pos(ui->light_CT_screen_white_lid, 210, 223);
+    lv_obj_set_size(ui->light_CT_screen_white_lid, 286, 54);
 
     //Write style for light_CT_screen_white_lid, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_img_recolor_opa(ui->light_CT_screen_white_lid, 184, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_recolor(ui->light_CT_screen_white_lid, lv_color_hex(0x090909), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_recolor(ui->light_CT_screen_white_lid, lv_color_hex(0x020202), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_opa(ui->light_CT_screen_white_lid, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_radius(ui->light_CT_screen_white_lid, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_clip_corner(ui->light_CT_screen_white_lid, true, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -276,8 +273,8 @@ void setup_scr_light_CT_screen(lv_ui *ui)
     lv_img_set_src(ui->light_CT_screen_dev_orange_img, "S:/sdfile/EXT_RESERVED/uipackres/ui/dev_orange.png");
 #endif
     lv_img_set_pivot(ui->light_CT_screen_dev_orange_img, 50,50);
-    lv_img_set_angle(ui->light_CT_screen_dev_orange_img, 10);
-    lv_obj_set_pos(ui->light_CT_screen_dev_orange_img, 107, 232);
+    lv_img_set_angle(ui->light_CT_screen_dev_orange_img, 0);
+    lv_obj_set_pos(ui->light_CT_screen_dev_orange_img, 108, 234);
     lv_obj_set_size(ui->light_CT_screen_dev_orange_img, 490, 164);
 
     //Write style for light_CT_screen_dev_orange_img, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -295,8 +292,8 @@ void setup_scr_light_CT_screen(lv_ui *ui)
     lv_img_set_src(ui->light_CT_screen_dev_white_img, "S:/sdfile/EXT_RESERVED/uipackres/ui/dev_white.png");
 #endif
     lv_img_set_pivot(ui->light_CT_screen_dev_white_img, 50,50);
-    lv_img_set_angle(ui->light_CT_screen_dev_white_img, 10);
-    lv_obj_set_pos(ui->light_CT_screen_dev_white_img, 109, 232);
+    lv_img_set_angle(ui->light_CT_screen_dev_white_img, 0);
+    lv_obj_set_pos(ui->light_CT_screen_dev_white_img, 108, 234);
     lv_obj_set_size(ui->light_CT_screen_dev_white_img, 490, 164);
 
     //Write style for light_CT_screen_dev_white_img, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
