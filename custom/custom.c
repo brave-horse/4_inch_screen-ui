@@ -30,10 +30,6 @@
 #define EN_IMG           0   /* external images are loaded through GUI Guider paths */
 #define EN_SCR_NOSCROLL  1   /* rule/scr_noscroll.c: 主屏禁滚 */
 
-/**********************
- *  GLOBAL FUNCTIONS
- **********************/
-
 /* custom 层总入口：由 app_main.c 的 jl_gui_init() 在 setup_ui/events_init 之后调用一次。
  * 这里只做"编排"——把各模块初始化拉起来，具体逻辑都在各自模块里：
  *   assert/img.c        图片 DDR 预解码 + 拦截解码器

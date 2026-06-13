@@ -1213,29 +1213,14 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_obj_set_style_pad_right(ui->device_management_screen_cont_10, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->device_management_screen_cont_10, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes device_management_screen_img_18
-    ui->device_management_screen_img_18 = lv_img_create(ui->device_management_screen_cont_10);
-    lv_obj_add_flag(ui->device_management_screen_img_18, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->device_management_screen_img_18, &_sLedStripOn_alpha_65x43);
-    lv_img_set_pivot(ui->device_management_screen_img_18, 50,50);
-    lv_img_set_angle(ui->device_management_screen_img_18, 0);
-    lv_obj_set_pos(ui->device_management_screen_img_18, 28, 23);
-    lv_obj_set_size(ui->device_management_screen_img_18, 65, 43);
-
-    //Write style for device_management_screen_img_18, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->device_management_screen_img_18, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->device_management_screen_img_18, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->device_management_screen_img_18, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->device_management_screen_img_18, true, LV_PART_MAIN|LV_STATE_DEFAULT);
-
     //Write codes device_management_screen_img_17
     ui->device_management_screen_img_17 = lv_img_create(ui->device_management_screen_cont_10);
     lv_obj_add_flag(ui->device_management_screen_img_17, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->device_management_screen_img_17, &_sLedStripOff_alpha_65x43);
+    lv_img_set_src(ui->device_management_screen_img_17, &_small_disc_alpha_51x51);
     lv_img_set_pivot(ui->device_management_screen_img_17, 50,50);
     lv_img_set_angle(ui->device_management_screen_img_17, 0);
     lv_obj_set_pos(ui->device_management_screen_img_17, 27, 21);
-    lv_obj_set_size(ui->device_management_screen_img_17, 65, 43);
+    lv_obj_set_size(ui->device_management_screen_img_17, 51, 51);
 
     //Write style for device_management_screen_img_17, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_img_recolor_opa(ui->device_management_screen_img_17, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -1243,22 +1228,37 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_obj_set_style_radius(ui->device_management_screen_img_17, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_clip_corner(ui->device_management_screen_img_17, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
+    //Write codes device_management_screen_img_18
+    ui->device_management_screen_img_18 = lv_img_create(ui->device_management_screen_cont_10);
+    lv_obj_add_flag(ui->device_management_screen_img_18, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->device_management_screen_img_18, &_small_dev_alpha_60x62);
+    lv_img_set_pivot(ui->device_management_screen_img_18, 50,50);
+    lv_img_set_angle(ui->device_management_screen_img_18, 0);
+    lv_obj_set_pos(ui->device_management_screen_img_18, 26, 10);
+    lv_obj_set_size(ui->device_management_screen_img_18, 60, 62);
+
+    //Write style for device_management_screen_img_18, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->device_management_screen_img_18, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->device_management_screen_img_18, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->device_management_screen_img_18, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->device_management_screen_img_18, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
     //Write codes device_management_screen_imgbtn_9
     ui->device_management_screen_imgbtn_9 = lv_imgbtn_create(ui->device_management_screen_cont_10);
     lv_obj_add_flag(ui->device_management_screen_imgbtn_9, LV_OBJ_FLAG_CHECKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_imgbtn_set_src(ui->device_management_screen_imgbtn_9, LV_IMGBTN_STATE_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\onoff_off.png", NULL);
-    lv_imgbtn_set_src(ui->device_management_screen_imgbtn_9, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\onoff_on.png", NULL);
+    lv_imgbtn_set_src(ui->device_management_screen_imgbtn_9, LV_IMGBTN_STATE_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\small_play.png", NULL);
+    lv_imgbtn_set_src(ui->device_management_screen_imgbtn_9, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\small_pause.png", NULL);
 #else
-    lv_imgbtn_set_src(ui->device_management_screen_imgbtn_9, LV_IMGBTN_STATE_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/onoff_off.png", NULL);
-    lv_imgbtn_set_src(ui->device_management_screen_imgbtn_9, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/onoff_on.png", NULL);
+    lv_imgbtn_set_src(ui->device_management_screen_imgbtn_9, LV_IMGBTN_STATE_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/small_play.png", NULL);
+    lv_imgbtn_set_src(ui->device_management_screen_imgbtn_9, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/small_pause.png", NULL);
 #endif
     ui->device_management_screen_imgbtn_9_label = lv_label_create(ui->device_management_screen_imgbtn_9);
     lv_label_set_text(ui->device_management_screen_imgbtn_9_label, "");
     lv_label_set_long_mode(ui->device_management_screen_imgbtn_9_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->device_management_screen_imgbtn_9_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->device_management_screen_imgbtn_9, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->device_management_screen_imgbtn_9, 227, 18);
+    lv_obj_set_pos(ui->device_management_screen_imgbtn_9, 225, 16);
     lv_obj_set_size(ui->device_management_screen_imgbtn_9, 48, 48);
 
     //Write style for device_management_screen_imgbtn_9, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1457,11 +1457,11 @@ void setup_scr_device_management_screen(lv_ui *ui)
     //Write codes device_management_screen_img_22
     ui->device_management_screen_img_22 = lv_img_create(ui->device_management_screen_cont_12);
     lv_obj_add_flag(ui->device_management_screen_img_22, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->device_management_screen_img_22, &_sLedStripOn_alpha_65x43);
+    lv_img_set_src(ui->device_management_screen_img_22, &_sFanAndLTon_alpha_60x60);
     lv_img_set_pivot(ui->device_management_screen_img_22, 50,50);
     lv_img_set_angle(ui->device_management_screen_img_22, 0);
     lv_obj_set_pos(ui->device_management_screen_img_22, 28, 23);
-    lv_obj_set_size(ui->device_management_screen_img_22, 65, 43);
+    lv_obj_set_size(ui->device_management_screen_img_22, 60, 60);
 
     //Write style for device_management_screen_img_22, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_img_recolor_opa(ui->device_management_screen_img_22, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -1472,11 +1472,11 @@ void setup_scr_device_management_screen(lv_ui *ui)
     //Write codes device_management_screen_img_21
     ui->device_management_screen_img_21 = lv_img_create(ui->device_management_screen_cont_12);
     lv_obj_add_flag(ui->device_management_screen_img_21, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->device_management_screen_img_21, &_sLedStripOff_alpha_65x43);
+    lv_img_set_src(ui->device_management_screen_img_21, &_sFanAndLToff_alpha_60x60);
     lv_img_set_pivot(ui->device_management_screen_img_21, 50,50);
     lv_img_set_angle(ui->device_management_screen_img_21, 0);
-    lv_obj_set_pos(ui->device_management_screen_img_21, 25, 21);
-    lv_obj_set_size(ui->device_management_screen_img_21, 65, 43);
+    lv_obj_set_pos(ui->device_management_screen_img_21, 27, 24);
+    lv_obj_set_size(ui->device_management_screen_img_21, 60, 60);
 
     //Write style for device_management_screen_img_21, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_img_recolor_opa(ui->device_management_screen_img_21, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -1499,7 +1499,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_label_set_long_mode(ui->device_management_screen_imgbtn_11_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->device_management_screen_imgbtn_11_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->device_management_screen_imgbtn_11, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->device_management_screen_imgbtn_11, 227, 18);
+    lv_obj_set_pos(ui->device_management_screen_imgbtn_11, 226, 17);
     lv_obj_set_size(ui->device_management_screen_imgbtn_11, 48, 48);
 
     //Write style for device_management_screen_imgbtn_11, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1553,6 +1553,53 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_obj_set_style_pad_bottom(ui->device_management_screen_label_14, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_left(ui->device_management_screen_label_14, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->device_management_screen_label_14, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes device_management_screen_imgbtn_12
+    ui->device_management_screen_imgbtn_12 = lv_imgbtn_create(ui->device_management_screen_cont_12);
+    lv_obj_add_flag(ui->device_management_screen_imgbtn_12, LV_OBJ_FLAG_CHECKABLE);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_imgbtn_set_src(ui->device_management_screen_imgbtn_12, LV_IMGBTN_STATE_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\slightOff.png", NULL);
+    lv_imgbtn_set_src(ui->device_management_screen_imgbtn_12, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\slightOn.png", NULL);
+#else
+    lv_imgbtn_set_src(ui->device_management_screen_imgbtn_12, LV_IMGBTN_STATE_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/slightOff.png", NULL);
+    lv_imgbtn_set_src(ui->device_management_screen_imgbtn_12, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/slightOn.png", NULL);
+#endif
+    ui->device_management_screen_imgbtn_12_label = lv_label_create(ui->device_management_screen_imgbtn_12);
+    lv_label_set_text(ui->device_management_screen_imgbtn_12_label, "");
+    lv_label_set_long_mode(ui->device_management_screen_imgbtn_12_label, LV_LABEL_LONG_WRAP);
+    lv_obj_align(ui->device_management_screen_imgbtn_12_label, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_style_pad_all(ui->device_management_screen_imgbtn_12, 0, LV_STATE_DEFAULT);
+    lv_obj_set_pos(ui->device_management_screen_imgbtn_12, 147, 7);
+    lv_obj_set_size(ui->device_management_screen_imgbtn_12, 60, 60);
+
+    //Write style for device_management_screen_imgbtn_12, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_text_color(ui->device_management_screen_imgbtn_12, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->device_management_screen_imgbtn_12, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->device_management_screen_imgbtn_12, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->device_management_screen_imgbtn_12, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->device_management_screen_imgbtn_12, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->device_management_screen_imgbtn_12, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->device_management_screen_imgbtn_12, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write style for device_management_screen_imgbtn_12, Part: LV_PART_MAIN, State: LV_STATE_PRESSED.
+    lv_obj_set_style_img_recolor_opa(ui->device_management_screen_imgbtn_12, 0, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_img_opa(ui->device_management_screen_imgbtn_12, 255, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_color(ui->device_management_screen_imgbtn_12, lv_color_hex(0xFF33FF), LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_font(ui->device_management_screen_imgbtn_12, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_opa(ui->device_management_screen_imgbtn_12, 255, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_shadow_width(ui->device_management_screen_imgbtn_12, 0, LV_PART_MAIN|LV_STATE_PRESSED);
+
+    //Write style for device_management_screen_imgbtn_12, Part: LV_PART_MAIN, State: LV_STATE_CHECKED.
+    lv_obj_set_style_img_recolor_opa(ui->device_management_screen_imgbtn_12, 0, LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_img_opa(ui->device_management_screen_imgbtn_12, 255, LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_text_color(ui->device_management_screen_imgbtn_12, lv_color_hex(0xFF33FF), LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_text_font(ui->device_management_screen_imgbtn_12, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_text_opa(ui->device_management_screen_imgbtn_12, 255, LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_shadow_width(ui->device_management_screen_imgbtn_12, 0, LV_PART_MAIN|LV_STATE_CHECKED);
+
+    //Write style for device_management_screen_imgbtn_12, Part: LV_PART_MAIN, State: LV_IMGBTN_STATE_RELEASED.
+    lv_obj_set_style_img_recolor_opa(ui->device_management_screen_imgbtn_12, 0, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
+    lv_obj_set_style_img_opa(ui->device_management_screen_imgbtn_12, 255, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
 
     //Write codes device_management_screen_cont_13
     ui->device_management_screen_cont_13 = lv_obj_create(ui->device_management_screen_tabview_1_tab_1);

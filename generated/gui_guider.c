@@ -89,7 +89,7 @@ void init_scr_del_flag(lv_ui *ui)
     ui->AirCondition_del = true;
     ui->Music_del = true;
     ui->DryRack_del = true;
-    ui->FanLight_del = true;
+    ui->FanAndLight_del = true;
     ui->Heater_del = true;
     ui->screen_1_del = true;
 }

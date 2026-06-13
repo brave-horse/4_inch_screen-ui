@@ -31,6 +31,7 @@ void events_init_RollBlind(lv_ui *ui);
 void events_init_Dream(lv_ui *ui);
 void events_init_AirCondition(lv_ui *ui);
 void events_init_DryRack(lv_ui *ui);
+void events_init_FanAndLight(lv_ui *ui);
 
 #ifdef __cplusplus
 }

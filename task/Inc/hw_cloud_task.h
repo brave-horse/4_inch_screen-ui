@@ -24,6 +24,10 @@ enum {
     HW_MSG_AIRCON_SPEED,      /* uint16_t val — 空调风速 0/1/2档, 3=自动 */
     HW_MSG_DRYRACK_POS,       /* uint16_t val — 晾衣机位置 0~100% */
     HW_MSG_DRYRACK_LIGHT,     /* bool on      — 晾衣机照明 */
+    HW_MSG_FANLIGHT_POWER,    /* bool on      — 风扇灯电源 */
+    HW_MSG_FANLIGHT_FAN,      /* bool on + uint16_t val — 风扇开关+档位 */
+    HW_MSG_FANLIGHT_SPEED,    /* uint16_t val — 风扇档位 0~3 */
+    HW_MSG_FANLIGHT_LIGHT,    /* bool on      — 风扇灯照明 */
     HW_MSG_CLOUD_CMD,
 
     HW_MSG_COUNT

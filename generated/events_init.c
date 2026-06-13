@@ -28,6 +28,7 @@
 #include "Dream.h"
 #include "AirCondition.h"
 #include "DryRack.h"
+#include "FanAndLight.h"
 
 static void ui_home_screen_event_handler (lv_event_t *e)
 {
@@ -644,6 +645,20 @@ static void device_management_screen_label_11_event_handler (lv_event_t *e)
     }
 }
 
+static void device_management_screen_cont_12_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.FanAndLight, guider_ui.FanAndLight_del, &guider_ui.device_management_screen_del, setup_scr_FanAndLight, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
 static void device_management_screen_label_15_event_handler (lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -713,6 +728,7 @@ void events_init_device_management_screen (lv_ui *ui)
     lv_obj_add_event_cb(ui->device_management_screen_sDryRackdown, device_management_screen_sDryRackdown_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->device_management_screen_sDryRackup, device_management_screen_sDryRackup_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->device_management_screen_label_11, device_management_screen_label_11_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->device_management_screen_cont_12, device_management_screen_cont_12_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->device_management_screen_label_15, device_management_screen_label_15_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->device_management_screen_label_16, device_management_screen_label_16_event_handler, LV_EVENT_ALL, ui);
 }
@@ -1919,6 +1935,175 @@ void events_init_DryRack (lv_ui *ui)
     lv_obj_add_event_cb(ui->DryRack_imgbtn_1, DryRack_imgbtn_1_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->DryRack_btn_1, DryRack_btn_1_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->DryRack_label_1, DryRack_label_1_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void FanAndLight_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOADED:
+    {
+        fanlight_on_screen_load();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void FanAndLight_fLight_off_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        fanlight_on_light_switch_toggle(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void FanAndLight_fLight_on_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        fanlight_on_light_switch_toggle(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void FanAndLight_FanSpeed4_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        fanlight_on_speed_click();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void FanAndLight_FanSpeed3_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        fanlight_on_speed_click();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void FanAndLight_FanSpeed2_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        fanlight_on_speed_click();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void FanAndLight_FanSpeed1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        fanlight_on_speed_click();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void FanAndLight_Fan_on_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        fanlight_on_fan_switch_toggle(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void FanAndLight_Fan_off_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        fanlight_on_fan_switch_toggle(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void FanAndLight_btn_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.device_management_screen, guider_ui.device_management_screen_del, &guider_ui.FanAndLight_del, setup_scr_device_management_screen, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void FanAndLight_imgbtn_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        fanlight_on_power_toggle(e);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_FanAndLight (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->FanAndLight, FanAndLight_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->FanAndLight_fLight_off, FanAndLight_fLight_off_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->FanAndLight_fLight_on, FanAndLight_fLight_on_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->FanAndLight_FanSpeed4, FanAndLight_FanSpeed4_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->FanAndLight_FanSpeed3, FanAndLight_FanSpeed3_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->FanAndLight_FanSpeed2, FanAndLight_FanSpeed2_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->FanAndLight_FanSpeed1, FanAndLight_FanSpeed1_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->FanAndLight_Fan_on, FanAndLight_Fan_on_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->FanAndLight_Fan_off, FanAndLight_Fan_off_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->FanAndLight_btn_1, FanAndLight_btn_1_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->FanAndLight_imgbtn_1, FanAndLight_imgbtn_1_event_handler, LV_EVENT_ALL, ui);
 }
 
 
