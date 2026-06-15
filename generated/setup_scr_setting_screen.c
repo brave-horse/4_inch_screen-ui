@@ -77,7 +77,7 @@ void setup_scr_setting_screen(lv_ui *ui)
     lv_style_set_border_width(&style_setting_screen_tabview_1_extra_btnm_items_checked, 0);
     lv_style_set_radius(&style_setting_screen_tabview_1_extra_btnm_items_checked, 0);
     lv_style_set_bg_opa(&style_setting_screen_tabview_1_extra_btnm_items_checked, 255);
-    lv_style_set_bg_color(&style_setting_screen_tabview_1_extra_btnm_items_checked, lv_color_hex(0x0c0b0d));
+    lv_style_set_bg_color(&style_setting_screen_tabview_1_extra_btnm_items_checked, lv_color_hex(0x0f0f12));
     lv_style_set_bg_grad_dir(&style_setting_screen_tabview_1_extra_btnm_items_checked, LV_GRAD_DIR_NONE);
     lv_obj_add_style(lv_tabview_get_tab_btns(ui->setting_screen_tabview_1), &style_setting_screen_tabview_1_extra_btnm_items_checked, LV_PART_ITEMS|LV_STATE_CHECKED);
 
@@ -174,23 +174,21 @@ void setup_scr_setting_screen(lv_ui *ui)
     //Write codes setting_screen_btn_1
     ui->setting_screen_btn_1 = lv_btn_create(ui->setting_screen);
     ui->setting_screen_btn_1_label = lv_label_create(ui->setting_screen_btn_1);
-    lv_label_set_text(ui->setting_screen_btn_1_label, "返回");
+    lv_label_set_text(ui->setting_screen_btn_1_label, "<  设置");
     lv_label_set_long_mode(ui->setting_screen_btn_1_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->setting_screen_btn_1_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->setting_screen_btn_1, 0, LV_STATE_DEFAULT);
     lv_obj_set_width(ui->setting_screen_btn_1_label, LV_PCT(100));
-    lv_obj_set_pos(ui->setting_screen_btn_1, 49, 11);
-    lv_obj_set_size(ui->setting_screen_btn_1, 100, 50);
+    lv_obj_set_pos(ui->setting_screen_btn_1, 11, 7);
+    lv_obj_set_size(ui->setting_screen_btn_1, 156, 50);
 
     //Write style for setting_screen_btn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_bg_opa(ui->setting_screen_btn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_color(ui->setting_screen_btn_1, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_grad_dir(ui->setting_screen_btn_1, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui->setting_screen_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_border_width(ui->setting_screen_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_radius(ui->setting_screen_btn_1, 5, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->setting_screen_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(ui->setting_screen_btn_1, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui->setting_screen_btn_1, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->setting_screen_btn_1, &lv_font_ZiTiQuanWeiJunHeiW22_30, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->setting_screen_btn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui->setting_screen_btn_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
 
@@ -200,6 +198,4 @@ void setup_scr_setting_screen(lv_ui *ui)
     //Update current screen layout.
     lv_obj_update_layout(ui->setting_screen);
 
-    //Init events for screen.
-    events_init_setting_screen(ui);
 }

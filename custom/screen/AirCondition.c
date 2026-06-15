@@ -1,11 +1,14 @@
 #include "lvgl.h"
 #include "gui_guider.h"
 #include "hw_cloud_task.h"
+#include "HWDataAccess.h"
 #include "AirCondition.h"
 
+/* 电源/模式存中间层(管理屏共享) */
+#define s_power  HWInterface.AirCondition.power   /* 电源开关(默认关) */
+#define s_mode   HWInterface.AirCondition.mode    /* 0制冷 1制热 2送风 3除湿 */
+
 /* 状态(切屏保留) */
-static bool        s_power;     /* 电源开关(默认关) */
-static uint8_t     s_mode;      /* 0制冷 1制热 2送风 3除湿 */
 static uint8_t     s_speed;     /* 0/1/2 档, 3=自动 */
 static uint8_t     s_wind;      /* 当前风速图 AcSpd 索引 0..2 */
 static lv_timer_t *s_auto_tmr;  /* 自动档每秒循环, 只在本屏存活期跑 */

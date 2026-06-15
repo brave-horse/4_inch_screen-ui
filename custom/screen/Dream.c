@@ -5,7 +5,6 @@
 #include "Dream.h"
 
 #define TRAVEL_PX    181        //PX pixels —— 全开行程, 改开多少调这里
-#define ANIM_MS_PCT  22         //ANIM animation, MS milliseconds, PCT percent
 #define APPLY_MIN_MS 50         //MIN minimum, MS milliseconds
 #define ANGLE_MAX    180        /* 旋转角范围 0..180° */
 #define SLIDER_MAX   100        /* slider_1 量程 */
@@ -30,14 +29,14 @@ static void dream_apply(int32_t offset)
 static void dream_post(int32_t offset)
 {
     int percent = offset * 100 / TRAVEL_PX;
-    HWInterface.Curtain.SetPos(0, (uint16_t)percent);
-    hw_cloud_post(&(HW_Msg){ .type = HW_MSG_CURTAIN_POS, .idx = 0, .val = (uint16_t)percent });
+    HWInterface.Curtain.SetPos(CURTAIN_IDX_DREAM, (uint16_t)percent);
+    hw_cloud_post(&(HW_Msg){ .type = HW_MSG_CURTAIN_POS, .idx = CURTAIN_IDX_DREAM, .val = (uint16_t)percent });
 }
 
 /* 旋转角只入队下发, UI 不转 */
 static void dream_post_angle(int32_t degree)
 {
-    hw_cloud_post(&(HW_Msg){ .type = HW_MSG_CURTAIN_ANGLE, .idx = 0, .val = (uint16_t)degree });
+    hw_cloud_post(&(HW_Msg){ .type = HW_MSG_CURTAIN_ANGLE, .idx = CURTAIN_IDX_DREAM, .val = (uint16_t)degree });
 }
 
 static void dream_anim_exec(void *unused, int32_t value)
@@ -47,17 +46,17 @@ static void dream_anim_exec(void *unused, int32_t value)
     dream_apply(value);
 }
 
-static void dream_anim_to(int32_t target)
+/* 在指定时间内动画到 target(px); ms=0 直接到位 */
+static void dream_anim_to_ms(int32_t target, uint32_t ms)
 {
     lv_anim_del(&s_offset, dream_anim_exec);
-    int32_t difference = target - s_offset;
-    if (difference < 0) difference = -difference;
+    if (ms == 0) { s_offset = target; dream_apply(target); return; }
     lv_anim_t animation;
     lv_anim_init(&animation);
     lv_anim_set_var(&animation, &s_offset);
     lv_anim_set_exec_cb(&animation, dream_anim_exec);   //cb callback
     lv_anim_set_values(&animation, s_offset, target);
-    lv_anim_set_time(&animation, (uint32_t)(difference * 100 / TRAVEL_PX) * ANIM_MS_PCT);
+    lv_anim_set_time(&animation, ms);
     lv_anim_start(&animation);
 }
 
@@ -79,16 +78,35 @@ void dream_on_screen_load(void)
     s_pull1_x0 = lv_obj_get_x(guider_ui.Dream_FabCurtianPull1);
     s_pull2_x0 = lv_obj_get_x(guider_ui.Dream_FabCurtianPull2);
     lv_slider_set_value(guider_ui.Dream_slider_1, s_angle_slider, LV_ANIM_OFF);
+
+    /* 按时间算当前位置, 若仍在移动则续播到目标 */
+    uint16_t cur_pct = curtain_motion_current(CURTAIN_IDX_DREAM);
+    uint16_t tgt_pct = curtain_motion_target(CURTAIN_IDX_DREAM);
+    s_offset = cur_pct * TRAVEL_PX / 100;
     dream_apply(s_offset);
+    if (cur_pct != tgt_pct)
+        dream_anim_to_ms(tgt_pct * TRAVEL_PX / 100, curtain_motion_remaining_ms(CURTAIN_IDX_DREAM));
     dream_post_angle(s_angle_slider * ANGLE_MAX / SLIDER_MAX);
 }
 
-void dream_on_open(void)  { dream_anim_to(TRAVEL_PX); dream_post(TRAVEL_PX); }
-void dream_on_close(void) { dream_anim_to(0);         dream_post(0);         }
+void dream_on_open(void)
+{
+    curtain_motion_start(CURTAIN_IDX_DREAM, 100);
+    dream_anim_to_ms(TRAVEL_PX, curtain_motion_remaining_ms(CURTAIN_IDX_DREAM));
+    dream_post(TRAVEL_PX);
+}
+
+void dream_on_close(void)
+{
+    curtain_motion_start(CURTAIN_IDX_DREAM, 0);
+    dream_anim_to_ms(0, curtain_motion_remaining_ms(CURTAIN_IDX_DREAM));
+    dream_post(0);
+}
 
 void dream_on_pause(void)
 {
     lv_anim_del(&s_offset, dream_anim_exec);
+    curtain_motion_set(CURTAIN_IDX_DREAM, (uint16_t)(s_offset * 100 / TRAVEL_PX));
     dream_post(s_offset);
 }
 
@@ -109,6 +127,7 @@ void dream_on_drag(lv_event_t *event)
     if (s_offset > TRAVEL_PX) s_offset = TRAVEL_PX;
 
     dream_apply(s_offset);
+    curtain_motion_set(CURTAIN_IDX_DREAM, (uint16_t)(s_offset * 100 / TRAVEL_PX));  /* 手动定位, 停在此处 */
     if (lv_tick_elaps(s_post_tick) >= APPLY_MIN_MS) {
         s_post_tick = lv_tick_get();
         dream_post(s_offset);

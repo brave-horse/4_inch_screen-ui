@@ -86,31 +86,10 @@ void setup_scr_Heater(lv_ui *ui)
     lv_obj_t * Heater_tabview_1_tab_1_label = lv_label_create(ui->Heater_tabview_1_tab_1);
     lv_label_set_text(Heater_tabview_1_tab_1_label, "");
 
-    //Write codes Heater_cont_1
-    ui->Heater_cont_1 = lv_obj_create(ui->Heater);
-    lv_obj_set_pos(ui->Heater_cont_1, 0, 72);
-    lv_obj_set_size(ui->Heater_cont_1, 720, 645);
-    lv_obj_set_scrollbar_mode(ui->Heater_cont_1, LV_SCROLLBAR_MODE_OFF);
-
-    //Write style for Heater_cont_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->Heater_cont_1, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->Heater_cont_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->Heater_cont_1, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui->Heater_cont_1, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Heater_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui->Heater_cont_1, 133, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_color(ui->Heater_cont_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_grad_dir(ui->Heater_cont_1, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_top(ui->Heater_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_bottom(ui->Heater_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_left(ui->Heater_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_right(ui->Heater_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->Heater_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-
     //Write codes Heater_btn_1
     ui->Heater_btn_1 = lv_btn_create(ui->Heater);
     ui->Heater_btn_1_label = lv_label_create(ui->Heater_btn_1);
-    lv_label_set_text(ui->Heater_btn_1_label, "<  卷帘");
+    lv_label_set_text(ui->Heater_btn_1_label, "<  浴霸");
     lv_label_set_long_mode(ui->Heater_btn_1_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->Heater_btn_1_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->Heater_btn_1, 0, LV_STATE_DEFAULT);
@@ -128,159 +107,419 @@ void setup_scr_Heater(lv_ui *ui)
     lv_obj_set_style_text_opa(ui->Heater_btn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui->Heater_btn_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes Heater_FabCurtianOpen
-    ui->Heater_FabCurtianOpen = lv_img_create(ui->Heater);
-    lv_obj_add_flag(ui->Heater_FabCurtianOpen, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_FabCurtianOpen, &_RollBlindUp_alpha_94x95);
-    lv_img_set_pivot(ui->Heater_FabCurtianOpen, 50,50);
-    lv_img_set_angle(ui->Heater_FabCurtianOpen, 0);
-    lv_obj_set_pos(ui->Heater_FabCurtianOpen, 62, 568);
-    lv_obj_set_size(ui->Heater_FabCurtianOpen, 94, 95);
+    //Write codes Heater_HeatLight
+    ui->Heater_HeatLight = lv_img_create(ui->Heater);
+    lv_obj_add_flag(ui->Heater_HeatLight, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->Heater_HeatLight, &_light_on_alpha_295x164);
+    lv_img_set_pivot(ui->Heater_HeatLight, 50,50);
+    lv_img_set_angle(ui->Heater_HeatLight, 0);
+    lv_obj_set_pos(ui->Heater_HeatLight, 213, 182);
+    lv_obj_set_size(ui->Heater_HeatLight, 295, 164);
 
-    //Write style for Heater_FabCurtianOpen, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->Heater_FabCurtianOpen, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->Heater_FabCurtianOpen, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Heater_FabCurtianOpen, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Heater_FabCurtianOpen, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for Heater_HeatLight, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Heater_HeatLight, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Heater_HeatLight, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Heater_HeatLight, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Heater_HeatLight, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes Heater_FabCurtianClose
-    ui->Heater_FabCurtianClose = lv_img_create(ui->Heater);
-    lv_obj_add_flag(ui->Heater_FabCurtianClose, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_FabCurtianClose, &_RollBlindDown_alpha_94x95);
-    lv_img_set_pivot(ui->Heater_FabCurtianClose, 50,50);
-    lv_img_set_angle(ui->Heater_FabCurtianClose, 0);
-    lv_obj_set_pos(ui->Heater_FabCurtianClose, 560, 562);
-    lv_obj_set_size(ui->Heater_FabCurtianClose, 94, 95);
+    //Write codes Heater_HeatDev
+    ui->Heater_HeatDev = lv_img_create(ui->Heater);
+    lv_obj_add_flag(ui->Heater_HeatDev, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->Heater_HeatDev, &_dev_alpha_295x164);
+    lv_img_set_pivot(ui->Heater_HeatDev, 50,50);
+    lv_img_set_angle(ui->Heater_HeatDev, 0);
+    lv_obj_set_pos(ui->Heater_HeatDev, 213, 182);
+    lv_obj_set_size(ui->Heater_HeatDev, 295, 164);
 
-    //Write style for Heater_FabCurtianClose, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->Heater_FabCurtianClose, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->Heater_FabCurtianClose, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Heater_FabCurtianClose, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Heater_FabCurtianClose, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for Heater_HeatDev, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Heater_HeatDev, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Heater_HeatDev, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Heater_HeatDev, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Heater_HeatDev, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes Heater_cont_2
-    ui->Heater_cont_2 = lv_obj_create(ui->Heater);
-    lv_obj_set_pos(ui->Heater_cont_2, 127, 181);
-    lv_obj_set_size(ui->Heater_cont_2, 435, 353);
-    lv_obj_set_scrollbar_mode(ui->Heater_cont_2, LV_SCROLLBAR_MODE_OFF);
+    //Write codes Heater_LightBtn
+    ui->Heater_LightBtn = lv_btn_create(ui->Heater);
+    ui->Heater_LightBtn_label = lv_label_create(ui->Heater_LightBtn);
+    lv_label_set_text(ui->Heater_LightBtn_label, "");
+    lv_label_set_long_mode(ui->Heater_LightBtn_label, LV_LABEL_LONG_WRAP);
+    lv_obj_align(ui->Heater_LightBtn_label, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_style_pad_all(ui->Heater_LightBtn, 0, LV_STATE_DEFAULT);
+    lv_obj_set_width(ui->Heater_LightBtn_label, LV_PCT(100));
+    lv_obj_set_pos(ui->Heater_LightBtn, 40, 569);
+    lv_obj_set_size(ui->Heater_LightBtn, 310, 76);
 
-    //Write style for Heater_cont_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->Heater_cont_2, 4, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->Heater_cont_2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->Heater_cont_2, lv_color_hex(0x2c2424), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui->Heater_cont_2, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Heater_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui->Heater_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_top(ui->Heater_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_bottom(ui->Heater_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_left(ui->Heater_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_right(ui->Heater_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->Heater_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for Heater_LightBtn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_bg_opa(ui->Heater_LightBtn, 244, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui->Heater_LightBtn, lv_color_hex(0x2f2d31), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_grad_dir(ui->Heater_LightBtn, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->Heater_LightBtn, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Heater_LightBtn, 5, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->Heater_LightBtn, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->Heater_LightBtn, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->Heater_LightBtn, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->Heater_LightBtn, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->Heater_LightBtn, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes Heater_FabCurtianPause
-    ui->Heater_FabCurtianPause = lv_img_create(ui->Heater);
-    lv_obj_add_flag(ui->Heater_FabCurtianPause, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_FabCurtianPause, &_FabCurtianPause_alpha_109x110);
-    lv_img_set_pivot(ui->Heater_FabCurtianPause, 50,50);
-    lv_img_set_angle(ui->Heater_FabCurtianPause, 0);
-    lv_obj_set_pos(ui->Heater_FabCurtianPause, 283, 557);
-    lv_obj_set_size(ui->Heater_FabCurtianPause, 109, 110);
+    //Write codes Heater_LightOffImg
+    ui->Heater_LightOffImg = lv_img_create(ui->Heater);
+    lv_obj_add_flag(ui->Heater_LightOffImg, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->Heater_LightOffImg, &_light_off_btn_alpha_50x67);
+    lv_img_set_pivot(ui->Heater_LightOffImg, 50,50);
+    lv_img_set_angle(ui->Heater_LightOffImg, 0);
+    lv_obj_set_pos(ui->Heater_LightOffImg, 174, 575);
+    lv_obj_set_size(ui->Heater_LightOffImg, 50, 67);
 
-    //Write style for Heater_FabCurtianPause, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->Heater_FabCurtianPause, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->Heater_FabCurtianPause, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Heater_FabCurtianPause, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Heater_FabCurtianPause, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for Heater_LightOffImg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Heater_LightOffImg, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Heater_LightOffImg, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Heater_LightOffImg, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Heater_LightOffImg, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes Heater_FabCurtianBg1
-    ui->Heater_FabCurtianBg1 = lv_img_create(ui->Heater);
-    lv_obj_add_flag(ui->Heater_FabCurtianBg1, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_FabCurtianBg1, &_FabCurtianBg1_alpha_62x60);
-    lv_img_set_pivot(ui->Heater_FabCurtianBg1, 50,50);
-    lv_img_set_angle(ui->Heater_FabCurtianBg1, 0);
-    lv_obj_set_pos(ui->Heater_FabCurtianBg1, 232, 255);
-    lv_obj_set_size(ui->Heater_FabCurtianBg1, 62, 60);
+    //Write codes Heater_LightOnImg
+    ui->Heater_LightOnImg = lv_img_create(ui->Heater);
+    lv_obj_add_flag(ui->Heater_LightOnImg, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->Heater_LightOnImg, &_light_on_btn_alpha_50x67);
+    lv_img_set_pivot(ui->Heater_LightOnImg, 50,50);
+    lv_img_set_angle(ui->Heater_LightOnImg, 0);
+    lv_obj_set_pos(ui->Heater_LightOnImg, 174, 575);
+    lv_obj_set_size(ui->Heater_LightOnImg, 50, 67);
 
-    //Write style for Heater_FabCurtianBg1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->Heater_FabCurtianBg1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->Heater_FabCurtianBg1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Heater_FabCurtianBg1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Heater_FabCurtianBg1, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for Heater_LightOnImg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Heater_LightOnImg, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Heater_LightOnImg, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Heater_LightOnImg, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Heater_LightOnImg, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes Heater_FabCurtianBg3
-    ui->Heater_FabCurtianBg3 = lv_img_create(ui->Heater);
-    lv_obj_add_flag(ui->Heater_FabCurtianBg3, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_FabCurtianBg3, &_FabCurtianBg3_alpha_42x14);
-    lv_img_set_pivot(ui->Heater_FabCurtianBg3, 50,50);
-    lv_img_set_angle(ui->Heater_FabCurtianBg3, 0);
-    lv_obj_set_pos(ui->Heater_FabCurtianBg3, 252, 384);
-    lv_obj_set_size(ui->Heater_FabCurtianBg3, 42, 14);
+    //Write codes Heater_IdleBtn
+    ui->Heater_IdleBtn = lv_btn_create(ui->Heater);
+    ui->Heater_IdleBtn_label = lv_label_create(ui->Heater_IdleBtn);
+    lv_label_set_text(ui->Heater_IdleBtn_label, "");
+    lv_label_set_long_mode(ui->Heater_IdleBtn_label, LV_LABEL_LONG_WRAP);
+    lv_obj_align(ui->Heater_IdleBtn_label, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_style_pad_all(ui->Heater_IdleBtn, 0, LV_STATE_DEFAULT);
+    lv_obj_set_width(ui->Heater_IdleBtn_label, LV_PCT(100));
+    lv_obj_set_pos(ui->Heater_IdleBtn, 370, 569);
+    lv_obj_set_size(ui->Heater_IdleBtn, 310, 76);
 
-    //Write style for Heater_FabCurtianBg3, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->Heater_FabCurtianBg3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->Heater_FabCurtianBg3, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Heater_FabCurtianBg3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Heater_FabCurtianBg3, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for Heater_IdleBtn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_bg_opa(ui->Heater_IdleBtn, 244, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui->Heater_IdleBtn, lv_color_hex(0x2f2d31), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_grad_dir(ui->Heater_IdleBtn, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->Heater_IdleBtn, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Heater_IdleBtn, 5, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->Heater_IdleBtn, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->Heater_IdleBtn, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->Heater_IdleBtn, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->Heater_IdleBtn, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->Heater_IdleBtn, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes Heater_FabCurtianBg2
-    ui->Heater_FabCurtianBg2 = lv_img_create(ui->Heater);
-    lv_obj_add_flag(ui->Heater_FabCurtianBg2, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_FabCurtianBg2, &_FabCurtianBg2_alpha_34x73);
-    lv_img_set_pivot(ui->Heater_FabCurtianBg2, 50,50);
-    lv_img_set_angle(ui->Heater_FabCurtianBg2, 0);
-    lv_obj_set_pos(ui->Heater_FabCurtianBg2, 415, 272);
-    lv_obj_set_size(ui->Heater_FabCurtianBg2, 34, 73);
+    //Write style for Heater_IdleBtn, Part: LV_PART_MAIN, State: LV_STATE_PRESSED.
+    lv_obj_set_style_bg_opa(ui->Heater_IdleBtn, 255, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_bg_color(ui->Heater_IdleBtn, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_bg_grad_dir(ui->Heater_IdleBtn, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_border_width(ui->Heater_IdleBtn, 0, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_radius(ui->Heater_IdleBtn, 5, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_shadow_width(ui->Heater_IdleBtn, 0, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_color(ui->Heater_IdleBtn, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_font(ui->Heater_IdleBtn, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_opa(ui->Heater_IdleBtn, 255, LV_PART_MAIN|LV_STATE_PRESSED);
 
-    //Write style for Heater_FabCurtianBg2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->Heater_FabCurtianBg2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->Heater_FabCurtianBg2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Heater_FabCurtianBg2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Heater_FabCurtianBg2, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for Heater_IdleBtn, Part: LV_PART_MAIN, State: LV_STATE_CHECKED.
+    lv_obj_set_style_bg_opa(ui->Heater_IdleBtn, 255, LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_bg_color(ui->Heater_IdleBtn, lv_color_hex(0x2f2d31), LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_bg_grad_dir(ui->Heater_IdleBtn, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_border_width(ui->Heater_IdleBtn, 0, LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_radius(ui->Heater_IdleBtn, 5, LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_shadow_width(ui->Heater_IdleBtn, 0, LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_text_color(ui->Heater_IdleBtn, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_text_font(ui->Heater_IdleBtn, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_text_opa(ui->Heater_IdleBtn, 255, LV_PART_MAIN|LV_STATE_CHECKED);
 
-    //Write codes Heater_FabCurtianLeft
-    ui->Heater_FabCurtianLeft = lv_img_create(ui->Heater);
-    lv_obj_add_flag(ui->Heater_FabCurtianLeft, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_FabCurtianLeft, &_RollBlindCloth_alpha_435x353);
-    lv_img_set_pivot(ui->Heater_FabCurtianLeft, 50,50);
-    lv_img_set_angle(ui->Heater_FabCurtianLeft, 0);
-    lv_obj_set_pos(ui->Heater_FabCurtianLeft, 127, 181);
-    lv_obj_set_size(ui->Heater_FabCurtianLeft, 435, 353);
+    //Write codes Heater_IdleImg
+    ui->Heater_IdleImg = lv_img_create(ui->Heater);
+    lv_obj_add_flag(ui->Heater_IdleImg, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->Heater_IdleImg, &_idle_btn_alpha_50x67);
+    lv_img_set_pivot(ui->Heater_IdleImg, 50,50);
+    lv_img_set_angle(ui->Heater_IdleImg, 0);
+    lv_obj_set_pos(ui->Heater_IdleImg, 501, 569);
+    lv_obj_set_size(ui->Heater_IdleImg, 50, 67);
 
-    //Write style for Heater_FabCurtianLeft, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->Heater_FabCurtianLeft, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->Heater_FabCurtianLeft, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Heater_FabCurtianLeft, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Heater_FabCurtianLeft, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for Heater_IdleImg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Heater_IdleImg, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Heater_IdleImg, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Heater_IdleImg, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Heater_IdleImg, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes Heater_FabCurtianPull1
-    ui->Heater_FabCurtianPull1 = lv_img_create(ui->Heater);
-    lv_obj_add_flag(ui->Heater_FabCurtianPull1, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_FabCurtianPull1, &_CurtainPull_alpha_39x39);
-    lv_img_set_pivot(ui->Heater_FabCurtianPull1, 50,50);
-    lv_img_set_angle(ui->Heater_FabCurtianPull1, 0);
-    lv_obj_set_pos(ui->Heater_FabCurtianPull1, 316, 481);
-    lv_obj_set_size(ui->Heater_FabCurtianPull1, 39, 39);
+    //Write codes Heater_VentilateBtn
+    ui->Heater_VentilateBtn = lv_btn_create(ui->Heater);
+    ui->Heater_VentilateBtn_label = lv_label_create(ui->Heater_VentilateBtn);
+    lv_label_set_text(ui->Heater_VentilateBtn_label, "");
+    lv_label_set_long_mode(ui->Heater_VentilateBtn_label, LV_LABEL_LONG_WRAP);
+    lv_obj_align(ui->Heater_VentilateBtn_label, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_style_pad_all(ui->Heater_VentilateBtn, 0, LV_STATE_DEFAULT);
+    lv_obj_set_width(ui->Heater_VentilateBtn_label, LV_PCT(100));
+    lv_obj_set_pos(ui->Heater_VentilateBtn, 370, 476);
+    lv_obj_set_size(ui->Heater_VentilateBtn, 145, 76);
 
-    //Write style for Heater_FabCurtianPull1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->Heater_FabCurtianPull1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->Heater_FabCurtianPull1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Heater_FabCurtianPull1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Heater_FabCurtianPull1, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for Heater_VentilateBtn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_bg_opa(ui->Heater_VentilateBtn, 244, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui->Heater_VentilateBtn, lv_color_hex(0x2f2d31), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_grad_dir(ui->Heater_VentilateBtn, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->Heater_VentilateBtn, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Heater_VentilateBtn, 5, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->Heater_VentilateBtn, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->Heater_VentilateBtn, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->Heater_VentilateBtn, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->Heater_VentilateBtn, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->Heater_VentilateBtn, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes Heater_RollBlindPole
-    ui->Heater_RollBlindPole = lv_img_create(ui->Heater);
-    lv_obj_add_flag(ui->Heater_RollBlindPole, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_RollBlindPole, &_RollBlindPole_alpha_462x26);
-    lv_img_set_pivot(ui->Heater_RollBlindPole, 50,50);
-    lv_img_set_angle(ui->Heater_RollBlindPole, 0);
-    lv_obj_set_pos(ui->Heater_RollBlindPole, 112, 178);
-    lv_obj_set_size(ui->Heater_RollBlindPole, 462, 26);
+    //Write style for Heater_VentilateBtn, Part: LV_PART_MAIN, State: LV_STATE_PRESSED.
+    lv_obj_set_style_bg_opa(ui->Heater_VentilateBtn, 255, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_bg_color(ui->Heater_VentilateBtn, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_bg_grad_dir(ui->Heater_VentilateBtn, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_border_width(ui->Heater_VentilateBtn, 0, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_radius(ui->Heater_VentilateBtn, 5, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_shadow_width(ui->Heater_VentilateBtn, 0, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_color(ui->Heater_VentilateBtn, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_font(ui->Heater_VentilateBtn, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_opa(ui->Heater_VentilateBtn, 255, LV_PART_MAIN|LV_STATE_PRESSED);
 
-    //Write style for Heater_RollBlindPole, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->Heater_RollBlindPole, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->Heater_RollBlindPole, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Heater_RollBlindPole, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Heater_RollBlindPole, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write codes Heater_VentilateImg
+    ui->Heater_VentilateImg = lv_img_create(ui->Heater);
+    lv_obj_add_flag(ui->Heater_VentilateImg, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->Heater_VentilateImg, &_ventilate_btn_alpha_50x67);
+    lv_img_set_pivot(ui->Heater_VentilateImg, 50,50);
+    lv_img_set_angle(ui->Heater_VentilateImg, 0);
+    lv_obj_set_pos(ui->Heater_VentilateImg, 419, 481);
+    lv_obj_set_size(ui->Heater_VentilateImg, 50, 67);
+
+    //Write style for Heater_VentilateImg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Heater_VentilateImg, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Heater_VentilateImg, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Heater_VentilateImg, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Heater_VentilateImg, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes Heater_HeatLowBtn
+    ui->Heater_HeatLowBtn = lv_btn_create(ui->Heater);
+    ui->Heater_HeatLowBtn_label = lv_label_create(ui->Heater_HeatLowBtn);
+    lv_label_set_text(ui->Heater_HeatLowBtn_label, "");
+    lv_label_set_long_mode(ui->Heater_HeatLowBtn_label, LV_LABEL_LONG_WRAP);
+    lv_obj_align(ui->Heater_HeatLowBtn_label, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_style_pad_all(ui->Heater_HeatLowBtn, 0, LV_STATE_DEFAULT);
+    lv_obj_set_width(ui->Heater_HeatLowBtn_label, LV_PCT(100));
+    lv_obj_set_pos(ui->Heater_HeatLowBtn, 204, 473);
+    lv_obj_set_size(ui->Heater_HeatLowBtn, 145, 76);
+
+    //Write style for Heater_HeatLowBtn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_bg_opa(ui->Heater_HeatLowBtn, 244, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui->Heater_HeatLowBtn, lv_color_hex(0x2f2d31), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_grad_dir(ui->Heater_HeatLowBtn, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->Heater_HeatLowBtn, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Heater_HeatLowBtn, 5, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->Heater_HeatLowBtn, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->Heater_HeatLowBtn, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->Heater_HeatLowBtn, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->Heater_HeatLowBtn, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->Heater_HeatLowBtn, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write style for Heater_HeatLowBtn, Part: LV_PART_MAIN, State: LV_STATE_PRESSED.
+    lv_obj_set_style_bg_opa(ui->Heater_HeatLowBtn, 255, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_bg_color(ui->Heater_HeatLowBtn, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_bg_grad_dir(ui->Heater_HeatLowBtn, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_border_width(ui->Heater_HeatLowBtn, 0, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_radius(ui->Heater_HeatLowBtn, 5, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_shadow_width(ui->Heater_HeatLowBtn, 0, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_color(ui->Heater_HeatLowBtn, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_font(ui->Heater_HeatLowBtn, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_opa(ui->Heater_HeatLowBtn, 255, LV_PART_MAIN|LV_STATE_PRESSED);
+
+    //Write codes Heater_HeatLowImg
+    ui->Heater_HeatLowImg = lv_img_create(ui->Heater);
+    lv_obj_add_flag(ui->Heater_HeatLowImg, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->Heater_HeatLowImg, &_weakHeat_btn_alpha_50x67);
+    lv_img_set_pivot(ui->Heater_HeatLowImg, 50,50);
+    lv_img_set_angle(ui->Heater_HeatLowImg, 0);
+    lv_obj_set_pos(ui->Heater_HeatLowImg, 260, 476);
+    lv_obj_set_size(ui->Heater_HeatLowImg, 50, 67);
+
+    //Write style for Heater_HeatLowImg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Heater_HeatLowImg, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Heater_HeatLowImg, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Heater_HeatLowImg, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Heater_HeatLowImg, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes Heater_WindBtn
+    ui->Heater_WindBtn = lv_btn_create(ui->Heater);
+    ui->Heater_WindBtn_label = lv_label_create(ui->Heater_WindBtn);
+    lv_label_set_text(ui->Heater_WindBtn_label, "");
+    lv_label_set_long_mode(ui->Heater_WindBtn_label, LV_LABEL_LONG_WRAP);
+    lv_obj_align(ui->Heater_WindBtn_label, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_style_pad_all(ui->Heater_WindBtn, 0, LV_STATE_DEFAULT);
+    lv_obj_set_width(ui->Heater_WindBtn_label, LV_PCT(100));
+    lv_obj_set_pos(ui->Heater_WindBtn, 535, 476);
+    lv_obj_set_size(ui->Heater_WindBtn, 145, 76);
+
+    //Write style for Heater_WindBtn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_bg_opa(ui->Heater_WindBtn, 244, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui->Heater_WindBtn, lv_color_hex(0x2f2d31), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_grad_dir(ui->Heater_WindBtn, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->Heater_WindBtn, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Heater_WindBtn, 5, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->Heater_WindBtn, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->Heater_WindBtn, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->Heater_WindBtn, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->Heater_WindBtn, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->Heater_WindBtn, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write style for Heater_WindBtn, Part: LV_PART_MAIN, State: LV_STATE_PRESSED.
+    lv_obj_set_style_bg_opa(ui->Heater_WindBtn, 255, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_bg_color(ui->Heater_WindBtn, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_bg_grad_dir(ui->Heater_WindBtn, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_border_width(ui->Heater_WindBtn, 0, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_radius(ui->Heater_WindBtn, 5, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_shadow_width(ui->Heater_WindBtn, 0, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_color(ui->Heater_WindBtn, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_font(ui->Heater_WindBtn, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_opa(ui->Heater_WindBtn, 255, LV_PART_MAIN|LV_STATE_PRESSED);
+
+    //Write codes Heater_WindImg
+    ui->Heater_WindImg = lv_img_create(ui->Heater);
+    lv_obj_add_flag(ui->Heater_WindImg, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->Heater_WindImg, &_fan_btn_alpha_50x67);
+    lv_img_set_pivot(ui->Heater_WindImg, 50,50);
+    lv_img_set_angle(ui->Heater_WindImg, 0);
+    lv_obj_set_pos(ui->Heater_WindImg, 585, 476);
+    lv_obj_set_size(ui->Heater_WindImg, 50, 67);
+
+    //Write style for Heater_WindImg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Heater_WindImg, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Heater_WindImg, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Heater_WindImg, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Heater_WindImg, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes Heater_HeatHighBtn
+    ui->Heater_HeatHighBtn = lv_btn_create(ui->Heater);
+    ui->Heater_HeatHighBtn_label = lv_label_create(ui->Heater_HeatHighBtn);
+    lv_label_set_text(ui->Heater_HeatHighBtn_label, "");
+    lv_label_set_long_mode(ui->Heater_HeatHighBtn_label, LV_LABEL_LONG_WRAP);
+    lv_obj_align(ui->Heater_HeatHighBtn_label, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_style_pad_all(ui->Heater_HeatHighBtn, 0, LV_STATE_DEFAULT);
+    lv_obj_set_width(ui->Heater_HeatHighBtn_label, LV_PCT(100));
+    lv_obj_set_pos(ui->Heater_HeatHighBtn, 40, 473);
+    lv_obj_set_size(ui->Heater_HeatHighBtn, 145, 76);
+
+    //Write style for Heater_HeatHighBtn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_bg_opa(ui->Heater_HeatHighBtn, 244, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui->Heater_HeatHighBtn, lv_color_hex(0x2f2d31), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_grad_dir(ui->Heater_HeatHighBtn, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->Heater_HeatHighBtn, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Heater_HeatHighBtn, 5, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->Heater_HeatHighBtn, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->Heater_HeatHighBtn, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->Heater_HeatHighBtn, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->Heater_HeatHighBtn, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->Heater_HeatHighBtn, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write style for Heater_HeatHighBtn, Part: LV_PART_MAIN, State: LV_STATE_PRESSED.
+    lv_obj_set_style_bg_opa(ui->Heater_HeatHighBtn, 255, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_bg_color(ui->Heater_HeatHighBtn, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_bg_grad_dir(ui->Heater_HeatHighBtn, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_border_width(ui->Heater_HeatHighBtn, 0, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_radius(ui->Heater_HeatHighBtn, 5, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_shadow_width(ui->Heater_HeatHighBtn, 0, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_color(ui->Heater_HeatHighBtn, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_font(ui->Heater_HeatHighBtn, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_opa(ui->Heater_HeatHighBtn, 255, LV_PART_MAIN|LV_STATE_PRESSED);
+
+    //Write codes Heater_HeatHighImg
+    ui->Heater_HeatHighImg = lv_img_create(ui->Heater);
+    lv_obj_add_flag(ui->Heater_HeatHighImg, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->Heater_HeatHighImg, &_strongHeat_btn_alpha_60x67);
+    lv_img_set_pivot(ui->Heater_HeatHighImg, 50,50);
+    lv_img_set_angle(ui->Heater_HeatHighImg, 0);
+    lv_obj_set_pos(ui->Heater_HeatHighImg, 88, 476);
+    lv_obj_set_size(ui->Heater_HeatHighImg, 60, 67);
+
+    //Write style for Heater_HeatHighImg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Heater_HeatHighImg, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Heater_HeatHighImg, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Heater_HeatHighImg, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Heater_HeatHighImg, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes Heater_VentilateMode
+    ui->Heater_VentilateMode = lv_img_create(ui->Heater);
+    lv_obj_add_flag(ui->Heater_VentilateMode, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->Heater_VentilateMode, &_ventilate_mode_alpha_295x164);
+    lv_img_set_pivot(ui->Heater_VentilateMode, 50,50);
+    lv_img_set_angle(ui->Heater_VentilateMode, 0);
+    lv_obj_set_pos(ui->Heater_VentilateMode, 210, 180);
+    lv_obj_set_size(ui->Heater_VentilateMode, 295, 164);
+
+    //Write style for Heater_VentilateMode, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Heater_VentilateMode, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Heater_VentilateMode, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Heater_VentilateMode, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Heater_VentilateMode, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes Heater_heaterlowMode
+    ui->Heater_heaterlowMode = lv_img_create(ui->Heater);
+    lv_obj_add_flag(ui->Heater_heaterlowMode, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->Heater_heaterlowMode, &_weakHeat_mode_alpha_295x164);
+    lv_img_set_pivot(ui->Heater_heaterlowMode, 50,50);
+    lv_img_set_angle(ui->Heater_heaterlowMode, 0);
+    lv_obj_set_pos(ui->Heater_heaterlowMode, 210, 180);
+    lv_obj_set_size(ui->Heater_heaterlowMode, 295, 164);
+
+    //Write style for Heater_heaterlowMode, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Heater_heaterlowMode, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Heater_heaterlowMode, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Heater_heaterlowMode, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Heater_heaterlowMode, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes Heater_HeatHighMode
+    ui->Heater_HeatHighMode = lv_img_create(ui->Heater);
+    lv_obj_add_flag(ui->Heater_HeatHighMode, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->Heater_HeatHighMode, &_strongHeat_mode_alpha_295x164);
+    lv_img_set_pivot(ui->Heater_HeatHighMode, 50,50);
+    lv_img_set_angle(ui->Heater_HeatHighMode, 0);
+    lv_obj_set_pos(ui->Heater_HeatHighMode, 210, 180);
+    lv_obj_set_size(ui->Heater_HeatHighMode, 295, 164);
+
+    //Write style for Heater_HeatHighMode, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Heater_HeatHighMode, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Heater_HeatHighMode, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Heater_HeatHighMode, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Heater_HeatHighMode, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes Heater_WindMode
+    ui->Heater_WindMode = lv_img_create(ui->Heater);
+    lv_obj_add_flag(ui->Heater_WindMode, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->Heater_WindMode, &_fan_mode_alpha_295x164);
+    lv_img_set_pivot(ui->Heater_WindMode, 50,50);
+    lv_img_set_angle(ui->Heater_WindMode, 0);
+    lv_obj_set_pos(ui->Heater_WindMode, 210, 180);
+    lv_obj_set_size(ui->Heater_WindMode, 295, 164);
+
+    //Write style for Heater_WindMode, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Heater_WindMode, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Heater_WindMode, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Heater_WindMode, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Heater_WindMode, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes Heater_idleMode
+    ui->Heater_idleMode = lv_img_create(ui->Heater);
+    lv_obj_add_flag(ui->Heater_idleMode, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->Heater_idleMode, &_idle_mode_alpha_295x164);
+    lv_img_set_pivot(ui->Heater_idleMode, 50,50);
+    lv_img_set_angle(ui->Heater_idleMode, 0);
+    lv_obj_set_pos(ui->Heater_idleMode, 210, 180);
+    lv_obj_set_size(ui->Heater_idleMode, 295, 164);
+
+    //Write style for Heater_idleMode, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Heater_idleMode, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Heater_idleMode, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Heater_idleMode, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Heater_idleMode, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of Heater.
 
@@ -288,4 +527,6 @@ void setup_scr_Heater(lv_ui *ui)
     //Update current screen layout.
     lv_obj_update_layout(ui->Heater);
 
+    //Init events for screen.
+    events_init_Heater(ui);
 }

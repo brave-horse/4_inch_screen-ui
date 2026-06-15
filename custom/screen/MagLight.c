@@ -66,7 +66,7 @@ static void mag_light_refresh(bool btn_status)
 
 void mag_light_on_screen_load(void)
 {
-    bool btn_status = HWInterface.LightCT.switch_status;
+    bool btn_status = HWInterface.MagLight.switch_status;
     lv_slider_set_range(guider_ui.MagLight_slider_1, 1, LIGHTCT_BRIGHTNESS_MAX);
     lv_slider_set_value(guider_ui.MagLight_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);
     lv_slider_set_value(guider_ui.MagLight_slider_2, HWInterface.LightCT.color_temp, LV_ANIM_OFF);
@@ -83,9 +83,9 @@ void mag_light_on_switch_toggle(lv_event_t *e)
     lv_obj_t *btn = lv_event_get_target(e);
     bool btn_status = lv_obj_has_state(btn, LV_STATE_CHECKED);
 
-    HWInterface.LightCT.SetOnOff(btn_status);       /* 更新缓存, UI 立刻可读 */
+    HWInterface.MagLight.SetOnOff(btn_status);      /* 更新缓存, UI 立刻可读 */
     hw_cloud_post(&(HW_Msg){                        /* 入队, 硬云任务下发硬件 */
-        .type = HW_MSG_LIGHT_CT_SWITCH,
+        .type = HW_MSG_LIGHT_MAG_SWITCH,
         .on   = btn_status
     });
     mag_light_refresh(btn_status);

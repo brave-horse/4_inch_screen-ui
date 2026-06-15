@@ -17,6 +17,27 @@ extern "C" {
 #define CURTAIN_POS_MIN          0
 #define CURTAIN_POS_MAX          100
 
+/* 窗帘 idx: 每帘独立一路 */
+enum {
+    CURTAIN_IDX_FABRIC = 0,   /* 布帘 */
+    CURTAIN_IDX_SHEERS,       /* 纱帘 */
+    CURTAIN_IDX_ROLLBLIND,    /* 卷帘 */
+    CURTAIN_IDX_DREAM,        /* 梦幻帘 */
+    CURTAIN_IDX_COUNT
+};
+
+#define CURTAIN_FULL_MS  2200    /* 0→100% 全行程耗时(ms), 调开合速度改这里 */
+
+/* 晾衣机复用同一运动模型的独立槽位(在 CURTAIN_COUNT_MAX 范围内, 不与窗帘冲突) */
+#define MOTION_IDX_DRYRACK  CURTAIN_IDX_COUNT
+
+/* 窗帘定时运动模型: 按时间算位置, 跨界面共享(管理界面起步, 子界面续播) */
+void     curtain_motion_start(uint8_t idx, uint16_t target);  /* 起步移动到 target(%) */
+void     curtain_motion_set(uint8_t idx, uint16_t pos);       /* 手动定位(拖动/暂停): 停在 pos */
+uint16_t curtain_motion_current(uint8_t idx);                 /* 按已过时间算当前位置(%) */
+uint16_t curtain_motion_target(uint8_t idx);                  /* 目标位置(%) */
+uint32_t curtain_motion_remaining_ms(uint8_t idx);            /* 到达 target 还需(ms) */
+
 typedef struct
 {
     bool     switch_status;
@@ -43,8 +64,8 @@ typedef struct
 
 typedef struct
 {
-    bool     switch_status;
-    uint16_t position;
+    bool     switch_status[CURTAIN_COUNT_MAX];
+    uint16_t position[CURTAIN_COUNT_MAX];
 
     void (*SetOnOff)(uint8_t idx, bool on);
     void (*SetPos)(uint8_t idx, uint16_t pos);
@@ -53,9 +74,46 @@ typedef struct
 
 typedef struct
 {
-    HW_LightCT_InterfaceTypeDef  LightCT;
-    HW_LEDStrip_InterfaceTypeDef LEDStrip;
-    HW_Curtain_InterfaceTypeDef  Curtain;
+    bool     power;      /* master power */
+    bool     fan_on;     /* fan switch */
+    bool     light_on;   /* light switch */
+    uint8_t  speed;      /* fan speed 0..3 */
+
+    void (*SetPower)(bool on);
+    void (*SetFan)(bool on);
+    void (*SetSpeed)(uint8_t speed);
+    void (*SetLight)(bool on);
+    void (*Apply)(void);
+} HW_FanAndLight_InterfaceTypeDef;
+
+typedef struct
+{
+    bool playing;   /* 音乐播放中(管理屏/子屏共享) */
+} HW_Music_InterfaceTypeDef;
+
+typedef struct
+{
+    bool   light;   /* 浴霸照明: 独立开关, 可与模式同时存在 */
+    int8_t mode;    /* 浴霸模式(互斥): -1=无 1暖风高 2暖风低 3换气 4吹风 5待机 */
+} HW_Heater_InterfaceTypeDef;
+
+typedef struct
+{
+    bool    power;  /* 空调电源 */
+    uint8_t mode;   /* 0制冷 1制热 2送风 3除湿 */
+} HW_AirCondition_InterfaceTypeDef;
+
+typedef struct
+{
+    HW_LightCT_InterfaceTypeDef     LightCT;
+    HW_LEDStrip_InterfaceTypeDef    LEDStrip;
+    HW_LEDStrip_InterfaceTypeDef    MagLight;   /* 复用 LEDStrip 结构, 只用 switch_status */
+    HW_LEDStrip_InterfaceTypeDef    RGBLight;   /* 复用 LEDStrip 结构, 只用 switch_status */
+    HW_Curtain_InterfaceTypeDef     Curtain;
+    HW_FanAndLight_InterfaceTypeDef FanAndLight;
+    HW_Music_InterfaceTypeDef       Music;
+    HW_Heater_InterfaceTypeDef      Heater;
+    HW_AirCondition_InterfaceTypeDef AirCondition;
 } HW_InterfaceTypeDef;
 
 extern HW_InterfaceTypeDef HWInterface;

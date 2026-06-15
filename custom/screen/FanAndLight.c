@@ -1,11 +1,20 @@
 #include "lvgl.h"
 #include "gui_guider.h"
 #include "hw_cloud_task.h"
+#include "HWDataAccess.h"
 #include "FanAndLight.h"
 
 #define FAN_TIMER_MS    30         //MS milliseconds
 
 static const float s_speed_rps[] = {0.25f, 0.5f, 0.75f, 1.0f};  //RPS rotations per second, per speed index
+
+/* 供管理屏取当前档位转速(单一数据源, 转速同步) */
+float fanlight_speed_rps(void)
+{
+    uint8_t speed = HWInterface.FanAndLight.speed;
+    if (speed > 3) speed = 3;
+    return s_speed_rps[speed];
+}
 
 static bool        s_power;       /* master power */
 static bool        s_fan_on;      /* fan switch */
@@ -103,7 +112,12 @@ void fanlight_on_screen_load(void)
     lv_obj_clear_flag(guider_ui.FanAndLight, LV_OBJ_FLAG_SCROLLABLE);
     lv_obj_add_event_cb(guider_ui.FanAndLight, fanlight_on_screen_delete, LV_EVENT_DELETE, NULL);
 
-    s_speed = 0;      /* 默认档位 1 */
+    /* 从中间层读状态 */
+    s_power    = HWInterface.FanAndLight.power;
+    s_fan_on   = HWInterface.FanAndLight.fan_on;
+    s_light_on = HWInterface.FanAndLight.light_on;
+    s_speed    = HWInterface.FanAndLight.speed;
+
     apply_fan_speed();
     apply_ui_refresh();
 
@@ -114,6 +128,9 @@ void fanlight_on_screen_load(void)
 void fanlight_on_power_toggle(lv_event_t *event)
 {
     s_power = lv_obj_has_state(lv_event_get_target(event), LV_STATE_CHECKED);
+    HWInterface.FanAndLight.power = s_power;
+    HWInterface.FanAndLight.SetPower(s_power);
+    HWInterface.FanAndLight.Apply();
     apply_fan_speed();
     apply_ui_refresh();
     hw_cloud_post(&(HW_Msg){ .type = HW_MSG_FANLIGHT_POWER, .on = s_power });
@@ -123,7 +140,9 @@ void fanlight_on_fan_switch_toggle(lv_event_t *event)
 {
     lv_obj_t *target = lv_event_get_target(event);
     s_fan_on = (target == guider_ui.FanAndLight_Fan_off);   /* 点到 off → 切为 on */
-    if (s_fan_on) s_speed = 0;                              /* 开风扇默认档位 1 */
+    HWInterface.FanAndLight.fan_on = s_fan_on;
+    HWInterface.FanAndLight.SetFan(s_fan_on);
+    HWInterface.FanAndLight.Apply();
     apply_fan_speed();
     apply_ui_refresh();
     hw_cloud_post(&(HW_Msg){ .type = HW_MSG_FANLIGHT_FAN, .on = s_fan_on, .val = s_speed });
@@ -132,6 +151,9 @@ void fanlight_on_fan_switch_toggle(lv_event_t *event)
 void fanlight_on_speed_click(void)
 {
     s_speed = (s_speed + 1) % 4;
+    HWInterface.FanAndLight.speed = s_speed;
+    HWInterface.FanAndLight.SetSpeed(s_speed);
+    HWInterface.FanAndLight.Apply();
     apply_fan_speed();
     apply_ui_refresh();
     hw_cloud_post(&(HW_Msg){ .type = HW_MSG_FANLIGHT_SPEED, .val = s_speed });
@@ -141,6 +163,9 @@ void fanlight_on_light_switch_toggle(lv_event_t *event)
 {
     lv_obj_t *target = lv_event_get_target(event);
     s_light_on = (target == guider_ui.FanAndLight_fLight_off);  /* 点到 off → 切为 on */
+    HWInterface.FanAndLight.light_on = s_light_on;
+    HWInterface.FanAndLight.SetLight(s_light_on);
+    HWInterface.FanAndLight.Apply();
     apply_ui_refresh();
     hw_cloud_post(&(HW_Msg){ .type = HW_MSG_FANLIGHT_LIGHT, .on = s_light_on });
 }

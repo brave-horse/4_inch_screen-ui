@@ -5,7 +5,6 @@
 #include "Sheers.h"
 
 #define TRAVEL_PX    190        //PX pixels
-#define ANIM_MS_PCT  22         //ANIM animation, MS milliseconds, PCT percent
 #define APPLY_MIN_MS 50         //MIN minimum, MS milliseconds
 
 static int32_t    s_offset;     /* 当前开合位移 0..TRAVEL_PX */
@@ -26,8 +25,8 @@ static void sheers_apply(int32_t offset)
 static void sheers_post(int32_t offset)
 {
     int percent = offset * 100 / TRAVEL_PX;
-    HWInterface.Curtain.SetPos(0, (uint16_t)percent);
-    hw_cloud_post(&(HW_Msg){ .type = HW_MSG_CURTAIN_POS, .idx = 0, .val = (uint16_t)percent });
+    HWInterface.Curtain.SetPos(CURTAIN_IDX_SHEERS, (uint16_t)percent);
+    hw_cloud_post(&(HW_Msg){ .type = HW_MSG_CURTAIN_POS, .idx = CURTAIN_IDX_SHEERS, .val = (uint16_t)percent });
 }
 
 static void sheers_anim_exec(void *unused, int32_t value)
@@ -37,17 +36,17 @@ static void sheers_anim_exec(void *unused, int32_t value)
     sheers_apply(value);
 }
 
-static void sheers_anim_to(int32_t target)
+/* 在指定时间内动画到 target(px); ms=0 直接到位 */
+static void sheers_anim_to_ms(int32_t target, uint32_t ms)
 {
     lv_anim_del(&s_offset, sheers_anim_exec);
-    int32_t difference = target - s_offset;
-    if (difference < 0) difference = -difference;
+    if (ms == 0) { s_offset = target; sheers_apply(target); return; }
     lv_anim_t animation;
     lv_anim_init(&animation);
     lv_anim_set_var(&animation, &s_offset);
     lv_anim_set_exec_cb(&animation, sheers_anim_exec);   //cb callback
     lv_anim_set_values(&animation, s_offset, target);
-    lv_anim_set_time(&animation, (uint32_t)(difference * 100 / TRAVEL_PX) * ANIM_MS_PCT);
+    lv_anim_set_time(&animation, ms);
     lv_anim_start(&animation);
 }
 
@@ -68,15 +67,34 @@ void sheers_on_screen_load(void)
     s_right_x0 = lv_obj_get_x(guider_ui.Sheers_FabCurtianright);
     s_pull1_x0 = lv_obj_get_x(guider_ui.Sheers_FabCurtianPull1);
     s_pull2_x0 = lv_obj_get_x(guider_ui.Sheers_FabCurtianPull2);
+
+    /* 按时间算当前位置, 若仍在移动则续播到目标 */
+    uint16_t cur_pct = curtain_motion_current(CURTAIN_IDX_SHEERS);
+    uint16_t tgt_pct = curtain_motion_target(CURTAIN_IDX_SHEERS);
+    s_offset = cur_pct * TRAVEL_PX / 100;
     sheers_apply(s_offset);
+    if (cur_pct != tgt_pct)
+        sheers_anim_to_ms(tgt_pct * TRAVEL_PX / 100, curtain_motion_remaining_ms(CURTAIN_IDX_SHEERS));
 }
 
-void sheers_on_open(void)  { sheers_anim_to(TRAVEL_PX); sheers_post(TRAVEL_PX); }
-void sheers_on_close(void) { sheers_anim_to(0);         sheers_post(0);         }
+void sheers_on_open(void)
+{
+    curtain_motion_start(CURTAIN_IDX_SHEERS, 100);
+    sheers_anim_to_ms(TRAVEL_PX, curtain_motion_remaining_ms(CURTAIN_IDX_SHEERS));
+    sheers_post(TRAVEL_PX);
+}
+
+void sheers_on_close(void)
+{
+    curtain_motion_start(CURTAIN_IDX_SHEERS, 0);
+    sheers_anim_to_ms(0, curtain_motion_remaining_ms(CURTAIN_IDX_SHEERS));
+    sheers_post(0);
+}
 
 void sheers_on_pause(void)
 {
     lv_anim_del(&s_offset, sheers_anim_exec);
+    curtain_motion_set(CURTAIN_IDX_SHEERS, (uint16_t)(s_offset * 100 / TRAVEL_PX));
     sheers_post(s_offset);
 }
 
@@ -97,6 +115,7 @@ void sheers_on_drag(lv_event_t *event)
     if (s_offset > TRAVEL_PX) s_offset = TRAVEL_PX;
 
     sheers_apply(s_offset);
+    curtain_motion_set(CURTAIN_IDX_SHEERS, (uint16_t)(s_offset * 100 / TRAVEL_PX));  /* 手动定位, 停在此处 */
     if (lv_tick_elaps(s_post_tick) >= APPLY_MIN_MS) {
         s_post_tick = lv_tick_get();
         sheers_post(s_offset);

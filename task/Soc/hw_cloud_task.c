@@ -30,7 +30,16 @@ static void handle_msg(HW_Msg *msg)
         HWInterface.LightCT.Apply();
         break;
 
+    case HW_MSG_LIGHT_LED_SWITCH:
+        HWInterface.LEDStrip.SetOnOff(msg->on);
+        break;
+
+    case HW_MSG_LIGHT_MAG_SWITCH:
+        HWInterface.MagLight.SetOnOff(msg->on);
+        break;
+
     case HW_MSG_LIGHT_RGB_SWITCH:
+        HWInterface.RGBLight.SetOnOff(msg->on);
         break;
 
     case HW_MSG_LIGHT_RGB_COLOR:
@@ -44,6 +53,27 @@ static void handle_msg(HW_Msg *msg)
     case HW_MSG_CURTAIN_POS:
         HWInterface.Curtain.SetPos(msg->idx, msg->val);
         HWInterface.Curtain.Apply(msg->idx);
+        break;
+
+    case HW_MSG_FANLIGHT_POWER:
+        HWInterface.FanAndLight.SetPower(msg->on);
+        HWInterface.FanAndLight.Apply();
+        break;
+
+    case HW_MSG_FANLIGHT_FAN:
+        HWInterface.FanAndLight.SetFan(msg->on);
+        HWInterface.FanAndLight.SetSpeed((uint8_t)msg->val);
+        HWInterface.FanAndLight.Apply();
+        break;
+
+    case HW_MSG_FANLIGHT_SPEED:
+        HWInterface.FanAndLight.SetSpeed((uint8_t)msg->val);
+        HWInterface.FanAndLight.Apply();
+        break;
+
+    case HW_MSG_FANLIGHT_LIGHT:
+        HWInterface.FanAndLight.SetLight(msg->on);
+        HWInterface.FanAndLight.Apply();
         break;
 
     case HW_MSG_CLOUD_CMD:

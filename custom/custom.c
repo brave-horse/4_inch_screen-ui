@@ -35,7 +35,6 @@
  *   assert/img.c        图片 DDR 预解码 + 拦截解码器
  *   rule/scr_guard.c    屏指针守卫(防野指针)
  *   rule/scr_noscroll.c 指定屏禁滚(防原地重绘/吞手势)
- *   event/my_app.c      UI 事件桥接到 App 业务
  */
 void custom_init(lv_ui *ui)
 {
@@ -60,10 +59,6 @@ void custom_init(lv_ui *ui)
     /* 跨屏控件：主屏顶部下拉面板（用 GUI-Guider 画的 ui_home_screen_cont_1）。 */
     pulldown_init(ui);
 
-    
-
-    /* event 层：把 UI 事件桥接到 App 业务（当前为空骨架，无副作用）。 */
-    my_app_event_init(ui);
 }
 
 /* 模拟器桩: hw_cloud_post() 在板子上由 Task/Soc/hw_cloud_task.c 提供 */

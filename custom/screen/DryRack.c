@@ -1,10 +1,10 @@
 #include "lvgl.h"
 #include "gui_guider.h"
 #include "hw_cloud_task.h"
+#include "HWDataAccess.h"
 #include "DryRack.h"
 
 #define DOWN_Y       160      /* img_1 最大下降 y(初始 -110) */
-#define ANIM_MS_PX   8        /* 每像素开合耗时 */
 #define APPLY_MIN_MS 50
 
 static int32_t    s_d;         /* 当前下降位移 0..s_travel */
@@ -47,18 +47,23 @@ static void d_anim_cb(void *var, int32_t v)
     dryrack_apply(v);
 }
 
-static void anim_to(int32_t target)
+/* 在指定时间内动画到 target(px); ms=0 直接到位 */
+static void anim_to_ms(int32_t target, uint32_t ms)
 {
     lv_anim_del(&s_d, d_anim_cb);
-    int32_t diff = target - s_d; if (diff < 0) diff = -diff;
+    if (ms == 0) { s_d = target; dryrack_apply(target); return; }
     lv_anim_t a;
     lv_anim_init(&a);
     lv_anim_set_var(&a, &s_d);
     lv_anim_set_exec_cb(&a, d_anim_cb);
     lv_anim_set_values(&a, s_d, target);
-    lv_anim_set_time(&a, (uint32_t)diff * ANIM_MS_PX);
+    lv_anim_set_time(&a, ms);
     lv_anim_start(&a);
 }
+
+/* px ↔ pct 换算(s_travel 运行时才有) */
+static uint16_t d_to_pct(int32_t d) { return s_travel ? (uint16_t)(d * 100 / s_travel) : 0; }
+static int32_t  pct_to_d(uint16_t pct) { return (int32_t)pct * s_travel / 100; }
 
 /* 本屏不在 scr_guard 列表, 自挂删除回调: 屏一删停动画, 防野指针 */
 static void scr_del_cb(lv_event_t *e)
@@ -79,8 +84,14 @@ void dryrack_on_screen_load(void)
     s_travel   = DOWN_Y - s_img_y0;
     if (s_travel <= 0) s_travel = 270;
 
+    /* 按时间算当前位置, 若仍在移动则续播到目标 */
+    uint16_t cur_pct = curtain_motion_current(MOTION_IDX_DRYRACK);
+    uint16_t tgt_pct = curtain_motion_target(MOTION_IDX_DRYRACK);
+    s_d = pct_to_d(cur_pct);
     dryrack_apply(s_d);
     dryrack_apply_light();
+    if (cur_pct != tgt_pct)
+        anim_to_ms(pct_to_d(tgt_pct), curtain_motion_remaining_ms(MOTION_IDX_DRYRACK));
 }
 
 /* 灯按钮: 开→img_2 显示, 关→img_2 透明度 0 */
@@ -106,17 +117,30 @@ void dryrack_on_drag(lv_event_t *e)
     if (s_d > s_travel) s_d = s_travel;
 
     dryrack_apply(s_d);
+    curtain_motion_set(MOTION_IDX_DRYRACK, d_to_pct(s_d));   /* 手动定位, 停在此处 */
     if (lv_tick_elaps(s_post_tick) >= APPLY_MIN_MS) {
         s_post_tick = lv_tick_get();
         dryrack_post(s_d);
     }
 }
 
-void dryrack_on_open(void)  { anim_to(0);        dryrack_post(0);        }  /* 上升 */
-void dryrack_on_close(void) { anim_to(s_travel); dryrack_post(s_travel); }  /* 下降 */
+void dryrack_on_open(void)   /* 上升(收起): pct 0 */
+{
+    curtain_motion_start(MOTION_IDX_DRYRACK, 0);
+    anim_to_ms(0, curtain_motion_remaining_ms(MOTION_IDX_DRYRACK));
+    dryrack_post(0);
+}
+
+void dryrack_on_close(void)  /* 下降(放下): pct 100 */
+{
+    curtain_motion_start(MOTION_IDX_DRYRACK, 100);
+    anim_to_ms(s_travel, curtain_motion_remaining_ms(MOTION_IDX_DRYRACK));
+    dryrack_post(s_travel);
+}
 
 void dryrack_on_pause(void)
 {
     lv_anim_del(&s_d, d_anim_cb);
+    curtain_motion_set(MOTION_IDX_DRYRACK, d_to_pct(s_d));
     dryrack_post(s_d);
 }

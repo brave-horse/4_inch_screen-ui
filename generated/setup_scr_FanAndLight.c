@@ -93,16 +93,16 @@ void setup_scr_FanAndLight(lv_ui *ui)
     lv_obj_set_scrollbar_mode(ui->FanAndLight_cont_1, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for FanAndLight_cont_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_border_width(ui->FanAndLight_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->FanAndLight_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->FanAndLight_cont_1, 133, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->FanAndLight_cont_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->FanAndLight_cont_1, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_width(ui->FanAndLight_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->FanAndLight_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->FanAndLight_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_top(ui->FanAndLight_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_bottom(ui->FanAndLight_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_left(ui->FanAndLight_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_right(ui->FanAndLight_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->FanAndLight_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes FanAndLight_fLight_off
     ui->FanAndLight_fLight_off = lv_img_create(ui->FanAndLight);
@@ -114,10 +114,10 @@ void setup_scr_FanAndLight(lv_ui *ui)
     lv_obj_set_size(ui->FanAndLight_fLight_off, 109, 109);
 
     //Write style for FanAndLight_fLight_off, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->FanAndLight_fLight_off, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->FanAndLight_fLight_off, true, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_recolor_opa(ui->FanAndLight_fLight_off, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_opa(ui->FanAndLight_fLight_off, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->FanAndLight_fLight_off, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->FanAndLight_fLight_off, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes FanAndLight_fLight_on
     ui->FanAndLight_fLight_on = lv_img_create(ui->FanAndLight);
@@ -129,10 +129,10 @@ void setup_scr_FanAndLight(lv_ui *ui)
     lv_obj_set_size(ui->FanAndLight_fLight_on, 109, 110);
 
     //Write style for FanAndLight_fLight_on, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->FanAndLight_fLight_on, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->FanAndLight_fLight_on, true, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_recolor_opa(ui->FanAndLight_fLight_on, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_opa(ui->FanAndLight_fLight_on, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->FanAndLight_fLight_on, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->FanAndLight_fLight_on, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes FanAndLight_fan
     ui->FanAndLight_fan = lv_img_create(ui->FanAndLight);
@@ -189,10 +189,10 @@ void setup_scr_FanAndLight(lv_ui *ui)
     lv_obj_set_size(ui->FanAndLight_FanSpeed2, 105, 109);
 
     //Write style for FanAndLight_FanSpeed2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->FanAndLight_FanSpeed2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->FanAndLight_FanSpeed2, true, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_recolor_opa(ui->FanAndLight_FanSpeed2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_opa(ui->FanAndLight_FanSpeed2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->FanAndLight_FanSpeed2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->FanAndLight_FanSpeed2, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes FanAndLight_FanSpeed1
     ui->FanAndLight_FanSpeed1 = lv_img_create(ui->FanAndLight);
@@ -204,10 +204,10 @@ void setup_scr_FanAndLight(lv_ui *ui)
     lv_obj_set_size(ui->FanAndLight_FanSpeed1, 109, 109);
 
     //Write style for FanAndLight_FanSpeed1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->FanAndLight_FanSpeed1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->FanAndLight_FanSpeed1, true, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_recolor_opa(ui->FanAndLight_FanSpeed1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_opa(ui->FanAndLight_FanSpeed1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->FanAndLight_FanSpeed1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->FanAndLight_FanSpeed1, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes FanAndLight_Fan_on
     ui->FanAndLight_Fan_on = lv_img_create(ui->FanAndLight);
@@ -219,10 +219,10 @@ void setup_scr_FanAndLight(lv_ui *ui)
     lv_obj_set_size(ui->FanAndLight_Fan_on, 109, 109);
 
     //Write style for FanAndLight_Fan_on, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->FanAndLight_Fan_on, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->FanAndLight_Fan_on, true, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_recolor_opa(ui->FanAndLight_Fan_on, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_opa(ui->FanAndLight_Fan_on, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->FanAndLight_Fan_on, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->FanAndLight_Fan_on, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes FanAndLight_Fan_off
     ui->FanAndLight_Fan_off = lv_img_create(ui->FanAndLight);

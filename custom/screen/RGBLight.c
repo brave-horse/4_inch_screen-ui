@@ -53,7 +53,7 @@ static void rgb_light_apply_light(void)
     uint8_t opa_r = (uint8_t)((uint32_t)r * eff / LIGHTCT_BRIGHTNESS_MAX);
     uint8_t opa_g = (uint8_t)((uint32_t)g * eff / LIGHTCT_BRIGHTNESS_MAX);
     uint8_t opa_b = (uint8_t)((uint32_t)b * eff / LIGHTCT_BRIGHTNESS_MAX);
-    if (!HWInterface.LightCT.switch_status)
+    if (!HWInterface.RGBLight.switch_status)
         opa_r = opa_g = opa_b = 0;
 
     lv_obj_set_style_img_opa(guider_ui.RGBLight_Red,   opa_r, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -93,7 +93,7 @@ void rgb_light_on_screen_load(void)
     lv_slider_set_range(guider_ui.RGBLight_slider_2, 0, RGB_POS_MAX);
     lv_slider_set_value(guider_ui.RGBLight_slider_1, HWInterface.LightCT.brightness, LV_ANIM_OFF);
     lv_slider_set_value(guider_ui.RGBLight_slider_2, s_color_pos, LV_ANIM_OFF);
-    rgb_light_refresh(HWInterface.LightCT.switch_status);
+    rgb_light_refresh(HWInterface.RGBLight.switch_status);
 
     /* 按下反馈: 降透明度(松手自动还原) */
     lv_obj_t *btns[] = { guider_ui.RGBLight_on_off_2_img, guider_ui.RGBLight_imgbtn_1 };
@@ -106,7 +106,7 @@ void rgb_light_on_switch_toggle(lv_event_t *e)
     lv_obj_t *btn = lv_event_get_target(e);
     bool btn_status = lv_obj_has_state(btn, LV_STATE_CHECKED);
 
-    HWInterface.LightCT.SetOnOff(btn_status);
+    HWInterface.RGBLight.SetOnOff(btn_status);
     hw_cloud_post(&(HW_Msg){ .type = HW_MSG_LIGHT_RGB_SWITCH, .on = btn_status });
     rgb_light_refresh(btn_status);
 }

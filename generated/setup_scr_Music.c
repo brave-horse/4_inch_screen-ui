@@ -128,137 +128,137 @@ void setup_scr_Music(lv_ui *ui)
     lv_obj_set_style_text_opa(ui->Music_btn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui->Music_btn_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes Music_FabCurtianOpen
-    ui->Music_FabCurtianOpen = lv_img_create(ui->Music);
-    lv_obj_add_flag(ui->Music_FabCurtianOpen, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Music_FabCurtianOpen, &_prev_alpha_94x94);
-    lv_img_set_pivot(ui->Music_FabCurtianOpen, 50,50);
-    lv_img_set_angle(ui->Music_FabCurtianOpen, 0);
-    lv_obj_set_pos(ui->Music_FabCurtianOpen, 66, 554);
-    lv_obj_set_size(ui->Music_FabCurtianOpen, 94, 94);
+    //Write codes Music_prev
+    ui->Music_prev = lv_img_create(ui->Music);
+    lv_obj_add_flag(ui->Music_prev, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->Music_prev, &_prev_alpha_94x94);
+    lv_img_set_pivot(ui->Music_prev, 50,50);
+    lv_img_set_angle(ui->Music_prev, 0);
+    lv_obj_set_pos(ui->Music_prev, 66, 554);
+    lv_obj_set_size(ui->Music_prev, 94, 94);
 
-    //Write style for Music_FabCurtianOpen, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->Music_FabCurtianOpen, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->Music_FabCurtianOpen, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Music_FabCurtianOpen, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Music_FabCurtianOpen, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for Music_prev, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Music_prev, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Music_prev, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Music_prev, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Music_prev, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes Music_FabCurtianClose
-    ui->Music_FabCurtianClose = lv_img_create(ui->Music);
-    lv_obj_add_flag(ui->Music_FabCurtianClose, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Music_FabCurtianClose, &_next_alpha_94x94);
-    lv_img_set_pivot(ui->Music_FabCurtianClose, 50,50);
-    lv_img_set_angle(ui->Music_FabCurtianClose, 0);
-    lv_obj_set_pos(ui->Music_FabCurtianClose, 557, 553);
-    lv_obj_set_size(ui->Music_FabCurtianClose, 94, 94);
+    //Write codes Music_next
+    ui->Music_next = lv_img_create(ui->Music);
+    lv_obj_add_flag(ui->Music_next, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->Music_next, &_next_alpha_94x94);
+    lv_img_set_pivot(ui->Music_next, 50,50);
+    lv_img_set_angle(ui->Music_next, 0);
+    lv_obj_set_pos(ui->Music_next, 557, 553);
+    lv_obj_set_size(ui->Music_next, 94, 94);
 
-    //Write style for Music_FabCurtianClose, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->Music_FabCurtianClose, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->Music_FabCurtianClose, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Music_FabCurtianClose, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Music_FabCurtianClose, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for Music_next, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Music_next, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Music_next, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Music_next, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Music_next, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes Music_FabCurtianBg3
-    ui->Music_FabCurtianBg3 = lv_img_create(ui->Music);
-    lv_obj_add_flag(ui->Music_FabCurtianBg3, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Music_FabCurtianBg3, &_volume_dec_alpha_94x94);
-    lv_img_set_pivot(ui->Music_FabCurtianBg3, 50,50);
-    lv_img_set_angle(ui->Music_FabCurtianBg3, 0);
-    lv_obj_set_pos(ui->Music_FabCurtianBg3, 581, 316);
-    lv_obj_set_size(ui->Music_FabCurtianBg3, 94, 94);
+    //Write codes Music_volume_dec
+    ui->Music_volume_dec = lv_img_create(ui->Music);
+    lv_obj_add_flag(ui->Music_volume_dec, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->Music_volume_dec, &_volume_dec_alpha_94x94);
+    lv_img_set_pivot(ui->Music_volume_dec, 50,50);
+    lv_img_set_angle(ui->Music_volume_dec, 0);
+    lv_obj_set_pos(ui->Music_volume_dec, 582, 316);
+    lv_obj_set_size(ui->Music_volume_dec, 94, 94);
 
-    //Write style for Music_FabCurtianBg3, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->Music_FabCurtianBg3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->Music_FabCurtianBg3, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Music_FabCurtianBg3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Music_FabCurtianBg3, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for Music_volume_dec, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Music_volume_dec, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Music_volume_dec, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Music_volume_dec, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Music_volume_dec, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes Music_FabCurtianLeft
-    ui->Music_FabCurtianLeft = lv_img_create(ui->Music);
-    lv_obj_add_flag(ui->Music_FabCurtianLeft, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Music_FabCurtianLeft, &_disc_alpha_245x245);
-    lv_img_set_pivot(ui->Music_FabCurtianLeft, 122,122);
-    lv_img_set_angle(ui->Music_FabCurtianLeft, 0);
-    lv_obj_set_pos(ui->Music_FabCurtianLeft, 220, 212);
-    lv_obj_set_size(ui->Music_FabCurtianLeft, 245, 245);
+    //Write codes Music_disc
+    ui->Music_disc = lv_img_create(ui->Music);
+    lv_obj_add_flag(ui->Music_disc, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->Music_disc, &_disc_alpha_245x245);
+    lv_img_set_pivot(ui->Music_disc, 122,122);
+    lv_img_set_angle(ui->Music_disc, 0);
+    lv_obj_set_pos(ui->Music_disc, 220, 212);
+    lv_obj_set_size(ui->Music_disc, 245, 245);
 
-    //Write style for Music_FabCurtianLeft, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->Music_FabCurtianLeft, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->Music_FabCurtianLeft, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Music_FabCurtianLeft, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Music_FabCurtianLeft, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for Music_disc, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Music_disc, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Music_disc, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Music_disc, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Music_disc, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes Music_RollBlindPole
-    ui->Music_RollBlindPole = lv_img_create(ui->Music);
-    lv_obj_add_flag(ui->Music_RollBlindPole, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Music_RollBlindPole, &_volume_add_alpha_94x94);
-    lv_img_set_pivot(ui->Music_RollBlindPole, 50,50);
-    lv_img_set_angle(ui->Music_RollBlindPole, 0);
-    lv_obj_set_pos(ui->Music_RollBlindPole, 578, 123);
-    lv_obj_set_size(ui->Music_RollBlindPole, 94, 94);
+    //Write codes Music_volume_add
+    ui->Music_volume_add = lv_img_create(ui->Music);
+    lv_obj_add_flag(ui->Music_volume_add, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->Music_volume_add, &_volume_add_alpha_94x94);
+    lv_img_set_pivot(ui->Music_volume_add, 50,50);
+    lv_img_set_angle(ui->Music_volume_add, 0);
+    lv_obj_set_pos(ui->Music_volume_add, 578, 123);
+    lv_obj_set_size(ui->Music_volume_add, 94, 94);
 
-    //Write style for Music_RollBlindPole, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->Music_RollBlindPole, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->Music_RollBlindPole, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Music_RollBlindPole, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Music_RollBlindPole, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for Music_volume_add, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Music_volume_add, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Music_volume_add, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Music_volume_add, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Music_volume_add, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes Music_imgbtn_1
-    ui->Music_imgbtn_1 = lv_imgbtn_create(ui->Music);
-    lv_obj_add_flag(ui->Music_imgbtn_1, LV_OBJ_FLAG_CHECKABLE);
-    lv_imgbtn_set_src(ui->Music_imgbtn_1, LV_IMGBTN_STATE_RELEASED, NULL, &_play_alpha_109x109, NULL);
-    lv_imgbtn_set_src(ui->Music_imgbtn_1, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, &_pause_alpha_109x109, NULL);
-    ui->Music_imgbtn_1_label = lv_label_create(ui->Music_imgbtn_1);
-    lv_label_set_text(ui->Music_imgbtn_1_label, "");
-    lv_label_set_long_mode(ui->Music_imgbtn_1_label, LV_LABEL_LONG_WRAP);
-    lv_obj_align(ui->Music_imgbtn_1_label, LV_ALIGN_CENTER, 0, 0);
-    lv_obj_set_style_pad_all(ui->Music_imgbtn_1, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->Music_imgbtn_1, 308, 546);
-    lv_obj_set_size(ui->Music_imgbtn_1, 109, 109);
+    //Write codes Music_play
+    ui->Music_play = lv_imgbtn_create(ui->Music);
+    lv_obj_add_flag(ui->Music_play, LV_OBJ_FLAG_CHECKABLE);
+    lv_imgbtn_set_src(ui->Music_play, LV_IMGBTN_STATE_RELEASED, NULL, &_play_alpha_109x109, NULL);
+    lv_imgbtn_set_src(ui->Music_play, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, &_pause_alpha_109x109, NULL);
+    ui->Music_play_label = lv_label_create(ui->Music_play);
+    lv_label_set_text(ui->Music_play_label, "");
+    lv_label_set_long_mode(ui->Music_play_label, LV_LABEL_LONG_WRAP);
+    lv_obj_align(ui->Music_play_label, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_style_pad_all(ui->Music_play, 0, LV_STATE_DEFAULT);
+    lv_obj_set_pos(ui->Music_play, 308, 546);
+    lv_obj_set_size(ui->Music_play, 109, 109);
 
-    //Write style for Music_imgbtn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_text_color(ui->Music_imgbtn_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui->Music_imgbtn_1, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui->Music_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_align(ui->Music_imgbtn_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Music_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Music_imgbtn_1, true, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->Music_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for Music_play, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_text_color(ui->Music_play, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->Music_play, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->Music_play, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->Music_play, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Music_play, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Music_play, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->Music_play, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write style for Music_imgbtn_1, Part: LV_PART_MAIN, State: LV_STATE_PRESSED.
-    lv_obj_set_style_img_recolor_opa(ui->Music_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_img_opa(ui->Music_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_text_color(ui->Music_imgbtn_1, lv_color_hex(0xFF33FF), LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_text_font(ui->Music_imgbtn_1, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_text_opa(ui->Music_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_PRESSED);
-    lv_obj_set_style_shadow_width(ui->Music_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_PRESSED);
+    //Write style for Music_play, Part: LV_PART_MAIN, State: LV_STATE_PRESSED.
+    lv_obj_set_style_img_recolor_opa(ui->Music_play, 0, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_img_opa(ui->Music_play, 255, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_color(ui->Music_play, lv_color_hex(0xFF33FF), LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_font(ui->Music_play, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_text_opa(ui->Music_play, 255, LV_PART_MAIN|LV_STATE_PRESSED);
+    lv_obj_set_style_shadow_width(ui->Music_play, 0, LV_PART_MAIN|LV_STATE_PRESSED);
 
-    //Write style for Music_imgbtn_1, Part: LV_PART_MAIN, State: LV_STATE_CHECKED.
-    lv_obj_set_style_img_recolor_opa(ui->Music_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_img_opa(ui->Music_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_text_color(ui->Music_imgbtn_1, lv_color_hex(0xFF33FF), LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_text_font(ui->Music_imgbtn_1, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_text_opa(ui->Music_imgbtn_1, 255, LV_PART_MAIN|LV_STATE_CHECKED);
-    lv_obj_set_style_shadow_width(ui->Music_imgbtn_1, 0, LV_PART_MAIN|LV_STATE_CHECKED);
+    //Write style for Music_play, Part: LV_PART_MAIN, State: LV_STATE_CHECKED.
+    lv_obj_set_style_img_recolor_opa(ui->Music_play, 0, LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_img_opa(ui->Music_play, 255, LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_text_color(ui->Music_play, lv_color_hex(0xFF33FF), LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_text_font(ui->Music_play, &lv_font_montserratMedium_12, LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_text_opa(ui->Music_play, 255, LV_PART_MAIN|LV_STATE_CHECKED);
+    lv_obj_set_style_shadow_width(ui->Music_play, 0, LV_PART_MAIN|LV_STATE_CHECKED);
 
-    //Write style for Music_imgbtn_1, Part: LV_PART_MAIN, State: LV_IMGBTN_STATE_RELEASED.
-    lv_obj_set_style_img_recolor_opa(ui->Music_imgbtn_1, 0, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
-    lv_obj_set_style_img_opa(ui->Music_imgbtn_1, 255, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
+    //Write style for Music_play, Part: LV_PART_MAIN, State: LV_IMGBTN_STATE_RELEASED.
+    lv_obj_set_style_img_recolor_opa(ui->Music_play, 0, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
+    lv_obj_set_style_img_opa(ui->Music_play, 255, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
 
-    //Write codes Music_FabCurtianBg1
-    ui->Music_FabCurtianBg1 = lv_img_create(ui->Music);
-    lv_obj_add_flag(ui->Music_FabCurtianBg1, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Music_FabCurtianBg1, &_rack_alpha_124x195);
-    lv_img_set_pivot(ui->Music_FabCurtianBg1, 50,50);
-    lv_img_set_angle(ui->Music_FabCurtianBg1, 0);
-    lv_obj_set_pos(ui->Music_FabCurtianBg1, 398, 93);
-    lv_obj_set_size(ui->Music_FabCurtianBg1, 124, 195);
+    //Write codes Music_rack
+    ui->Music_rack = lv_img_create(ui->Music);
+    lv_obj_add_flag(ui->Music_rack, LV_OBJ_FLAG_CLICKABLE);
+    lv_img_set_src(ui->Music_rack, &_rack_alpha_124x195);
+    lv_img_set_pivot(ui->Music_rack, 50,50);
+    lv_img_set_angle(ui->Music_rack, 0);
+    lv_obj_set_pos(ui->Music_rack, 398, 93);
+    lv_obj_set_size(ui->Music_rack, 124, 195);
 
-    //Write style for Music_FabCurtianBg1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->Music_FabCurtianBg1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->Music_FabCurtianBg1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Music_FabCurtianBg1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Music_FabCurtianBg1, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for Music_rack, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Music_rack, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Music_rack, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Music_rack, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Music_rack, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of Music.
 
@@ -266,4 +266,6 @@ void setup_scr_Music(lv_ui *ui)
     //Update current screen layout.
     lv_obj_update_layout(ui->Music);
 
+    //Init events for screen.
+    events_init_Music(ui);
 }

@@ -14,6 +14,8 @@ enum {
     HW_MSG_LIGHT_CT_SWITCH,   /* bool on      — 色温灯开关 */
     HW_MSG_LIGHT_CT_BRI,      /* uint16_t val — 色温灯亮度 */
     HW_MSG_LIGHT_CT_CT,       /* uint16_t val — 色温灯色温 */
+    HW_MSG_LIGHT_LED_SWITCH,  /* bool on      — LED灯带开关 */
+    HW_MSG_LIGHT_MAG_SWITCH,  /* bool on      — 磁吸灯开关 */
     HW_MSG_LIGHT_RGB_SWITCH,
     HW_MSG_LIGHT_RGB_COLOR,
     HW_MSG_CURTAIN_SWITCH,    /* uint8_t idx, bool on */

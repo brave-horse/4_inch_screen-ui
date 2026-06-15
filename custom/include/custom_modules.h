@@ -12,7 +12,6 @@ extern "C" {
 #include "scr_noscroll.h" /* rule/   : 指定屏禁滚(防原地重绘/吞手势) */
 #include "light_CT_screen.h"       /* screen/ : light_CT_screen 色温灯控件 */
 #include "pulldown.h"     /* widget/ : 主屏顶部下拉面板(单面板) */
-#include "my_app.h"       /* event/  : UI 事件桥接到 App 业务 */
 
 #ifdef __cplusplus
 }
