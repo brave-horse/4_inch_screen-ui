@@ -232,14 +232,14 @@
  *-----------*/
 
 /*1: Show CPU usage and FPS count*/
-#define LV_USE_PERF_MONITOR 0
+#define LV_USE_PERF_MONITOR 1
 #if LV_USE_PERF_MONITOR
 #define LV_USE_PERF_MONITOR_POS LV_ALIGN_BOTTOM_RIGHT
 #endif    /* LV_USE_PERF_MONITOR */
 
 /*1: Show the used memory and the memory fragmentation
  * Requires LV_MEM_CUSTOM = 0*/
-#define LV_USE_MEM_MONITOR 0
+#define LV_USE_MEM_MONITOR 1
 #if LV_USE_MEM_MONITOR
 #define LV_USE_MEM_MONITOR_POS LV_ALIGN_BOTTOM_LEFT
 #endif    /* LV_USE_MEM_MONITOR */
@@ -493,7 +493,7 @@
 
 #define LV_USE_COLORWHEEL 0
 
-#define LV_USE_DCLOCK 1
+#define LV_USE_DCLOCK 0
 
 #define LV_USE_IMGBTN 1
 

@@ -93,6 +93,11 @@ typedef struct
 
 typedef struct
 {
+    bool light;     /* 晾衣机照明(管理屏/子屏共享; 位置走 curtain_motion) */
+} HW_DryRack_InterfaceTypeDef;
+
+typedef struct
+{
     bool   light;   /* 浴霸照明: 独立开关, 可与模式同时存在 */
     int8_t mode;    /* 浴霸模式(互斥): -1=无 1暖风高 2暖风低 3换气 4吹风 5待机 */
 } HW_Heater_InterfaceTypeDef;
@@ -112,6 +117,7 @@ typedef struct
     HW_Curtain_InterfaceTypeDef     Curtain;
     HW_FanAndLight_InterfaceTypeDef FanAndLight;
     HW_Music_InterfaceTypeDef       Music;
+    HW_DryRack_InterfaceTypeDef     DryRack;
     HW_Heater_InterfaceTypeDef      Heater;
     HW_AirCondition_InterfaceTypeDef AirCondition;
 } HW_InterfaceTypeDef;

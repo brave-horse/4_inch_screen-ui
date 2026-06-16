@@ -136,8 +136,10 @@ static void fan_rotate_cb(lv_timer_t *timer)
 
 static void fanlight_apply(void)
 {
-    bool light = HWInterface.FanAndLight.light_on;
-    bool fan   = HWInterface.FanAndLight.fan_on;
+    /* 用 power 闸门后的有效状态: 子界面总开关关了→这里风扇/灯都显示关 */
+    bool power = HWInterface.FanAndLight.power;
+    bool light = power && HWInterface.FanAndLight.light_on;
+    bool fan   = power && HWInterface.FanAndLight.fan_on;
 
     /* 灯: 亮显 sFanOpenImg, 灭显 sFancloseImg(两张叠放, 切透明度) */
     lv_obj_set_style_img_opa(guider_ui.device_management_screen_sFanOpenImg,
@@ -269,6 +271,12 @@ void dev_mgmt_on_load(void)
     s_dr_up_img   = guider_ui.device_management_screen_sDryRackUp;
     dryrack_img_refresh();
 
+    /* 晾衣机照明: 只显示(无开关), 跟随子界面 HWInterface.DryRack.light; 置顶防遮挡 */
+    lv_obj_set_style_img_opa(guider_ui.device_management_screen_sDRLightImg,
+                             HWInterface.DryRack.light ? LV_OPA_COVER : LV_OPA_TRANSP,
+                             LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_move_foreground(guider_ui.device_management_screen_sDRLightImg);
+
     /* 音乐: 唱片碟 pivot 居中(51x51) + 按播放状态刷新 */
     lv_img_set_pivot(guider_ui.device_management_screen_sMusicPauseImg, 25, 25);
     music_apply();
@@ -342,6 +350,8 @@ void dev_mgmt_music_toggle(void)
 void dev_mgmt_fanlight_light_toggle(void)
 {
     HWInterface.FanAndLight.light_on = lv_obj_has_state(guider_ui.device_management_screen_sFanLightBtn, LV_STATE_CHECKED);
+    /* 开灯/扇即开子界面总开关; 两者都关才关总开关 */
+    HWInterface.FanAndLight.power = HWInterface.FanAndLight.fan_on || HWInterface.FanAndLight.light_on;
     fanlight_apply();
 }
 
@@ -349,6 +359,7 @@ void dev_mgmt_fanlight_light_toggle(void)
 void dev_mgmt_fanlight_fan_toggle(void)
 {
     HWInterface.FanAndLight.fan_on = lv_obj_has_state(guider_ui.device_management_screen_sSourceBtn, LV_STATE_CHECKED);
+    HWInterface.FanAndLight.power = HWInterface.FanAndLight.fan_on || HWInterface.FanAndLight.light_on;
     fanlight_apply();
 }
 

@@ -129,9 +129,9 @@ void setup_scr_Dream(lv_ui *ui)
     ui->Dream_FabCurtianOpen = lv_img_create(ui->Dream);
     lv_obj_add_flag(ui->Dream_FabCurtianOpen, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->Dream_FabCurtianOpen, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianOpen.png");
+    lv_img_set_src(ui->Dream_FabCurtianOpen, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCOpen.png");
 #else
-    lv_img_set_src(ui->Dream_FabCurtianOpen, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianOpen.png");
+    lv_img_set_src(ui->Dream_FabCurtianOpen, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCOpen.png");
 #endif
     lv_img_set_pivot(ui->Dream_FabCurtianOpen, 50,50);
     lv_img_set_angle(ui->Dream_FabCurtianOpen, 0);
@@ -148,9 +148,9 @@ void setup_scr_Dream(lv_ui *ui)
     ui->Dream_FabCurtianClose = lv_img_create(ui->Dream);
     lv_obj_add_flag(ui->Dream_FabCurtianClose, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->Dream_FabCurtianClose, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianClose.png");
+    lv_img_set_src(ui->Dream_FabCurtianClose, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCClose.png");
 #else
-    lv_img_set_src(ui->Dream_FabCurtianClose, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianClose.png");
+    lv_img_set_src(ui->Dream_FabCurtianClose, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCClose.png");
 #endif
     lv_img_set_pivot(ui->Dream_FabCurtianClose, 50,50);
     lv_img_set_angle(ui->Dream_FabCurtianClose, 0);
@@ -167,9 +167,9 @@ void setup_scr_Dream(lv_ui *ui)
     ui->Dream_FabCurtianPause = lv_img_create(ui->Dream);
     lv_obj_add_flag(ui->Dream_FabCurtianPause, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->Dream_FabCurtianPause, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianPause.png");
+    lv_img_set_src(ui->Dream_FabCurtianPause, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCPause.png");
 #else
-    lv_img_set_src(ui->Dream_FabCurtianPause, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianPause.png");
+    lv_img_set_src(ui->Dream_FabCurtianPause, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCPause.png");
 #endif
     lv_img_set_pivot(ui->Dream_FabCurtianPause, 50,50);
     lv_img_set_angle(ui->Dream_FabCurtianPause, 0);
@@ -186,9 +186,9 @@ void setup_scr_Dream(lv_ui *ui)
     ui->Dream_FabCurtianBg1 = lv_img_create(ui->Dream);
     lv_obj_add_flag(ui->Dream_FabCurtianBg1, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->Dream_FabCurtianBg1, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianBg1.png");
+    lv_img_set_src(ui->Dream_FabCurtianBg1, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCBg1.png");
 #else
-    lv_img_set_src(ui->Dream_FabCurtianBg1, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianBg1.png");
+    lv_img_set_src(ui->Dream_FabCurtianBg1, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCBg1.png");
 #endif
     lv_img_set_pivot(ui->Dream_FabCurtianBg1, 50,50);
     lv_img_set_angle(ui->Dream_FabCurtianBg1, 0);
@@ -201,32 +201,13 @@ void setup_scr_Dream(lv_ui *ui)
     lv_obj_set_style_radius(ui->Dream_FabCurtianBg1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_clip_corner(ui->Dream_FabCurtianBg1, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes Dream_FabCurtianBg3
-    ui->Dream_FabCurtianBg3 = lv_img_create(ui->Dream);
-    lv_obj_add_flag(ui->Dream_FabCurtianBg3, LV_OBJ_FLAG_CLICKABLE);
-#if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->Dream_FabCurtianBg3, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianBg3.png");
-#else
-    lv_img_set_src(ui->Dream_FabCurtianBg3, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianBg3.png");
-#endif
-    lv_img_set_pivot(ui->Dream_FabCurtianBg3, 50,50);
-    lv_img_set_angle(ui->Dream_FabCurtianBg3, 0);
-    lv_obj_set_pos(ui->Dream_FabCurtianBg3, 252, 384);
-    lv_obj_set_size(ui->Dream_FabCurtianBg3, 42, 14);
-
-    //Write style for Dream_FabCurtianBg3, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->Dream_FabCurtianBg3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->Dream_FabCurtianBg3, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->Dream_FabCurtianBg3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->Dream_FabCurtianBg3, true, LV_PART_MAIN|LV_STATE_DEFAULT);
-
     //Write codes Dream_FabCurtianBg2
     ui->Dream_FabCurtianBg2 = lv_img_create(ui->Dream);
     lv_obj_add_flag(ui->Dream_FabCurtianBg2, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->Dream_FabCurtianBg2, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianBg2.png");
+    lv_img_set_src(ui->Dream_FabCurtianBg2, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCBg2.png");
 #else
-    lv_img_set_src(ui->Dream_FabCurtianBg2, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianBg2.png");
+    lv_img_set_src(ui->Dream_FabCurtianBg2, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCBg2.png");
 #endif
     lv_img_set_pivot(ui->Dream_FabCurtianBg2, 50,50);
     lv_img_set_angle(ui->Dream_FabCurtianBg2, 0);
@@ -238,6 +219,25 @@ void setup_scr_Dream(lv_ui *ui)
     lv_obj_set_style_img_opa(ui->Dream_FabCurtianBg2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_radius(ui->Dream_FabCurtianBg2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_clip_corner(ui->Dream_FabCurtianBg2, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes Dream_FabCurtianBg3
+    ui->Dream_FabCurtianBg3 = lv_img_create(ui->Dream);
+    lv_obj_add_flag(ui->Dream_FabCurtianBg3, LV_OBJ_FLAG_CLICKABLE);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Dream_FabCurtianBg3, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCBg3.png");
+#else
+    lv_img_set_src(ui->Dream_FabCurtianBg3, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCBg3.png");
+#endif
+    lv_img_set_pivot(ui->Dream_FabCurtianBg3, 50,50);
+    lv_img_set_angle(ui->Dream_FabCurtianBg3, 0);
+    lv_obj_set_pos(ui->Dream_FabCurtianBg3, 252, 384);
+    lv_obj_set_size(ui->Dream_FabCurtianBg3, 42, 14);
+
+    //Write style for Dream_FabCurtianBg3, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->Dream_FabCurtianBg3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->Dream_FabCurtianBg3, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Dream_FabCurtianBg3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->Dream_FabCurtianBg3, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes Dream_FabCurtianLeft
     ui->Dream_FabCurtianLeft = lv_img_create(ui->Dream);
@@ -317,9 +317,9 @@ void setup_scr_Dream(lv_ui *ui)
     ui->Dream_FabCurtianPull2 = lv_img_create(ui->Dream);
     lv_obj_add_flag(ui->Dream_FabCurtianPull2, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->Dream_FabCurtianPull2, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianPull.png");
+    lv_img_set_src(ui->Dream_FabCurtianPull2, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCPull.png");
 #else
-    lv_img_set_src(ui->Dream_FabCurtianPull2, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianPull.png");
+    lv_img_set_src(ui->Dream_FabCurtianPull2, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCPull.png");
 #endif
     lv_img_set_pivot(ui->Dream_FabCurtianPull2, 50,50);
     lv_img_set_angle(ui->Dream_FabCurtianPull2, 0);
@@ -336,9 +336,9 @@ void setup_scr_Dream(lv_ui *ui)
     ui->Dream_FabCurtianPull1 = lv_img_create(ui->Dream);
     lv_obj_add_flag(ui->Dream_FabCurtianPull1, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->Dream_FabCurtianPull1, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianPull.png");
+    lv_img_set_src(ui->Dream_FabCurtianPull1, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCPull.png");
 #else
-    lv_img_set_src(ui->Dream_FabCurtianPull1, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianPull.png");
+    lv_img_set_src(ui->Dream_FabCurtianPull1, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCPull.png");
 #endif
     lv_img_set_pivot(ui->Dream_FabCurtianPull1, 50,50);
     lv_img_set_angle(ui->Dream_FabCurtianPull1, 0);
@@ -355,9 +355,9 @@ void setup_scr_Dream(lv_ui *ui)
     ui->Dream_FabCurtianPole = lv_img_create(ui->Dream);
     lv_obj_add_flag(ui->Dream_FabCurtianPole, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->Dream_FabCurtianPole, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianPole.png");
+    lv_img_set_src(ui->Dream_FabCurtianPole, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCPole.png");
 #else
-    lv_img_set_src(ui->Dream_FabCurtianPole, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianPole.png");
+    lv_img_set_src(ui->Dream_FabCurtianPole, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCPole.png");
 #endif
     lv_img_set_pivot(ui->Dream_FabCurtianPole, 50,50);
     lv_img_set_angle(ui->Dream_FabCurtianPole, 0);

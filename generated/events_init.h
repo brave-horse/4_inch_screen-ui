@@ -33,6 +33,7 @@ void events_init_Music(lv_ui *ui);
 void events_init_DryRack(lv_ui *ui);
 void events_init_FanAndLight(lv_ui *ui);
 void events_init_Heater(lv_ui *ui);
+void events_init_setting_screen(lv_ui *ui);
 
 #ifdef __cplusplus
 }

@@ -240,9 +240,9 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_sLEDStripOn = lv_img_create(ui->device_management_screen_cont_2);
     lv_obj_add_flag(ui->device_management_screen_sLEDStripOn, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->device_management_screen_sLEDStripOn, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sLedStripOn.png");
+    lv_img_set_src(ui->device_management_screen_sLEDStripOn, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sLSOn.png");
 #else
-    lv_img_set_src(ui->device_management_screen_sLEDStripOn, "S:/sdfile/EXT_RESERVED/uipackres/ui/sLedStripOn.png");
+    lv_img_set_src(ui->device_management_screen_sLEDStripOn, "S:/sdfile/EXT_RESERVED/uipackres/ui/sLSOn.png");
 #endif
     lv_img_set_pivot(ui->device_management_screen_sLEDStripOn, 50,50);
     lv_img_set_angle(ui->device_management_screen_sLEDStripOn, 0);
@@ -259,9 +259,9 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_sLEDStripOff = lv_img_create(ui->device_management_screen_cont_2);
     lv_obj_add_flag(ui->device_management_screen_sLEDStripOff, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->device_management_screen_sLEDStripOff, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sLedStripOff.png");
+    lv_img_set_src(ui->device_management_screen_sLEDStripOff, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sLSOff.png");
 #else
-    lv_img_set_src(ui->device_management_screen_sLEDStripOff, "S:/sdfile/EXT_RESERVED/uipackres/ui/sLedStripOff.png");
+    lv_img_set_src(ui->device_management_screen_sLEDStripOff, "S:/sdfile/EXT_RESERVED/uipackres/ui/sLSOff.png");
 #endif
     lv_img_set_pivot(ui->device_management_screen_sLEDStripOff, 50,50);
     lv_img_set_angle(ui->device_management_screen_sLEDStripOff, 0);
@@ -369,9 +369,9 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_sMagLightOn = lv_img_create(ui->device_management_screen_cont_3);
     lv_obj_add_flag(ui->device_management_screen_sMagLightOn, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->device_management_screen_sMagLightOn, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sMagLightOn.png");
+    lv_img_set_src(ui->device_management_screen_sMagLightOn, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sMLOn.png");
 #else
-    lv_img_set_src(ui->device_management_screen_sMagLightOn, "S:/sdfile/EXT_RESERVED/uipackres/ui/sMagLightOn.png");
+    lv_img_set_src(ui->device_management_screen_sMagLightOn, "S:/sdfile/EXT_RESERVED/uipackres/ui/sMLOn.png");
 #endif
     lv_img_set_pivot(ui->device_management_screen_sMagLightOn, 50,50);
     lv_img_set_angle(ui->device_management_screen_sMagLightOn, 0);
@@ -388,9 +388,9 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_sMagLightOff = lv_img_create(ui->device_management_screen_cont_3);
     lv_obj_add_flag(ui->device_management_screen_sMagLightOff, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->device_management_screen_sMagLightOff, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sMagLightOff.png");
+    lv_img_set_src(ui->device_management_screen_sMagLightOff, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sMLOff.png");
 #else
-    lv_img_set_src(ui->device_management_screen_sMagLightOff, "S:/sdfile/EXT_RESERVED/uipackres/ui/sMagLightOff.png");
+    lv_img_set_src(ui->device_management_screen_sMagLightOff, "S:/sdfile/EXT_RESERVED/uipackres/ui/sMLOff.png");
 #endif
     lv_img_set_pivot(ui->device_management_screen_sMagLightOff, 50,50);
     lv_img_set_angle(ui->device_management_screen_sMagLightOff, 0);
@@ -498,9 +498,9 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_sRGBLightOn = lv_img_create(ui->device_management_screen_cont_4);
     lv_obj_add_flag(ui->device_management_screen_sRGBLightOn, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->device_management_screen_sRGBLightOn, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sRGBLightOn.png");
+    lv_img_set_src(ui->device_management_screen_sRGBLightOn, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sRGBLOn.png");
 #else
-    lv_img_set_src(ui->device_management_screen_sRGBLightOn, "S:/sdfile/EXT_RESERVED/uipackres/ui/sRGBLightOn.png");
+    lv_img_set_src(ui->device_management_screen_sRGBLightOn, "S:/sdfile/EXT_RESERVED/uipackres/ui/sRGBLOn.png");
 #endif
     lv_img_set_pivot(ui->device_management_screen_sRGBLightOn, 50,50);
     lv_img_set_angle(ui->device_management_screen_sRGBLightOn, 0);
@@ -517,9 +517,9 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_sRGBLightOff = lv_img_create(ui->device_management_screen_cont_4);
     lv_obj_add_flag(ui->device_management_screen_sRGBLightOff, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->device_management_screen_sRGBLightOff, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sRGBLightOff.png");
+    lv_img_set_src(ui->device_management_screen_sRGBLightOff, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sRGBLOff.png");
 #else
-    lv_img_set_src(ui->device_management_screen_sRGBLightOff, "S:/sdfile/EXT_RESERVED/uipackres/ui/sRGBLightOff.png");
+    lv_img_set_src(ui->device_management_screen_sRGBLightOff, "S:/sdfile/EXT_RESERVED/uipackres/ui/sRGBLOff.png");
 #endif
     lv_img_set_pivot(ui->device_management_screen_sRGBLightOff, 50,50);
     lv_img_set_angle(ui->device_management_screen_sRGBLightOff, 0);
@@ -627,9 +627,9 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_sFabricCurtainOn = lv_img_create(ui->device_management_screen_cont_5);
     lv_obj_add_flag(ui->device_management_screen_sFabricCurtainOn, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->device_management_screen_sFabricCurtainOn, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sFabricCurtianOn.png");
+    lv_img_set_src(ui->device_management_screen_sFabricCurtainOn, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sFCOn.png");
 #else
-    lv_img_set_src(ui->device_management_screen_sFabricCurtainOn, "S:/sdfile/EXT_RESERVED/uipackres/ui/sFabricCurtianOn.png");
+    lv_img_set_src(ui->device_management_screen_sFabricCurtainOn, "S:/sdfile/EXT_RESERVED/uipackres/ui/sFCOn.png");
 #endif
     lv_img_set_pivot(ui->device_management_screen_sFabricCurtainOn, 50,50);
     lv_img_set_angle(ui->device_management_screen_sFabricCurtainOn, 0);
@@ -646,9 +646,9 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_sFabricCurtianOff = lv_img_create(ui->device_management_screen_cont_5);
     lv_obj_add_flag(ui->device_management_screen_sFabricCurtianOff, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->device_management_screen_sFabricCurtianOff, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sFabricCurtainOff.png");
+    lv_img_set_src(ui->device_management_screen_sFabricCurtianOff, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sFCOff.png");
 #else
-    lv_img_set_src(ui->device_management_screen_sFabricCurtianOff, "S:/sdfile/EXT_RESERVED/uipackres/ui/sFabricCurtainOff.png");
+    lv_img_set_src(ui->device_management_screen_sFabricCurtianOff, "S:/sdfile/EXT_RESERVED/uipackres/ui/sFCOff.png");
 #endif
     lv_img_set_pivot(ui->device_management_screen_sFabricCurtianOff, 50,50);
     lv_img_set_angle(ui->device_management_screen_sFabricCurtianOff, 0);
@@ -747,9 +747,9 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_sSheersOn = lv_img_create(ui->device_management_screen_cont_6);
     lv_obj_add_flag(ui->device_management_screen_sSheersOn, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->device_management_screen_sSheersOn, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sFabricCurtianOn.png");
+    lv_img_set_src(ui->device_management_screen_sSheersOn, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sFCOn.png");
 #else
-    lv_img_set_src(ui->device_management_screen_sSheersOn, "S:/sdfile/EXT_RESERVED/uipackres/ui/sFabricCurtianOn.png");
+    lv_img_set_src(ui->device_management_screen_sSheersOn, "S:/sdfile/EXT_RESERVED/uipackres/ui/sFCOn.png");
 #endif
     lv_img_set_pivot(ui->device_management_screen_sSheersOn, 50,50);
     lv_img_set_angle(ui->device_management_screen_sSheersOn, 0);
@@ -766,9 +766,9 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_sSheersOff = lv_img_create(ui->device_management_screen_cont_6);
     lv_obj_add_flag(ui->device_management_screen_sSheersOff, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->device_management_screen_sSheersOff, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sFabricCurtainOff.png");
+    lv_img_set_src(ui->device_management_screen_sSheersOff, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sFCOff.png");
 #else
-    lv_img_set_src(ui->device_management_screen_sSheersOff, "S:/sdfile/EXT_RESERVED/uipackres/ui/sFabricCurtainOff.png");
+    lv_img_set_src(ui->device_management_screen_sSheersOff, "S:/sdfile/EXT_RESERVED/uipackres/ui/sFCOff.png");
 #endif
     lv_img_set_pivot(ui->device_management_screen_sSheersOff, 50,50);
     lv_img_set_angle(ui->device_management_screen_sSheersOff, 0);
@@ -867,9 +867,9 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_sRollBlindOn = lv_img_create(ui->device_management_screen_cont_7);
     lv_obj_add_flag(ui->device_management_screen_sRollBlindOn, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->device_management_screen_sRollBlindOn, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sRollBlindOff.png");
+    lv_img_set_src(ui->device_management_screen_sRollBlindOn, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sRBOn.png");
 #else
-    lv_img_set_src(ui->device_management_screen_sRollBlindOn, "S:/sdfile/EXT_RESERVED/uipackres/ui/sRollBlindOff.png");
+    lv_img_set_src(ui->device_management_screen_sRollBlindOn, "S:/sdfile/EXT_RESERVED/uipackres/ui/sRBOn.png");
 #endif
     lv_img_set_pivot(ui->device_management_screen_sRollBlindOn, 50,50);
     lv_img_set_angle(ui->device_management_screen_sRollBlindOn, 0);
@@ -886,9 +886,9 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_sRollBlindOff = lv_img_create(ui->device_management_screen_cont_7);
     lv_obj_add_flag(ui->device_management_screen_sRollBlindOff, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->device_management_screen_sRollBlindOff, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sRollBlindOff.png");
+    lv_img_set_src(ui->device_management_screen_sRollBlindOff, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sRBOff.png");
 #else
-    lv_img_set_src(ui->device_management_screen_sRollBlindOff, "S:/sdfile/EXT_RESERVED/uipackres/ui/sRollBlindOff.png");
+    lv_img_set_src(ui->device_management_screen_sRollBlindOff, "S:/sdfile/EXT_RESERVED/uipackres/ui/sRBOff.png");
 #endif
     lv_img_set_pivot(ui->device_management_screen_sRollBlindOff, 50,50);
     lv_img_set_angle(ui->device_management_screen_sRollBlindOff, 0);
@@ -1246,9 +1246,9 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_sVentilateACimg = lv_img_create(ui->device_management_screen_cont_9);
     lv_obj_add_flag(ui->device_management_screen_sVentilateACimg, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->device_management_screen_sVentilateACimg, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sVentilateACimg.png");
+    lv_img_set_src(ui->device_management_screen_sVentilateACimg, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sVACimg.png");
 #else
-    lv_img_set_src(ui->device_management_screen_sVentilateACimg, "S:/sdfile/EXT_RESERVED/uipackres/ui/sVentilateACimg.png");
+    lv_img_set_src(ui->device_management_screen_sVentilateACimg, "S:/sdfile/EXT_RESERVED/uipackres/ui/sVACimg.png");
 #endif
     lv_img_set_pivot(ui->device_management_screen_sVentilateACimg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sVentilateACimg, 0);
@@ -1805,7 +1805,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     //Write codes device_management_screen_IdleBtn
     ui->device_management_screen_IdleBtn = lv_img_create(ui->device_management_screen_cont_13);
     lv_obj_add_flag(ui->device_management_screen_IdleBtn, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->device_management_screen_IdleBtn, &_small_idle_btn_alpha_60x60);
+    lv_img_set_src(ui->device_management_screen_IdleBtn, &_sIdleBtn_alpha_60x60);
     lv_img_set_pivot(ui->device_management_screen_IdleBtn, 50,50);
     lv_img_set_angle(ui->device_management_screen_IdleBtn, 0);
     lv_obj_set_pos(ui->device_management_screen_IdleBtn, 230, 15);
@@ -1820,7 +1820,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     //Write codes device_management_screen_sHeatLightImg
     ui->device_management_screen_sHeatLightImg = lv_img_create(ui->device_management_screen_cont_13);
     lv_obj_add_flag(ui->device_management_screen_sHeatLightImg, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->device_management_screen_sHeatLightImg, &_small_light_alpha_65x43);
+    lv_img_set_src(ui->device_management_screen_sHeatLightImg, &_sHlight_alpha_65x43);
     lv_img_set_pivot(ui->device_management_screen_sHeatLightImg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sHeatLightImg, 0);
     lv_obj_set_pos(ui->device_management_screen_sHeatLightImg, 20, 14);
@@ -1882,7 +1882,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     //Write codes device_management_screen_sHeatLowModeImg
     ui->device_management_screen_sHeatLowModeImg = lv_img_create(ui->device_management_screen_cont_13);
     lv_obj_add_flag(ui->device_management_screen_sHeatLowModeImg, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->device_management_screen_sHeatLowModeImg, &_small_weakHeat_mode_alpha_65x43);
+    lv_img_set_src(ui->device_management_screen_sHeatLowModeImg, &_sLowHeatMode_alpha_65x43);
     lv_img_set_pivot(ui->device_management_screen_sHeatLowModeImg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sHeatLowModeImg, 0);
     lv_obj_set_pos(ui->device_management_screen_sHeatLowModeImg, 20, 14);
@@ -1897,7 +1897,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     //Write codes device_management_screen_sHeatHighModeImg
     ui->device_management_screen_sHeatHighModeImg = lv_img_create(ui->device_management_screen_cont_13);
     lv_obj_add_flag(ui->device_management_screen_sHeatHighModeImg, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->device_management_screen_sHeatHighModeImg, &_small_strongHeat_mode_alpha_65x43);
+    lv_img_set_src(ui->device_management_screen_sHeatHighModeImg, &_sHeatMode_alpha_65x43);
     lv_img_set_pivot(ui->device_management_screen_sHeatHighModeImg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sHeatHighModeImg, 0);
     lv_obj_set_pos(ui->device_management_screen_sHeatHighModeImg, 20, 14);
@@ -1912,7 +1912,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     //Write codes device_management_screen_sVentilateModeImg
     ui->device_management_screen_sVentilateModeImg = lv_img_create(ui->device_management_screen_cont_13);
     lv_obj_add_flag(ui->device_management_screen_sVentilateModeImg, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->device_management_screen_sVentilateModeImg, &_small_ventilate_mode_alpha_65x43);
+    lv_img_set_src(ui->device_management_screen_sVentilateModeImg, &_sventilate_alpha_65x43);
     lv_img_set_pivot(ui->device_management_screen_sVentilateModeImg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sVentilateModeImg, 0);
     lv_obj_set_pos(ui->device_management_screen_sVentilateModeImg, 20, 14);
@@ -1927,7 +1927,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     //Write codes device_management_screen_sWindModeImg
     ui->device_management_screen_sWindModeImg = lv_img_create(ui->device_management_screen_cont_13);
     lv_obj_add_flag(ui->device_management_screen_sWindModeImg, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->device_management_screen_sWindModeImg, &_small_fan_mode_alpha_65x43);
+    lv_img_set_src(ui->device_management_screen_sWindModeImg, &_sFanMode_alpha_65x43);
     lv_img_set_pivot(ui->device_management_screen_sWindModeImg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sWindModeImg, 0);
     lv_obj_set_pos(ui->device_management_screen_sWindModeImg, 20, 14);
@@ -1942,7 +1942,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     //Write codes device_management_screen_sHeatDevImg
     ui->device_management_screen_sHeatDevImg = lv_img_create(ui->device_management_screen_cont_13);
     lv_obj_add_flag(ui->device_management_screen_sHeatDevImg, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->device_management_screen_sHeatDevImg, &_small_dev_alpha_65x43);
+    lv_img_set_src(ui->device_management_screen_sHeatDevImg, &_sDev_alpha_65x43);
     lv_img_set_pivot(ui->device_management_screen_sHeatDevImg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sHeatDevImg, 0);
     lv_obj_set_pos(ui->device_management_screen_sHeatDevImg, 20, 14);
@@ -1957,7 +1957,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     //Write codes device_management_screen_sidleModeImg
     ui->device_management_screen_sidleModeImg = lv_img_create(ui->device_management_screen_cont_13);
     lv_obj_add_flag(ui->device_management_screen_sidleModeImg, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->device_management_screen_sidleModeImg, &_small_idle_mode_alpha_65x43);
+    lv_img_set_src(ui->device_management_screen_sidleModeImg, &_sIdleMode_alpha_65x43);
     lv_img_set_pivot(ui->device_management_screen_sidleModeImg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sidleModeImg, 0);
     lv_obj_set_pos(ui->device_management_screen_sidleModeImg, 20, 14);
@@ -1992,24 +1992,24 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_obj_set_style_pad_left(ui->device_management_screen_label_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->device_management_screen_label_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes device_management_screen_img_23
-    ui->device_management_screen_img_23 = lv_img_create(ui->device_management_screen);
-    lv_obj_add_flag(ui->device_management_screen_img_23, LV_OBJ_FLAG_CLICKABLE);
+    //Write codes device_management_screen_sDRLightImg
+    ui->device_management_screen_sDRLightImg = lv_img_create(ui->device_management_screen);
+    lv_obj_add_flag(ui->device_management_screen_sDRLightImg, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->device_management_screen_img_23, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sDryRackLight.png");
+    lv_img_set_src(ui->device_management_screen_sDRLightImg, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\sDryRackL.png");
 #else
-    lv_img_set_src(ui->device_management_screen_img_23, "S:/sdfile/EXT_RESERVED/uipackres/ui/sDryRackLight.png");
+    lv_img_set_src(ui->device_management_screen_sDRLightImg, "S:/sdfile/EXT_RESERVED/uipackres/ui/sDryRackL.png");
 #endif
-    lv_img_set_pivot(ui->device_management_screen_img_23, 50,50);
-    lv_img_set_angle(ui->device_management_screen_img_23, 0);
-    lv_obj_set_pos(ui->device_management_screen_img_23, 111, 1031);
-    lv_obj_set_size(ui->device_management_screen_img_23, 21, 5);
+    lv_img_set_pivot(ui->device_management_screen_sDRLightImg, 50,50);
+    lv_img_set_angle(ui->device_management_screen_sDRLightImg, 0);
+    lv_obj_set_pos(ui->device_management_screen_sDRLightImg, 111, 1031);
+    lv_obj_set_size(ui->device_management_screen_sDRLightImg, 21, 5);
 
-    //Write style for device_management_screen_img_23, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->device_management_screen_img_23, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->device_management_screen_img_23, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->device_management_screen_img_23, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->device_management_screen_img_23, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+    //Write style for device_management_screen_sDRLightImg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->device_management_screen_sDRLightImg, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->device_management_screen_sDRLightImg, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->device_management_screen_sDRLightImg, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->device_management_screen_sDRLightImg, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of device_management_screen.
 

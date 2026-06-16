@@ -129,9 +129,9 @@ void setup_scr_AirCondition(lv_ui *ui)
     ui->AirCondition_FabCurtianLeft = lv_img_create(ui->AirCondition);
     lv_obj_add_flag(ui->AirCondition_FabCurtianLeft, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->AirCondition_FabCurtianLeft, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\AirConditionImg.png");
+    lv_img_set_src(ui->AirCondition_FabCurtianLeft, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\AirCondiImg.png");
 #else
-    lv_img_set_src(ui->AirCondition_FabCurtianLeft, "S:/sdfile/EXT_RESERVED/uipackres/ui/AirConditionImg.png");
+    lv_img_set_src(ui->AirCondition_FabCurtianLeft, "S:/sdfile/EXT_RESERVED/uipackres/ui/AirCondiImg.png");
 #endif
     lv_img_set_pivot(ui->AirCondition_FabCurtianLeft, 50,50);
     lv_img_set_angle(ui->AirCondition_FabCurtianLeft, 0);

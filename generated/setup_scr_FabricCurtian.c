@@ -129,9 +129,9 @@ void setup_scr_FabricCurtian(lv_ui *ui)
     ui->FabricCurtian_FabCurtianOpen = lv_img_create(ui->FabricCurtian);
     lv_obj_add_flag(ui->FabricCurtian_FabCurtianOpen, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->FabricCurtian_FabCurtianOpen, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianOpen.png");
+    lv_img_set_src(ui->FabricCurtian_FabCurtianOpen, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCOpen.png");
 #else
-    lv_img_set_src(ui->FabricCurtian_FabCurtianOpen, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianOpen.png");
+    lv_img_set_src(ui->FabricCurtian_FabCurtianOpen, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCOpen.png");
 #endif
     lv_img_set_pivot(ui->FabricCurtian_FabCurtianOpen, 50,50);
     lv_img_set_angle(ui->FabricCurtian_FabCurtianOpen, 0);
@@ -148,9 +148,9 @@ void setup_scr_FabricCurtian(lv_ui *ui)
     ui->FabricCurtian_FabCurtianClose = lv_img_create(ui->FabricCurtian);
     lv_obj_add_flag(ui->FabricCurtian_FabCurtianClose, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->FabricCurtian_FabCurtianClose, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianClose.png");
+    lv_img_set_src(ui->FabricCurtian_FabCurtianClose, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCClose.png");
 #else
-    lv_img_set_src(ui->FabricCurtian_FabCurtianClose, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianClose.png");
+    lv_img_set_src(ui->FabricCurtian_FabCurtianClose, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCClose.png");
 #endif
     lv_img_set_pivot(ui->FabricCurtian_FabCurtianClose, 50,50);
     lv_img_set_angle(ui->FabricCurtian_FabCurtianClose, 0);
@@ -167,14 +167,14 @@ void setup_scr_FabricCurtian(lv_ui *ui)
     ui->FabricCurtian_FabCurtianPause = lv_img_create(ui->FabricCurtian);
     lv_obj_add_flag(ui->FabricCurtian_FabCurtianPause, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->FabricCurtian_FabCurtianPause, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianPause.png");
+    lv_img_set_src(ui->FabricCurtian_FabCurtianPause, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCPause.png");
 #else
-    lv_img_set_src(ui->FabricCurtian_FabCurtianPause, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianPause.png");
+    lv_img_set_src(ui->FabricCurtian_FabCurtianPause, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCPause.png");
 #endif
     lv_img_set_pivot(ui->FabricCurtian_FabCurtianPause, 50,50);
     lv_img_set_angle(ui->FabricCurtian_FabCurtianPause, 0);
     lv_obj_set_pos(ui->FabricCurtian_FabCurtianPause, 311, 678);
-    lv_obj_set_size(ui->FabricCurtian_FabCurtianPause, 95, 95);
+    lv_obj_set_size(ui->FabricCurtian_FabCurtianPause, 109, 110);
 
     //Write style for FabricCurtian_FabCurtianPause, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_img_recolor_opa(ui->FabricCurtian_FabCurtianPause, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -186,9 +186,9 @@ void setup_scr_FabricCurtian(lv_ui *ui)
     ui->FabricCurtian_FabCurtianBg1 = lv_img_create(ui->FabricCurtian);
     lv_obj_add_flag(ui->FabricCurtian_FabCurtianBg1, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->FabricCurtian_FabCurtianBg1, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianBg1.png");
+    lv_img_set_src(ui->FabricCurtian_FabCurtianBg1, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCBg1.png");
 #else
-    lv_img_set_src(ui->FabricCurtian_FabCurtianBg1, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianBg1.png");
+    lv_img_set_src(ui->FabricCurtian_FabCurtianBg1, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCBg1.png");
 #endif
     lv_img_set_pivot(ui->FabricCurtian_FabCurtianBg1, 50,50);
     lv_img_set_angle(ui->FabricCurtian_FabCurtianBg1, 0);
@@ -201,32 +201,13 @@ void setup_scr_FabricCurtian(lv_ui *ui)
     lv_obj_set_style_radius(ui->FabricCurtian_FabCurtianBg1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_clip_corner(ui->FabricCurtian_FabCurtianBg1, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes FabricCurtian_FabCurtianBg3
-    ui->FabricCurtian_FabCurtianBg3 = lv_img_create(ui->FabricCurtian);
-    lv_obj_add_flag(ui->FabricCurtian_FabCurtianBg3, LV_OBJ_FLAG_CLICKABLE);
-#if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->FabricCurtian_FabCurtianBg3, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianBg3.png");
-#else
-    lv_img_set_src(ui->FabricCurtian_FabCurtianBg3, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianBg3.png");
-#endif
-    lv_img_set_pivot(ui->FabricCurtian_FabCurtianBg3, 50,50);
-    lv_img_set_angle(ui->FabricCurtian_FabCurtianBg3, 0);
-    lv_obj_set_pos(ui->FabricCurtian_FabCurtianBg3, 252, 384);
-    lv_obj_set_size(ui->FabricCurtian_FabCurtianBg3, 42, 14);
-
-    //Write style for FabricCurtian_FabCurtianBg3, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->FabricCurtian_FabCurtianBg3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->FabricCurtian_FabCurtianBg3, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->FabricCurtian_FabCurtianBg3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->FabricCurtian_FabCurtianBg3, true, LV_PART_MAIN|LV_STATE_DEFAULT);
-
     //Write codes FabricCurtian_FabCurtianBg2
     ui->FabricCurtian_FabCurtianBg2 = lv_img_create(ui->FabricCurtian);
     lv_obj_add_flag(ui->FabricCurtian_FabCurtianBg2, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->FabricCurtian_FabCurtianBg2, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianBg2.png");
+    lv_img_set_src(ui->FabricCurtian_FabCurtianBg2, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCBg2.png");
 #else
-    lv_img_set_src(ui->FabricCurtian_FabCurtianBg2, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianBg2.png");
+    lv_img_set_src(ui->FabricCurtian_FabCurtianBg2, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCBg2.png");
 #endif
     lv_img_set_pivot(ui->FabricCurtian_FabCurtianBg2, 50,50);
     lv_img_set_angle(ui->FabricCurtian_FabCurtianBg2, 0);
@@ -239,17 +220,36 @@ void setup_scr_FabricCurtian(lv_ui *ui)
     lv_obj_set_style_radius(ui->FabricCurtian_FabCurtianBg2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_clip_corner(ui->FabricCurtian_FabCurtianBg2, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
+    //Write codes FabricCurtian_FabCurtianBg3
+    ui->FabricCurtian_FabCurtianBg3 = lv_img_create(ui->FabricCurtian);
+    lv_obj_add_flag(ui->FabricCurtian_FabCurtianBg3, LV_OBJ_FLAG_CLICKABLE);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->FabricCurtian_FabCurtianBg3, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCBg3.png");
+#else
+    lv_img_set_src(ui->FabricCurtian_FabCurtianBg3, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCBg3.png");
+#endif
+    lv_img_set_pivot(ui->FabricCurtian_FabCurtianBg3, 50,50);
+    lv_img_set_angle(ui->FabricCurtian_FabCurtianBg3, 0);
+    lv_obj_set_pos(ui->FabricCurtian_FabCurtianBg3, 252, 384);
+    lv_obj_set_size(ui->FabricCurtian_FabCurtianBg3, 42, 14);
+
+    //Write style for FabricCurtian_FabCurtianBg3, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->FabricCurtian_FabCurtianBg3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->FabricCurtian_FabCurtianBg3, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->FabricCurtian_FabCurtianBg3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->FabricCurtian_FabCurtianBg3, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
     //Write codes FabricCurtian_FabCurtianLeft
     ui->FabricCurtian_FabCurtianLeft = lv_img_create(ui->FabricCurtian);
     lv_obj_add_flag(ui->FabricCurtian_FabCurtianLeft, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->FabricCurtian_FabCurtianLeft, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianright.png");
+    lv_img_set_src(ui->FabricCurtian_FabCurtianLeft, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCLeft.png");
 #else
-    lv_img_set_src(ui->FabricCurtian_FabCurtianLeft, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianright.png");
+    lv_img_set_src(ui->FabricCurtian_FabCurtianLeft, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCLeft.png");
 #endif
     lv_img_set_pivot(ui->FabricCurtian_FabCurtianLeft, 50,50);
     lv_img_set_angle(ui->FabricCurtian_FabCurtianLeft, 0);
-    lv_obj_set_pos(ui->FabricCurtian_FabCurtianLeft, 130, 193);
+    lv_obj_set_pos(ui->FabricCurtian_FabCurtianLeft, 129, 194);
     lv_obj_set_size(ui->FabricCurtian_FabCurtianLeft, 231, 287);
 
     //Write style for FabricCurtian_FabCurtianLeft, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -262,9 +262,9 @@ void setup_scr_FabricCurtian(lv_ui *ui)
     ui->FabricCurtian_FabCurtianright = lv_img_create(ui->FabricCurtian);
     lv_obj_add_flag(ui->FabricCurtian_FabCurtianright, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->FabricCurtian_FabCurtianright, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianright.png");
+    lv_img_set_src(ui->FabricCurtian_FabCurtianright, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCright.png");
 #else
-    lv_img_set_src(ui->FabricCurtian_FabCurtianright, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianright.png");
+    lv_img_set_src(ui->FabricCurtian_FabCurtianright, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCright.png");
 #endif
     lv_img_set_pivot(ui->FabricCurtian_FabCurtianright, 50,50);
     lv_img_set_angle(ui->FabricCurtian_FabCurtianright, 0);
@@ -279,7 +279,7 @@ void setup_scr_FabricCurtian(lv_ui *ui)
 
     //Write codes FabricCurtian_cont_2
     ui->FabricCurtian_cont_2 = lv_obj_create(ui->FabricCurtian);
-    lv_obj_set_pos(ui->FabricCurtian_cont_2, -176, 155);
+    lv_obj_set_pos(ui->FabricCurtian_cont_2, -172, 170);
     lv_obj_set_size(ui->FabricCurtian_cont_2, 300, 324);
     lv_obj_set_scrollbar_mode(ui->FabricCurtian_cont_2, LV_SCROLLBAR_MODE_OFF);
 
@@ -317,9 +317,9 @@ void setup_scr_FabricCurtian(lv_ui *ui)
     ui->FabricCurtian_FabCurtianPull2 = lv_img_create(ui->FabricCurtian);
     lv_obj_add_flag(ui->FabricCurtian_FabCurtianPull2, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->FabricCurtian_FabCurtianPull2, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianPull.png");
+    lv_img_set_src(ui->FabricCurtian_FabCurtianPull2, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCPull.png");
 #else
-    lv_img_set_src(ui->FabricCurtian_FabCurtianPull2, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianPull.png");
+    lv_img_set_src(ui->FabricCurtian_FabCurtianPull2, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCPull.png");
 #endif
     lv_img_set_pivot(ui->FabricCurtian_FabCurtianPull2, 50,50);
     lv_img_set_angle(ui->FabricCurtian_FabCurtianPull2, 0);
@@ -336,9 +336,9 @@ void setup_scr_FabricCurtian(lv_ui *ui)
     ui->FabricCurtian_FabCurtianPull1 = lv_img_create(ui->FabricCurtian);
     lv_obj_add_flag(ui->FabricCurtian_FabCurtianPull1, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->FabricCurtian_FabCurtianPull1, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianPull.png");
+    lv_img_set_src(ui->FabricCurtian_FabCurtianPull1, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCPull.png");
 #else
-    lv_img_set_src(ui->FabricCurtian_FabCurtianPull1, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianPull.png");
+    lv_img_set_src(ui->FabricCurtian_FabCurtianPull1, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCPull.png");
 #endif
     lv_img_set_pivot(ui->FabricCurtian_FabCurtianPull1, 50,50);
     lv_img_set_angle(ui->FabricCurtian_FabCurtianPull1, 0);
@@ -355,9 +355,9 @@ void setup_scr_FabricCurtian(lv_ui *ui)
     ui->FabricCurtian_FabCurtianPole = lv_img_create(ui->FabricCurtian);
     lv_obj_add_flag(ui->FabricCurtian_FabCurtianPole, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->FabricCurtian_FabCurtianPole, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianPole.png");
+    lv_img_set_src(ui->FabricCurtian_FabCurtianPole, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCPole.png");
 #else
-    lv_img_set_src(ui->FabricCurtian_FabCurtianPole, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianPole.png");
+    lv_img_set_src(ui->FabricCurtian_FabCurtianPole, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCPole.png");
 #endif
     lv_img_set_pivot(ui->FabricCurtian_FabCurtianPole, 50,50);
     lv_img_set_angle(ui->FabricCurtian_FabCurtianPole, 0);

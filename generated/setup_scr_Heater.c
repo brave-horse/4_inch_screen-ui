@@ -110,7 +110,11 @@ void setup_scr_Heater(lv_ui *ui)
     //Write codes Heater_HeatLight
     ui->Heater_HeatLight = lv_img_create(ui->Heater);
     lv_obj_add_flag(ui->Heater_HeatLight, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_HeatLight, &_light_on_alpha_295x164);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Heater_HeatLight, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\light_on.png");
+#else
+    lv_img_set_src(ui->Heater_HeatLight, "S:/sdfile/EXT_RESERVED/uipackres/ui/light_on.png");
+#endif
     lv_img_set_pivot(ui->Heater_HeatLight, 50,50);
     lv_img_set_angle(ui->Heater_HeatLight, 0);
     lv_obj_set_pos(ui->Heater_HeatLight, 213, 182);
@@ -125,7 +129,11 @@ void setup_scr_Heater(lv_ui *ui)
     //Write codes Heater_HeatDev
     ui->Heater_HeatDev = lv_img_create(ui->Heater);
     lv_obj_add_flag(ui->Heater_HeatDev, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_HeatDev, &_dev_alpha_295x164);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Heater_HeatDev, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\dev.png");
+#else
+    lv_img_set_src(ui->Heater_HeatDev, "S:/sdfile/EXT_RESERVED/uipackres/ui/dev.png");
+#endif
     lv_img_set_pivot(ui->Heater_HeatDev, 50,50);
     lv_img_set_angle(ui->Heater_HeatDev, 0);
     lv_obj_set_pos(ui->Heater_HeatDev, 213, 182);
@@ -163,7 +171,11 @@ void setup_scr_Heater(lv_ui *ui)
     //Write codes Heater_LightOffImg
     ui->Heater_LightOffImg = lv_img_create(ui->Heater);
     lv_obj_add_flag(ui->Heater_LightOffImg, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_LightOffImg, &_light_off_btn_alpha_50x67);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Heater_LightOffImg, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\lightOffBtn.png");
+#else
+    lv_img_set_src(ui->Heater_LightOffImg, "S:/sdfile/EXT_RESERVED/uipackres/ui/lightOffBtn.png");
+#endif
     lv_img_set_pivot(ui->Heater_LightOffImg, 50,50);
     lv_img_set_angle(ui->Heater_LightOffImg, 0);
     lv_obj_set_pos(ui->Heater_LightOffImg, 174, 575);
@@ -178,7 +190,11 @@ void setup_scr_Heater(lv_ui *ui)
     //Write codes Heater_LightOnImg
     ui->Heater_LightOnImg = lv_img_create(ui->Heater);
     lv_obj_add_flag(ui->Heater_LightOnImg, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_LightOnImg, &_light_on_btn_alpha_50x67);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Heater_LightOnImg, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\lightOnBtn.png");
+#else
+    lv_img_set_src(ui->Heater_LightOnImg, "S:/sdfile/EXT_RESERVED/uipackres/ui/lightOnBtn.png");
+#endif
     lv_img_set_pivot(ui->Heater_LightOnImg, 50,50);
     lv_img_set_angle(ui->Heater_LightOnImg, 0);
     lv_obj_set_pos(ui->Heater_LightOnImg, 174, 575);
@@ -238,7 +254,11 @@ void setup_scr_Heater(lv_ui *ui)
     //Write codes Heater_IdleImg
     ui->Heater_IdleImg = lv_img_create(ui->Heater);
     lv_obj_add_flag(ui->Heater_IdleImg, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_IdleImg, &_idle_btn_alpha_50x67);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Heater_IdleImg, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\idle_btn.png");
+#else
+    lv_img_set_src(ui->Heater_IdleImg, "S:/sdfile/EXT_RESERVED/uipackres/ui/idle_btn.png");
+#endif
     lv_img_set_pivot(ui->Heater_IdleImg, 50,50);
     lv_img_set_angle(ui->Heater_IdleImg, 0);
     lv_obj_set_pos(ui->Heater_IdleImg, 501, 569);
@@ -287,7 +307,11 @@ void setup_scr_Heater(lv_ui *ui)
     //Write codes Heater_VentilateImg
     ui->Heater_VentilateImg = lv_img_create(ui->Heater);
     lv_obj_add_flag(ui->Heater_VentilateImg, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_VentilateImg, &_ventilate_btn_alpha_50x67);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Heater_VentilateImg, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\venBtn.png");
+#else
+    lv_img_set_src(ui->Heater_VentilateImg, "S:/sdfile/EXT_RESERVED/uipackres/ui/venBtn.png");
+#endif
     lv_img_set_pivot(ui->Heater_VentilateImg, 50,50);
     lv_img_set_angle(ui->Heater_VentilateImg, 0);
     lv_obj_set_pos(ui->Heater_VentilateImg, 419, 481);
@@ -336,7 +360,11 @@ void setup_scr_Heater(lv_ui *ui)
     //Write codes Heater_HeatLowImg
     ui->Heater_HeatLowImg = lv_img_create(ui->Heater);
     lv_obj_add_flag(ui->Heater_HeatLowImg, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_HeatLowImg, &_weakHeat_btn_alpha_50x67);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Heater_HeatLowImg, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\HeatLBtn.png");
+#else
+    lv_img_set_src(ui->Heater_HeatLowImg, "S:/sdfile/EXT_RESERVED/uipackres/ui/HeatLBtn.png");
+#endif
     lv_img_set_pivot(ui->Heater_HeatLowImg, 50,50);
     lv_img_set_angle(ui->Heater_HeatLowImg, 0);
     lv_obj_set_pos(ui->Heater_HeatLowImg, 260, 476);
@@ -385,7 +413,11 @@ void setup_scr_Heater(lv_ui *ui)
     //Write codes Heater_WindImg
     ui->Heater_WindImg = lv_img_create(ui->Heater);
     lv_obj_add_flag(ui->Heater_WindImg, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_WindImg, &_fan_btn_alpha_50x67);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Heater_WindImg, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\fan_btn.png");
+#else
+    lv_img_set_src(ui->Heater_WindImg, "S:/sdfile/EXT_RESERVED/uipackres/ui/fan_btn.png");
+#endif
     lv_img_set_pivot(ui->Heater_WindImg, 50,50);
     lv_img_set_angle(ui->Heater_WindImg, 0);
     lv_obj_set_pos(ui->Heater_WindImg, 585, 476);
@@ -434,7 +466,11 @@ void setup_scr_Heater(lv_ui *ui)
     //Write codes Heater_HeatHighImg
     ui->Heater_HeatHighImg = lv_img_create(ui->Heater);
     lv_obj_add_flag(ui->Heater_HeatHighImg, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_HeatHighImg, &_strongHeat_btn_alpha_60x67);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Heater_HeatHighImg, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\HeatHbtn.png");
+#else
+    lv_img_set_src(ui->Heater_HeatHighImg, "S:/sdfile/EXT_RESERVED/uipackres/ui/HeatHbtn.png");
+#endif
     lv_img_set_pivot(ui->Heater_HeatHighImg, 50,50);
     lv_img_set_angle(ui->Heater_HeatHighImg, 0);
     lv_obj_set_pos(ui->Heater_HeatHighImg, 88, 476);
@@ -449,7 +485,11 @@ void setup_scr_Heater(lv_ui *ui)
     //Write codes Heater_VentilateMode
     ui->Heater_VentilateMode = lv_img_create(ui->Heater);
     lv_obj_add_flag(ui->Heater_VentilateMode, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_VentilateMode, &_ventilate_mode_alpha_295x164);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Heater_VentilateMode, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\venMode.png");
+#else
+    lv_img_set_src(ui->Heater_VentilateMode, "S:/sdfile/EXT_RESERVED/uipackres/ui/venMode.png");
+#endif
     lv_img_set_pivot(ui->Heater_VentilateMode, 50,50);
     lv_img_set_angle(ui->Heater_VentilateMode, 0);
     lv_obj_set_pos(ui->Heater_VentilateMode, 210, 180);
@@ -464,7 +504,11 @@ void setup_scr_Heater(lv_ui *ui)
     //Write codes Heater_heaterlowMode
     ui->Heater_heaterlowMode = lv_img_create(ui->Heater);
     lv_obj_add_flag(ui->Heater_heaterlowMode, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_heaterlowMode, &_weakHeat_mode_alpha_295x164);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Heater_heaterlowMode, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\HeatLMode.png");
+#else
+    lv_img_set_src(ui->Heater_heaterlowMode, "S:/sdfile/EXT_RESERVED/uipackres/ui/HeatLMode.png");
+#endif
     lv_img_set_pivot(ui->Heater_heaterlowMode, 50,50);
     lv_img_set_angle(ui->Heater_heaterlowMode, 0);
     lv_obj_set_pos(ui->Heater_heaterlowMode, 210, 180);
@@ -479,7 +523,11 @@ void setup_scr_Heater(lv_ui *ui)
     //Write codes Heater_HeatHighMode
     ui->Heater_HeatHighMode = lv_img_create(ui->Heater);
     lv_obj_add_flag(ui->Heater_HeatHighMode, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_HeatHighMode, &_strongHeat_mode_alpha_295x164);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Heater_HeatHighMode, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\HeatHMode.png");
+#else
+    lv_img_set_src(ui->Heater_HeatHighMode, "S:/sdfile/EXT_RESERVED/uipackres/ui/HeatHMode.png");
+#endif
     lv_img_set_pivot(ui->Heater_HeatHighMode, 50,50);
     lv_img_set_angle(ui->Heater_HeatHighMode, 0);
     lv_obj_set_pos(ui->Heater_HeatHighMode, 210, 180);
@@ -494,7 +542,11 @@ void setup_scr_Heater(lv_ui *ui)
     //Write codes Heater_WindMode
     ui->Heater_WindMode = lv_img_create(ui->Heater);
     lv_obj_add_flag(ui->Heater_WindMode, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_WindMode, &_fan_mode_alpha_295x164);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Heater_WindMode, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\fan_mode.png");
+#else
+    lv_img_set_src(ui->Heater_WindMode, "S:/sdfile/EXT_RESERVED/uipackres/ui/fan_mode.png");
+#endif
     lv_img_set_pivot(ui->Heater_WindMode, 50,50);
     lv_img_set_angle(ui->Heater_WindMode, 0);
     lv_obj_set_pos(ui->Heater_WindMode, 210, 180);
@@ -509,7 +561,11 @@ void setup_scr_Heater(lv_ui *ui)
     //Write codes Heater_idleMode
     ui->Heater_idleMode = lv_img_create(ui->Heater);
     lv_obj_add_flag(ui->Heater_idleMode, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Heater_idleMode, &_idle_mode_alpha_295x164);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Heater_idleMode, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\idle_mode.png");
+#else
+    lv_img_set_src(ui->Heater_idleMode, "S:/sdfile/EXT_RESERVED/uipackres/ui/idle_mode.png");
+#endif
     lv_img_set_pivot(ui->Heater_idleMode, 50,50);
     lv_img_set_angle(ui->Heater_idleMode, 0);
     lv_obj_set_pos(ui->Heater_idleMode, 210, 180);

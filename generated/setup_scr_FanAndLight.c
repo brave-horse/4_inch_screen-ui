@@ -107,7 +107,11 @@ void setup_scr_FanAndLight(lv_ui *ui)
     //Write codes FanAndLight_fLight_off
     ui->FanAndLight_fLight_off = lv_img_create(ui->FanAndLight);
     lv_obj_add_flag(ui->FanAndLight_fLight_off, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->FanAndLight_fLight_off, &_DRLightOff_alpha_109x109);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->FanAndLight_fLight_off, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\DRLightOff.png");
+#else
+    lv_img_set_src(ui->FanAndLight_fLight_off, "S:/sdfile/EXT_RESERVED/uipackres/ui/DRLightOff.png");
+#endif
     lv_img_set_pivot(ui->FanAndLight_fLight_off, 50,50);
     lv_img_set_angle(ui->FanAndLight_fLight_off, 0);
     lv_obj_set_pos(ui->FanAndLight_fLight_off, 51, 552);
@@ -122,7 +126,11 @@ void setup_scr_FanAndLight(lv_ui *ui)
     //Write codes FanAndLight_fLight_on
     ui->FanAndLight_fLight_on = lv_img_create(ui->FanAndLight);
     lv_obj_add_flag(ui->FanAndLight_fLight_on, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->FanAndLight_fLight_on, &_DRLightOn_alpha_109x110);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->FanAndLight_fLight_on, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\DRLightOn.png");
+#else
+    lv_img_set_src(ui->FanAndLight_fLight_on, "S:/sdfile/EXT_RESERVED/uipackres/ui/DRLightOn.png");
+#endif
     lv_img_set_pivot(ui->FanAndLight_fLight_on, 50,50);
     lv_img_set_angle(ui->FanAndLight_fLight_on, 0);
     lv_obj_set_pos(ui->FanAndLight_fLight_on, 51, 552);
@@ -137,7 +145,11 @@ void setup_scr_FanAndLight(lv_ui *ui)
     //Write codes FanAndLight_fan
     ui->FanAndLight_fan = lv_img_create(ui->FanAndLight);
     lv_obj_add_flag(ui->FanAndLight_fan, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->FanAndLight_fan, &_fan_alpha_206x204);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->FanAndLight_fan, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\fan.png");
+#else
+    lv_img_set_src(ui->FanAndLight_fan, "S:/sdfile/EXT_RESERVED/uipackres/ui/fan.png");
+#endif
     lv_img_set_pivot(ui->FanAndLight_fan, 103,102);
     lv_img_set_angle(ui->FanAndLight_fan, 0);
     lv_obj_set_pos(ui->FanAndLight_fan, 257, 210);
@@ -152,7 +164,11 @@ void setup_scr_FanAndLight(lv_ui *ui)
     //Write codes FanAndLight_FanSpeed4
     ui->FanAndLight_FanSpeed4 = lv_img_create(ui->FanAndLight);
     lv_obj_add_flag(ui->FanAndLight_FanSpeed4, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->FanAndLight_FanSpeed4, &_ACSpeed4_alpha_109x109);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->FanAndLight_FanSpeed4, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\ACSpeed4.png");
+#else
+    lv_img_set_src(ui->FanAndLight_FanSpeed4, "S:/sdfile/EXT_RESERVED/uipackres/ui/ACSpeed4.png");
+#endif
     lv_img_set_pivot(ui->FanAndLight_FanSpeed4, 50,50);
     lv_img_set_angle(ui->FanAndLight_FanSpeed4, 0);
     lv_obj_set_pos(ui->FanAndLight_FanSpeed4, 533, 545);
@@ -167,7 +183,11 @@ void setup_scr_FanAndLight(lv_ui *ui)
     //Write codes FanAndLight_FanSpeed3
     ui->FanAndLight_FanSpeed3 = lv_img_create(ui->FanAndLight);
     lv_obj_add_flag(ui->FanAndLight_FanSpeed3, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->FanAndLight_FanSpeed3, &_ACSpeed3_alpha_109x109);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->FanAndLight_FanSpeed3, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\ACSpeed3.png");
+#else
+    lv_img_set_src(ui->FanAndLight_FanSpeed3, "S:/sdfile/EXT_RESERVED/uipackres/ui/ACSpeed3.png");
+#endif
     lv_img_set_pivot(ui->FanAndLight_FanSpeed3, 50,50);
     lv_img_set_angle(ui->FanAndLight_FanSpeed3, 0);
     lv_obj_set_pos(ui->FanAndLight_FanSpeed3, 536, 545);
@@ -182,7 +202,11 @@ void setup_scr_FanAndLight(lv_ui *ui)
     //Write codes FanAndLight_FanSpeed2
     ui->FanAndLight_FanSpeed2 = lv_img_create(ui->FanAndLight);
     lv_obj_add_flag(ui->FanAndLight_FanSpeed2, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->FanAndLight_FanSpeed2, &_ACSpeed2_alpha_105x109);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->FanAndLight_FanSpeed2, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\ACSpeed2.png");
+#else
+    lv_img_set_src(ui->FanAndLight_FanSpeed2, "S:/sdfile/EXT_RESERVED/uipackres/ui/ACSpeed2.png");
+#endif
     lv_img_set_pivot(ui->FanAndLight_FanSpeed2, 50,50);
     lv_img_set_angle(ui->FanAndLight_FanSpeed2, 0);
     lv_obj_set_pos(ui->FanAndLight_FanSpeed2, 536, 545);
@@ -197,7 +221,11 @@ void setup_scr_FanAndLight(lv_ui *ui)
     //Write codes FanAndLight_FanSpeed1
     ui->FanAndLight_FanSpeed1 = lv_img_create(ui->FanAndLight);
     lv_obj_add_flag(ui->FanAndLight_FanSpeed1, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->FanAndLight_FanSpeed1, &_ACSpeed1_alpha_109x109);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->FanAndLight_FanSpeed1, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\ACSpeed1.png");
+#else
+    lv_img_set_src(ui->FanAndLight_FanSpeed1, "S:/sdfile/EXT_RESERVED/uipackres/ui/ACSpeed1.png");
+#endif
     lv_img_set_pivot(ui->FanAndLight_FanSpeed1, 50,50);
     lv_img_set_angle(ui->FanAndLight_FanSpeed1, 0);
     lv_obj_set_pos(ui->FanAndLight_FanSpeed1, 536, 545);
@@ -212,7 +240,11 @@ void setup_scr_FanAndLight(lv_ui *ui)
     //Write codes FanAndLight_Fan_on
     ui->FanAndLight_Fan_on = lv_img_create(ui->FanAndLight);
     lv_obj_add_flag(ui->FanAndLight_Fan_on, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->FanAndLight_Fan_on, &_fanon_alpha_109x109);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->FanAndLight_Fan_on, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\fanon.png");
+#else
+    lv_img_set_src(ui->FanAndLight_Fan_on, "S:/sdfile/EXT_RESERVED/uipackres/ui/fanon.png");
+#endif
     lv_img_set_pivot(ui->FanAndLight_Fan_on, 50,50);
     lv_img_set_angle(ui->FanAndLight_Fan_on, 0);
     lv_obj_set_pos(ui->FanAndLight_Fan_on, 296, 552);
@@ -227,7 +259,11 @@ void setup_scr_FanAndLight(lv_ui *ui)
     //Write codes FanAndLight_Fan_off
     ui->FanAndLight_Fan_off = lv_img_create(ui->FanAndLight);
     lv_obj_add_flag(ui->FanAndLight_Fan_off, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->FanAndLight_Fan_off, &_fanoff_alpha_109x109);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->FanAndLight_Fan_off, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\fanoff.png");
+#else
+    lv_img_set_src(ui->FanAndLight_Fan_off, "S:/sdfile/EXT_RESERVED/uipackres/ui/fanoff.png");
+#endif
     lv_img_set_pivot(ui->FanAndLight_Fan_off, 50,50);
     lv_img_set_angle(ui->FanAndLight_Fan_off, 0);
     lv_obj_set_pos(ui->FanAndLight_Fan_off, 296, 552);
@@ -242,7 +278,11 @@ void setup_scr_FanAndLight(lv_ui *ui)
     //Write codes FanAndLight_FLightOnImg
     ui->FanAndLight_FLightOnImg = lv_img_create(ui->FanAndLight);
     lv_obj_add_flag(ui->FanAndLight_FLightOnImg, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->FanAndLight_FLightOnImg, &_lightOn_alpha_82x82);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->FanAndLight_FLightOnImg, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\lightOn.png");
+#else
+    lv_img_set_src(ui->FanAndLight_FLightOnImg, "S:/sdfile/EXT_RESERVED/uipackres/ui/lightOn.png");
+#endif
     lv_img_set_pivot(ui->FanAndLight_FLightOnImg, 50,50);
     lv_img_set_angle(ui->FanAndLight_FLightOnImg, 0);
     lv_obj_set_pos(ui->FanAndLight_FLightOnImg, 320, 277);
@@ -257,7 +297,11 @@ void setup_scr_FanAndLight(lv_ui *ui)
     //Write codes FanAndLight_FLightOffImg
     ui->FanAndLight_FLightOffImg = lv_img_create(ui->FanAndLight);
     lv_obj_add_flag(ui->FanAndLight_FLightOffImg, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->FanAndLight_FLightOffImg, &_lightOff_alpha_82x82);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->FanAndLight_FLightOffImg, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\lightOff.png");
+#else
+    lv_img_set_src(ui->FanAndLight_FLightOffImg, "S:/sdfile/EXT_RESERVED/uipackres/ui/lightOff.png");
+#endif
     lv_img_set_pivot(ui->FanAndLight_FLightOffImg, 50,50);
     lv_img_set_angle(ui->FanAndLight_FLightOffImg, 0);
     lv_obj_set_pos(ui->FanAndLight_FLightOffImg, 320, 277);
@@ -272,7 +316,7 @@ void setup_scr_FanAndLight(lv_ui *ui)
     //Write codes FanAndLight_btn_1
     ui->FanAndLight_btn_1 = lv_btn_create(ui->FanAndLight);
     ui->FanAndLight_btn_1_label = lv_label_create(ui->FanAndLight_btn_1);
-    lv_label_set_text(ui->FanAndLight_btn_1_label, "<  卷帘");
+    lv_label_set_text(ui->FanAndLight_btn_1_label, "<  风扇灯");
     lv_label_set_long_mode(ui->FanAndLight_btn_1_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->FanAndLight_btn_1_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->FanAndLight_btn_1, 0, LV_STATE_DEFAULT);

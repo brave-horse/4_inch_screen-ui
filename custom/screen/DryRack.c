@@ -7,11 +7,12 @@
 #define DOWN_Y       160      /* img_1 最大下降 y(初始 -110) */
 #define APPLY_MIN_MS 50
 
+#define s_light  HWInterface.DryRack.light   /* 照明开关存中间层(与管理屏共享) */
+
 static int32_t    s_d;         /* 当前下降位移 0..s_travel */
 static int32_t    s_travel;    /* = DOWN_Y - 初始 y */
 static lv_coord_t s_img_y0;    /* img_1 初始 y(运行时捕获) */
 static lv_coord_t s_label_y0;  /* label_1 初始 y */
-static bool       s_light;     /* 照明开关 */
 static uint32_t   s_post_tick;
 
 /* img_1 + label_1 同步移动(间距不变), label 显示百分比 */
@@ -30,12 +31,12 @@ static void dryrack_post(int32_t d)
     hw_cloud_post(&(HW_Msg){ .type = HW_MSG_DRYRACK_POS, .val = (uint16_t)pct });
 }
 
-/* 照明: imgbtn 勾选态 + img_2 发光图透明度 */
+/* 照明: imgbtn 勾选态 + DRLightImg 发光图透明度 */
 static void dryrack_apply_light(void)
 {
     if (s_light) lv_obj_add_state  (guider_ui.DryRack_imgbtn_1, LV_STATE_CHECKED);
     else         lv_obj_clear_state(guider_ui.DryRack_imgbtn_1, LV_STATE_CHECKED);
-    lv_obj_set_style_img_opa(guider_ui.DryRack_img_2,
+    lv_obj_set_style_img_opa(guider_ui.DryRack_DRLightImg,
                              s_light ? LV_OPA_COVER : LV_OPA_TRANSP,
                              LV_PART_MAIN | LV_STATE_DEFAULT);
 }

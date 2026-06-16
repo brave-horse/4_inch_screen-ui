@@ -131,7 +131,11 @@ void setup_scr_Music(lv_ui *ui)
     //Write codes Music_prev
     ui->Music_prev = lv_img_create(ui->Music);
     lv_obj_add_flag(ui->Music_prev, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Music_prev, &_prev_alpha_94x94);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Music_prev, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\prev.png");
+#else
+    lv_img_set_src(ui->Music_prev, "S:/sdfile/EXT_RESERVED/uipackres/ui/prev.png");
+#endif
     lv_img_set_pivot(ui->Music_prev, 50,50);
     lv_img_set_angle(ui->Music_prev, 0);
     lv_obj_set_pos(ui->Music_prev, 66, 554);
@@ -146,7 +150,11 @@ void setup_scr_Music(lv_ui *ui)
     //Write codes Music_next
     ui->Music_next = lv_img_create(ui->Music);
     lv_obj_add_flag(ui->Music_next, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Music_next, &_next_alpha_94x94);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Music_next, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\next.png");
+#else
+    lv_img_set_src(ui->Music_next, "S:/sdfile/EXT_RESERVED/uipackres/ui/next.png");
+#endif
     lv_img_set_pivot(ui->Music_next, 50,50);
     lv_img_set_angle(ui->Music_next, 0);
     lv_obj_set_pos(ui->Music_next, 557, 553);
@@ -161,7 +169,11 @@ void setup_scr_Music(lv_ui *ui)
     //Write codes Music_volume_dec
     ui->Music_volume_dec = lv_img_create(ui->Music);
     lv_obj_add_flag(ui->Music_volume_dec, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Music_volume_dec, &_volume_dec_alpha_94x94);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Music_volume_dec, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\volume_dec.png");
+#else
+    lv_img_set_src(ui->Music_volume_dec, "S:/sdfile/EXT_RESERVED/uipackres/ui/volume_dec.png");
+#endif
     lv_img_set_pivot(ui->Music_volume_dec, 50,50);
     lv_img_set_angle(ui->Music_volume_dec, 0);
     lv_obj_set_pos(ui->Music_volume_dec, 582, 316);
@@ -176,7 +188,11 @@ void setup_scr_Music(lv_ui *ui)
     //Write codes Music_disc
     ui->Music_disc = lv_img_create(ui->Music);
     lv_obj_add_flag(ui->Music_disc, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Music_disc, &_disc_alpha_245x245);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Music_disc, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\disc.png");
+#else
+    lv_img_set_src(ui->Music_disc, "S:/sdfile/EXT_RESERVED/uipackres/ui/disc.png");
+#endif
     lv_img_set_pivot(ui->Music_disc, 122,122);
     lv_img_set_angle(ui->Music_disc, 0);
     lv_obj_set_pos(ui->Music_disc, 220, 212);
@@ -191,7 +207,11 @@ void setup_scr_Music(lv_ui *ui)
     //Write codes Music_volume_add
     ui->Music_volume_add = lv_img_create(ui->Music);
     lv_obj_add_flag(ui->Music_volume_add, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Music_volume_add, &_volume_add_alpha_94x94);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Music_volume_add, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\volume_add.png");
+#else
+    lv_img_set_src(ui->Music_volume_add, "S:/sdfile/EXT_RESERVED/uipackres/ui/volume_add.png");
+#endif
     lv_img_set_pivot(ui->Music_volume_add, 50,50);
     lv_img_set_angle(ui->Music_volume_add, 0);
     lv_obj_set_pos(ui->Music_volume_add, 578, 123);
@@ -206,8 +226,13 @@ void setup_scr_Music(lv_ui *ui)
     //Write codes Music_play
     ui->Music_play = lv_imgbtn_create(ui->Music);
     lv_obj_add_flag(ui->Music_play, LV_OBJ_FLAG_CHECKABLE);
-    lv_imgbtn_set_src(ui->Music_play, LV_IMGBTN_STATE_RELEASED, NULL, &_play_alpha_109x109, NULL);
-    lv_imgbtn_set_src(ui->Music_play, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, &_pause_alpha_109x109, NULL);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_imgbtn_set_src(ui->Music_play, LV_IMGBTN_STATE_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\play.png", NULL);
+    lv_imgbtn_set_src(ui->Music_play, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\pause.png", NULL);
+#else
+    lv_imgbtn_set_src(ui->Music_play, LV_IMGBTN_STATE_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/play.png", NULL);
+    lv_imgbtn_set_src(ui->Music_play, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, "S:/sdfile/EXT_RESERVED/uipackres/ui/pause.png", NULL);
+#endif
     ui->Music_play_label = lv_label_create(ui->Music_play);
     lv_label_set_text(ui->Music_play_label, "");
     lv_label_set_long_mode(ui->Music_play_label, LV_LABEL_LONG_WRAP);
@@ -248,7 +273,11 @@ void setup_scr_Music(lv_ui *ui)
     //Write codes Music_rack
     ui->Music_rack = lv_img_create(ui->Music);
     lv_obj_add_flag(ui->Music_rack, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(ui->Music_rack, &_rack_alpha_124x195);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->Music_rack, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\rack.png");
+#else
+    lv_img_set_src(ui->Music_rack, "S:/sdfile/EXT_RESERVED/uipackres/ui/rack.png");
+#endif
     lv_img_set_pivot(ui->Music_rack, 50,50);
     lv_img_set_angle(ui->Music_rack, 0);
     lv_obj_set_pos(ui->Music_rack, 398, 93);

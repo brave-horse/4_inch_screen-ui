@@ -127,9 +127,9 @@ void setup_scr_RollBlind(lv_ui *ui)
     ui->RollBlind_FabCurtianClose = lv_img_create(ui->RollBlind);
     lv_obj_add_flag(ui->RollBlind_FabCurtianClose, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->RollBlind_FabCurtianClose, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\RollBlindDown.png");
+    lv_img_set_src(ui->RollBlind_FabCurtianClose, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\RBDown.png");
 #else
-    lv_img_set_src(ui->RollBlind_FabCurtianClose, "S:/sdfile/EXT_RESERVED/uipackres/ui/RollBlindDown.png");
+    lv_img_set_src(ui->RollBlind_FabCurtianClose, "S:/sdfile/EXT_RESERVED/uipackres/ui/RBDown.png");
 #endif
     lv_img_set_pivot(ui->RollBlind_FabCurtianClose, 50,50);
     lv_img_set_angle(ui->RollBlind_FabCurtianClose, 0);
@@ -165,9 +165,9 @@ void setup_scr_RollBlind(lv_ui *ui)
     ui->RollBlind_FabCurtianPause = lv_img_create(ui->RollBlind);
     lv_obj_add_flag(ui->RollBlind_FabCurtianPause, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->RollBlind_FabCurtianPause, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianPause.png");
+    lv_img_set_src(ui->RollBlind_FabCurtianPause, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCPause.png");
 #else
-    lv_img_set_src(ui->RollBlind_FabCurtianPause, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianPause.png");
+    lv_img_set_src(ui->RollBlind_FabCurtianPause, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCPause.png");
 #endif
     lv_img_set_pivot(ui->RollBlind_FabCurtianPause, 50,50);
     lv_img_set_angle(ui->RollBlind_FabCurtianPause, 0);
@@ -184,9 +184,9 @@ void setup_scr_RollBlind(lv_ui *ui)
     ui->RollBlind_FabCurtianBg1 = lv_img_create(ui->RollBlind);
     lv_obj_add_flag(ui->RollBlind_FabCurtianBg1, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->RollBlind_FabCurtianBg1, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianBg1.png");
+    lv_img_set_src(ui->RollBlind_FabCurtianBg1, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCBg1.png");
 #else
-    lv_img_set_src(ui->RollBlind_FabCurtianBg1, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianBg1.png");
+    lv_img_set_src(ui->RollBlind_FabCurtianBg1, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCBg1.png");
 #endif
     lv_img_set_pivot(ui->RollBlind_FabCurtianBg1, 50,50);
     lv_img_set_angle(ui->RollBlind_FabCurtianBg1, 0);
@@ -199,32 +199,13 @@ void setup_scr_RollBlind(lv_ui *ui)
     lv_obj_set_style_radius(ui->RollBlind_FabCurtianBg1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_clip_corner(ui->RollBlind_FabCurtianBg1, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes RollBlind_FabCurtianBg3
-    ui->RollBlind_FabCurtianBg3 = lv_img_create(ui->RollBlind);
-    lv_obj_add_flag(ui->RollBlind_FabCurtianBg3, LV_OBJ_FLAG_CLICKABLE);
-#if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->RollBlind_FabCurtianBg3, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianBg3.png");
-#else
-    lv_img_set_src(ui->RollBlind_FabCurtianBg3, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianBg3.png");
-#endif
-    lv_img_set_pivot(ui->RollBlind_FabCurtianBg3, 50,50);
-    lv_img_set_angle(ui->RollBlind_FabCurtianBg3, 0);
-    lv_obj_set_pos(ui->RollBlind_FabCurtianBg3, 252, 384);
-    lv_obj_set_size(ui->RollBlind_FabCurtianBg3, 42, 14);
-
-    //Write style for RollBlind_FabCurtianBg3, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_img_recolor_opa(ui->RollBlind_FabCurtianBg3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(ui->RollBlind_FabCurtianBg3, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->RollBlind_FabCurtianBg3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->RollBlind_FabCurtianBg3, true, LV_PART_MAIN|LV_STATE_DEFAULT);
-
     //Write codes RollBlind_FabCurtianBg2
     ui->RollBlind_FabCurtianBg2 = lv_img_create(ui->RollBlind);
     lv_obj_add_flag(ui->RollBlind_FabCurtianBg2, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->RollBlind_FabCurtianBg2, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FabCurtianBg2.png");
+    lv_img_set_src(ui->RollBlind_FabCurtianBg2, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCBg2.png");
 #else
-    lv_img_set_src(ui->RollBlind_FabCurtianBg2, "S:/sdfile/EXT_RESERVED/uipackres/ui/FabCurtianBg2.png");
+    lv_img_set_src(ui->RollBlind_FabCurtianBg2, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCBg2.png");
 #endif
     lv_img_set_pivot(ui->RollBlind_FabCurtianBg2, 50,50);
     lv_img_set_angle(ui->RollBlind_FabCurtianBg2, 0);
@@ -237,13 +218,32 @@ void setup_scr_RollBlind(lv_ui *ui)
     lv_obj_set_style_radius(ui->RollBlind_FabCurtianBg2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_clip_corner(ui->RollBlind_FabCurtianBg2, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
+    //Write codes RollBlind_FabCurtianBg3
+    ui->RollBlind_FabCurtianBg3 = lv_img_create(ui->RollBlind);
+    lv_obj_add_flag(ui->RollBlind_FabCurtianBg3, LV_OBJ_FLAG_CLICKABLE);
+#if LV_USE_GUIDER_SIMULATOR
+    lv_img_set_src(ui->RollBlind_FabCurtianBg3, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\FCBg3.png");
+#else
+    lv_img_set_src(ui->RollBlind_FabCurtianBg3, "S:/sdfile/EXT_RESERVED/uipackres/ui/FCBg3.png");
+#endif
+    lv_img_set_pivot(ui->RollBlind_FabCurtianBg3, 50,50);
+    lv_img_set_angle(ui->RollBlind_FabCurtianBg3, 0);
+    lv_obj_set_pos(ui->RollBlind_FabCurtianBg3, 252, 384);
+    lv_obj_set_size(ui->RollBlind_FabCurtianBg3, 42, 14);
+
+    //Write style for RollBlind_FabCurtianBg3, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_img_recolor_opa(ui->RollBlind_FabCurtianBg3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_img_opa(ui->RollBlind_FabCurtianBg3, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->RollBlind_FabCurtianBg3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->RollBlind_FabCurtianBg3, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
     //Write codes RollBlind_FabCurtianLeft
     ui->RollBlind_FabCurtianLeft = lv_img_create(ui->RollBlind);
     lv_obj_add_flag(ui->RollBlind_FabCurtianLeft, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->RollBlind_FabCurtianLeft, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\RollBlindCloth.png");
+    lv_img_set_src(ui->RollBlind_FabCurtianLeft, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\RBCloth.png");
 #else
-    lv_img_set_src(ui->RollBlind_FabCurtianLeft, "S:/sdfile/EXT_RESERVED/uipackres/ui/RollBlindCloth.png");
+    lv_img_set_src(ui->RollBlind_FabCurtianLeft, "S:/sdfile/EXT_RESERVED/uipackres/ui/RBCloth.png");
 #endif
     lv_img_set_pivot(ui->RollBlind_FabCurtianLeft, 50,50);
     lv_img_set_angle(ui->RollBlind_FabCurtianLeft, 0);
@@ -315,9 +315,9 @@ void setup_scr_RollBlind(lv_ui *ui)
     ui->RollBlind_RollBlindPole = lv_img_create(ui->RollBlind);
     lv_obj_add_flag(ui->RollBlind_RollBlindPole, LV_OBJ_FLAG_CLICKABLE);
 #if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->RollBlind_RollBlindPole, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\RollBlindPole.png");
+    lv_img_set_src(ui->RollBlind_RollBlindPole, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\RBPole.png");
 #else
-    lv_img_set_src(ui->RollBlind_RollBlindPole, "S:/sdfile/EXT_RESERVED/uipackres/ui/RollBlindPole.png");
+    lv_img_set_src(ui->RollBlind_RollBlindPole, "S:/sdfile/EXT_RESERVED/uipackres/ui/RBPole.png");
 #endif
     lv_img_set_pivot(ui->RollBlind_RollBlindPole, 50,50);
     lv_img_set_angle(ui->RollBlind_RollBlindPole, 0);

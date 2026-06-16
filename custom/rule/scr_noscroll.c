@@ -14,6 +14,12 @@
  * 只在切屏时才真正做事, 平时就是一次指针比较, 开销可忽略(同 scr_guard)。 */
 #define SCR_NOSCROLL_POLL_PERIOD_MS  30
 
+/* 1=连深层滚动区(卡片列表)的弹性/惯性也关(防不溢出容器原地弹性重绘);
+ * 0=保留深层弹性 → 卡片滚动有橡皮筋回弹+惯性。
+ * 早期为防"弹性重绘CPU拉满"设1, 但那卡死真因其实是图片缓存太小每帧重解码SD图(已调大
+ * LV_IMG_CACHE_DEF_SIZE修复), 故改回 0 恢复橡皮筋。若回弹仍致卡再设回 1。 */
+#define SCR_KILL_DEEP_ELASTIC  0
+
 /**********************
  *  STATIC VARIABLES
  **********************/
@@ -67,9 +73,10 @@ static void obj_kill_scroll(lv_obj_t *obj)
     lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLL_MOMENTUM);
 }
 
+#if SCR_KILL_DEEP_ELASTIC
 /* 递归只摘 ELASTIC+MOMENTUM、保留 SCROLLABLE: 让深层滚动区(tabview content→tab page,
  * 屏的曾孙级,单层循环够不到)还能拖动滚卡片, 但不再有"原地弹性重绘 CPU 拉满"和惯性甩动
- * 余震 → 消除滑动卡死。list/slider 整棵跳过, 不动它们自身的滚动/拖动交互。 */
+ * 余震。list/slider 整棵跳过, 不动它们自身的滚动/拖动交互。 */
 static void kill_elastic_deep(lv_obj_t *obj)
 {
     uint32_t cnt = lv_obj_get_child_cnt(obj);
@@ -85,6 +92,7 @@ static void kill_elastic_deep(lv_obj_t *obj)
         kill_elastic_deep(child);
     }
 }
+#endif
 
 static void scr_noscroll_poll_cb(lv_timer_t *timer)
 {
@@ -124,8 +132,10 @@ static void scr_noscroll_poll_cb(lv_timer_t *timer)
                 lv_obj_add_flag(child, LV_OBJ_FLAG_GESTURE_BUBBLE);
                 obj_kill_scroll(child);
             }
+#if SCR_KILL_DEEP_ELASTIC
             /* 深层滚动区(如 tabview 内的卡片页)单独摘弹性/惯性, 保留可滚。 */
             kill_elastic_deep(act);
+#endif
             break;
         }
     }

@@ -21,7 +21,6 @@ typedef struct
 	lv_obj_t *ui_home_screen;
 	bool ui_home_screen_del;
 	lv_obj_t *ui_home_screen_img_1;
-	lv_obj_t *ui_home_screen_digital_clock_1;
 	lv_obj_t *ui_home_screen_label_1;
 	lv_obj_t *ui_home_screen_label_2;
 	lv_obj_t *ui_home_screen_btn_1;
@@ -31,6 +30,21 @@ typedef struct
 	lv_obj_t *ui_home_screen_btn_3;
 	lv_obj_t *ui_home_screen_btn_3_label;
 	lv_obj_t *ui_home_screen_cont_1;
+	lv_obj_t *ui_home_screen_cont_2;
+	lv_obj_t *ui_home_screen_MainSetBtn;
+	lv_obj_t *ui_home_screen_MainSetBtn_label;
+	lv_obj_t *ui_home_screen_MainSetImg;
+	lv_obj_t *ui_home_screen_btn_4;
+	lv_obj_t *ui_home_screen_btn_4_label;
+	lv_obj_t *ui_home_screen_btn_5;
+	lv_obj_t *ui_home_screen_btn_5_label;
+	lv_obj_t *ui_home_screen_btn_6;
+	lv_obj_t *ui_home_screen_btn_6_label;
+	lv_obj_t *ui_home_screen_img_2;
+	lv_obj_t *ui_home_screen_img_3;
+	lv_obj_t *ui_home_screen_img_4;
+	lv_obj_t *ui_home_screen_slider_1;
+	lv_obj_t *ui_home_screen_img_5;
 	lv_obj_t *device_management_screen;
 	bool device_management_screen_del;
 	lv_obj_t *device_management_screen_tabview_1;
@@ -128,7 +142,7 @@ typedef struct
 	lv_obj_t *device_management_screen_sHeatDevImg;
 	lv_obj_t *device_management_screen_sidleModeImg;
 	lv_obj_t *device_management_screen_label_1;
-	lv_obj_t *device_management_screen_img_23;
+	lv_obj_t *device_management_screen_sDRLightImg;
 	lv_obj_t *light_CT_screen;
 	bool light_CT_screen_del;
 	lv_obj_t *light_CT_screen_tabview_1;
@@ -217,8 +231,8 @@ typedef struct
 	lv_obj_t *FabricCurtian_FabCurtianClose;
 	lv_obj_t *FabricCurtian_FabCurtianPause;
 	lv_obj_t *FabricCurtian_FabCurtianBg1;
-	lv_obj_t *FabricCurtian_FabCurtianBg3;
 	lv_obj_t *FabricCurtian_FabCurtianBg2;
+	lv_obj_t *FabricCurtian_FabCurtianBg3;
 	lv_obj_t *FabricCurtian_FabCurtianLeft;
 	lv_obj_t *FabricCurtian_FabCurtianright;
 	lv_obj_t *FabricCurtian_cont_2;
@@ -238,8 +252,8 @@ typedef struct
 	lv_obj_t *Sheers_FabCurtianClose;
 	lv_obj_t *Sheers_FabCurtianPause;
 	lv_obj_t *Sheers_FabCurtianBg1;
-	lv_obj_t *Sheers_FabCurtianBg3;
 	lv_obj_t *Sheers_FabCurtianBg2;
+	lv_obj_t *Sheers_FabCurtianBg3;
 	lv_obj_t *Sheers_FabCurtianLeft;
 	lv_obj_t *Sheers_FabCurtianright;
 	lv_obj_t *Sheers_cont_2;
@@ -257,8 +271,8 @@ typedef struct
 	lv_obj_t *RollBlind_cont_2;
 	lv_obj_t *RollBlind_FabCurtianPause;
 	lv_obj_t *RollBlind_FabCurtianBg1;
-	lv_obj_t *RollBlind_FabCurtianBg3;
 	lv_obj_t *RollBlind_FabCurtianBg2;
+	lv_obj_t *RollBlind_FabCurtianBg3;
 	lv_obj_t *RollBlind_FabCurtianLeft;
 	lv_obj_t *RollBlind_cont_3;
 	lv_obj_t *RollBlind_cont_4;
@@ -277,8 +291,8 @@ typedef struct
 	lv_obj_t *Dream_FabCurtianClose;
 	lv_obj_t *Dream_FabCurtianPause;
 	lv_obj_t *Dream_FabCurtianBg1;
-	lv_obj_t *Dream_FabCurtianBg3;
 	lv_obj_t *Dream_FabCurtianBg2;
+	lv_obj_t *Dream_FabCurtianBg3;
 	lv_obj_t *Dream_FabCurtianLeft;
 	lv_obj_t *Dream_FabCurtianright;
 	lv_obj_t *Dream_cont_2;
@@ -336,7 +350,7 @@ typedef struct
 	lv_obj_t *DryRack_FabCurtianClose;
 	lv_obj_t *DryRack_FabCurtianPause;
 	lv_obj_t *DryRack_img_1;
-	lv_obj_t *DryRack_img_2;
+	lv_obj_t *DryRack_DRLightImg;
 	lv_obj_t *DryRack_RollBlindPole;
 	lv_obj_t *DryRack_cont_2;
 	lv_obj_t *DryRack_cont_3;
@@ -547,62 +561,34 @@ void setup_scr_SensorSet(lv_ui *ui);
 void setup_scr_Reset(lv_ui *ui);
 void setup_scr_huifuchuchangshezhi(lv_ui *ui);
 void setup_scr_screen_1(lv_ui *ui);
+LV_IMG_DECLARE(_sSetting_alpha_46x46);
+LV_IMG_DECLARE(_sSleep_off_alpha_46x46);
+LV_IMG_DECLARE(_sHome_alpha_46x46);
+LV_IMG_DECLARE(_sManual_alpha_46x46);
+LV_IMG_DECLARE(_sSun_alpha_30x34);
 LV_IMG_DECLARE(_small_disc_alpha_51x51);
 LV_IMG_DECLARE(_srack_alpha_20x31);
 LV_IMG_DECLARE(_sFanAndLTon_alpha_60x60);
 LV_IMG_DECLARE(_sFanAndLToff_alpha_60x60);
-LV_IMG_DECLARE(_small_idle_btn_alpha_60x60);
-LV_IMG_DECLARE(_small_light_alpha_65x43);
-LV_IMG_DECLARE(_small_weakHeat_mode_alpha_65x43);
-LV_IMG_DECLARE(_small_strongHeat_mode_alpha_65x43);
-LV_IMG_DECLARE(_small_ventilate_mode_alpha_65x43);
-LV_IMG_DECLARE(_small_fan_mode_alpha_65x43);
-LV_IMG_DECLARE(_small_dev_alpha_65x43);
-LV_IMG_DECLARE(_small_idle_mode_alpha_65x43);
+LV_IMG_DECLARE(_sIdleBtn_alpha_60x60);
+LV_IMG_DECLARE(_sHlight_alpha_65x43);
+LV_IMG_DECLARE(_sLowHeatMode_alpha_65x43);
+LV_IMG_DECLARE(_sHeatMode_alpha_65x43);
+LV_IMG_DECLARE(_sventilate_alpha_65x43);
+LV_IMG_DECLARE(_sFanMode_alpha_65x43);
+LV_IMG_DECLARE(_sDev_alpha_65x43);
+LV_IMG_DECLARE(_sIdleMode_alpha_65x43);
 LV_IMG_DECLARE(_MagPole_alpha_453x13);
-LV_IMG_DECLARE(_prev_alpha_94x94);
-LV_IMG_DECLARE(_next_alpha_94x94);
-LV_IMG_DECLARE(_volume_dec_alpha_94x94);
-LV_IMG_DECLARE(_disc_alpha_245x245);
-LV_IMG_DECLARE(_volume_add_alpha_94x94);
-LV_IMG_DECLARE(_play_alpha_109x109);
-LV_IMG_DECLARE(_pause_alpha_109x109);
-LV_IMG_DECLARE(_rack_alpha_124x195);
-LV_IMG_DECLARE(_DRLightOff_alpha_109x109);
-LV_IMG_DECLARE(_DRLightOn_alpha_109x110);
-LV_IMG_DECLARE(_fan_alpha_206x204);
-LV_IMG_DECLARE(_ACSpeed4_alpha_109x109);
-LV_IMG_DECLARE(_ACSpeed3_alpha_109x109);
-LV_IMG_DECLARE(_ACSpeed2_alpha_105x109);
-LV_IMG_DECLARE(_ACSpeed1_alpha_109x109);
-LV_IMG_DECLARE(_fanon_alpha_109x109);
-LV_IMG_DECLARE(_fanoff_alpha_109x109);
-LV_IMG_DECLARE(_lightOn_alpha_82x82);
-LV_IMG_DECLARE(_lightOff_alpha_82x82);
 LV_IMG_DECLARE(_ACOff_alpha_100x96);
 LV_IMG_DECLARE(_ACOn_alpha_100x96);
-LV_IMG_DECLARE(_light_on_alpha_295x164);
-LV_IMG_DECLARE(_dev_alpha_295x164);
-LV_IMG_DECLARE(_light_off_btn_alpha_50x67);
-LV_IMG_DECLARE(_light_on_btn_alpha_50x67);
-LV_IMG_DECLARE(_idle_btn_alpha_50x67);
-LV_IMG_DECLARE(_ventilate_btn_alpha_50x67);
-LV_IMG_DECLARE(_weakHeat_btn_alpha_50x67);
-LV_IMG_DECLARE(_fan_btn_alpha_50x67);
-LV_IMG_DECLARE(_strongHeat_btn_alpha_60x67);
-LV_IMG_DECLARE(_ventilate_mode_alpha_295x164);
-LV_IMG_DECLARE(_weakHeat_mode_alpha_295x164);
-LV_IMG_DECLARE(_strongHeat_mode_alpha_295x164);
-LV_IMG_DECLARE(_fan_mode_alpha_295x164);
-LV_IMG_DECLARE(_idle_mode_alpha_295x164);
 
 LV_FONT_DECLARE(lv_font_ZiTiQuanWeiJunHeiW22_30)
 LV_FONT_DECLARE(lv_font_ZiTiQuanWeiJunHeiW22_16)
 LV_FONT_DECLARE(lv_font_montserratMedium_12)
+LV_FONT_DECLARE(lv_font_montserratMedium_16)
 LV_FONT_DECLARE(lv_font_ZiTiQuanWeiJunHeiW22_12)
 LV_FONT_DECLARE(lv_font_ZiTiQuanWeiJunHeiW22_20)
 LV_FONT_DECLARE(lv_font_ZiTiQuanWeiJunHeiW22_24)
-LV_FONT_DECLARE(lv_font_montserratMedium_16)
 
 
 #ifdef __cplusplus

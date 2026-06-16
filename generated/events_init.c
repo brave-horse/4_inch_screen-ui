@@ -15,6 +15,7 @@
 #include "freemaster_client.h"
 #endif
 
+#include "Home.h"
 #include "device_management.h"
 
 
@@ -36,9 +37,9 @@ static void ui_home_screen_event_handler (lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
     switch (code) {
-    case LV_EVENT_PRESSING:
+    case LV_EVENT_SCREEN_LOADED:
     {
-
+        home_on_screen_load();
         break;
     }
     case LV_EVENT_GESTURE:
@@ -2635,6 +2636,25 @@ void events_init_Heater (lv_ui *ui)
     lv_obj_add_event_cb(ui->Heater_WindImg, Heater_WindImg_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->Heater_HeatHighBtn, Heater_HeatHighBtn_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->Heater_HeatHighImg, Heater_HeatHighImg_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void setting_screen_btn_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.ui_home_screen, guider_ui.ui_home_screen_del, &guider_ui.setting_screen_del, setup_scr_ui_home_screen, LV_SCR_LOAD_ANIM_NONE, 0, 0, true, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_setting_screen (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->setting_screen_btn_1, setting_screen_btn_1_event_handler, LV_EVENT_ALL, ui);
 }
 
 

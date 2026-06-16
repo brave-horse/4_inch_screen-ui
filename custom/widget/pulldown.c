@@ -76,6 +76,10 @@ void pulldown_init(lv_ui *ui)
 static void pulldown_set_y(void *obj, int32_t y)
 {
     lv_obj_set_y((lv_obj_t *)obj, (lv_coord_t)y);
+    /* 面板透明+在 layer_top, 收起向上滑腾出的区域底下首页不会自动重画→残影(白条);
+     * 强制重绘当前活动屏清掉残影。只在滑动/动画期间发生, 开销可接受。 */
+    lv_obj_t *scr = lv_scr_act();
+    if (scr) lv_obj_invalidate(scr);
 }
 
 static void pulldown_hide_ready_cb(lv_anim_t *a)
@@ -222,6 +226,10 @@ static void pulldown_timer_cb(lv_timer_t *t)
         y = -s_panel_h;
     }
     lv_obj_set_y(s_panel, y);
+    {   /* 手动拖动收起同样会腾出区域, 强制重绘首页清残影 */
+        lv_obj_t *scr = lv_scr_act();
+        if (scr) lv_obj_invalidate(scr);
+    }
 
     /* 一旦进入拖拽, 锁住本次按压, 防止下面的按钮/控件误响应 */
     if (s_dragging && !s_locked && s_indev != NULL) {

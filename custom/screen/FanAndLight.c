@@ -118,6 +118,10 @@ void fanlight_on_screen_load(void)
     s_light_on = HWInterface.FanAndLight.light_on;
     s_speed    = HWInterface.FanAndLight.speed;
 
+    /* 总开关按钮勾选态跟随 power(管理屏开了风扇/灯→这里也显示开) */
+    if (s_power) lv_obj_add_state  (guider_ui.FanAndLight_imgbtn_1, LV_STATE_CHECKED);
+    else         lv_obj_clear_state(guider_ui.FanAndLight_imgbtn_1, LV_STATE_CHECKED);
+
     apply_fan_speed();
     apply_ui_refresh();
 
