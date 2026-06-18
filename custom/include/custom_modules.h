@@ -7,7 +7,6 @@ extern "C" {
 
 /* custom 层各模块的聚合头，仅供 custom.c 使用，不要被 generated 引用。
  * 新增模块时在这里加一行对应的头文件即可。 */
-#include "img.h"          /* assert/ : 图片 DDR 预解码 + 拦截解码器 */
 #include "scr_guard.h"    /* rule/   : 屏指针守卫(防野指针) */
 #include "scr_noscroll.h" /* rule/   : 指定屏禁滚(防原地重绘/吞手势) */
 #include "light_CT_screen.h"       /* screen/ : light_CT_screen 色温灯控件 */

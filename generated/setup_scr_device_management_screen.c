@@ -30,7 +30,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 
     //Write codes device_management_screen_tabview_1
     ui->device_management_screen_tabview_1 = lv_tabview_create(ui->device_management_screen, LV_DIR_TOP, 85);
-    lv_obj_set_pos(ui->device_management_screen_tabview_1, -1, -1);
+    lv_obj_set_pos(ui->device_management_screen_tabview_1, 0, 0);
     lv_obj_set_size(ui->device_management_screen_tabview_1, 720, 720);
     lv_obj_set_scrollbar_mode(ui->device_management_screen_tabview_1, LV_SCROLLBAR_MODE_ON);
 
@@ -88,16 +88,13 @@ void setup_scr_device_management_screen(lv_ui *ui)
 
     //Write codes device_management_screen_cont_1
     ui->device_management_screen_cont_1 = lv_obj_create(ui->device_management_screen_tabview_1_tab_1);
-    lv_obj_set_pos(ui->device_management_screen_cont_1, 21, 0);
-    lv_obj_set_size(ui->device_management_screen_cont_1, 300, 150);
+    lv_obj_set_pos(ui->device_management_screen_cont_1, 0, 0);
+    lv_obj_set_size(ui->device_management_screen_cont_1, 330, 195);
     lv_obj_set_scrollbar_mode(ui->device_management_screen_cont_1, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for device_management_screen_cont_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->device_management_screen_cont_1, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->device_management_screen_cont_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->device_management_screen_cont_1, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui->device_management_screen_cont_1, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->device_management_screen_cont_1, 30, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->device_management_screen_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->device_management_screen_cont_1, 15, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->device_management_screen_cont_1, 162, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->device_management_screen_cont_1, lv_color_hex(0x3a5789), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->device_management_screen_cont_1, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -122,8 +119,8 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_label_set_long_mode(ui->device_management_screen_Light_CT_on_off_1_img_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->device_management_screen_Light_CT_on_off_1_img_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->device_management_screen_Light_CT_on_off_1_img, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->device_management_screen_Light_CT_on_off_1_img, 212, 23);
-    lv_obj_set_size(ui->device_management_screen_Light_CT_on_off_1_img, 48, 48);
+    lv_obj_set_pos(ui->device_management_screen_Light_CT_on_off_1_img, 250, 30);
+    lv_obj_set_size(ui->device_management_screen_Light_CT_on_off_1_img, 47, 46);
 
     //Write style for device_management_screen_Light_CT_on_off_1_img, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_text_color(ui->device_management_screen_Light_CT_on_off_1_img, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -164,7 +161,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sdev_on, 50,50);
     lv_img_set_angle(ui->device_management_screen_sdev_on, 0);
-    lv_obj_set_pos(ui->device_management_screen_sdev_on, 40, 13);
+    lv_obj_set_pos(ui->device_management_screen_sdev_on, 33, 42);
     lv_obj_set_size(ui->device_management_screen_sdev_on, 50, 57);
 
     //Write style for device_management_screen_sdev_on, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -183,7 +180,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_small_dev_off_img, 50,50);
     lv_img_set_angle(ui->device_management_screen_small_dev_off_img, 0);
-    lv_obj_set_pos(ui->device_management_screen_small_dev_off_img, 40, 13);
+    lv_obj_set_pos(ui->device_management_screen_small_dev_off_img, 33, 42);
     lv_obj_set_size(ui->device_management_screen_small_dev_off_img, 50, 57);
 
     //Write style for device_management_screen_small_dev_off_img, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -196,8 +193,8 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_label_2 = lv_label_create(ui->device_management_screen_cont_1);
     lv_label_set_text(ui->device_management_screen_label_2, "色温灯");
     lv_label_set_long_mode(ui->device_management_screen_label_2, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->device_management_screen_label_2, 18, 94);
-    lv_obj_set_size(ui->device_management_screen_label_2, 100, 32);
+    lv_obj_set_pos(ui->device_management_screen_label_2, 20, 135);
+    lv_obj_set_size(ui->device_management_screen_label_2, 100, 35);
 
     //Write style for device_management_screen_label_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->device_management_screen_label_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -217,16 +214,13 @@ void setup_scr_device_management_screen(lv_ui *ui)
 
     //Write codes device_management_screen_cont_2
     ui->device_management_screen_cont_2 = lv_obj_create(ui->device_management_screen_tabview_1_tab_1);
-    lv_obj_set_pos(ui->device_management_screen_cont_2, 372, 0);
-    lv_obj_set_size(ui->device_management_screen_cont_2, 300, 150);
+    lv_obj_set_pos(ui->device_management_screen_cont_2, 345, 0);
+    lv_obj_set_size(ui->device_management_screen_cont_2, 330, 195);
     lv_obj_set_scrollbar_mode(ui->device_management_screen_cont_2, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for device_management_screen_cont_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->device_management_screen_cont_2, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->device_management_screen_cont_2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->device_management_screen_cont_2, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui->device_management_screen_cont_2, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->device_management_screen_cont_2, 30, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->device_management_screen_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->device_management_screen_cont_2, 15, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->device_management_screen_cont_2, 162, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->device_management_screen_cont_2, lv_color_hex(0x3a5789), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->device_management_screen_cont_2, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -246,7 +240,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sLEDStripOn, 50,50);
     lv_img_set_angle(ui->device_management_screen_sLEDStripOn, 0);
-    lv_obj_set_pos(ui->device_management_screen_sLEDStripOn, 25, 21);
+    lv_obj_set_pos(ui->device_management_screen_sLEDStripOn, 20, 42);
     lv_obj_set_size(ui->device_management_screen_sLEDStripOn, 65, 43);
 
     //Write style for device_management_screen_sLEDStripOn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -265,7 +259,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sLEDStripOff, 50,50);
     lv_img_set_angle(ui->device_management_screen_sLEDStripOff, 0);
-    lv_obj_set_pos(ui->device_management_screen_sLEDStripOff, 25, 21);
+    lv_obj_set_pos(ui->device_management_screen_sLEDStripOff, 20, 42);
     lv_obj_set_size(ui->device_management_screen_sLEDStripOff, 65, 43);
 
     //Write style for device_management_screen_sLEDStripOff, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -289,7 +283,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_label_set_long_mode(ui->device_management_screen_sLSimgbtn_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->device_management_screen_sLSimgbtn_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->device_management_screen_sLSimgbtn, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->device_management_screen_sLSimgbtn, 224, 16);
+    lv_obj_set_pos(ui->device_management_screen_sLSimgbtn, 250, 30);
     lv_obj_set_size(ui->device_management_screen_sLSimgbtn, 48, 48);
 
     //Write style for device_management_screen_sLSimgbtn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -325,8 +319,8 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_label_3 = lv_label_create(ui->device_management_screen_cont_2);
     lv_label_set_text(ui->device_management_screen_label_3, "灯带");
     lv_label_set_long_mode(ui->device_management_screen_label_3, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->device_management_screen_label_3, 19, 88);
-    lv_obj_set_size(ui->device_management_screen_label_3, 100, 32);
+    lv_obj_set_pos(ui->device_management_screen_label_3, 20, 135);
+    lv_obj_set_size(ui->device_management_screen_label_3, 62, 32);
 
     //Write style for device_management_screen_label_3, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->device_management_screen_label_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -346,16 +340,13 @@ void setup_scr_device_management_screen(lv_ui *ui)
 
     //Write codes device_management_screen_cont_3
     ui->device_management_screen_cont_3 = lv_obj_create(ui->device_management_screen_tabview_1_tab_1);
-    lv_obj_set_pos(ui->device_management_screen_cont_3, 21, 181);
-    lv_obj_set_size(ui->device_management_screen_cont_3, 300, 150);
+    lv_obj_set_pos(ui->device_management_screen_cont_3, 0, 210);
+    lv_obj_set_size(ui->device_management_screen_cont_3, 330, 195);
     lv_obj_set_scrollbar_mode(ui->device_management_screen_cont_3, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for device_management_screen_cont_3, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->device_management_screen_cont_3, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->device_management_screen_cont_3, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->device_management_screen_cont_3, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui->device_management_screen_cont_3, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->device_management_screen_cont_3, 30, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->device_management_screen_cont_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->device_management_screen_cont_3, 15, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->device_management_screen_cont_3, 162, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->device_management_screen_cont_3, lv_color_hex(0x3a5789), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->device_management_screen_cont_3, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -375,7 +366,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sMagLightOn, 50,50);
     lv_img_set_angle(ui->device_management_screen_sMagLightOn, 0);
-    lv_obj_set_pos(ui->device_management_screen_sMagLightOn, 27, 23);
+    lv_obj_set_pos(ui->device_management_screen_sMagLightOn, 30, 40);
     lv_obj_set_size(ui->device_management_screen_sMagLightOn, 70, 4);
 
     //Write style for device_management_screen_sMagLightOn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -394,7 +385,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sMagLightOff, 50,50);
     lv_img_set_angle(ui->device_management_screen_sMagLightOff, 0);
-    lv_obj_set_pos(ui->device_management_screen_sMagLightOff, 27, 23);
+    lv_obj_set_pos(ui->device_management_screen_sMagLightOff, 30, 40);
     lv_obj_set_size(ui->device_management_screen_sMagLightOff, 70, 4);
 
     //Write style for device_management_screen_sMagLightOff, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -418,7 +409,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_label_set_long_mode(ui->device_management_screen_sMagimgbtn_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->device_management_screen_sMagimgbtn_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->device_management_screen_sMagimgbtn, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->device_management_screen_sMagimgbtn, 216, 17);
+    lv_obj_set_pos(ui->device_management_screen_sMagimgbtn, 250, 30);
     lv_obj_set_size(ui->device_management_screen_sMagimgbtn, 48, 48);
 
     //Write style for device_management_screen_sMagimgbtn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -454,7 +445,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_label_4 = lv_label_create(ui->device_management_screen_cont_3);
     lv_label_set_text(ui->device_management_screen_label_4, "磁吸灯");
     lv_label_set_long_mode(ui->device_management_screen_label_4, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->device_management_screen_label_4, 15, 92);
+    lv_obj_set_pos(ui->device_management_screen_label_4, 20, 135);
     lv_obj_set_size(ui->device_management_screen_label_4, 100, 35);
 
     //Write style for device_management_screen_label_4, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -475,16 +466,13 @@ void setup_scr_device_management_screen(lv_ui *ui)
 
     //Write codes device_management_screen_cont_4
     ui->device_management_screen_cont_4 = lv_obj_create(ui->device_management_screen_tabview_1_tab_1);
-    lv_obj_set_pos(ui->device_management_screen_cont_4, 372, 181);
-    lv_obj_set_size(ui->device_management_screen_cont_4, 300, 150);
+    lv_obj_set_pos(ui->device_management_screen_cont_4, 345, 210);
+    lv_obj_set_size(ui->device_management_screen_cont_4, 330, 195);
     lv_obj_set_scrollbar_mode(ui->device_management_screen_cont_4, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for device_management_screen_cont_4, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->device_management_screen_cont_4, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->device_management_screen_cont_4, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->device_management_screen_cont_4, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui->device_management_screen_cont_4, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->device_management_screen_cont_4, 30, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->device_management_screen_cont_4, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->device_management_screen_cont_4, 15, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->device_management_screen_cont_4, 162, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->device_management_screen_cont_4, lv_color_hex(0x3a5789), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->device_management_screen_cont_4, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -504,7 +492,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sRGBLightOn, 50,50);
     lv_img_set_angle(ui->device_management_screen_sRGBLightOn, 0);
-    lv_obj_set_pos(ui->device_management_screen_sRGBLightOn, 28, 23);
+    lv_obj_set_pos(ui->device_management_screen_sRGBLightOn, 27, 27);
     lv_obj_set_size(ui->device_management_screen_sRGBLightOn, 60, 58);
 
     //Write style for device_management_screen_sRGBLightOn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -523,7 +511,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sRGBLightOff, 50,50);
     lv_img_set_angle(ui->device_management_screen_sRGBLightOff, 0);
-    lv_obj_set_pos(ui->device_management_screen_sRGBLightOff, 27, 23);
+    lv_obj_set_pos(ui->device_management_screen_sRGBLightOff, 26, 27);
     lv_obj_set_size(ui->device_management_screen_sRGBLightOff, 60, 58);
 
     //Write style for device_management_screen_sRGBLightOff, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -547,7 +535,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_label_set_long_mode(ui->device_management_screen_sRGBLightBtn_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->device_management_screen_sRGBLightBtn_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->device_management_screen_sRGBLightBtn, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->device_management_screen_sRGBLightBtn, 227, 18);
+    lv_obj_set_pos(ui->device_management_screen_sRGBLightBtn, 250, 30);
     lv_obj_set_size(ui->device_management_screen_sRGBLightBtn, 48, 48);
 
     //Write style for device_management_screen_sRGBLightBtn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -583,8 +571,8 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_label_5 = lv_label_create(ui->device_management_screen_cont_4);
     lv_label_set_text(ui->device_management_screen_label_5, "彩色灯");
     lv_label_set_long_mode(ui->device_management_screen_label_5, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->device_management_screen_label_5, 17, 89);
-    lv_obj_set_size(ui->device_management_screen_label_5, 100, 35);
+    lv_obj_set_pos(ui->device_management_screen_label_5, 20, 135);
+    lv_obj_set_size(ui->device_management_screen_label_5, 90, 35);
 
     //Write style for device_management_screen_label_5, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->device_management_screen_label_5, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -604,16 +592,13 @@ void setup_scr_device_management_screen(lv_ui *ui)
 
     //Write codes device_management_screen_cont_5
     ui->device_management_screen_cont_5 = lv_obj_create(ui->device_management_screen_tabview_1_tab_1);
-    lv_obj_set_pos(ui->device_management_screen_cont_5, 21, 362);
-    lv_obj_set_size(ui->device_management_screen_cont_5, 300, 150);
+    lv_obj_set_pos(ui->device_management_screen_cont_5, 0, 420);
+    lv_obj_set_size(ui->device_management_screen_cont_5, 330, 195);
     lv_obj_set_scrollbar_mode(ui->device_management_screen_cont_5, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for device_management_screen_cont_5, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->device_management_screen_cont_5, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->device_management_screen_cont_5, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->device_management_screen_cont_5, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui->device_management_screen_cont_5, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->device_management_screen_cont_5, 30, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->device_management_screen_cont_5, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->device_management_screen_cont_5, 15, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->device_management_screen_cont_5, 162, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->device_management_screen_cont_5, lv_color_hex(0x3a5789), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->device_management_screen_cont_5, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -633,7 +618,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sFabricCurtainOn, 50,50);
     lv_img_set_angle(ui->device_management_screen_sFabricCurtainOn, 0);
-    lv_obj_set_pos(ui->device_management_screen_sFabricCurtainOn, 28, 23);
+    lv_obj_set_pos(ui->device_management_screen_sFabricCurtainOn, 26, 38);
     lv_obj_set_size(ui->device_management_screen_sFabricCurtainOn, 49, 43);
 
     //Write style for device_management_screen_sFabricCurtainOn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -652,7 +637,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sFabricCurtianOff, 50,50);
     lv_img_set_angle(ui->device_management_screen_sFabricCurtianOff, 0);
-    lv_obj_set_pos(ui->device_management_screen_sFabricCurtianOff, 27, 21);
+    lv_obj_set_pos(ui->device_management_screen_sFabricCurtianOff, 25, 36);
     lv_obj_set_size(ui->device_management_screen_sFabricCurtianOff, 49, 43);
 
     //Write style for device_management_screen_sFabricCurtianOff, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -665,8 +650,8 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_label_6 = lv_label_create(ui->device_management_screen_cont_5);
     lv_label_set_text(ui->device_management_screen_label_6, "布帘");
     lv_label_set_long_mode(ui->device_management_screen_label_6, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->device_management_screen_label_6, 5, 86);
-    lv_obj_set_size(ui->device_management_screen_label_6, 100, 35);
+    lv_obj_set_pos(ui->device_management_screen_label_6, 20, 135);
+    lv_obj_set_size(ui->device_management_screen_label_6, 61, 35);
 
     //Write style for device_management_screen_label_6, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->device_management_screen_label_6, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -694,7 +679,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sFabricCurClose, 50,50);
     lv_img_set_angle(ui->device_management_screen_sFabricCurClose, 0);
-    lv_obj_set_pos(ui->device_management_screen_sFabricCurClose, 212, 23);
+    lv_obj_set_pos(ui->device_management_screen_sFabricCurClose, 250, 30);
     lv_obj_set_size(ui->device_management_screen_sFabricCurClose, 60, 60);
 
     //Write style for device_management_screen_sFabricCurClose, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -713,7 +698,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sFabricCurOpen, 50,50);
     lv_img_set_angle(ui->device_management_screen_sFabricCurOpen, 0);
-    lv_obj_set_pos(ui->device_management_screen_sFabricCurOpen, 132, 25);
+    lv_obj_set_pos(ui->device_management_screen_sFabricCurOpen, 165, 30);
     lv_obj_set_size(ui->device_management_screen_sFabricCurOpen, 60, 60);
 
     //Write style for device_management_screen_sFabricCurOpen, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -724,16 +709,13 @@ void setup_scr_device_management_screen(lv_ui *ui)
 
     //Write codes device_management_screen_cont_6
     ui->device_management_screen_cont_6 = lv_obj_create(ui->device_management_screen_tabview_1_tab_1);
-    lv_obj_set_pos(ui->device_management_screen_cont_6, 372, 362);
-    lv_obj_set_size(ui->device_management_screen_cont_6, 300, 150);
+    lv_obj_set_pos(ui->device_management_screen_cont_6, 345, 420);
+    lv_obj_set_size(ui->device_management_screen_cont_6, 330, 195);
     lv_obj_set_scrollbar_mode(ui->device_management_screen_cont_6, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for device_management_screen_cont_6, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->device_management_screen_cont_6, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->device_management_screen_cont_6, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->device_management_screen_cont_6, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui->device_management_screen_cont_6, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->device_management_screen_cont_6, 30, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->device_management_screen_cont_6, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->device_management_screen_cont_6, 15, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->device_management_screen_cont_6, 162, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->device_management_screen_cont_6, lv_color_hex(0x3a5789), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->device_management_screen_cont_6, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -753,7 +735,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sSheersOn, 50,50);
     lv_img_set_angle(ui->device_management_screen_sSheersOn, 0);
-    lv_obj_set_pos(ui->device_management_screen_sSheersOn, 28, 23);
+    lv_obj_set_pos(ui->device_management_screen_sSheersOn, 23, 39);
     lv_obj_set_size(ui->device_management_screen_sSheersOn, 49, 43);
 
     //Write style for device_management_screen_sSheersOn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -772,7 +754,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sSheersOff, 50,50);
     lv_img_set_angle(ui->device_management_screen_sSheersOff, 0);
-    lv_obj_set_pos(ui->device_management_screen_sSheersOff, 27, 19);
+    lv_obj_set_pos(ui->device_management_screen_sSheersOff, 24, 37);
     lv_obj_set_size(ui->device_management_screen_sSheersOff, 49, 43);
 
     //Write style for device_management_screen_sSheersOff, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -785,8 +767,8 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_label_7 = lv_label_create(ui->device_management_screen_cont_6);
     lv_label_set_text(ui->device_management_screen_label_7, "纱帘");
     lv_label_set_long_mode(ui->device_management_screen_label_7, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->device_management_screen_label_7, 15, 92);
-    lv_obj_set_size(ui->device_management_screen_label_7, 100, 35);
+    lv_obj_set_pos(ui->device_management_screen_label_7, 20, 135);
+    lv_obj_set_size(ui->device_management_screen_label_7, 62, 35);
 
     //Write style for device_management_screen_label_7, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->device_management_screen_label_7, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -814,7 +796,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sSheerOpen, 50,50);
     lv_img_set_angle(ui->device_management_screen_sSheerOpen, 0);
-    lv_obj_set_pos(ui->device_management_screen_sSheerOpen, 140, 28);
+    lv_obj_set_pos(ui->device_management_screen_sSheerOpen, 165, 30);
     lv_obj_set_size(ui->device_management_screen_sSheerOpen, 60, 60);
 
     //Write style for device_management_screen_sSheerOpen, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -833,7 +815,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sSheerClose, 50,50);
     lv_img_set_angle(ui->device_management_screen_sSheerClose, 0);
-    lv_obj_set_pos(ui->device_management_screen_sSheerClose, 212, 28);
+    lv_obj_set_pos(ui->device_management_screen_sSheerClose, 250, 30);
     lv_obj_set_size(ui->device_management_screen_sSheerClose, 60, 60);
 
     //Write style for device_management_screen_sSheerClose, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -844,16 +826,13 @@ void setup_scr_device_management_screen(lv_ui *ui)
 
     //Write codes device_management_screen_cont_7
     ui->device_management_screen_cont_7 = lv_obj_create(ui->device_management_screen_tabview_1_tab_1);
-    lv_obj_set_pos(ui->device_management_screen_cont_7, 21, 543);
-    lv_obj_set_size(ui->device_management_screen_cont_7, 300, 150);
+    lv_obj_set_pos(ui->device_management_screen_cont_7, 0, 630);
+    lv_obj_set_size(ui->device_management_screen_cont_7, 330, 195);
     lv_obj_set_scrollbar_mode(ui->device_management_screen_cont_7, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for device_management_screen_cont_7, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->device_management_screen_cont_7, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->device_management_screen_cont_7, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->device_management_screen_cont_7, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui->device_management_screen_cont_7, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->device_management_screen_cont_7, 30, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->device_management_screen_cont_7, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->device_management_screen_cont_7, 15, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->device_management_screen_cont_7, 162, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->device_management_screen_cont_7, lv_color_hex(0x3a5789), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->device_management_screen_cont_7, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -873,7 +852,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sRollBlindOn, 50,50);
     lv_img_set_angle(ui->device_management_screen_sRollBlindOn, 0);
-    lv_obj_set_pos(ui->device_management_screen_sRollBlindOn, 28, 23);
+    lv_obj_set_pos(ui->device_management_screen_sRollBlindOn, 26, 35);
     lv_obj_set_size(ui->device_management_screen_sRollBlindOn, 65, 20);
 
     //Write style for device_management_screen_sRollBlindOn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -892,7 +871,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sRollBlindOff, 50,50);
     lv_img_set_angle(ui->device_management_screen_sRollBlindOff, 0);
-    lv_obj_set_pos(ui->device_management_screen_sRollBlindOff, 28, 24);
+    lv_obj_set_pos(ui->device_management_screen_sRollBlindOff, 26, 36);
     lv_obj_set_size(ui->device_management_screen_sRollBlindOff, 65, 43);
 
     //Write style for device_management_screen_sRollBlindOff, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -905,8 +884,8 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_label_8 = lv_label_create(ui->device_management_screen_cont_7);
     lv_label_set_text(ui->device_management_screen_label_8, "卷帘");
     lv_label_set_long_mode(ui->device_management_screen_label_8, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->device_management_screen_label_8, 15, 89);
-    lv_obj_set_size(ui->device_management_screen_label_8, 100, 35);
+    lv_obj_set_pos(ui->device_management_screen_label_8, 20, 135);
+    lv_obj_set_size(ui->device_management_screen_label_8, 62, 35);
 
     //Write style for device_management_screen_label_8, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->device_management_screen_label_8, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -934,7 +913,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sRollBlindDown, 50,50);
     lv_img_set_angle(ui->device_management_screen_sRollBlindDown, 0);
-    lv_obj_set_pos(ui->device_management_screen_sRollBlindDown, 210, 78);
+    lv_obj_set_pos(ui->device_management_screen_sRollBlindDown, 250, 91);
     lv_obj_set_size(ui->device_management_screen_sRollBlindDown, 60, 60);
 
     //Write style for device_management_screen_sRollBlindDown, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -953,7 +932,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sRollBlindUp, 50,50);
     lv_img_set_angle(ui->device_management_screen_sRollBlindUp, 0);
-    lv_obj_set_pos(ui->device_management_screen_sRollBlindUp, 211, 8);
+    lv_obj_set_pos(ui->device_management_screen_sRollBlindUp, 250, 21);
     lv_obj_set_size(ui->device_management_screen_sRollBlindUp, 60, 60);
 
     //Write style for device_management_screen_sRollBlindUp, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -964,16 +943,13 @@ void setup_scr_device_management_screen(lv_ui *ui)
 
     //Write codes device_management_screen_cont_8
     ui->device_management_screen_cont_8 = lv_obj_create(ui->device_management_screen_tabview_1_tab_1);
-    lv_obj_set_pos(ui->device_management_screen_cont_8, 372, 543);
-    lv_obj_set_size(ui->device_management_screen_cont_8, 300, 150);
+    lv_obj_set_pos(ui->device_management_screen_cont_8, 345, 630);
+    lv_obj_set_size(ui->device_management_screen_cont_8, 330, 195);
     lv_obj_set_scrollbar_mode(ui->device_management_screen_cont_8, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for device_management_screen_cont_8, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->device_management_screen_cont_8, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->device_management_screen_cont_8, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->device_management_screen_cont_8, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui->device_management_screen_cont_8, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->device_management_screen_cont_8, 30, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->device_management_screen_cont_8, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->device_management_screen_cont_8, 15, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->device_management_screen_cont_8, 162, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->device_management_screen_cont_8, lv_color_hex(0x3a5789), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->device_management_screen_cont_8, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -993,7 +969,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sDreamOn, 50,50);
     lv_img_set_angle(ui->device_management_screen_sDreamOn, 0);
-    lv_obj_set_pos(ui->device_management_screen_sDreamOn, 28, 23);
+    lv_obj_set_pos(ui->device_management_screen_sDreamOn, 28, 34);
     lv_obj_set_size(ui->device_management_screen_sDreamOn, 54, 41);
 
     //Write style for device_management_screen_sDreamOn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1012,7 +988,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sDreamOff, 50,50);
     lv_img_set_angle(ui->device_management_screen_sDreamOff, 0);
-    lv_obj_set_pos(ui->device_management_screen_sDreamOff, 27, 21);
+    lv_obj_set_pos(ui->device_management_screen_sDreamOff, 27, 32);
     lv_obj_set_size(ui->device_management_screen_sDreamOff, 54, 41);
 
     //Write style for device_management_screen_sDreamOff, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1025,8 +1001,8 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_label_10 = lv_label_create(ui->device_management_screen_cont_8);
     lv_label_set_text(ui->device_management_screen_label_10, "梦幻帘");
     lv_label_set_long_mode(ui->device_management_screen_label_10, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->device_management_screen_label_10, 15, 92);
-    lv_obj_set_size(ui->device_management_screen_label_10, 100, 35);
+    lv_obj_set_pos(ui->device_management_screen_label_10, 20, 135);
+    lv_obj_set_size(ui->device_management_screen_label_10, 92, 35);
 
     //Write style for device_management_screen_label_10, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->device_management_screen_label_10, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -1054,8 +1030,8 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sDreamClose, 50,50);
     lv_img_set_angle(ui->device_management_screen_sDreamClose, 0);
-    lv_obj_set_pos(ui->device_management_screen_sDreamClose, 220, 18);
-    lv_obj_set_size(ui->device_management_screen_sDreamClose, 54, 60);
+    lv_obj_set_pos(ui->device_management_screen_sDreamClose, 250, 30);
+    lv_obj_set_size(ui->device_management_screen_sDreamClose, 60, 60);
 
     //Write style for device_management_screen_sDreamClose, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_img_recolor_opa(ui->device_management_screen_sDreamClose, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -1073,7 +1049,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sDreamOpen, 50,50);
     lv_img_set_angle(ui->device_management_screen_sDreamOpen, 0);
-    lv_obj_set_pos(ui->device_management_screen_sDreamOpen, 137, 23);
+    lv_obj_set_pos(ui->device_management_screen_sDreamOpen, 165, 30);
     lv_obj_set_size(ui->device_management_screen_sDreamOpen, 60, 60);
 
     //Write style for device_management_screen_sDreamOpen, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1084,16 +1060,13 @@ void setup_scr_device_management_screen(lv_ui *ui)
 
     //Write codes device_management_screen_cont_9
     ui->device_management_screen_cont_9 = lv_obj_create(ui->device_management_screen_tabview_1_tab_1);
-    lv_obj_set_pos(ui->device_management_screen_cont_9, 19, 722);
-    lv_obj_set_size(ui->device_management_screen_cont_9, 300, 150);
+    lv_obj_set_pos(ui->device_management_screen_cont_9, 0, 840);
+    lv_obj_set_size(ui->device_management_screen_cont_9, 330, 195);
     lv_obj_set_scrollbar_mode(ui->device_management_screen_cont_9, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for device_management_screen_cont_9, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->device_management_screen_cont_9, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->device_management_screen_cont_9, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->device_management_screen_cont_9, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui->device_management_screen_cont_9, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->device_management_screen_cont_9, 30, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->device_management_screen_cont_9, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->device_management_screen_cont_9, 15, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->device_management_screen_cont_9, 162, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->device_management_screen_cont_9, lv_color_hex(0x3a5789), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->device_management_screen_cont_9, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -1118,7 +1091,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_label_set_long_mode(ui->device_management_screen_imgbtn_6_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->device_management_screen_imgbtn_6_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->device_management_screen_imgbtn_6, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->device_management_screen_imgbtn_6, 227, 18);
+    lv_obj_set_pos(ui->device_management_screen_imgbtn_6, 250, 30);
     lv_obj_set_size(ui->device_management_screen_imgbtn_6, 48, 48);
 
     //Write style for device_management_screen_imgbtn_6, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1154,8 +1127,8 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_label_9 = lv_label_create(ui->device_management_screen_cont_9);
     lv_label_set_text(ui->device_management_screen_label_9, "空调");
     lv_label_set_long_mode(ui->device_management_screen_label_9, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->device_management_screen_label_9, 15, 91);
-    lv_obj_set_size(ui->device_management_screen_label_9, 100, 35);
+    lv_obj_set_pos(ui->device_management_screen_label_9, 20, 135);
+    lv_obj_set_size(ui->device_management_screen_label_9, 63, 35);
 
     //Write style for device_management_screen_label_9, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->device_management_screen_label_9, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -1177,7 +1150,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_sTempText = lv_label_create(ui->device_management_screen_cont_9);
     lv_label_set_text(ui->device_management_screen_sTempText, "16℃");
     lv_label_set_long_mode(ui->device_management_screen_sTempText, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->device_management_screen_sTempText, 190, 91);
+    lv_obj_set_pos(ui->device_management_screen_sTempText, 213, 142);
     lv_obj_set_size(ui->device_management_screen_sTempText, 100, 32);
 
     //Write style for device_management_screen_sTempText, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1200,7 +1173,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_sOffText = lv_label_create(ui->device_management_screen_cont_9);
     lv_label_set_text(ui->device_management_screen_sOffText, "关");
     lv_label_set_long_mode(ui->device_management_screen_sOffText, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->device_management_screen_sOffText, 125, 20);
+    lv_obj_set_pos(ui->device_management_screen_sOffText, 123, 33);
     lv_obj_set_size(ui->device_management_screen_sOffText, 61, 37);
 
     //Write style for device_management_screen_sOffText, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1223,7 +1196,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_sACFanText = lv_label_create(ui->device_management_screen_cont_9);
     lv_label_set_text(ui->device_management_screen_sACFanText, "送风");
     lv_label_set_long_mode(ui->device_management_screen_sACFanText, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->device_management_screen_sACFanText, 125, 20);
+    lv_obj_set_pos(ui->device_management_screen_sACFanText, 123, 33);
     lv_obj_set_size(ui->device_management_screen_sACFanText, 61, 37);
 
     //Write style for device_management_screen_sACFanText, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1252,7 +1225,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sVentilateACimg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sVentilateACimg, 0);
-    lv_obj_set_pos(ui->device_management_screen_sVentilateACimg, 25, 20);
+    lv_obj_set_pos(ui->device_management_screen_sVentilateACimg, 17, 37);
     lv_obj_set_size(ui->device_management_screen_sVentilateACimg, 77, 49);
 
     //Write style for device_management_screen_sVentilateACimg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1271,7 +1244,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sAC, 50,50);
     lv_img_set_angle(ui->device_management_screen_sAC, 0);
-    lv_obj_set_pos(ui->device_management_screen_sAC, 25, 17);
+    lv_obj_set_pos(ui->device_management_screen_sAC, 17, 37);
     lv_obj_set_size(ui->device_management_screen_sAC, 77, 49);
 
     //Write style for device_management_screen_sAC, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1284,7 +1257,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_sACCoolText = lv_label_create(ui->device_management_screen_cont_9);
     lv_label_set_text(ui->device_management_screen_sACCoolText, "制冷");
     lv_label_set_long_mode(ui->device_management_screen_sACCoolText, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->device_management_screen_sACCoolText, 125, 20);
+    lv_obj_set_pos(ui->device_management_screen_sACCoolText, 123, 33);
     lv_obj_set_size(ui->device_management_screen_sACCoolText, 61, 37);
 
     //Write style for device_management_screen_sACCoolText, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1307,7 +1280,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_sACHotText = lv_label_create(ui->device_management_screen_cont_9);
     lv_label_set_text(ui->device_management_screen_sACHotText, "制热");
     lv_label_set_long_mode(ui->device_management_screen_sACHotText, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->device_management_screen_sACHotText, 125, 20);
+    lv_obj_set_pos(ui->device_management_screen_sACHotText, 123, 33);
     lv_obj_set_size(ui->device_management_screen_sACHotText, 61, 37);
 
     //Write style for device_management_screen_sACHotText, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1330,7 +1303,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_sACDryText = lv_label_create(ui->device_management_screen_cont_9);
     lv_label_set_text(ui->device_management_screen_sACDryText, "除湿");
     lv_label_set_long_mode(ui->device_management_screen_sACDryText, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->device_management_screen_sACDryText, 125, 20);
+    lv_obj_set_pos(ui->device_management_screen_sACDryText, 123, 33);
     lv_obj_set_size(ui->device_management_screen_sACDryText, 61, 37);
 
     //Write style for device_management_screen_sACDryText, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1351,16 +1324,13 @@ void setup_scr_device_management_screen(lv_ui *ui)
 
     //Write codes device_management_screen_cont_10
     ui->device_management_screen_cont_10 = lv_obj_create(ui->device_management_screen_tabview_1_tab_1);
-    lv_obj_set_pos(ui->device_management_screen_cont_10, 373, 720);
-    lv_obj_set_size(ui->device_management_screen_cont_10, 300, 150);
+    lv_obj_set_pos(ui->device_management_screen_cont_10, 345, 840);
+    lv_obj_set_size(ui->device_management_screen_cont_10, 330, 195);
     lv_obj_set_scrollbar_mode(ui->device_management_screen_cont_10, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for device_management_screen_cont_10, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->device_management_screen_cont_10, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->device_management_screen_cont_10, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->device_management_screen_cont_10, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui->device_management_screen_cont_10, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->device_management_screen_cont_10, 30, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->device_management_screen_cont_10, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->device_management_screen_cont_10, 15, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->device_management_screen_cont_10, 162, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->device_management_screen_cont_10, lv_color_hex(0x3a5789), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->device_management_screen_cont_10, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -1376,7 +1346,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_img_set_src(ui->device_management_screen_sMusicPauseImg, &_small_disc_alpha_51x51);
     lv_img_set_pivot(ui->device_management_screen_sMusicPauseImg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sMusicPauseImg, 0);
-    lv_obj_set_pos(ui->device_management_screen_sMusicPauseImg, 27, 21);
+    lv_obj_set_pos(ui->device_management_screen_sMusicPauseImg, 23, 34);
     lv_obj_set_size(ui->device_management_screen_sMusicPauseImg, 51, 51);
 
     //Write style for device_management_screen_sMusicPauseImg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1391,7 +1361,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_img_set_src(ui->device_management_screen_sMusicPlayImg, &_srack_alpha_20x31);
     lv_img_set_pivot(ui->device_management_screen_sMusicPlayImg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sMusicPlayImg, 0);
-    lv_obj_set_pos(ui->device_management_screen_sMusicPlayImg, 70, 13);
+    lv_obj_set_pos(ui->device_management_screen_sMusicPlayImg, 66, 26);
     lv_obj_set_size(ui->device_management_screen_sMusicPlayImg, 20, 31);
 
     //Write style for device_management_screen_sMusicPlayImg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1415,7 +1385,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_label_set_long_mode(ui->device_management_screen_imgbtn_9_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->device_management_screen_imgbtn_9_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->device_management_screen_imgbtn_9, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->device_management_screen_imgbtn_9, 203, 15);
+    lv_obj_set_pos(ui->device_management_screen_imgbtn_9, 250, 30);
     lv_obj_set_size(ui->device_management_screen_imgbtn_9, 60, 60);
 
     //Write style for device_management_screen_imgbtn_9, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1451,8 +1421,8 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_label_12 = lv_label_create(ui->device_management_screen_cont_10);
     lv_label_set_text(ui->device_management_screen_label_12, "音乐");
     lv_label_set_long_mode(ui->device_management_screen_label_12, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->device_management_screen_label_12, 15, 92);
-    lv_obj_set_size(ui->device_management_screen_label_12, 100, 35);
+    lv_obj_set_pos(ui->device_management_screen_label_12, 20, 135);
+    lv_obj_set_size(ui->device_management_screen_label_12, 61, 35);
 
     //Write style for device_management_screen_label_12, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->device_management_screen_label_12, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -1472,16 +1442,13 @@ void setup_scr_device_management_screen(lv_ui *ui)
 
     //Write codes device_management_screen_cont_11
     ui->device_management_screen_cont_11 = lv_obj_create(ui->device_management_screen_tabview_1_tab_1);
-    lv_obj_set_pos(ui->device_management_screen_cont_11, 20, 905);
-    lv_obj_set_size(ui->device_management_screen_cont_11, 300, 150);
+    lv_obj_set_pos(ui->device_management_screen_cont_11, 0, 1050);
+    lv_obj_set_size(ui->device_management_screen_cont_11, 330, 195);
     lv_obj_set_scrollbar_mode(ui->device_management_screen_cont_11, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for device_management_screen_cont_11, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->device_management_screen_cont_11, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->device_management_screen_cont_11, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->device_management_screen_cont_11, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui->device_management_screen_cont_11, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->device_management_screen_cont_11, 30, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->device_management_screen_cont_11, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->device_management_screen_cont_11, 15, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->device_management_screen_cont_11, 162, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->device_management_screen_cont_11, lv_color_hex(0x3a5789), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->device_management_screen_cont_11, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -1520,7 +1487,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sDryRackUp, 50,50);
     lv_img_set_angle(ui->device_management_screen_sDryRackUp, 0);
-    lv_obj_set_pos(ui->device_management_screen_sDryRackUp, 25, 16);
+    lv_obj_set_pos(ui->device_management_screen_sDryRackUp, 24, 16);
     lv_obj_set_size(ui->device_management_screen_sDryRackUp, 104, 27);
 
     //Write style for device_management_screen_sDryRackUp, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1533,8 +1500,8 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_label_11 = lv_label_create(ui->device_management_screen_cont_11);
     lv_label_set_text(ui->device_management_screen_label_11, "晾衣机");
     lv_label_set_long_mode(ui->device_management_screen_label_11, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->device_management_screen_label_11, 15, 92);
-    lv_obj_set_size(ui->device_management_screen_label_11, 100, 35);
+    lv_obj_set_pos(ui->device_management_screen_label_11, 20, 135);
+    lv_obj_set_size(ui->device_management_screen_label_11, 90, 35);
 
     //Write style for device_management_screen_label_11, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->device_management_screen_label_11, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -1562,7 +1529,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sDryRackDownBtn, 50,50);
     lv_img_set_angle(ui->device_management_screen_sDryRackDownBtn, 0);
-    lv_obj_set_pos(ui->device_management_screen_sDryRackDownBtn, 208, 78);
+    lv_obj_set_pos(ui->device_management_screen_sDryRackDownBtn, 245, 103);
     lv_obj_set_size(ui->device_management_screen_sDryRackDownBtn, 60, 60);
 
     //Write style for device_management_screen_sDryRackDownBtn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1581,7 +1548,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sDryRackUpBtn, 50,50);
     lv_img_set_angle(ui->device_management_screen_sDryRackUpBtn, 0);
-    lv_obj_set_pos(ui->device_management_screen_sDryRackUpBtn, 206, 4);
+    lv_obj_set_pos(ui->device_management_screen_sDryRackUpBtn, 245, 29);
     lv_obj_set_size(ui->device_management_screen_sDryRackUpBtn, 60, 60);
 
     //Write style for device_management_screen_sDryRackUpBtn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1592,16 +1559,13 @@ void setup_scr_device_management_screen(lv_ui *ui)
 
     //Write codes device_management_screen_cont_12
     ui->device_management_screen_cont_12 = lv_obj_create(ui->device_management_screen_tabview_1_tab_1);
-    lv_obj_set_pos(ui->device_management_screen_cont_12, 372, 905);
-    lv_obj_set_size(ui->device_management_screen_cont_12, 300, 150);
+    lv_obj_set_pos(ui->device_management_screen_cont_12, 345, 1050);
+    lv_obj_set_size(ui->device_management_screen_cont_12, 330, 195);
     lv_obj_set_scrollbar_mode(ui->device_management_screen_cont_12, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for device_management_screen_cont_12, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->device_management_screen_cont_12, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->device_management_screen_cont_12, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->device_management_screen_cont_12, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui->device_management_screen_cont_12, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->device_management_screen_cont_12, 30, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->device_management_screen_cont_12, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->device_management_screen_cont_12, 15, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->device_management_screen_cont_12, 162, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->device_management_screen_cont_12, lv_color_hex(0x3a5789), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->device_management_screen_cont_12, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -1617,7 +1581,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_img_set_src(ui->device_management_screen_sFanOpenImg, &_sFanAndLTon_alpha_60x60);
     lv_img_set_pivot(ui->device_management_screen_sFanOpenImg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sFanOpenImg, 0);
-    lv_obj_set_pos(ui->device_management_screen_sFanOpenImg, 27, 22);
+    lv_obj_set_pos(ui->device_management_screen_sFanOpenImg, 19, 27);
     lv_obj_set_size(ui->device_management_screen_sFanOpenImg, 60, 60);
 
     //Write style for device_management_screen_sFanOpenImg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1632,7 +1596,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_img_set_src(ui->device_management_screen_sFancloseImg, &_sFanAndLToff_alpha_60x60);
     lv_img_set_pivot(ui->device_management_screen_sFancloseImg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sFancloseImg, 0);
-    lv_obj_set_pos(ui->device_management_screen_sFancloseImg, 27, 22);
+    lv_obj_set_pos(ui->device_management_screen_sFancloseImg, 19, 27);
     lv_obj_set_size(ui->device_management_screen_sFancloseImg, 60, 60);
 
     //Write style for device_management_screen_sFancloseImg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1656,7 +1620,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_label_set_long_mode(ui->device_management_screen_sSourceBtn_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->device_management_screen_sSourceBtn_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->device_management_screen_sSourceBtn, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->device_management_screen_sSourceBtn, 226, 17);
+    lv_obj_set_pos(ui->device_management_screen_sSourceBtn, 250, 30);
     lv_obj_set_size(ui->device_management_screen_sSourceBtn, 48, 48);
 
     //Write style for device_management_screen_sSourceBtn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1692,8 +1656,8 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_label_14 = lv_label_create(ui->device_management_screen_cont_12);
     lv_label_set_text(ui->device_management_screen_label_14, "风扇灯");
     lv_label_set_long_mode(ui->device_management_screen_label_14, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->device_management_screen_label_14, 23, 86);
-    lv_obj_set_size(ui->device_management_screen_label_14, 100, 35);
+    lv_obj_set_pos(ui->device_management_screen_label_14, 20, 135);
+    lv_obj_set_size(ui->device_management_screen_label_14, 91, 35);
 
     //Write style for device_management_screen_label_14, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->device_management_screen_label_14, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -1726,7 +1690,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_label_set_long_mode(ui->device_management_screen_sFanLightBtn_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->device_management_screen_sFanLightBtn_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->device_management_screen_sFanLightBtn, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->device_management_screen_sFanLightBtn, 147, 7);
+    lv_obj_set_pos(ui->device_management_screen_sFanLightBtn, 164, 21);
     lv_obj_set_size(ui->device_management_screen_sFanLightBtn, 60, 60);
 
     //Write style for device_management_screen_sFanLightBtn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1760,16 +1724,13 @@ void setup_scr_device_management_screen(lv_ui *ui)
 
     //Write codes device_management_screen_cont_13
     ui->device_management_screen_cont_13 = lv_obj_create(ui->device_management_screen_tabview_1_tab_1);
-    lv_obj_set_pos(ui->device_management_screen_cont_13, 20, 1086);
-    lv_obj_set_size(ui->device_management_screen_cont_13, 300, 150);
+    lv_obj_set_pos(ui->device_management_screen_cont_13, 0, 1260);
+    lv_obj_set_size(ui->device_management_screen_cont_13, 330, 195);
     lv_obj_set_scrollbar_mode(ui->device_management_screen_cont_13, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for device_management_screen_cont_13, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->device_management_screen_cont_13, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->device_management_screen_cont_13, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->device_management_screen_cont_13, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui->device_management_screen_cont_13, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->device_management_screen_cont_13, 30, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->device_management_screen_cont_13, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->device_management_screen_cont_13, 15, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->device_management_screen_cont_13, 162, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->device_management_screen_cont_13, lv_color_hex(0x3a5789), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->device_management_screen_cont_13, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -1783,8 +1744,8 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_label_13 = lv_label_create(ui->device_management_screen_cont_13);
     lv_label_set_text(ui->device_management_screen_label_13, "浴霸");
     lv_label_set_long_mode(ui->device_management_screen_label_13, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->device_management_screen_label_13, 2, 83);
-    lv_obj_set_size(ui->device_management_screen_label_13, 100, 35);
+    lv_obj_set_pos(ui->device_management_screen_label_13, 20, 135);
+    lv_obj_set_size(ui->device_management_screen_label_13, 61, 35);
 
     //Write style for device_management_screen_label_13, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->device_management_screen_label_13, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -1808,7 +1769,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_img_set_src(ui->device_management_screen_IdleBtn, &_sIdleBtn_alpha_60x60);
     lv_img_set_pivot(ui->device_management_screen_IdleBtn, 50,50);
     lv_img_set_angle(ui->device_management_screen_IdleBtn, 0);
-    lv_obj_set_pos(ui->device_management_screen_IdleBtn, 230, 15);
+    lv_obj_set_pos(ui->device_management_screen_IdleBtn, 250, 30);
     lv_obj_set_size(ui->device_management_screen_IdleBtn, 60, 60);
 
     //Write style for device_management_screen_IdleBtn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1823,7 +1784,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_img_set_src(ui->device_management_screen_sHeatLightImg, &_sHlight_alpha_65x43);
     lv_img_set_pivot(ui->device_management_screen_sHeatLightImg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sHeatLightImg, 0);
-    lv_obj_set_pos(ui->device_management_screen_sHeatLightImg, 20, 14);
+    lv_obj_set_pos(ui->device_management_screen_sHeatLightImg, 22, 32);
     lv_obj_set_size(ui->device_management_screen_sHeatLightImg, 65, 43);
 
     //Write style for device_management_screen_sHeatLightImg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1847,7 +1808,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_label_set_long_mode(ui->device_management_screen_sHeaterLightBtn_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->device_management_screen_sHeaterLightBtn_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->device_management_screen_sHeaterLightBtn, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->device_management_screen_sHeaterLightBtn, 151, 17);
+    lv_obj_set_pos(ui->device_management_screen_sHeaterLightBtn, 165, 30);
     lv_obj_set_size(ui->device_management_screen_sHeaterLightBtn, 60, 60);
 
     //Write style for device_management_screen_sHeaterLightBtn, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1885,7 +1846,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_img_set_src(ui->device_management_screen_sHeatLowModeImg, &_sLowHeatMode_alpha_65x43);
     lv_img_set_pivot(ui->device_management_screen_sHeatLowModeImg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sHeatLowModeImg, 0);
-    lv_obj_set_pos(ui->device_management_screen_sHeatLowModeImg, 20, 14);
+    lv_obj_set_pos(ui->device_management_screen_sHeatLowModeImg, 23, 33);
     lv_obj_set_size(ui->device_management_screen_sHeatLowModeImg, 65, 43);
 
     //Write style for device_management_screen_sHeatLowModeImg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1900,7 +1861,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_img_set_src(ui->device_management_screen_sHeatHighModeImg, &_sHeatMode_alpha_65x43);
     lv_img_set_pivot(ui->device_management_screen_sHeatHighModeImg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sHeatHighModeImg, 0);
-    lv_obj_set_pos(ui->device_management_screen_sHeatHighModeImg, 20, 14);
+    lv_obj_set_pos(ui->device_management_screen_sHeatHighModeImg, 23, 33);
     lv_obj_set_size(ui->device_management_screen_sHeatHighModeImg, 65, 43);
 
     //Write style for device_management_screen_sHeatHighModeImg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1915,7 +1876,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_img_set_src(ui->device_management_screen_sVentilateModeImg, &_sventilate_alpha_65x43);
     lv_img_set_pivot(ui->device_management_screen_sVentilateModeImg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sVentilateModeImg, 0);
-    lv_obj_set_pos(ui->device_management_screen_sVentilateModeImg, 20, 14);
+    lv_obj_set_pos(ui->device_management_screen_sVentilateModeImg, 23, 33);
     lv_obj_set_size(ui->device_management_screen_sVentilateModeImg, 65, 43);
 
     //Write style for device_management_screen_sVentilateModeImg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1930,7 +1891,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_img_set_src(ui->device_management_screen_sWindModeImg, &_sFanMode_alpha_65x43);
     lv_img_set_pivot(ui->device_management_screen_sWindModeImg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sWindModeImg, 0);
-    lv_obj_set_pos(ui->device_management_screen_sWindModeImg, 20, 14);
+    lv_obj_set_pos(ui->device_management_screen_sWindModeImg, 23, 33);
     lv_obj_set_size(ui->device_management_screen_sWindModeImg, 65, 43);
 
     //Write style for device_management_screen_sWindModeImg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1945,7 +1906,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_img_set_src(ui->device_management_screen_sHeatDevImg, &_sDev_alpha_65x43);
     lv_img_set_pivot(ui->device_management_screen_sHeatDevImg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sHeatDevImg, 0);
-    lv_obj_set_pos(ui->device_management_screen_sHeatDevImg, 20, 14);
+    lv_obj_set_pos(ui->device_management_screen_sHeatDevImg, 23, 33);
     lv_obj_set_size(ui->device_management_screen_sHeatDevImg, 65, 43);
 
     //Write style for device_management_screen_sHeatDevImg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1960,7 +1921,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
     lv_img_set_src(ui->device_management_screen_sidleModeImg, &_sIdleMode_alpha_65x43);
     lv_img_set_pivot(ui->device_management_screen_sidleModeImg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sidleModeImg, 0);
-    lv_obj_set_pos(ui->device_management_screen_sidleModeImg, 20, 14);
+    lv_obj_set_pos(ui->device_management_screen_sidleModeImg, 23, 33);
     lv_obj_set_size(ui->device_management_screen_sidleModeImg, 65, 43);
 
     //Write style for device_management_screen_sidleModeImg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -1973,8 +1934,8 @@ void setup_scr_device_management_screen(lv_ui *ui)
     ui->device_management_screen_label_1 = lv_label_create(ui->device_management_screen);
     lv_label_set_text(ui->device_management_screen_label_1, "设备管理");
     lv_label_set_long_mode(ui->device_management_screen_label_1, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->device_management_screen_label_1, 20, 20);
-    lv_obj_set_size(ui->device_management_screen_label_1, 150, 40);
+    lv_obj_set_pos(ui->device_management_screen_label_1, 39, 29);
+    lv_obj_set_size(ui->device_management_screen_label_1, 120, 33);
 
     //Write style for device_management_screen_label_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->device_management_screen_label_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -2002,7 +1963,7 @@ void setup_scr_device_management_screen(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->device_management_screen_sDRLightImg, 50,50);
     lv_img_set_angle(ui->device_management_screen_sDRLightImg, 0);
-    lv_obj_set_pos(ui->device_management_screen_sDRLightImg, 111, 1031);
+    lv_obj_set_pos(ui->device_management_screen_sDRLightImg, 86, 1174);
     lv_obj_set_size(ui->device_management_screen_sDRLightImg, 21, 5);
 
     //Write style for device_management_screen_sDRLightImg, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.

@@ -29,7 +29,7 @@ void setup_scr_light_CT_screen(lv_ui *ui)
     lv_obj_set_style_bg_grad_dir(ui->light_CT_screen, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes light_CT_screen_tabview_1
-    ui->light_CT_screen_tabview_1 = lv_tabview_create(ui->light_CT_screen, LV_DIR_TOP, 70);
+    ui->light_CT_screen_tabview_1 = lv_tabview_create(ui->light_CT_screen, LV_DIR_TOP, 85);
     lv_obj_set_pos(ui->light_CT_screen_tabview_1, 0, 0);
     lv_obj_set_size(ui->light_CT_screen_tabview_1, 720, 720);
     lv_obj_set_scrollbar_mode(ui->light_CT_screen_tabview_1, LV_SCROLLBAR_MODE_ON);
@@ -317,7 +317,7 @@ void setup_scr_light_CT_screen(lv_ui *ui)
     lv_label_set_long_mode(ui->light_CT_screen_imgbtn_1_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->light_CT_screen_imgbtn_1_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->light_CT_screen_imgbtn_1, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->light_CT_screen_imgbtn_1, 626, 86);
+    lv_obj_set_pos(ui->light_CT_screen_imgbtn_1, 622, 98);
     lv_obj_set_size(ui->light_CT_screen_imgbtn_1, 70, 70);
 
     //Write style for light_CT_screen_imgbtn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -385,7 +385,7 @@ void setup_scr_light_CT_screen(lv_ui *ui)
     lv_label_set_long_mode(ui->light_CT_screen_on_off_2_img_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->light_CT_screen_on_off_2_img_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->light_CT_screen_on_off_2_img, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->light_CT_screen_on_off_2_img, 20, 101);
+    lv_obj_set_pos(ui->light_CT_screen_on_off_2_img, 30, 117);
     lv_obj_set_size(ui->light_CT_screen_on_off_2_img, 48, 48);
 
     //Write style for light_CT_screen_on_off_2_img, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.

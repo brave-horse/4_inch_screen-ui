@@ -29,7 +29,7 @@ void setup_scr_Sheers(lv_ui *ui)
     lv_obj_set_style_bg_grad_dir(ui->Sheers, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes Sheers_tabview_1
-    ui->Sheers_tabview_1 = lv_tabview_create(ui->Sheers, LV_DIR_TOP, 70);
+    ui->Sheers_tabview_1 = lv_tabview_create(ui->Sheers, LV_DIR_TOP, 85);
     lv_obj_set_pos(ui->Sheers_tabview_1, 0, 0);
     lv_obj_set_size(ui->Sheers_tabview_1, 720, 720);
     lv_obj_set_scrollbar_mode(ui->Sheers_tabview_1, LV_SCROLLBAR_MODE_ON);

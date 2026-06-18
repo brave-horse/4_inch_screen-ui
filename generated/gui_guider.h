@@ -561,6 +561,7 @@ void setup_scr_SensorSet(lv_ui *ui);
 void setup_scr_Reset(lv_ui *ui);
 void setup_scr_huifuchuchangshezhi(lv_ui *ui);
 void setup_scr_screen_1(lv_ui *ui);
+LV_IMG_DECLARE(_4_alpha_720x720);
 LV_IMG_DECLARE(_sSetting_alpha_46x46);
 LV_IMG_DECLARE(_sSleep_off_alpha_46x46);
 LV_IMG_DECLARE(_sHome_alpha_46x46);

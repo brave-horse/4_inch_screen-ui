@@ -29,7 +29,7 @@ void setup_scr_Music(lv_ui *ui)
     lv_obj_set_style_bg_grad_dir(ui->Music, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes Music_tabview_1
-    ui->Music_tabview_1 = lv_tabview_create(ui->Music, LV_DIR_TOP, 70);
+    ui->Music_tabview_1 = lv_tabview_create(ui->Music, LV_DIR_TOP, 85);
     lv_obj_set_pos(ui->Music_tabview_1, 0, 0);
     lv_obj_set_size(ui->Music_tabview_1, 720, 720);
     lv_obj_set_scrollbar_mode(ui->Music_tabview_1, LV_SCROLLBAR_MODE_ON);

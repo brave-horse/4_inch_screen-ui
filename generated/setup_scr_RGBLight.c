@@ -29,7 +29,7 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_obj_set_style_bg_grad_dir(ui->RGBLight, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes RGBLight_tabview_1
-    ui->RGBLight_tabview_1 = lv_tabview_create(ui->RGBLight, LV_DIR_TOP, 70);
+    ui->RGBLight_tabview_1 = lv_tabview_create(ui->RGBLight, LV_DIR_TOP, 85);
     lv_obj_set_pos(ui->RGBLight_tabview_1, 0, 0);
     lv_obj_set_size(ui->RGBLight_tabview_1, 720, 720);
     lv_obj_set_scrollbar_mode(ui->RGBLight_tabview_1, LV_SCROLLBAR_MODE_ON);
@@ -88,7 +88,7 @@ void setup_scr_RGBLight(lv_ui *ui)
 
     //Write codes RGBLight_cont_1
     ui->RGBLight_cont_1 = lv_obj_create(ui->RGBLight);
-    lv_obj_set_pos(ui->RGBLight_cont_1, 0, 72);
+    lv_obj_set_pos(ui->RGBLight_cont_1, 0, 71);
     lv_obj_set_size(ui->RGBLight_cont_1, 720, 645);
     lv_obj_set_scrollbar_mode(ui->RGBLight_cont_1, LV_SCROLLBAR_MODE_OFF);
 

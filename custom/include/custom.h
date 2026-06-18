@@ -17,7 +17,7 @@ extern "C" {
 
 /* GUI-Guider 生成的 setup_scr_*.c 会 #include "custom.h" 并在建屏末尾调用 custom_init()。
  * 这是 custom 层唯一对 generated 暴露的入口：禁止在这里聚合各模块头(如 custom_modules.h)，
- * 否则 generated 编译时会被迫去找 img.h/scr_guard.h 等，破坏分层。模块聚合只在 custom.c 里做。 */
+ * 否则 generated 编译时会被迫去找 scr_guard.h 等，破坏分层。模块聚合只在 custom.c 里做。 */
 void custom_init(lv_ui *ui);
 
 #ifdef __cplusplus

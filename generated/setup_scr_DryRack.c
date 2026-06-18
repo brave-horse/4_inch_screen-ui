@@ -88,7 +88,7 @@ void setup_scr_DryRack(lv_ui *ui)
 
     //Write codes DryRack_cont_1
     ui->DryRack_cont_1 = lv_obj_create(ui->DryRack);
-    lv_obj_set_pos(ui->DryRack_cont_1, 0, 72);
+    lv_obj_set_pos(ui->DryRack_cont_1, 0, 75);
     lv_obj_set_size(ui->DryRack_cont_1, 720, 645);
     lv_obj_set_scrollbar_mode(ui->DryRack_cont_1, LV_SCROLLBAR_MODE_OFF);
 

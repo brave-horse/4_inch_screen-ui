@@ -15,53 +15,57 @@
 #include "custom.h"
 #include "custom_modules.h"
 
+#ifndef LV_USE_GUIDER_SIMULATOR
+#include "app_config.h"      /* PERF_LOG_EN / CPU_CORE_NUM */
+#include "os/os_api.h"       /* os_cpu_usage */
+#include "system/malloc.h"   /* get_malloc_remain_heap_size / xPortGetMinimumEverFreeHeapSize */
+#endif
+
+#ifndef PERF_LOG_EN
+#define PERF_LOG_EN 0        /* fallback: 模拟器或总开关注释掉时默认关 */
+#endif
+
 /*********************
  *      DEFINES
  *********************/
+#define EN_SCR_GUARD     1   /* 屏指针守卫,防野指针 */
+#define EN_SCR_NOSCROLL  1   /* 主屏禁滚 */
 
-/* ───────── 调试开关：定位"界面切换卡死"问题 ─────────
- * 当前默认全部为 0 = 回到"空 custom"基线，先编译确认恢复正常(不卡)。
- * 然后按顺序逐个改成 1、各自单独编译烧录测试，复现卡死即锁定元凶，告诉我我针对性修：
- *   第1步: 只开 EN_SCR_GUARD
- *   第2步: 只开 EN_IMG
- *   第3步: 只开 EN_SCR_NOSCROLL
- * (每次只开一个，其余保持 0) */
-#define EN_SCR_GUARD     1   /* rule/scr_guard.c   : 屏指针守卫 + 数字时钟野指针守护(修来回切屏卡死) */
-#define EN_IMG           0   /* external images are loaded through GUI Guider paths */
-#define EN_SCR_NOSCROLL  1   /* rule/scr_noscroll.c: 主屏禁滚 */
+#if PERF_LOG_EN && !defined(LV_USE_GUIDER_SIMULATOR)
+static void perf_mon_cb(lv_timer_t *timer)
+{
+    int core_usage[CPU_CORE_NUM] = {0};
+    os_cpu_usage(NULL, core_usage);
+    int total_usage = 0;
+    for (int core = 0; core < CPU_CORE_NUM; core++) {
+        total_usage += core_usage[core];
+    }
+    printf("[perf] cpu_avg=%d%% c0=%d%% c1=%d%% heap=%d min_heap=%d\n",
+           total_usage / CPU_CORE_NUM, core_usage[0], core_usage[CPU_CORE_NUM - 1],
+           get_malloc_remain_heap_size(), (int)xPortGetMinimumEverFreeHeapSize());
+}
+#endif
 
-/* custom 层总入口：由 app_main.c 的 jl_gui_init() 在 setup_ui/events_init 之后调用一次。
- * 这里只做"编排"——把各模块初始化拉起来，具体逻辑都在各自模块里：
- *   assert/img.c        图片 DDR 预解码 + 拦截解码器
- *   rule/scr_guard.c    屏指针守卫(防野指针)
- *   rule/scr_noscroll.c 指定屏禁滚(防原地重绘/吞手势)
- */
 void custom_init(lv_ui *ui)
 {
-    printf("[custom] init: guard=%d img=%d noscroll=%d\n",
-           EN_SCR_GUARD, EN_IMG, EN_SCR_NOSCROLL);
+    printf("[custom] init: guard=%d noscroll=%d perf=%d\n",
+           EN_SCR_GUARD, EN_SCR_NOSCROLL, PERF_LOG_EN);
 
 #if EN_SCR_GUARD
-    /* 先装屏指针守卫，保证后续模块读 guider_ui.screen_* 永不变野。 */
     scr_guard_init();
 #endif
 
-#if EN_IMG
-    /* 图片 DDR 预解码 + 拦截解码器。 */
-    custom_img_init(ui);
-#endif
-
 #if EN_SCR_NOSCROLL
-    /* 主屏禁滚。 */
     scr_noscroll_init(ui);
 #endif
 
-    /* 跨屏控件：主屏顶部下拉面板（用 GUI-Guider 画的 ui_home_screen_cont_1）。 */
     pulldown_init(ui);
 
+#if PERF_LOG_EN && !defined(LV_USE_GUIDER_SIMULATOR)
+    lv_timer_create(perf_mon_cb, 1000, NULL);
+#endif
 }
 
-/* 模拟器桩: hw_cloud_post() 在板子上由 Task/Soc/hw_cloud_task.c 提供 */
 #ifdef LV_USE_GUIDER_SIMULATOR
 #include "hw_cloud_task.h"
 void hw_cloud_post(HW_Msg *msg)

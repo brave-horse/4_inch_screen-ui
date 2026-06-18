@@ -29,7 +29,7 @@ void setup_scr_RollBlind(lv_ui *ui)
     lv_obj_set_style_bg_grad_dir(ui->RollBlind, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes RollBlind_tabview_1
-    ui->RollBlind_tabview_1 = lv_tabview_create(ui->RollBlind, LV_DIR_TOP, 70);
+    ui->RollBlind_tabview_1 = lv_tabview_create(ui->RollBlind, LV_DIR_TOP, 85);
     lv_obj_set_pos(ui->RollBlind_tabview_1, 0, 0);
     lv_obj_set_size(ui->RollBlind_tabview_1, 720, 720);
     lv_obj_set_scrollbar_mode(ui->RollBlind_tabview_1, LV_SCROLLBAR_MODE_ON);
@@ -277,7 +277,7 @@ void setup_scr_RollBlind(lv_ui *ui)
     //Write codes RollBlind_cont_4
     ui->RollBlind_cont_4 = lv_obj_create(ui->RollBlind);
     lv_obj_set_pos(ui->RollBlind_cont_4, 0, 0);
-    lv_obj_set_size(ui->RollBlind_cont_4, 720, 78);
+    lv_obj_set_size(ui->RollBlind_cont_4, 720, 85);
     lv_obj_set_scrollbar_mode(ui->RollBlind_cont_4, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for RollBlind_cont_4, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.

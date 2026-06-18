@@ -31,11 +31,7 @@ void setup_scr_ui_home_screen(lv_ui *ui)
     //Write codes ui_home_screen_img_1
     ui->ui_home_screen_img_1 = lv_img_create(ui->ui_home_screen);
     lv_obj_add_flag(ui->ui_home_screen_img_1, LV_OBJ_FLAG_CLICKABLE);
-#if LV_USE_GUIDER_SIMULATOR
-    lv_img_set_src(ui->ui_home_screen_img_1, "D:\\7.NXP-GUI-PROJECT\\4_inch_screen\\import\\image\\4.png");
-#else
-    lv_img_set_src(ui->ui_home_screen_img_1, "S:/sdfile/EXT_RESERVED/uipackres/ui/4.png");
-#endif
+    lv_img_set_src(ui->ui_home_screen_img_1, &_4_alpha_720x720);
     lv_img_set_pivot(ui->ui_home_screen_img_1, 50,50);
     lv_img_set_angle(ui->ui_home_screen_img_1, 0);
     lv_obj_set_pos(ui->ui_home_screen_img_1, 0, -2);
@@ -102,8 +98,8 @@ void setup_scr_ui_home_screen(lv_ui *ui)
     lv_obj_align(ui->ui_home_screen_btn_1_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->ui_home_screen_btn_1, 0, LV_STATE_DEFAULT);
     lv_obj_set_width(ui->ui_home_screen_btn_1_label, LV_PCT(100));
-    lv_obj_set_pos(ui->ui_home_screen_btn_1, 529, 118);
-    lv_obj_set_size(ui->ui_home_screen_btn_1, 126, 115);
+    lv_obj_set_pos(ui->ui_home_screen_btn_1, 484, -2);
+    lv_obj_set_size(ui->ui_home_screen_btn_1, 236, 236);
 
     //Write style for ui_home_screen_btn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_bg_opa(ui->ui_home_screen_btn_1, 162, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -159,8 +155,8 @@ void setup_scr_ui_home_screen(lv_ui *ui)
     lv_obj_align(ui->ui_home_screen_btn_2_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->ui_home_screen_btn_2, 0, LV_STATE_DEFAULT);
     lv_obj_set_width(ui->ui_home_screen_btn_2_label, LV_PCT(100));
-    lv_obj_set_pos(ui->ui_home_screen_btn_2, 529, 508);
-    lv_obj_set_size(ui->ui_home_screen_btn_2, 126, 115);
+    lv_obj_set_pos(ui->ui_home_screen_btn_2, 484, 482);
+    lv_obj_set_size(ui->ui_home_screen_btn_2, 236, 236);
 
     //Write style for ui_home_screen_btn_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_bg_opa(ui->ui_home_screen_btn_2, 162, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -183,8 +179,8 @@ void setup_scr_ui_home_screen(lv_ui *ui)
     lv_obj_align(ui->ui_home_screen_btn_3_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->ui_home_screen_btn_3, 0, LV_STATE_DEFAULT);
     lv_obj_set_width(ui->ui_home_screen_btn_3_label, LV_PCT(100));
-    lv_obj_set_pos(ui->ui_home_screen_btn_3, 529, 302);
-    lv_obj_set_size(ui->ui_home_screen_btn_3, 126, 115);
+    lv_obj_set_pos(ui->ui_home_screen_btn_3, 484, 241);
+    lv_obj_set_size(ui->ui_home_screen_btn_3, 236, 236);
 
     //Write style for ui_home_screen_btn_3, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_bg_opa(ui->ui_home_screen_btn_3, 162, LV_PART_MAIN|LV_STATE_DEFAULT);
