@@ -29,7 +29,7 @@ void setup_scr_SwitchSet(lv_ui *ui)
     lv_obj_set_style_bg_grad_dir(ui->SwitchSet, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes SwitchSet_tabview_1
-    ui->SwitchSet_tabview_1 = lv_tabview_create(ui->SwitchSet, LV_DIR_TOP, 70);
+    ui->SwitchSet_tabview_1 = lv_tabview_create(ui->SwitchSet, LV_DIR_TOP, 85);
     lv_obj_set_pos(ui->SwitchSet_tabview_1, 0, 0);
     lv_obj_set_size(ui->SwitchSet_tabview_1, 720, 720);
     lv_obj_set_scrollbar_mode(ui->SwitchSet_tabview_1, LV_SCROLLBAR_MODE_ON);
@@ -52,7 +52,7 @@ void setup_scr_SwitchSet(lv_ui *ui)
     ui_init_style(&style_SwitchSet_tabview_1_extra_btnm_main_default);
 
     lv_style_set_bg_opa(&style_SwitchSet_tabview_1_extra_btnm_main_default, 255);
-    lv_style_set_bg_color(&style_SwitchSet_tabview_1_extra_btnm_main_default, lv_color_hex(0x4f3f3f));
+    lv_style_set_bg_color(&style_SwitchSet_tabview_1_extra_btnm_main_default, lv_color_hex(0x243241));
     lv_style_set_bg_grad_dir(&style_SwitchSet_tabview_1_extra_btnm_main_default, LV_GRAD_DIR_NONE);
     lv_style_set_border_width(&style_SwitchSet_tabview_1_extra_btnm_main_default, 0);
     lv_style_set_radius(&style_SwitchSet_tabview_1_extra_btnm_main_default, 0);
@@ -88,7 +88,7 @@ void setup_scr_SwitchSet(lv_ui *ui)
 
     //Write codes SwitchSet_cont_2
     ui->SwitchSet_cont_2 = lv_obj_create(ui->SwitchSet);
-    lv_obj_set_pos(ui->SwitchSet_cont_2, 0, 505);
+    lv_obj_set_pos(ui->SwitchSet_cont_2, -1, 516);
     lv_obj_set_size(ui->SwitchSet_cont_2, 720, 215);
     lv_obj_set_scrollbar_mode(ui->SwitchSet_cont_2, LV_SCROLLBAR_MODE_OFF);
 
@@ -178,7 +178,7 @@ void setup_scr_SwitchSet(lv_ui *ui)
 
     //Write codes SwitchSet_cont_1
     ui->SwitchSet_cont_1 = lv_obj_create(ui->SwitchSet);
-    lv_obj_set_pos(ui->SwitchSet_cont_1, 0, 75);
+    lv_obj_set_pos(ui->SwitchSet_cont_1, -2, 87);
     lv_obj_set_size(ui->SwitchSet_cont_1, 720, 215);
     lv_obj_set_scrollbar_mode(ui->SwitchSet_cont_1, LV_SCROLLBAR_MODE_OFF);
 
@@ -268,7 +268,7 @@ void setup_scr_SwitchSet(lv_ui *ui)
 
     //Write codes SwitchSet_cont_3
     ui->SwitchSet_cont_3 = lv_obj_create(ui->SwitchSet);
-    lv_obj_set_pos(ui->SwitchSet_cont_3, 0, 290);
+    lv_obj_set_pos(ui->SwitchSet_cont_3, -2, 302);
     lv_obj_set_size(ui->SwitchSet_cont_3, 720, 215);
     lv_obj_set_scrollbar_mode(ui->SwitchSet_cont_3, LV_SCROLLBAR_MODE_OFF);
 
@@ -364,8 +364,8 @@ void setup_scr_SwitchSet(lv_ui *ui)
     lv_obj_align(ui->SwitchSet_btn_1_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->SwitchSet_btn_1, 0, LV_STATE_DEFAULT);
     lv_obj_set_width(ui->SwitchSet_btn_1_label, LV_PCT(100));
-    lv_obj_set_pos(ui->SwitchSet_btn_1, 11, 7);
-    lv_obj_set_size(ui->SwitchSet_btn_1, 156, 50);
+    lv_obj_set_pos(ui->SwitchSet_btn_1, 40, 25);
+    lv_obj_set_size(ui->SwitchSet_btn_1, 152, 38);
 
     //Write style for SwitchSet_btn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_bg_opa(ui->SwitchSet_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -376,6 +376,27 @@ void setup_scr_SwitchSet(lv_ui *ui)
     lv_obj_set_style_text_font(ui->SwitchSet_btn_1, &lv_font_ZiTiQuanWeiJunHeiW22_30, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->SwitchSet_btn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui->SwitchSet_btn_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes SwitchSet_btn_8
+    ui->SwitchSet_btn_8 = lv_btn_create(ui->SwitchSet);
+    ui->SwitchSet_btn_8_label = lv_label_create(ui->SwitchSet_btn_8);
+    lv_label_set_text(ui->SwitchSet_btn_8_label, "");
+    lv_label_set_long_mode(ui->SwitchSet_btn_8_label, LV_LABEL_LONG_WRAP);
+    lv_obj_align(ui->SwitchSet_btn_8_label, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_style_pad_all(ui->SwitchSet_btn_8, 0, LV_STATE_DEFAULT);
+    lv_obj_set_width(ui->SwitchSet_btn_8_label, LV_PCT(100));
+    lv_obj_set_pos(ui->SwitchSet_btn_8, 4, 4);
+    lv_obj_set_size(ui->SwitchSet_btn_8, 229, 82);
+
+    //Write style for SwitchSet_btn_8, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_bg_opa(ui->SwitchSet_btn_8, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->SwitchSet_btn_8, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->SwitchSet_btn_8, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->SwitchSet_btn_8, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->SwitchSet_btn_8, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->SwitchSet_btn_8, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->SwitchSet_btn_8, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->SwitchSet_btn_8, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of SwitchSet.
 

@@ -29,7 +29,7 @@ void setup_scr_Reset(lv_ui *ui)
     lv_obj_set_style_bg_grad_dir(ui->Reset, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes Reset_tile
-    ui->Reset_tile = lv_tabview_create(ui->Reset, LV_DIR_TOP, 70);
+    ui->Reset_tile = lv_tabview_create(ui->Reset, LV_DIR_TOP, 85);
     lv_obj_set_pos(ui->Reset_tile, 0, 0);
     lv_obj_set_size(ui->Reset_tile, 720, 720);
     lv_obj_set_scrollbar_mode(ui->Reset_tile, LV_SCROLLBAR_MODE_ON);
@@ -52,7 +52,7 @@ void setup_scr_Reset(lv_ui *ui)
     ui_init_style(&style_Reset_tile_extra_btnm_main_default);
 
     lv_style_set_bg_opa(&style_Reset_tile_extra_btnm_main_default, 255);
-    lv_style_set_bg_color(&style_Reset_tile_extra_btnm_main_default, lv_color_hex(0x4f3f3f));
+    lv_style_set_bg_color(&style_Reset_tile_extra_btnm_main_default, lv_color_hex(0x243241));
     lv_style_set_bg_grad_dir(&style_Reset_tile_extra_btnm_main_default, LV_GRAD_DIR_NONE);
     lv_style_set_border_width(&style_Reset_tile_extra_btnm_main_default, 0);
     lv_style_set_radius(&style_Reset_tile_extra_btnm_main_default, 0);
@@ -94,8 +94,8 @@ void setup_scr_Reset(lv_ui *ui)
     lv_obj_align(ui->Reset_btn_1_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->Reset_btn_1, 0, LV_STATE_DEFAULT);
     lv_obj_set_width(ui->Reset_btn_1_label, LV_PCT(100));
-    lv_obj_set_pos(ui->Reset_btn_1, 11, 7);
-    lv_obj_set_size(ui->Reset_btn_1, 156, 50);
+    lv_obj_set_pos(ui->Reset_btn_1, 40, 25);
+    lv_obj_set_size(ui->Reset_btn_1, 152, 37);
 
     //Write style for Reset_btn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_bg_opa(ui->Reset_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -175,6 +175,27 @@ void setup_scr_Reset(lv_ui *ui)
     lv_obj_set_style_text_font(ui->Reset_btn_3, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->Reset_btn_3, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui->Reset_btn_3, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes Reset_btn_4
+    ui->Reset_btn_4 = lv_btn_create(ui->Reset);
+    ui->Reset_btn_4_label = lv_label_create(ui->Reset_btn_4);
+    lv_label_set_text(ui->Reset_btn_4_label, "");
+    lv_label_set_long_mode(ui->Reset_btn_4_label, LV_LABEL_LONG_WRAP);
+    lv_obj_align(ui->Reset_btn_4_label, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_style_pad_all(ui->Reset_btn_4, 0, LV_STATE_DEFAULT);
+    lv_obj_set_width(ui->Reset_btn_4_label, LV_PCT(100));
+    lv_obj_set_pos(ui->Reset_btn_4, 4, 4);
+    lv_obj_set_size(ui->Reset_btn_4, 229, 82);
+
+    //Write style for Reset_btn_4, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_bg_opa(ui->Reset_btn_4, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->Reset_btn_4, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Reset_btn_4, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->Reset_btn_4, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->Reset_btn_4, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->Reset_btn_4, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->Reset_btn_4, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->Reset_btn_4, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of Reset.
 

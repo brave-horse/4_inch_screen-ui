@@ -29,7 +29,7 @@ void setup_scr_FanAndLight(lv_ui *ui)
     lv_obj_set_style_bg_grad_dir(ui->FanAndLight, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes FanAndLight_tabview_1
-    ui->FanAndLight_tabview_1 = lv_tabview_create(ui->FanAndLight, LV_DIR_TOP, 70);
+    ui->FanAndLight_tabview_1 = lv_tabview_create(ui->FanAndLight, LV_DIR_TOP, 85);
     lv_obj_set_pos(ui->FanAndLight_tabview_1, 0, 0);
     lv_obj_set_size(ui->FanAndLight_tabview_1, 720, 720);
     lv_obj_set_scrollbar_mode(ui->FanAndLight_tabview_1, LV_SCROLLBAR_MODE_ON);
@@ -52,7 +52,7 @@ void setup_scr_FanAndLight(lv_ui *ui)
     ui_init_style(&style_FanAndLight_tabview_1_extra_btnm_main_default);
 
     lv_style_set_bg_opa(&style_FanAndLight_tabview_1_extra_btnm_main_default, 255);
-    lv_style_set_bg_color(&style_FanAndLight_tabview_1_extra_btnm_main_default, lv_color_hex(0x4f3f3f));
+    lv_style_set_bg_color(&style_FanAndLight_tabview_1_extra_btnm_main_default, lv_color_hex(0x243241));
     lv_style_set_bg_grad_dir(&style_FanAndLight_tabview_1_extra_btnm_main_default, LV_GRAD_DIR_NONE);
     lv_style_set_border_width(&style_FanAndLight_tabview_1_extra_btnm_main_default, 0);
     lv_style_set_radius(&style_FanAndLight_tabview_1_extra_btnm_main_default, 0);
@@ -88,8 +88,8 @@ void setup_scr_FanAndLight(lv_ui *ui)
 
     //Write codes FanAndLight_cont_1
     ui->FanAndLight_cont_1 = lv_obj_create(ui->FanAndLight);
-    lv_obj_set_pos(ui->FanAndLight_cont_1, 0, 72);
-    lv_obj_set_size(ui->FanAndLight_cont_1, 720, 645);
+    lv_obj_set_pos(ui->FanAndLight_cont_1, 0, 85);
+    lv_obj_set_size(ui->FanAndLight_cont_1, 720, 630);
     lv_obj_set_scrollbar_mode(ui->FanAndLight_cont_1, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for FanAndLight_cont_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -321,8 +321,8 @@ void setup_scr_FanAndLight(lv_ui *ui)
     lv_obj_align(ui->FanAndLight_btn_1_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->FanAndLight_btn_1, 0, LV_STATE_DEFAULT);
     lv_obj_set_width(ui->FanAndLight_btn_1_label, LV_PCT(100));
-    lv_obj_set_pos(ui->FanAndLight_btn_1, 11, 5);
-    lv_obj_set_size(ui->FanAndLight_btn_1, 156, 50);
+    lv_obj_set_pos(ui->FanAndLight_btn_1, 40, 25);
+    lv_obj_set_size(ui->FanAndLight_btn_1, 124, 32);
 
     //Write style for FanAndLight_btn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_bg_opa(ui->FanAndLight_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -344,7 +344,7 @@ void setup_scr_FanAndLight(lv_ui *ui)
     lv_label_set_long_mode(ui->FanAndLight_imgbtn_1_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->FanAndLight_imgbtn_1_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->FanAndLight_imgbtn_1, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->FanAndLight_imgbtn_1, 51, 129);
+    lv_obj_set_pos(ui->FanAndLight_imgbtn_1, 40, 120);
     lv_obj_set_size(ui->FanAndLight_imgbtn_1, 100, 96);
 
     //Write style for FanAndLight_imgbtn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -375,6 +375,27 @@ void setup_scr_FanAndLight(lv_ui *ui)
     //Write style for FanAndLight_imgbtn_1, Part: LV_PART_MAIN, State: LV_IMGBTN_STATE_RELEASED.
     lv_obj_set_style_img_recolor_opa(ui->FanAndLight_imgbtn_1, 0, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
     lv_obj_set_style_img_opa(ui->FanAndLight_imgbtn_1, 255, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
+
+    //Write codes FanAndLight_btn_2
+    ui->FanAndLight_btn_2 = lv_btn_create(ui->FanAndLight);
+    ui->FanAndLight_btn_2_label = lv_label_create(ui->FanAndLight_btn_2);
+    lv_label_set_text(ui->FanAndLight_btn_2_label, "");
+    lv_label_set_long_mode(ui->FanAndLight_btn_2_label, LV_LABEL_LONG_WRAP);
+    lv_obj_align(ui->FanAndLight_btn_2_label, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_style_pad_all(ui->FanAndLight_btn_2, 0, LV_STATE_DEFAULT);
+    lv_obj_set_width(ui->FanAndLight_btn_2_label, LV_PCT(100));
+    lv_obj_set_pos(ui->FanAndLight_btn_2, 4, 4);
+    lv_obj_set_size(ui->FanAndLight_btn_2, 229, 82);
+
+    //Write style for FanAndLight_btn_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_bg_opa(ui->FanAndLight_btn_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->FanAndLight_btn_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->FanAndLight_btn_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->FanAndLight_btn_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->FanAndLight_btn_2, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->FanAndLight_btn_2, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->FanAndLight_btn_2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->FanAndLight_btn_2, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of FanAndLight.
 

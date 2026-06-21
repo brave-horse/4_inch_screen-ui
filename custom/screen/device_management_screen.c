@@ -243,6 +243,30 @@ void dev_mgmt_on_load(void)
               guider_ui.device_management_screen_sRGBLightOn,
               guider_ui.device_management_screen_sRGBLightOff);
 
+    /* 扩大灯开关imgbtn点击热区(四周各+25px),图片显示尺寸不变;数值按需调,不用的删 */
+    lv_obj_set_ext_click_area(guider_ui.device_management_screen_Light_CT_on_off_1_img, 25);
+    lv_obj_set_ext_click_area(guider_ui.device_management_screen_sLSimgbtn, 40);
+    lv_obj_set_ext_click_area(guider_ui.device_management_screen_sMagimgbtn, 40);
+    lv_obj_set_ext_click_area(guider_ui.device_management_screen_sRGBLightBtn, 40);
+    lv_obj_set_ext_click_area(guider_ui.device_management_screen_imgbtn_6, 40);   //空调开关
+    lv_obj_set_ext_click_area(guider_ui.device_management_screen_imgbtn_9, 40);   //音乐播放
+
+    /* 窗帘/晾衣机/风扇灯/浴霸 控制按钮热区各+15px(图片不变大) */
+    lv_obj_set_ext_click_area(guider_ui.device_management_screen_sFabricCurOpen, 15);   //布帘开
+    lv_obj_set_ext_click_area(guider_ui.device_management_screen_sFabricCurClose, 15);  //布帘合
+    lv_obj_set_ext_click_area(guider_ui.device_management_screen_sSheerOpen, 15);       //纱帘开
+    lv_obj_set_ext_click_area(guider_ui.device_management_screen_sSheerClose, 15);      //纱帘合
+    lv_obj_set_ext_click_area(guider_ui.device_management_screen_sRollBlindUp, 15);     //卷帘上
+    lv_obj_set_ext_click_area(guider_ui.device_management_screen_sRollBlindDown, 15);   //卷帘下
+    lv_obj_set_ext_click_area(guider_ui.device_management_screen_sDreamOpen, 15);       //梦幻帘开
+    lv_obj_set_ext_click_area(guider_ui.device_management_screen_sDreamClose, 15);      //梦幻帘合
+    lv_obj_set_ext_click_area(guider_ui.device_management_screen_sDryRackUpBtn, 15);    //晾衣机上
+    lv_obj_set_ext_click_area(guider_ui.device_management_screen_sDryRackDownBtn, 15);  //晾衣机下
+    lv_obj_set_ext_click_area(guider_ui.device_management_screen_sFanLightBtn, 15);     //风扇灯-灯
+    lv_obj_set_ext_click_area(guider_ui.device_management_screen_sSourceBtn, 15);       //风扇灯-风扇
+    lv_obj_set_ext_click_area(guider_ui.device_management_screen_sHeaterLightBtn, 15);  //浴霸灯
+    lv_obj_set_ext_click_area(guider_ui.device_management_screen_IdleBtn, 15);          //浴霸待机
+
     /* 刷新全部灯槽位 */
     for (uint8_t i = 0; i < DEV_SLOT_COUNT; i++) {
         slot_refresh(&g_slots[i]);

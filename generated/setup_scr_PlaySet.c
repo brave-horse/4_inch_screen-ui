@@ -29,7 +29,7 @@ void setup_scr_PlaySet(lv_ui *ui)
     lv_obj_set_style_bg_grad_dir(ui->PlaySet, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes PlaySet_tabview_1
-    ui->PlaySet_tabview_1 = lv_tabview_create(ui->PlaySet, LV_DIR_TOP, 70);
+    ui->PlaySet_tabview_1 = lv_tabview_create(ui->PlaySet, LV_DIR_TOP, 85);
     lv_obj_set_pos(ui->PlaySet_tabview_1, 0, 0);
     lv_obj_set_size(ui->PlaySet_tabview_1, 720, 720);
     lv_obj_set_scrollbar_mode(ui->PlaySet_tabview_1, LV_SCROLLBAR_MODE_ON);
@@ -52,7 +52,7 @@ void setup_scr_PlaySet(lv_ui *ui)
     ui_init_style(&style_PlaySet_tabview_1_extra_btnm_main_default);
 
     lv_style_set_bg_opa(&style_PlaySet_tabview_1_extra_btnm_main_default, 255);
-    lv_style_set_bg_color(&style_PlaySet_tabview_1_extra_btnm_main_default, lv_color_hex(0x4f3f3f));
+    lv_style_set_bg_color(&style_PlaySet_tabview_1_extra_btnm_main_default, lv_color_hex(0x243241));
     lv_style_set_bg_grad_dir(&style_PlaySet_tabview_1_extra_btnm_main_default, LV_GRAD_DIR_NONE);
     lv_style_set_border_width(&style_PlaySet_tabview_1_extra_btnm_main_default, 0);
     lv_style_set_radius(&style_PlaySet_tabview_1_extra_btnm_main_default, 0);
@@ -88,8 +88,8 @@ void setup_scr_PlaySet(lv_ui *ui)
 
     //Write codes PlaySet_cont_1
     ui->PlaySet_cont_1 = lv_obj_create(ui->PlaySet);
-    lv_obj_set_pos(ui->PlaySet_cont_1, 0, 72);
-    lv_obj_set_size(ui->PlaySet_cont_1, 720, 645);
+    lv_obj_set_pos(ui->PlaySet_cont_1, 0, 85);
+    lv_obj_set_size(ui->PlaySet_cont_1, 720, 630);
     lv_obj_set_scrollbar_mode(ui->PlaySet_cont_1, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for PlaySet_cont_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -115,8 +115,8 @@ void setup_scr_PlaySet(lv_ui *ui)
     lv_obj_align(ui->PlaySet_btn_1_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->PlaySet_btn_1, 0, LV_STATE_DEFAULT);
     lv_obj_set_width(ui->PlaySet_btn_1_label, LV_PCT(100));
-    lv_obj_set_pos(ui->PlaySet_btn_1, 11, 7);
-    lv_obj_set_size(ui->PlaySet_btn_1, 156, 50);
+    lv_obj_set_pos(ui->PlaySet_btn_1, 40, 25);
+    lv_obj_set_size(ui->PlaySet_btn_1, 152, 37);
 
     //Write style for PlaySet_btn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_bg_opa(ui->PlaySet_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -133,7 +133,7 @@ void setup_scr_PlaySet(lv_ui *ui)
     ui->PlaySet_List_item0 = lv_list_add_btn(ui->PlaySet_List, LV_SYMBOL_SAVE, "延时进入待机时间");
     ui->PlaySet_List_item1 = lv_list_add_btn(ui->PlaySet_List, LV_SYMBOL_SAVE, "待机显示");
     ui->PlaySet_List_item2 = lv_list_add_btn(ui->PlaySet_List, LV_SYMBOL_SAVE, "接近亮屏");
-    lv_obj_set_pos(ui->PlaySet_List, 0, 75);
+    lv_obj_set_pos(ui->PlaySet_List, 0, 109);
     lv_obj_set_size(ui->PlaySet_List, 720, 300);
     lv_obj_set_scrollbar_mode(ui->PlaySet_List, LV_SCROLLBAR_MODE_OFF);
 
@@ -206,6 +206,27 @@ void setup_scr_PlaySet(lv_ui *ui)
     lv_style_set_bg_opa(&style_PlaySet_List_extra_texts_main_default, 255);
     lv_style_set_bg_color(&style_PlaySet_List_extra_texts_main_default, lv_color_hex(0x000000));
     lv_style_set_bg_grad_dir(&style_PlaySet_List_extra_texts_main_default, LV_GRAD_DIR_NONE);
+
+    //Write codes PlaySet_btn_2
+    ui->PlaySet_btn_2 = lv_btn_create(ui->PlaySet);
+    ui->PlaySet_btn_2_label = lv_label_create(ui->PlaySet_btn_2);
+    lv_label_set_text(ui->PlaySet_btn_2_label, "");
+    lv_label_set_long_mode(ui->PlaySet_btn_2_label, LV_LABEL_LONG_WRAP);
+    lv_obj_align(ui->PlaySet_btn_2_label, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_style_pad_all(ui->PlaySet_btn_2, 0, LV_STATE_DEFAULT);
+    lv_obj_set_width(ui->PlaySet_btn_2_label, LV_PCT(100));
+    lv_obj_set_pos(ui->PlaySet_btn_2, 4, 4);
+    lv_obj_set_size(ui->PlaySet_btn_2, 229, 82);
+
+    //Write style for PlaySet_btn_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_bg_opa(ui->PlaySet_btn_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->PlaySet_btn_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->PlaySet_btn_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->PlaySet_btn_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->PlaySet_btn_2, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->PlaySet_btn_2, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->PlaySet_btn_2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->PlaySet_btn_2, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of PlaySet.
 

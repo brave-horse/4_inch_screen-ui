@@ -29,7 +29,7 @@ void setup_scr_huifuchuchangshezhi(lv_ui *ui)
     lv_obj_set_style_bg_grad_dir(ui->huifuchuchangshezhi, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes huifuchuchangshezhi_tile
-    ui->huifuchuchangshezhi_tile = lv_tabview_create(ui->huifuchuchangshezhi, LV_DIR_TOP, 70);
+    ui->huifuchuchangshezhi_tile = lv_tabview_create(ui->huifuchuchangshezhi, LV_DIR_TOP, 85);
     lv_obj_set_pos(ui->huifuchuchangshezhi_tile, 0, 0);
     lv_obj_set_size(ui->huifuchuchangshezhi_tile, 720, 720);
     lv_obj_set_scrollbar_mode(ui->huifuchuchangshezhi_tile, LV_SCROLLBAR_MODE_ON);
@@ -52,7 +52,7 @@ void setup_scr_huifuchuchangshezhi(lv_ui *ui)
     ui_init_style(&style_huifuchuchangshezhi_tile_extra_btnm_main_default);
 
     lv_style_set_bg_opa(&style_huifuchuchangshezhi_tile_extra_btnm_main_default, 255);
-    lv_style_set_bg_color(&style_huifuchuchangshezhi_tile_extra_btnm_main_default, lv_color_hex(0x4f3f3f));
+    lv_style_set_bg_color(&style_huifuchuchangshezhi_tile_extra_btnm_main_default, lv_color_hex(0x243241));
     lv_style_set_bg_grad_dir(&style_huifuchuchangshezhi_tile_extra_btnm_main_default, LV_GRAD_DIR_NONE);
     lv_style_set_border_width(&style_huifuchuchangshezhi_tile_extra_btnm_main_default, 0);
     lv_style_set_radius(&style_huifuchuchangshezhi_tile_extra_btnm_main_default, 0);
@@ -94,8 +94,8 @@ void setup_scr_huifuchuchangshezhi(lv_ui *ui)
     lv_obj_align(ui->huifuchuchangshezhi_btn_1_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->huifuchuchangshezhi_btn_1, 0, LV_STATE_DEFAULT);
     lv_obj_set_width(ui->huifuchuchangshezhi_btn_1_label, LV_PCT(100));
-    lv_obj_set_pos(ui->huifuchuchangshezhi_btn_1, 11, 7);
-    lv_obj_set_size(ui->huifuchuchangshezhi_btn_1, 156, 50);
+    lv_obj_set_pos(ui->huifuchuchangshezhi_btn_1, 40, 25);
+    lv_obj_set_size(ui->huifuchuchangshezhi_btn_1, 153, 38);
 
     //Write style for huifuchuchangshezhi_btn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_bg_opa(ui->huifuchuchangshezhi_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -175,6 +175,27 @@ void setup_scr_huifuchuchangshezhi(lv_ui *ui)
     lv_obj_set_style_text_font(ui->huifuchuchangshezhi_btn_3, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->huifuchuchangshezhi_btn_3, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui->huifuchuchangshezhi_btn_3, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes huifuchuchangshezhi_btn_4
+    ui->huifuchuchangshezhi_btn_4 = lv_btn_create(ui->huifuchuchangshezhi);
+    ui->huifuchuchangshezhi_btn_4_label = lv_label_create(ui->huifuchuchangshezhi_btn_4);
+    lv_label_set_text(ui->huifuchuchangshezhi_btn_4_label, "");
+    lv_label_set_long_mode(ui->huifuchuchangshezhi_btn_4_label, LV_LABEL_LONG_WRAP);
+    lv_obj_align(ui->huifuchuchangshezhi_btn_4_label, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_style_pad_all(ui->huifuchuchangshezhi_btn_4, 0, LV_STATE_DEFAULT);
+    lv_obj_set_width(ui->huifuchuchangshezhi_btn_4_label, LV_PCT(100));
+    lv_obj_set_pos(ui->huifuchuchangshezhi_btn_4, 4, 4);
+    lv_obj_set_size(ui->huifuchuchangshezhi_btn_4, 229, 82);
+
+    //Write style for huifuchuchangshezhi_btn_4, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_bg_opa(ui->huifuchuchangshezhi_btn_4, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->huifuchuchangshezhi_btn_4, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->huifuchuchangshezhi_btn_4, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->huifuchuchangshezhi_btn_4, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->huifuchuchangshezhi_btn_4, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->huifuchuchangshezhi_btn_4, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->huifuchuchangshezhi_btn_4, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->huifuchuchangshezhi_btn_4, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of huifuchuchangshezhi.
 

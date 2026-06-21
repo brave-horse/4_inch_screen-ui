@@ -157,30 +157,38 @@ typedef struct
 	lv_obj_t *light_CT_screen_white_lid;
 	lv_obj_t *light_CT_screen_dev_orange_img;
 	lv_obj_t *light_CT_screen_dev_white_img;
-	lv_obj_t *light_CT_screen_imgbtn_1;
-	lv_obj_t *light_CT_screen_imgbtn_1_label;
 	lv_obj_t *light_CT_screen_btn_1;
 	lv_obj_t *light_CT_screen_btn_1_label;
+	lv_obj_t *light_CT_screen_imgbtn_1;
+	lv_obj_t *light_CT_screen_imgbtn_1_label;
 	lv_obj_t *light_CT_screen_on_off_2_img;
 	lv_obj_t *light_CT_screen_on_off_2_img_label;
+	lv_obj_t *light_CT_screen_btn_2;
+	lv_obj_t *light_CT_screen_btn_2_label;
 	lv_obj_t *LedStrip;
 	bool LedStrip_del;
 	lv_obj_t *LedStrip_tabview_1;
 	lv_obj_t *LedStrip_tabview_1_tab_1;
+	lv_obj_t *LedStrip_btn_2;
+	lv_obj_t *LedStrip_btn_2_label;
+	lv_obj_t *LedStrip_btn_3;
+	lv_obj_t *LedStrip_btn_3_label;
 	lv_obj_t *LedStrip_cont_1;
 	lv_obj_t *LedStrip_label_2;
 	lv_obj_t *LedStrip_ct_bar;
 	lv_obj_t *LedStrip_slider_2;
 	lv_obj_t *LedStrip_slider_1;
 	lv_obj_t *LedStrip_label_1;
-	lv_obj_t *LedStrip_imgbtn_1;
-	lv_obj_t *LedStrip_imgbtn_1_label;
 	lv_obj_t *LedStrip_btn_1;
 	lv_obj_t *LedStrip_btn_1_label;
+	lv_obj_t *LedStrip_imgbtn_1;
+	lv_obj_t *LedStrip_imgbtn_1_label;
 	lv_obj_t *LedStrip_on_off_2_img;
 	lv_obj_t *LedStrip_on_off_2_img_label;
 	lv_obj_t *LedStrip_LSOn;
 	lv_obj_t *LedStrip_LSOff;
+	lv_obj_t *LedStrip_btn_4;
+	lv_obj_t *LedStrip_btn_4_label;
 	lv_obj_t *RGBLight;
 	bool RGBLight_del;
 	lv_obj_t *RGBLight_tabview_1;
@@ -191,16 +199,18 @@ typedef struct
 	lv_obj_t *RGBLight_slider_2;
 	lv_obj_t *RGBLight_slider_1;
 	lv_obj_t *RGBLight_label_1;
-	lv_obj_t *RGBLight_imgbtn_1;
-	lv_obj_t *RGBLight_imgbtn_1_label;
 	lv_obj_t *RGBLight_btn_1;
 	lv_obj_t *RGBLight_btn_1_label;
+	lv_obj_t *RGBLight_imgbtn_1;
+	lv_obj_t *RGBLight_imgbtn_1_label;
 	lv_obj_t *RGBLight_on_off_2_img;
 	lv_obj_t *RGBLight_on_off_2_img_label;
 	lv_obj_t *RGBLight_RGBCover;
 	lv_obj_t *RGBLight_Blue;
 	lv_obj_t *RGBLight_Red;
 	lv_obj_t *RGBLight_Green;
+	lv_obj_t *RGBLight_btn_2;
+	lv_obj_t *RGBLight_btn_2_label;
 	lv_obj_t *MagLight;
 	bool MagLight_del;
 	lv_obj_t *MagLight_tabview_1;
@@ -211,15 +221,17 @@ typedef struct
 	lv_obj_t *MagLight_slider_2;
 	lv_obj_t *MagLight_slider_1;
 	lv_obj_t *MagLight_label_1;
-	lv_obj_t *MagLight_imgbtn_1;
-	lv_obj_t *MagLight_imgbtn_1_label;
 	lv_obj_t *MagLight_btn_1;
 	lv_obj_t *MagLight_btn_1_label;
+	lv_obj_t *MagLight_imgbtn_1;
+	lv_obj_t *MagLight_imgbtn_1_label;
 	lv_obj_t *MagLight_on_off_2_img;
 	lv_obj_t *MagLight_on_off_2_img_label;
 	lv_obj_t *MagLight_MagPole;
 	lv_obj_t *MagLight_Orange;
 	lv_obj_t *MagLight_white;
+	lv_obj_t *MagLight_btn_2;
+	lv_obj_t *MagLight_btn_2_label;
 	lv_obj_t *FabricCurtian;
 	bool FabricCurtian_del;
 	lv_obj_t *FabricCurtian_tabview_1;
@@ -241,6 +253,8 @@ typedef struct
 	lv_obj_t *FabricCurtian_FabCurtianPull1;
 	lv_obj_t *FabricCurtian_FabCurtianPole;
 	lv_obj_t *FabricCurtian_label_1;
+	lv_obj_t *FabricCurtian_btn_2;
+	lv_obj_t *FabricCurtian_btn_2_label;
 	lv_obj_t *Sheers;
 	bool Sheers_del;
 	lv_obj_t *Sheers_tabview_1;
@@ -261,6 +275,8 @@ typedef struct
 	lv_obj_t *Sheers_FabCurtianPull2;
 	lv_obj_t *Sheers_FabCurtianPull1;
 	lv_obj_t *Sheers_FabCurtianPole;
+	lv_obj_t *Sheers_btn_2;
+	lv_obj_t *Sheers_btn_2_label;
 	lv_obj_t *RollBlind;
 	bool RollBlind_del;
 	lv_obj_t *RollBlind_tabview_1;
@@ -280,6 +296,8 @@ typedef struct
 	lv_obj_t *RollBlind_RollBlindPole;
 	lv_obj_t *RollBlind_btn_1;
 	lv_obj_t *RollBlind_btn_1_label;
+	lv_obj_t *RollBlind_btn_2;
+	lv_obj_t *RollBlind_btn_2_label;
 	lv_obj_t *Dream;
 	bool Dream_del;
 	lv_obj_t *Dream_tabview_1;
@@ -305,6 +323,8 @@ typedef struct
 	lv_obj_t *Dream_label_2;
 	lv_obj_t *Dream_label_3;
 	lv_obj_t *Dream_label_4;
+	lv_obj_t *Dream_btn_2;
+	lv_obj_t *Dream_btn_2_label;
 	lv_obj_t *AirCondition;
 	bool AirCondition_del;
 	lv_obj_t *AirCondition_tabview_1;
@@ -326,6 +346,8 @@ typedef struct
 	lv_obj_t *AirCondition_AcSpd3;
 	lv_obj_t *AirCondition_AcSpd2;
 	lv_obj_t *AirCondition_AcSpd1;
+	lv_obj_t *AirCondition_btn_2;
+	lv_obj_t *AirCondition_btn_2_label;
 	lv_obj_t *Music;
 	bool Music_del;
 	lv_obj_t *Music_tabview_1;
@@ -341,6 +363,8 @@ typedef struct
 	lv_obj_t *Music_play;
 	lv_obj_t *Music_play_label;
 	lv_obj_t *Music_rack;
+	lv_obj_t *Music_btn_2;
+	lv_obj_t *Music_btn_2_label;
 	lv_obj_t *DryRack;
 	bool DryRack_del;
 	lv_obj_t *DryRack_tabview_1;
@@ -359,6 +383,8 @@ typedef struct
 	lv_obj_t *DryRack_btn_1;
 	lv_obj_t *DryRack_btn_1_label;
 	lv_obj_t *DryRack_label_1;
+	lv_obj_t *DryRack_btn_2;
+	lv_obj_t *DryRack_btn_2_label;
 	lv_obj_t *FanAndLight;
 	bool FanAndLight_del;
 	lv_obj_t *FanAndLight_tabview_1;
@@ -379,6 +405,8 @@ typedef struct
 	lv_obj_t *FanAndLight_btn_1_label;
 	lv_obj_t *FanAndLight_imgbtn_1;
 	lv_obj_t *FanAndLight_imgbtn_1_label;
+	lv_obj_t *FanAndLight_btn_2;
+	lv_obj_t *FanAndLight_btn_2_label;
 	lv_obj_t *Heater;
 	bool Heater_del;
 	lv_obj_t *Heater_tabview_1;
@@ -411,6 +439,8 @@ typedef struct
 	lv_obj_t *Heater_HeatHighMode;
 	lv_obj_t *Heater_WindMode;
 	lv_obj_t *Heater_idleMode;
+	lv_obj_t *Heater_btn_2;
+	lv_obj_t *Heater_btn_2_label;
 	lv_obj_t *setting_screen;
 	bool setting_screen_del;
 	lv_obj_t *setting_screen_tabview_1;
@@ -425,6 +455,8 @@ typedef struct
 	lv_obj_t *setting_screen_list_1_item6;
 	lv_obj_t *setting_screen_btn_1;
 	lv_obj_t *setting_screen_btn_1_label;
+	lv_obj_t *setting_screen_btn_2;
+	lv_obj_t *setting_screen_btn_2_label;
 	lv_obj_t *PlaySet;
 	bool PlaySet_del;
 	lv_obj_t *PlaySet_tabview_1;
@@ -436,6 +468,8 @@ typedef struct
 	lv_obj_t *PlaySet_List_item0;
 	lv_obj_t *PlaySet_List_item1;
 	lv_obj_t *PlaySet_List_item2;
+	lv_obj_t *PlaySet_btn_2;
+	lv_obj_t *PlaySet_btn_2_label;
 	lv_obj_t *SwitchSet;
 	bool SwitchSet_del;
 	lv_obj_t *SwitchSet_tabview_1;
@@ -460,6 +494,8 @@ typedef struct
 	lv_obj_t *SwitchSet_label_3;
 	lv_obj_t *SwitchSet_btn_1;
 	lv_obj_t *SwitchSet_btn_1_label;
+	lv_obj_t *SwitchSet_btn_8;
+	lv_obj_t *SwitchSet_btn_8_label;
 	lv_obj_t *SensorSet;
 	bool SensorSet_del;
 	lv_obj_t *SensorSet_tabview_1;
@@ -480,6 +516,8 @@ typedef struct
 	lv_obj_t *SensorSet_label_8;
 	lv_obj_t *SensorSet_btn_1;
 	lv_obj_t *SensorSet_btn_1_label;
+	lv_obj_t *SensorSet_btn_13;
+	lv_obj_t *SensorSet_btn_13_label;
 	lv_obj_t *Reset;
 	bool Reset_del;
 	lv_obj_t *Reset_tile;
@@ -491,6 +529,8 @@ typedef struct
 	lv_obj_t *Reset_btn_2_label;
 	lv_obj_t *Reset_btn_3;
 	lv_obj_t *Reset_btn_3_label;
+	lv_obj_t *Reset_btn_4;
+	lv_obj_t *Reset_btn_4_label;
 	lv_obj_t *huifuchuchangshezhi;
 	bool huifuchuchangshezhi_del;
 	lv_obj_t *huifuchuchangshezhi_tile;
@@ -502,20 +542,14 @@ typedef struct
 	lv_obj_t *huifuchuchangshezhi_btn_2_label;
 	lv_obj_t *huifuchuchangshezhi_btn_3;
 	lv_obj_t *huifuchuchangshezhi_btn_3_label;
-	lv_obj_t *screen_1;
-	bool screen_1_del;
-	lv_obj_t *screen_1_tabview_1;
-	lv_obj_t *screen_1_tabview_1_tab_1;
-	lv_obj_t *screen_1_list_1;
-	lv_obj_t *screen_1_list_1_item0;
-	lv_obj_t *screen_1_list_1_item1;
-	lv_obj_t *screen_1_list_1_item2;
-	lv_obj_t *screen_1_list_1_item3;
-	lv_obj_t *screen_1_list_1_item4;
-	lv_obj_t *screen_1_list_1_item5;
-	lv_obj_t *screen_1_list_1_item6;
-	lv_obj_t *screen_1_btn_1;
-	lv_obj_t *screen_1_btn_1_label;
+	lv_obj_t *huifuchuchangshezhi_btn_4;
+	lv_obj_t *huifuchuchangshezhi_btn_4_label;
+	lv_obj_t *NetSett;
+	bool NetSett_del;
+	lv_obj_t *NetSett_tabview_1;
+	lv_obj_t *NetSett_tabview_1_tab_1;
+	lv_obj_t *NetSett_NetSet;
+	lv_obj_t *NetSett_NetSet_label;
 }lv_ui;
 
 typedef void (*ui_setup_scr_t)(lv_ui * ui);
@@ -560,7 +594,7 @@ void setup_scr_SwitchSet(lv_ui *ui);
 void setup_scr_SensorSet(lv_ui *ui);
 void setup_scr_Reset(lv_ui *ui);
 void setup_scr_huifuchuchangshezhi(lv_ui *ui);
-void setup_scr_screen_1(lv_ui *ui);
+void setup_scr_NetSett(lv_ui *ui);
 LV_IMG_DECLARE(_4_alpha_720x720);
 LV_IMG_DECLARE(_sSetting_alpha_46x46);
 LV_IMG_DECLARE(_sSleep_off_alpha_46x46);
@@ -584,10 +618,9 @@ LV_IMG_DECLARE(_ACOff_alpha_100x96);
 LV_IMG_DECLARE(_ACOn_alpha_100x96);
 
 LV_FONT_DECLARE(lv_font_ZiTiQuanWeiJunHeiW22_30)
-LV_FONT_DECLARE(lv_font_ZiTiQuanWeiJunHeiW22_16)
-LV_FONT_DECLARE(lv_font_montserratMedium_12)
 LV_FONT_DECLARE(lv_font_montserratMedium_16)
 LV_FONT_DECLARE(lv_font_ZiTiQuanWeiJunHeiW22_12)
+LV_FONT_DECLARE(lv_font_montserratMedium_12)
 LV_FONT_DECLARE(lv_font_ZiTiQuanWeiJunHeiW22_20)
 LV_FONT_DECLARE(lv_font_ZiTiQuanWeiJunHeiW22_24)
 

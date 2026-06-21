@@ -29,7 +29,7 @@ void setup_scr_SensorSet(lv_ui *ui)
     lv_obj_set_style_bg_grad_dir(ui->SensorSet, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes SensorSet_tabview_1
-    ui->SensorSet_tabview_1 = lv_tabview_create(ui->SensorSet, LV_DIR_TOP, 70);
+    ui->SensorSet_tabview_1 = lv_tabview_create(ui->SensorSet, LV_DIR_TOP, 85);
     lv_obj_set_pos(ui->SensorSet_tabview_1, 0, 0);
     lv_obj_set_size(ui->SensorSet_tabview_1, 720, 720);
     lv_obj_set_scrollbar_mode(ui->SensorSet_tabview_1, LV_SCROLLBAR_MODE_ON);
@@ -52,7 +52,7 @@ void setup_scr_SensorSet(lv_ui *ui)
     ui_init_style(&style_SensorSet_tabview_1_extra_btnm_main_default);
 
     lv_style_set_bg_opa(&style_SensorSet_tabview_1_extra_btnm_main_default, 255);
-    lv_style_set_bg_color(&style_SensorSet_tabview_1_extra_btnm_main_default, lv_color_hex(0x4f3f3f));
+    lv_style_set_bg_color(&style_SensorSet_tabview_1_extra_btnm_main_default, lv_color_hex(0x243241));
     lv_style_set_bg_grad_dir(&style_SensorSet_tabview_1_extra_btnm_main_default, LV_GRAD_DIR_NONE);
     lv_style_set_border_width(&style_SensorSet_tabview_1_extra_btnm_main_default, 0);
     lv_style_set_radius(&style_SensorSet_tabview_1_extra_btnm_main_default, 0);
@@ -356,8 +356,8 @@ void setup_scr_SensorSet(lv_ui *ui)
     lv_obj_align(ui->SensorSet_btn_1_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->SensorSet_btn_1, 0, LV_STATE_DEFAULT);
     lv_obj_set_width(ui->SensorSet_btn_1_label, LV_PCT(100));
-    lv_obj_set_pos(ui->SensorSet_btn_1, 11, 7);
-    lv_obj_set_size(ui->SensorSet_btn_1, 206, 50);
+    lv_obj_set_pos(ui->SensorSet_btn_1, 40, 25);
+    lv_obj_set_size(ui->SensorSet_btn_1, 186, 35);
 
     //Write style for SensorSet_btn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_bg_opa(ui->SensorSet_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -368,6 +368,27 @@ void setup_scr_SensorSet(lv_ui *ui)
     lv_obj_set_style_text_font(ui->SensorSet_btn_1, &lv_font_ZiTiQuanWeiJunHeiW22_30, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->SensorSet_btn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui->SensorSet_btn_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes SensorSet_btn_13
+    ui->SensorSet_btn_13 = lv_btn_create(ui->SensorSet);
+    ui->SensorSet_btn_13_label = lv_label_create(ui->SensorSet_btn_13);
+    lv_label_set_text(ui->SensorSet_btn_13_label, "");
+    lv_label_set_long_mode(ui->SensorSet_btn_13_label, LV_LABEL_LONG_WRAP);
+    lv_obj_align(ui->SensorSet_btn_13_label, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_style_pad_all(ui->SensorSet_btn_13, 0, LV_STATE_DEFAULT);
+    lv_obj_set_width(ui->SensorSet_btn_13_label, LV_PCT(100));
+    lv_obj_set_pos(ui->SensorSet_btn_13, 4, 4);
+    lv_obj_set_size(ui->SensorSet_btn_13, 229, 82);
+
+    //Write style for SensorSet_btn_13, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_bg_opa(ui->SensorSet_btn_13, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->SensorSet_btn_13, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->SensorSet_btn_13, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->SensorSet_btn_13, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->SensorSet_btn_13, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->SensorSet_btn_13, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->SensorSet_btn_13, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->SensorSet_btn_13, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of SensorSet.
 

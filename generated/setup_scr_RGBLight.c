@@ -52,7 +52,7 @@ void setup_scr_RGBLight(lv_ui *ui)
     ui_init_style(&style_RGBLight_tabview_1_extra_btnm_main_default);
 
     lv_style_set_bg_opa(&style_RGBLight_tabview_1_extra_btnm_main_default, 255);
-    lv_style_set_bg_color(&style_RGBLight_tabview_1_extra_btnm_main_default, lv_color_hex(0x4f3f3f));
+    lv_style_set_bg_color(&style_RGBLight_tabview_1_extra_btnm_main_default, lv_color_hex(0x243241));
     lv_style_set_bg_grad_dir(&style_RGBLight_tabview_1_extra_btnm_main_default, LV_GRAD_DIR_NONE);
     lv_style_set_border_width(&style_RGBLight_tabview_1_extra_btnm_main_default, 0);
     lv_style_set_radius(&style_RGBLight_tabview_1_extra_btnm_main_default, 0);
@@ -77,7 +77,7 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_style_set_border_width(&style_RGBLight_tabview_1_extra_btnm_items_checked, 0);
     lv_style_set_radius(&style_RGBLight_tabview_1_extra_btnm_items_checked, 0);
     lv_style_set_bg_opa(&style_RGBLight_tabview_1_extra_btnm_items_checked, 255);
-    lv_style_set_bg_color(&style_RGBLight_tabview_1_extra_btnm_items_checked, lv_color_hex(0x0f0f12));
+    lv_style_set_bg_color(&style_RGBLight_tabview_1_extra_btnm_items_checked, lv_color_hex(0x243241));
     lv_style_set_bg_grad_dir(&style_RGBLight_tabview_1_extra_btnm_items_checked, LV_GRAD_DIR_NONE);
     lv_obj_add_style(lv_tabview_get_tab_btns(ui->RGBLight_tabview_1), &style_RGBLight_tabview_1_extra_btnm_items_checked, LV_PART_ITEMS|LV_STATE_CHECKED);
 
@@ -88,8 +88,8 @@ void setup_scr_RGBLight(lv_ui *ui)
 
     //Write codes RGBLight_cont_1
     ui->RGBLight_cont_1 = lv_obj_create(ui->RGBLight);
-    lv_obj_set_pos(ui->RGBLight_cont_1, 0, 71);
-    lv_obj_set_size(ui->RGBLight_cont_1, 720, 645);
+    lv_obj_set_pos(ui->RGBLight_cont_1, 0, 85);
+    lv_obj_set_size(ui->RGBLight_cont_1, 720, 630);
     lv_obj_set_scrollbar_mode(ui->RGBLight_cont_1, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for RGBLight_cont_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -108,7 +108,7 @@ void setup_scr_RGBLight(lv_ui *ui)
     ui->RGBLight_label_2 = lv_label_create(ui->RGBLight);
     lv_label_set_text(ui->RGBLight_label_2, "颜 色 | #00718D");
     lv_label_set_long_mode(ui->RGBLight_label_2, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->RGBLight_label_2, 258, 576);
+    lv_obj_set_pos(ui->RGBLight_label_2, 270, 560);
     lv_obj_set_size(ui->RGBLight_label_2, 257, 34);
 
     //Write style for RGBLight_label_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -119,7 +119,7 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_obj_set_style_text_opa(ui->RGBLight_label_2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_letter_space(ui->RGBLight_label_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_line_space(ui->RGBLight_label_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_align(ui->RGBLight_label_2, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->RGBLight_label_2, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->RGBLight_label_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_top(ui->RGBLight_label_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_right(ui->RGBLight_label_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -138,7 +138,7 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_img_set_pivot(ui->RGBLight_ct_bar, 50,50);
     lv_img_set_angle(ui->RGBLight_ct_bar, 0);
     lv_obj_set_pos(ui->RGBLight_ct_bar, -221, 610);
-    lv_obj_set_size(ui->RGBLight_ct_bar, 650, 70);
+    lv_obj_set_size(ui->RGBLight_ct_bar, 650, 75);
 
     //Write style for RGBLight_ct_bar, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_img_recolor_opa(ui->RGBLight_ct_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -151,8 +151,8 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_slider_set_range(ui->RGBLight_slider_2, 2700, 6500);
     lv_slider_set_mode(ui->RGBLight_slider_2, LV_SLIDER_MODE_SYMMETRICAL);
     lv_slider_set_value(ui->RGBLight_slider_2, 4600, LV_ANIM_OFF);
-    lv_obj_set_pos(ui->RGBLight_slider_2, -217, 610);
-    lv_obj_set_size(ui->RGBLight_slider_2, 650, 70);
+    lv_obj_set_pos(ui->RGBLight_slider_2, -220, 610);
+    lv_obj_set_size(ui->RGBLight_slider_2, 650, 75);
 
     //Write style for RGBLight_slider_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_bg_opa(ui->RGBLight_slider_2, 40, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -177,8 +177,8 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_slider_set_range(ui->RGBLight_slider_1, 0, 100);
     lv_slider_set_mode(ui->RGBLight_slider_1, LV_SLIDER_MODE_SYMMETRICAL);
     lv_slider_set_value(ui->RGBLight_slider_1, 50, LV_ANIM_OFF);
-    lv_obj_set_pos(ui->RGBLight_slider_1, -221, 481);
-    lv_obj_set_size(ui->RGBLight_slider_1, 632, 70);
+    lv_obj_set_pos(ui->RGBLight_slider_1, -215, 465);
+    lv_obj_set_size(ui->RGBLight_slider_1, 650, 75);
 
     //Write style for RGBLight_slider_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_bg_opa(ui->RGBLight_slider_1, 60, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -206,7 +206,7 @@ void setup_scr_RGBLight(lv_ui *ui)
     ui->RGBLight_label_1 = lv_label_create(ui->RGBLight);
     lv_label_set_text(ui->RGBLight_label_1, "亮 度 | 50%");
     lv_label_set_long_mode(ui->RGBLight_label_1, LV_LABEL_LONG_WRAP);
-    lv_obj_set_pos(ui->RGBLight_label_1, 241, 424);
+    lv_obj_set_pos(ui->RGBLight_label_1, 271, 415);
     lv_obj_set_size(ui->RGBLight_label_1, 227, 39);
 
     //Write style for RGBLight_label_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -217,13 +217,34 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_obj_set_style_text_opa(ui->RGBLight_label_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_letter_space(ui->RGBLight_label_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_line_space(ui->RGBLight_label_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_align(ui->RGBLight_label_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->RGBLight_label_1, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->RGBLight_label_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_top(ui->RGBLight_label_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_right(ui->RGBLight_label_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_bottom(ui->RGBLight_label_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_left(ui->RGBLight_label_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->RGBLight_label_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes RGBLight_btn_1
+    ui->RGBLight_btn_1 = lv_btn_create(ui->RGBLight);
+    ui->RGBLight_btn_1_label = lv_label_create(ui->RGBLight_btn_1);
+    lv_label_set_text(ui->RGBLight_btn_1_label, "<  彩色灯");
+    lv_label_set_long_mode(ui->RGBLight_btn_1_label, LV_LABEL_LONG_WRAP);
+    lv_obj_align(ui->RGBLight_btn_1_label, LV_ALIGN_LEFT_MID, 0, 0);
+    lv_obj_set_style_pad_all(ui->RGBLight_btn_1, 0, LV_STATE_DEFAULT);
+    lv_obj_set_width(ui->RGBLight_btn_1_label, LV_PCT(100));
+    lv_obj_set_pos(ui->RGBLight_btn_1, 40, 25);
+    lv_obj_set_size(ui->RGBLight_btn_1, 122, 32);
+
+    //Write style for RGBLight_btn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_bg_opa(ui->RGBLight_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->RGBLight_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->RGBLight_btn_1, 5, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->RGBLight_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->RGBLight_btn_1, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->RGBLight_btn_1, &lv_font_ZiTiQuanWeiJunHeiW22_30, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->RGBLight_btn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->RGBLight_btn_1, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes RGBLight_imgbtn_1
     ui->RGBLight_imgbtn_1 = lv_imgbtn_create(ui->RGBLight);
@@ -240,7 +261,7 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_label_set_long_mode(ui->RGBLight_imgbtn_1_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->RGBLight_imgbtn_1_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->RGBLight_imgbtn_1, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->RGBLight_imgbtn_1, 633, 97);
+    lv_obj_set_pos(ui->RGBLight_imgbtn_1, 620, 120);
     lv_obj_set_size(ui->RGBLight_imgbtn_1, 70, 70);
 
     //Write style for RGBLight_imgbtn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -272,27 +293,6 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_obj_set_style_img_recolor_opa(ui->RGBLight_imgbtn_1, 0, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
     lv_obj_set_style_img_opa(ui->RGBLight_imgbtn_1, 255, LV_PART_MAIN|LV_IMGBTN_STATE_RELEASED);
 
-    //Write codes RGBLight_btn_1
-    ui->RGBLight_btn_1 = lv_btn_create(ui->RGBLight);
-    ui->RGBLight_btn_1_label = lv_label_create(ui->RGBLight_btn_1);
-    lv_label_set_text(ui->RGBLight_btn_1_label, "<  彩色灯");
-    lv_label_set_long_mode(ui->RGBLight_btn_1_label, LV_LABEL_LONG_WRAP);
-    lv_obj_align(ui->RGBLight_btn_1_label, LV_ALIGN_CENTER, 0, 0);
-    lv_obj_set_style_pad_all(ui->RGBLight_btn_1, 0, LV_STATE_DEFAULT);
-    lv_obj_set_width(ui->RGBLight_btn_1_label, LV_PCT(100));
-    lv_obj_set_pos(ui->RGBLight_btn_1, 11, 7);
-    lv_obj_set_size(ui->RGBLight_btn_1, 156, 50);
-
-    //Write style for RGBLight_btn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_bg_opa(ui->RGBLight_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_width(ui->RGBLight_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->RGBLight_btn_1, 5, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->RGBLight_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_color(ui->RGBLight_btn_1, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui->RGBLight_btn_1, &lv_font_ZiTiQuanWeiJunHeiW22_30, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui->RGBLight_btn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_align(ui->RGBLight_btn_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
-
     //Write codes RGBLight_on_off_2_img
     ui->RGBLight_on_off_2_img = lv_imgbtn_create(ui->RGBLight);
     lv_obj_add_flag(ui->RGBLight_on_off_2_img, LV_OBJ_FLAG_CHECKABLE);
@@ -308,7 +308,7 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_label_set_long_mode(ui->RGBLight_on_off_2_img_label, LV_LABEL_LONG_WRAP);
     lv_obj_align(ui->RGBLight_on_off_2_img_label, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_pad_all(ui->RGBLight_on_off_2_img, 0, LV_STATE_DEFAULT);
-    lv_obj_set_pos(ui->RGBLight_on_off_2_img, 20, 101);
+    lv_obj_set_pos(ui->RGBLight_on_off_2_img, 40, 120);
     lv_obj_set_size(ui->RGBLight_on_off_2_img, 48, 48);
 
     //Write style for RGBLight_on_off_2_img, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -350,7 +350,7 @@ void setup_scr_RGBLight(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->RGBLight_RGBCover, 50,50);
     lv_img_set_angle(ui->RGBLight_RGBCover, 0);
-    lv_obj_set_pos(ui->RGBLight_RGBCover, 231, 80);
+    lv_obj_set_pos(ui->RGBLight_RGBCover, 233, 85);
     lv_obj_set_size(ui->RGBLight_RGBCover, 196, 190);
 
     //Write style for RGBLight_RGBCover, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -369,7 +369,7 @@ void setup_scr_RGBLight(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->RGBLight_Blue, 50,50);
     lv_img_set_angle(ui->RGBLight_Blue, 0);
-    lv_obj_set_pos(ui->RGBLight_Blue, 62, 244);
+    lv_obj_set_pos(ui->RGBLight_Blue, 64, 249);
     lv_obj_set_size(ui->RGBLight_Blue, 537, 170);
 
     //Write style for RGBLight_Blue, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -388,7 +388,7 @@ void setup_scr_RGBLight(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->RGBLight_Red, 50,50);
     lv_img_set_angle(ui->RGBLight_Red, 0);
-    lv_obj_set_pos(ui->RGBLight_Red, 62, 244);
+    lv_obj_set_pos(ui->RGBLight_Red, 64, 249);
     lv_obj_set_size(ui->RGBLight_Red, 537, 170);
 
     //Write style for RGBLight_Red, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -407,7 +407,7 @@ void setup_scr_RGBLight(lv_ui *ui)
 #endif
     lv_img_set_pivot(ui->RGBLight_Green, 50,50);
     lv_img_set_angle(ui->RGBLight_Green, 0);
-    lv_obj_set_pos(ui->RGBLight_Green, 62, 244);
+    lv_obj_set_pos(ui->RGBLight_Green, 64, 249);
     lv_obj_set_size(ui->RGBLight_Green, 537, 170);
 
     //Write style for RGBLight_Green, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -415,6 +415,27 @@ void setup_scr_RGBLight(lv_ui *ui)
     lv_obj_set_style_img_opa(ui->RGBLight_Green, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_radius(ui->RGBLight_Green, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_clip_corner(ui->RGBLight_Green, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes RGBLight_btn_2
+    ui->RGBLight_btn_2 = lv_btn_create(ui->RGBLight);
+    ui->RGBLight_btn_2_label = lv_label_create(ui->RGBLight_btn_2);
+    lv_label_set_text(ui->RGBLight_btn_2_label, "");
+    lv_label_set_long_mode(ui->RGBLight_btn_2_label, LV_LABEL_LONG_WRAP);
+    lv_obj_align(ui->RGBLight_btn_2_label, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_style_pad_all(ui->RGBLight_btn_2, 0, LV_STATE_DEFAULT);
+    lv_obj_set_width(ui->RGBLight_btn_2_label, LV_PCT(100));
+    lv_obj_set_pos(ui->RGBLight_btn_2, 4, 4);
+    lv_obj_set_size(ui->RGBLight_btn_2, 229, 82);
+
+    //Write style for RGBLight_btn_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_bg_opa(ui->RGBLight_btn_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->RGBLight_btn_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->RGBLight_btn_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->RGBLight_btn_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->RGBLight_btn_2, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->RGBLight_btn_2, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->RGBLight_btn_2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->RGBLight_btn_2, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of RGBLight.
 

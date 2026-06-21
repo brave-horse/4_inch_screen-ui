@@ -52,7 +52,7 @@ void setup_scr_Sheers(lv_ui *ui)
     ui_init_style(&style_Sheers_tabview_1_extra_btnm_main_default);
 
     lv_style_set_bg_opa(&style_Sheers_tabview_1_extra_btnm_main_default, 255);
-    lv_style_set_bg_color(&style_Sheers_tabview_1_extra_btnm_main_default, lv_color_hex(0x4f3f3f));
+    lv_style_set_bg_color(&style_Sheers_tabview_1_extra_btnm_main_default, lv_color_hex(0x243241));
     lv_style_set_bg_grad_dir(&style_Sheers_tabview_1_extra_btnm_main_default, LV_GRAD_DIR_NONE);
     lv_style_set_border_width(&style_Sheers_tabview_1_extra_btnm_main_default, 0);
     lv_style_set_radius(&style_Sheers_tabview_1_extra_btnm_main_default, 0);
@@ -88,8 +88,8 @@ void setup_scr_Sheers(lv_ui *ui)
 
     //Write codes Sheers_cont_1
     ui->Sheers_cont_1 = lv_obj_create(ui->Sheers);
-    lv_obj_set_pos(ui->Sheers_cont_1, 0, 72);
-    lv_obj_set_size(ui->Sheers_cont_1, 720, 645);
+    lv_obj_set_pos(ui->Sheers_cont_1, 0, 85);
+    lv_obj_set_size(ui->Sheers_cont_1, 720, 630);
     lv_obj_set_scrollbar_mode(ui->Sheers_cont_1, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for Sheers_cont_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -109,11 +109,11 @@ void setup_scr_Sheers(lv_ui *ui)
     ui->Sheers_btn_1_label = lv_label_create(ui->Sheers_btn_1);
     lv_label_set_text(ui->Sheers_btn_1_label, "<  纱帘");
     lv_label_set_long_mode(ui->Sheers_btn_1_label, LV_LABEL_LONG_WRAP);
-    lv_obj_align(ui->Sheers_btn_1_label, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_align(ui->Sheers_btn_1_label, LV_ALIGN_LEFT_MID, 0, 0);
     lv_obj_set_style_pad_all(ui->Sheers_btn_1, 0, LV_STATE_DEFAULT);
     lv_obj_set_width(ui->Sheers_btn_1_label, LV_PCT(100));
-    lv_obj_set_pos(ui->Sheers_btn_1, 11, 5);
-    lv_obj_set_size(ui->Sheers_btn_1, 156, 50);
+    lv_obj_set_pos(ui->Sheers_btn_1, 40, 25);
+    lv_obj_set_size(ui->Sheers_btn_1, 94, 34);
 
     //Write style for Sheers_btn_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_bg_opa(ui->Sheers_btn_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -123,7 +123,7 @@ void setup_scr_Sheers(lv_ui *ui)
     lv_obj_set_style_text_color(ui->Sheers_btn_1, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->Sheers_btn_1, &lv_font_ZiTiQuanWeiJunHeiW22_30, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->Sheers_btn_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_align(ui->Sheers_btn_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->Sheers_btn_1, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes Sheers_FabCurtianOpen
     ui->Sheers_FabCurtianOpen = lv_img_create(ui->Sheers);
@@ -369,6 +369,27 @@ void setup_scr_Sheers(lv_ui *ui)
     lv_obj_set_style_img_opa(ui->Sheers_FabCurtianPole, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_radius(ui->Sheers_FabCurtianPole, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_clip_corner(ui->Sheers_FabCurtianPole, true, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes Sheers_btn_2
+    ui->Sheers_btn_2 = lv_btn_create(ui->Sheers);
+    ui->Sheers_btn_2_label = lv_label_create(ui->Sheers_btn_2);
+    lv_label_set_text(ui->Sheers_btn_2_label, "");
+    lv_label_set_long_mode(ui->Sheers_btn_2_label, LV_LABEL_LONG_WRAP);
+    lv_obj_align(ui->Sheers_btn_2_label, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_style_pad_all(ui->Sheers_btn_2, 0, LV_STATE_DEFAULT);
+    lv_obj_set_width(ui->Sheers_btn_2_label, LV_PCT(100));
+    lv_obj_set_pos(ui->Sheers_btn_2, 4, 4);
+    lv_obj_set_size(ui->Sheers_btn_2, 229, 82);
+
+    //Write style for Sheers_btn_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_bg_opa(ui->Sheers_btn_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->Sheers_btn_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->Sheers_btn_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->Sheers_btn_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->Sheers_btn_2, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->Sheers_btn_2, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->Sheers_btn_2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->Sheers_btn_2, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of Sheers.
 
